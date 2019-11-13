@@ -12,9 +12,11 @@ public class Dementor extends JPanel{
 	public static int DEMENTOR_ST_ALIVE = 1;
 	
 	private int state;
-	private int x = 1300, y, dx;
+	private int x, y, dx;
 	private int count;
-	private static Image img1 = new ImageIcon("images/stage1/dementor1_Move.gif").getImage().getScaledInstance(100, 100, 0);
+	//private static Image img1 = new ImageIcon("images/stage1/dementor1_Move.gif").getImage().getScaledInstance(80, 100, 0);
+	private static Image img2 = new ImageIcon("images/stage1/dementor2_Move.gif").getImage().getScaledInstance(100, 100, 0);
+	//private static Image img;
 	
 	public Dementor(){
 		state = DEMENTOR_ST_DEATH;
@@ -25,10 +27,10 @@ public class Dementor extends JPanel{
 	public int getY()		{ return y; }
 	
 	public void birth() {
-		y = new Random().nextInt(500) + 1;
+		x = 1300;
+		y = new Random().nextInt(500) + 100;
 		dx = new Random().nextInt(20) + 10;
 		state = DEMENTOR_ST_ALIVE;
-
 	}
 	
 	public void move() {
@@ -42,7 +44,7 @@ public class Dementor extends JPanel{
 	
 	public void draw(Graphics g) {
 		if(state == DEMENTOR_ST_ALIVE) {
-			g.drawImage(img1, x, y, 100, 100, this);
+				g.drawImage(img2, x, y, 100, 100, this);
 		}
 	}
 	

@@ -41,6 +41,7 @@ public class Controller extends JPanel{
 		t = new Timer(TIME_SLICE, new TimerHandler());
 		t.start();
 		
+		//디멘터 생성
 		dementor = new Dementor[MAX_DEMENTOR];
 		for(int i = 0 ; i < MAX_DEMENTOR ; i++) {
 			dementor[i] = new Dementor();
@@ -50,6 +51,7 @@ public class Controller extends JPanel{
 	
 	class TimerHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
 			for(Dementor d : dementor) {
 				if(d.getState() == Dementor.DEMENTOR_ST_DEATH) {
 					d.birth();
@@ -60,7 +62,9 @@ public class Controller extends JPanel{
 		}
 	}
 	
-	public void paint(Graphics g) {		
+	public void paint(Graphics g) {	
+		
+		
 		for(Dementor d : dementor) {
 			d.draw(g);
 		}
