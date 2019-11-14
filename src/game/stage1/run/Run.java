@@ -2,7 +2,7 @@ package game.stage1.run;
 
 import javax.swing.JFrame;
 
-import game.stage1.controller.Controller;
+import game.stage1.controller.D_Controller;
 
 public class Run extends JFrame{
 
@@ -14,7 +14,7 @@ public class Run extends JFrame{
 	public void MainFrame() {
 		this.setBounds(0,0, 1300,770);
 		
-		this.add(new Controller(this));
+		this.add(new D_Controller(this));
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -3,12 +3,12 @@ package game.stage1.controller;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ChangePanel {
+public class D_ChangePanel {
 
 	private JFrame mf;
 	private JPanel panel;
 
-	public ChangePanel(JFrame mf, JPanel panel) {
+	public D_ChangePanel(JFrame mf, JPanel panel) {
 		this.mf = mf;
 		this.panel = panel;
 	}
