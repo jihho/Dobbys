@@ -15,8 +15,9 @@ public class ChangePanel {
 	public void replacePanel(JPanel changePanel) {
 		mf.remove(panel);
 		mf.add(changePanel);
+		mf.revalidate();
 		mf.repaint();
-		System.out.println("퀘스트패널");
+		//System.out.println("퀘스트패널");
 		
 	}
 	
