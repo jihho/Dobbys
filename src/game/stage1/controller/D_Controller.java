@@ -104,7 +104,7 @@ public class D_Controller extends JPanel {
 		
 		hpImg = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
 		
-
+		//harry 생성
 		harry = new D_Harry();
 		harry.startHarry();
 
