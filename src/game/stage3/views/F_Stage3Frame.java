@@ -2,12 +2,12 @@ package game.stage3.views;
 
 import javax.swing.JFrame;
 
-public class Stage3Frame extends JFrame{
-	public Stage3Frame(){
+public class F_Stage3Frame extends JFrame{
+	public F_Stage3Frame(){
 		this.setBounds(200, 30, 1300, 770);
 		//this.setLayout(null);
-		this.setTitle("½ºÅ×3 ¿¬½À");
-		this.add(new Stage3Panel(this));
+		this.setTitle("ìŠ¤í…Œ3 ì—°ìŠµ");
+		this.add(new F_Stage3Panel(this));
 		//this.add(new GraphicTest(this));
 		
 		this.setVisible(true);
