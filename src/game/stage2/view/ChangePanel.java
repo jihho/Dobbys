@@ -7,7 +7,7 @@ public class ChangePanel {
 	private JFrame mf;
 	private JPanel panel;
 	
-	public  ChangePanel(JFrame mf, JPanel panel) {
+	public ChangePanel(JFrame mf, JPanel panel) {
 		this.mf = mf;
 		this.panel = panel;
 	}

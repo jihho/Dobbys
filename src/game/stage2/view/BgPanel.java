@@ -55,7 +55,7 @@ public class BgPanel extends JPanel {
 		
 		
 		//버튼 투명화
-		//item1.setBorderPainted(false); //외곽선 없애줌
+		item1.setBorderPainted(false); //외곽선 없애줌
 		item1.setContentAreaFilled(false); //내용영역 채우기 안함
 		item1.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item1.setOpaque(false); //불투명해제
@@ -72,7 +72,7 @@ public class BgPanel extends JPanel {
 		//item1과 사이간격 125
 		
 		
-		//item2.setBorderPainted(false); //외곽선 없애줌
+		item2.setBorderPainted(false); //외곽선 없애줌
 		item2.setContentAreaFilled(false); //내용영역 채우기 안함
 		item2.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item2.setOpaque(false); //불투명해제
@@ -89,7 +89,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//item3.setBorderPainted(false); //외곽선 없애줌
+		item3.setBorderPainted(false); //외곽선 없애줌
 		item3.setContentAreaFilled(false); //내용영역 채우기 안함
 		item3.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item3.setOpaque(false); //불투명해제
@@ -106,7 +106,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//item4.setBorderPainted(false); //외곽선 없애줌
+		item4.setBorderPainted(false); //외곽선 없애줌
 		item4.setContentAreaFilled(false); //내용영역 채우기 안함
 		item4.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item4.setOpaque(false); //불투명해제
@@ -123,7 +123,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//item5.setBorderPainted(false); //외곽선 없애줌
+		item5.setBorderPainted(false); //외곽선 없애줌
 		item5.setContentAreaFilled(false); //내용영역 채우기 안함
 		item5.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item5.setOpaque(false); //불투명해제
@@ -140,7 +140,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//item6.setBorderPainted(false); //외곽선 없애줌
+		item6.setBorderPainted(false); //외곽선 없애줌
 		item6.setContentAreaFilled(false); //내용영역 채우기 안함
 		item6.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item6.setOpaque(false); //불투명해제
@@ -157,7 +157,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//item7.setBorderPainted(false); //외곽선 없애줌
+		item7.setBorderPainted(false); //외곽선 없애줌
 		item7.setContentAreaFilled(false); //내용영역 채우기 안함
 		item7.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item7.setOpaque(false); //불투명해제
@@ -174,7 +174,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//item8.setBorderPainted(false); //외곽선 없애줌
+		item8.setBorderPainted(false); //외곽선 없애줌
 		item8.setContentAreaFilled(false); //내용영역 채우기 안함
 		item8.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item8.setOpaque(false); //불투명해제
@@ -191,7 +191,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//item9.setBorderPainted(false); //외곽선 없애줌
+		item9.setBorderPainted(false); //외곽선 없애줌
 		item9.setContentAreaFilled(false); //내용영역 채우기 안함
 		item9.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item9.setOpaque(false); //불투명해제
@@ -208,7 +208,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//btnLeft.setBorderPainted(false); //외곽선 없애줌
+		btnLeft.setBorderPainted(false); //외곽선 없애줌
 		btnLeft.setContentAreaFilled(false); //내용영역 채우기 안함
 		btnLeft.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		btnLeft.setOpaque(false); //불투명해제
@@ -225,7 +225,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//btnRight.setBorderPainted(false); //외곽선 없애줌
+		btnRight.setBorderPainted(false); //외곽선 없애줌
 		btnRight.setContentAreaFilled(false); //내용영역 채우기 안함
 		btnRight.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		btnRight.setOpaque(false); //불투명해제
@@ -243,7 +243,7 @@ public class BgPanel extends JPanel {
 		
 		
 		
-		//rule.setBorderPainted(false); //외곽선 없애줌
+		rule.setBorderPainted(false); //외곽선 없애줌
 		rule.setContentAreaFilled(false); //내용영역 채우기 안함
 		rule.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		rule.setOpaque(false); //불투명해제
