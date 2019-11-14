@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
-public class Harry extends JPanel{
+public class D_Harry extends JPanel{
 	public static final int HARRY_ST_ALIVE = 1;
 	public static final int HARRY_ST_BLAST = 2;
 	

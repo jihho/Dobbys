@@ -1,7 +1,5 @@
 package game.stage1.controller;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,11 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import game.stage1.model.vo.Dementor;
-import game.stage1.model.vo.Harry;
-import game.stage1.view.BackgroundModify;
+import game.stage1.model.vo.D_Dementor;
+import game.stage1.model.vo.D_Harry;
+import game.stage1.view.D_BackgroundModify;
+import view.GameStage;
 
-public class Controller extends JPanel {
+public class D_Controller extends JPanel {
 
 	private JFrame mf;
 	private JPanel panel;
@@ -37,9 +36,9 @@ public class Controller extends JPanel {
 
 	private Timer t;
 
-	private Dementor[] dementor;
-	private Harry harry;
-	private BackgroundModify back;
+	private D_Dementor[] dementor;
+	private D_Harry harry;
+	private D_BackgroundModify back;
 	private int harryHp;
 
 	// 배경 이미지
@@ -59,8 +58,14 @@ public class Controller extends JPanel {
 	// 해리 체력 이미지
 	private static Image hpImg  = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
 	
-	//private static Image hpImg = new ImageIcon("images/stage1/hpmark.png").getImage().
-	//		getScaledInstance(80, 80, 0);
+	private static Image spaceBar = new ImageIcon("images/stage1/spacebar_w.png").getImage().
+			getScaledInstance(818, 64, 0);
+	
+	private static Image blackBack = new ImageIcon("images/stage2/bg1.png").getImage().
+			getScaledInstance(1300, 770, 0);
+	
+	private static Image endWord = new ImageIcon("images/stage1/endWord.png").getImage().
+			getScaledInstance(818, 400, 0);
 	
 	//이미지 이중 버퍼
 	Image img;
@@ -68,9 +73,7 @@ public class Controller extends JPanel {
 	
 	
 	
-	
-	
-	public Controller(JFrame mf) {
+	public D_Controller(JFrame mf) {
 		this.mf = mf;
 		this.setLayout(null);
 
@@ -84,7 +87,7 @@ public class Controller extends JPanel {
 
 		// 배경추가
 		// mf.add(new Background());
-		back = new BackgroundModify();
+		back = new D_BackgroundModify();
 
 		t = new Timer(TIME_SLICE, new TimerHandler());
 		t.start();
@@ -93,16 +96,16 @@ public class Controller extends JPanel {
 		this.setFocusable(true);
 
 		// 디멘터 생성
-		dementor = new Dementor[MAX_DEMENTOR];
+		dementor = new D_Dementor[MAX_DEMENTOR];
 		for (int i = 0; i < MAX_DEMENTOR; i++) {
-			dementor[i] = new Dementor();
+			dementor[i] = new D_Dementor();
 		}
 		
 		
 		hpImg = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
 		
 
-		harry = new Harry();
+		harry = new D_Harry();
 		harry.startHarry();
 
 	}
@@ -112,18 +115,18 @@ public class Controller extends JPanel {
 
 			
 			//디멘터 생성 및 이동
-			for (Dementor d : dementor) {
-				if (d.getState() == Dementor.DEMENTOR_ST_DEATH) {
+			for (D_Dementor d : dementor) {
+				if (d.getState() == D_Dementor.DEMENTOR_ST_DEATH) {
 					//디멘터가 사라지거나 부딪쳐서 사라지면 다시 생성
 					d.birth();
 				}
 				d.move();
 				
 				//디멘터 히트박스와 해리포터 히트박스 충돌 판단
-				if(d.getState() == Dementor.DEMENTOR_ST_ALIVE && gameState == ST_GAME) {
-					if(harry.getState() == Harry.HARRY_ST_ALIVE) {
+				if(d.getState() == D_Dementor.DEMENTOR_ST_ALIVE && gameState == ST_GAME) {
+					if(harry.getState() == D_Harry.HARRY_ST_ALIVE) {
 						if(harry.getBBox().intersects(d.getBBox())) {
-							d.setState(Dementor.DEMENTOR_ST_DEATH);
+							d.setState(D_Dementor.DEMENTOR_ST_DEATH);
 							harry.setLife(harry.getLife() - 1);
 							if(harry.getLife() == 0) {
 								harry.blast();
@@ -155,19 +158,25 @@ public class Controller extends JPanel {
 		img_g.drawImage(backImg2, back.getX2(), back.getY2(), this);
 		
 		//버퍼에 디멘터 추가
-		for(Dementor d : dementor) {
-			if(d.getState() == Dementor.DEMENTOR_ST_ALIVE) {
+		for(D_Dementor d : dementor) {
+			if(d.getState() == D_Dementor.DEMENTOR_ST_ALIVE) {
 				img_g.drawImage(deImg, d.getX(), d.getY(), this);
 			}
 			
 		}
 		
 		if(gameState == ST_TITLE) {
-			img_g.drawString("시작하려면 SPACE BAR를 누르세요", 500, 330);
+			img_g.drawImage(blackBack, 0, 0, this);
+			img_g.drawImage(spaceBar, 240, 300, this);
+		}
+		
+		if(gameState == ST_ENDING) {
+			img_g.drawImage(blackBack, 0, 0, this);
+			img_g.drawImage(endWord, 240, 100, this);
 		}
 		
 		
-		
+		//게임 시작
 		if (gameState == ST_GAME) {
 			//버퍼에 해리 추가
 			img_g.drawImage(harryImg, harry.getX(), harry.getY(), this);
@@ -176,14 +185,16 @@ public class Controller extends JPanel {
 			for (int i = 0; i < harry.getLife(); i++) {
 				img_g.drawImage(hpImg, i * 50, 0, this);
 			}
+			
+			
+			
 		}		
-		
-		if(harry.getState() == Harry.HARRY_ST_BLAST) {
+		if(harry.getState() == D_Harry.HARRY_ST_BLAST) {
 			for(int i = 1 ; i < harry.getCount() ; i++) {
-				img_g.setColor(Util.randColor(128, 255));
-				int x0 = Util.rand(-40, 40);
-				int y0 = Util.rand(-40, 40);
-				int r0 = Util.rand(5, 40);
+				img_g.setColor(D_Util.randColor(128, 255));
+				int x0 = D_Util.rand(-40, 40);
+				int y0 = D_Util.rand(-40, 40);
+				int r0 = D_Util.rand(5, 40);
 				img_g.fillOval(harry.getX() - x0 + r0, harry.getY() - y0 + r0, r0, r0);
 			}
 			harry.setCount(harry.getCount()-1);
@@ -193,6 +204,7 @@ public class Controller extends JPanel {
 			}
 			
 		}
+		
 		
 		//한번에 그림
 		g.drawImage(img, 0, 0, null);
@@ -204,6 +216,7 @@ public class Controller extends JPanel {
 	}
 
 	class KeyHandler extends KeyAdapter {
+		
 		public void keyPressed(KeyEvent e) {
 			int code = e.getKeyCode();
 
@@ -220,14 +233,17 @@ public class Controller extends JPanel {
 					harry.moveDown();
 				}
 			}else if(gameState == ST_ENDING) {
+				
 				if(code == KeyEvent.VK_ENTER) {
 					gameState = ST_TITLE;
 				}
+				if(code == KeyEvent.VK_ESCAPE) {
+					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
+					GameStage gs = new GameStage(mf);						
+					cp.replacePanel(gs);
+				}
+				
 			}
-			
-			
-			
-			
 
 			repaint();
 		}

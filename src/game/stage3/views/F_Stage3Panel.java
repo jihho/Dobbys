@@ -12,32 +12,32 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Stage3Panel extends JPanel{
+public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
-	JLabel ef;	//½ºÅ³ ÀÌÆåÆ® ¾ø¾Ù¶§ »ç¿ëÇÒ ¶óº§
-	JLabel skill;	//½ºÅ³ ÀÌÆåÆ® ¿ë ¶óº§
+	//JLabel ef;	//ìŠ¤í‚¬ ì´í™íŠ¸ ì—†ì•¨ë•Œ ì‚¬ìš©í•  ë¼ë²¨
+	JLabel skill;	//ìŠ¤í‚¬ ì´í™íŠ¸ ìš© ë¼ë²¨
 	JLabel sksmash;
 	JLabel skdf;
 	JLabel skct;
-	public Stage3Panel(JFrame mf){
+	public F_Stage3Panel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 		
-		//½ºÅ×ÀÌÁö ¿ë ¶óº§
+		//ìŠ¤í…Œì´ì§€ ìš© ë¼ë²¨
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
 		
-		//ÇØ¸®Æ÷ÅÍ Ä³¸¯ÅÍ ¶óº§
+		//í•´ë¦¬í¬í„° ìºë¦­í„° ë¼ë²¨
 		JLabel hr = new JLabel(new ImageIcon(new ImageIcon("images/stage3/harry.png").getImage().getScaledInstance(225, 225, 0)));
 		hr.setBounds(191, 277, 225, 225);
 		
-		//º¼µå¸ğÆ® Ä³¸¯ÅÍ ¶óº§
+		//ë³¼ë“œëª¨íŠ¸ ìºë¦­í„° ë¼ë²¨
 		JLabel bm = new JLabel(new ImageIcon(new ImageIcon("images/stage3/boldemote.png").getImage().getScaledInstance(225, 225, 0)));
 		bm.setBounds(921, 277, 225, 225);
 		
-		//ÇØ¸®Æ÷ÅÍ Ã¼·Â ¹Ù
+		//í•´ë¦¬í¬í„° ì²´ë ¥ ë°”
 		JLabel hp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		hp.setBounds(190, 200, 34, 35);
 		
@@ -63,7 +63,7 @@ public class Stage3Panel extends JPanel{
 		hp9.setBounds(410, 180, 23, 70);
 		
 		
-		//º¼µå¸ğÆ® Ã¼·Â ¹Ù
+		//ë³¼ë“œëª¨íŠ¸ ì²´ë ¥ ë°”
 		JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		bmhp.setBounds(1120, 200, 34, 35);
 		
@@ -89,37 +89,37 @@ public class Stage3Panel extends JPanel{
 		bmhp9.setBounds(920, 180, 23, 70);
 		
 		
-		//°ø°İ ¹öÆ°
+		//ê³µê²© ë²„íŠ¼
 		JButton atk = new JButton(new ImageIcon("images/stage3/atk.png"));
 		atk.setBounds(40, 530, 186, 81);
 
-		//µğÆæ½º ¹öÆ°
+		//ë””íœìŠ¤ ë²„íŠ¼
 		JButton df = new JButton(new ImageIcon("images/stage3/df.png"));
 		df.setBounds(270, 530, 186, 81);
 
-		//½º¸Å½¬ ¹öÆ°
+		//ìŠ¤ë§¤ì‰¬ ë²„íŠ¼
 		JButton smash = new JButton(new ImageIcon("images/stage3/smash.png"));
 		smash.setBounds(40, 620, 186, 81);
 
-		//Ä«¿îÅÍ ¹öÆ°
+		//ì¹´ìš´í„° ë²„íŠ¼
 		JButton counter = new JButton(new ImageIcon("images/stage3/counter.png"));
 		counter.setBounds(270, 620, 186, 81);
 
-		//·Î±× ÅØ½ºÆ® ÇÊµå
+		//ë¡œê·¸ í…ìŠ¤íŠ¸ í•„ë“œ
 		JTextField log = new JTextField();
 		log.setBounds(610, 520, 620, 180);
 
-		//ÀÌÆåÆ® °¡¸²¿ë ¶óº§
-		ef = new JLabel();
+		//ì´í™íŠ¸ ê°€ë¦¼ìš© ë¼ë²¨
+		//ef = new JLabel();
 		
-		//½ºÅ³ ÀÌÆåÆ® ¶óº§
+		//ìŠ¤í‚¬ ì´í™íŠ¸ ë¼ë²¨
 		skill  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk2.gif").getImage().getScaledInstance(650, 200, 0)));
 		sksmash  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash1.gif").getImage().getScaledInstance(650, 200, 0)));
 		skdf  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/df22.gif").getImage().getScaledInstance(150, 200, 0)));
 		skct  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/ct2.gif").getImage().getScaledInstance(250, 200, 0)));
 		
-		//½ºÅ³ÀÌ °¡·ÁÁú ¼ö ÀÖ°Ô efÀÇ »çÀÌÁî¸¦ ½ºÅ³º¸´Ù »ìÂ¦ Å©°Ô 
-		ef.setBounds(400, 277, 700, 200);
+		//ìŠ¤í‚¬ì´ ê°€ë ¤ì§ˆ ìˆ˜ ìˆê²Œ efì˜ ì‚¬ì´ì¦ˆë¥¼ ìŠ¤í‚¬ë³´ë‹¤ ì‚´ì§ í¬ê²Œ 
+		//ef.setBounds(400, 277, 700, 200);
 		skill.setBounds(440, 277, 650, 200);
 		sksmash.setBounds(440, 277, 650, 200);
 		skdf.setBounds(440, 277, 150, 250);
@@ -145,10 +145,11 @@ public class Stage3Panel extends JPanel{
 		counter.setFocusPainted(false);
 		counter.setOpaque(false);*/
 
-		//Ç×»ó ÇÊ¿äÇÑ °Íµé Ãß°¡
+		//í•­ìƒ í•„ìš”í•œ ê²ƒë“¤ ì¶”ê°€
 		this.add(label);
 		this.add(hr);
 		this.add(bm);
+		
 		this.add(hp);
 		this.add(hp0);
 		this.add(hp1);
@@ -177,118 +178,135 @@ public class Stage3Panel extends JPanel{
 		this.add(df);
 		this.add(smash);
 		this.add(counter);
+		
 		this.add(log);
 		
-		//¹è°æ ¶óº§ÀÇ ¿ì¼± ¼øÀ§¸¦ °¡Àå ¾Æ·¡·Î ³»¸²À¸·Î¼­ ³ª¸ÓÁö ¶óº§ µîÀå 
+		//ë°°ê²½ ë¼ë²¨ì˜ ìš°ì„  ìˆœìœ„ë¥¼ ê°€ì¥ ì•„ë˜ë¡œ ë‚´ë¦¼ìœ¼ë¡œì„œ ë‚˜ë¨¸ì§€ ë¼ë²¨ ë“±ì¥ 
 		this.setComponentZOrder(label,29);
 
-		//¸¶¿ì½º ÀÌÆåÆ® »ç¿ë
+		//ë§ˆìš°ìŠ¤ ì´í™íŠ¸ ì‚¬ìš©
 		atk.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {	//Å¬¸¯Àº µ¿ÀÏÇÑ À§Ä¡¶ó ÀÎ½ÄÀÌ ¾ÈµÇ´Â °æ¿ì°¡ Á¾Á¾ »ı±â¹Ç·Î Released »ç¿ë
-					if(e.getSource() == atk){	//getSource¸¦ atk¹öÆ°À» ¹Ş°Ô ÇÔ
-						panel.remove(ef);	//ef ¶óº§ Á¦°Å 
-						panel.add(skill);	//skill ¶óº§ Ãß°¡
-						skill.updateUI();	//¶óº§ °»½ÅÇØ¼­ ¿À·ù »èÁ¦
-						panel.setComponentZOrder(label, 30);	//skill¶óº§ÀÌ º¸¿©Áö±â À§ÇØ ¹è°æ ¶óº§ÀÇ ¿ì¼±¼øÀ§ Á¶Á¤
+			public void mouseReleased(MouseEvent e) {	//í´ë¦­ì€ ë™ì¼í•œ ìœ„ì¹˜ë¼ ì¸ì‹ì´ ì•ˆë˜ëŠ” ê²½ìš°ê°€ ì¢…ì¢… ìƒê¸°ë¯€ë¡œ Released ì‚¬ìš©
+					if(e.getSource() == atk){	//getSourceë¥¼ atkë²„íŠ¼ì„ ë°›ê²Œ í•¨
+						//panel.remove(ef);	//ef ë¼ë²¨ ì œê±° 
+						panel.add(skill);	//skill ë¼ë²¨ ì¶”ê°€
+						panel.revalidate();
+						panel.repaint();
+						//skill.updateUI();	//ë¼ë²¨ ê°±ì‹ í•´ì„œ ì˜¤ë¥˜ ì‚­ì œ
+						panel.setComponentZOrder(label, 30);	//skillë¼ë²¨ì´ ë³´ì—¬ì§€ê¸° ìœ„í•´ ë°°ê²½ ë¼ë²¨ì˜ ìš°ì„ ìˆœìœ„ ì¡°ì •
 
-						Timer ts = new Timer();	//Timer ½ÇÇà
-						TimerTask tsm = new TimerTask() {	//TimerTask ½ÇÇà
+						Timer ts = new Timer();	//Timer ì‹¤í–‰
+						TimerTask tsm = new TimerTask() {	//TimerTask ì‹¤í–‰
 							
-							//TimerTask·Î ½ÇÇàÇÒ ÀÛ¾÷ ³»¿ë Override
+							//TimerTaskë¡œ ì‹¤í–‰í•  ì‘ì—… ë‚´ìš© Override
 							@Override
 							public void run() {
-								panel.remove(skill);	//skill ¶óº§ Á¦°Å 
-								panel.add(ef);			//ef ¶óº§ Ãß°¡
-								ef.updateUI();			//¶óº§ °»½Å 
-								panel.setComponentZOrder(label, 29);	//¹è°æ ¶óº§ ¿ì¼±¼øÀ§ Á¶Á¤
+								panel.remove(skill);	//skill ë¼ë²¨ ì œê±° 
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef ë¼ë²¨ ì¶”ê°€
+								//ef.updateUI();			//ë¼ë²¨ ê°±ì‹  
+								panel.setComponentZOrder(label, 29);	//ë°°ê²½ ë¼ë²¨ ìš°ì„ ìˆœìœ„ ì¡°ì •
 							}
 
 						};
-						ts.schedule(tsm, 1400);	//Override¿¡ ÀÖ´Â ÀÛ¾÷ ½ÃÀÛ ½Ã°£ ¼³Á¤ 
+						ts.schedule(tsm, 1400);	//Overrideì— ìˆëŠ” ì‘ì—… ì‹œì‘ ì‹œê°„ ì„¤ì • 
 					}
 			}
 		});
 		
 		smash.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {	//Å¬¸¯Àº µ¿ÀÏÇÑ À§Ä¡¶ó ÀÎ½ÄÀÌ ¾ÈµÇ´Â °æ¿ì°¡ Á¾Á¾ »ı±â¹Ç·Î Released »ç¿ë
-					if(e.getSource() == smash){	//getSource¸¦ atk¹öÆ°À» ¹Ş°Ô ÇÔ
-						panel.remove(ef);	//ef ¶óº§ Á¦°Å 
-						panel.add(sksmash);	//skill ¶óº§ Ãß°¡
+			public void mouseReleased(MouseEvent e) {	//í´ë¦­ì€ ë™ì¼í•œ ìœ„ì¹˜ë¼ ì¸ì‹ì´ ì•ˆë˜ëŠ” ê²½ìš°ê°€ ì¢…ì¢… ìƒê¸°ë¯€ë¡œ Released ì‚¬ìš©
+					if(e.getSource() == smash){	//getSourceë¥¼ atkë²„íŠ¼ì„ ë°›ê²Œ í•¨
+						//panel.remove(ef);	//ef ë¼ë²¨ ì œê±° 
+						panel.add(sksmash);	//skill ë¼ë²¨ ì¶”ê°€
 						/*sksmash.revalidate();
 						sksmash.repaint();*/
-						sksmash.updateUI();	//¶óº§ °»½ÅÇØ¼­ ¿À·ù »èÁ¦
-						panel.setComponentZOrder(label, 30);	//skill¶óº§ÀÌ º¸¿©Áö±â À§ÇØ ¹è°æ ¶óº§ÀÇ ¿ì¼±¼øÀ§ Á¶Á¤
+						panel.revalidate();
+						panel.repaint();
+						//sksmash.updateUI();	//ë¼ë²¨ ê°±ì‹ í•´ì„œ ì˜¤ë¥˜ ì‚­ì œ
+						panel.setComponentZOrder(label, 30);	//skillë¼ë²¨ì´ ë³´ì—¬ì§€ê¸° ìœ„í•´ ë°°ê²½ ë¼ë²¨ì˜ ìš°ì„ ìˆœìœ„ ì¡°ì •
 
-						Timer ts = new Timer();	//Timer ½ÇÇà
-						TimerTask tsm = new TimerTask() {	//TimerTask ½ÇÇà
+						Timer ts = new Timer();	//Timer ì‹¤í–‰
+						TimerTask tsm = new TimerTask() {	//TimerTask ì‹¤í–‰
 							
-							//TimerTask·Î ½ÇÇàÇÒ ÀÛ¾÷ ³»¿ë Override
+							//TimerTaskë¡œ ì‹¤í–‰í•  ì‘ì—… ë‚´ìš© Override
 							@Override
 							public void run() {
-								panel.remove(sksmash);	//skill ¶óº§ Á¦°Å 
-								panel.add(ef);			//ef ¶óº§ Ãß°¡
-								ef.updateUI();			//¶óº§ °»½Å 
-								panel.setComponentZOrder(label, 29);	//¹è°æ ¶óº§ ¿ì¼±¼øÀ§ Á¶Á¤
+								panel.remove(sksmash);	//skill ë¼ë²¨ ì œê±° 
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef ë¼ë²¨ ì¶”ê°€
+								//ef.updateUI();			//ë¼ë²¨ ê°±ì‹  
+								panel.setComponentZOrder(label, 29);	//ë°°ê²½ ë¼ë²¨ ìš°ì„ ìˆœìœ„ ì¡°ì •
 							}
 
 						};
-						ts.schedule(tsm, 1400);	//Override¿¡ ÀÖ´Â ÀÛ¾÷ ½ÃÀÛ ½Ã°£ ¼³Á¤ 
+						ts.schedule(tsm, 1400);	//Overrideì— ìˆëŠ” ì‘ì—… ì‹œì‘ ì‹œê°„ ì„¤ì • 
 					}
 			}
 		});
 		
 		df.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {	//Å¬¸¯Àº µ¿ÀÏÇÑ À§Ä¡¶ó ÀÎ½ÄÀÌ ¾ÈµÇ´Â °æ¿ì°¡ Á¾Á¾ »ı±â¹Ç·Î Released »ç¿ë
-					if(e.getSource() == df){	//getSource¸¦ atk¹öÆ°À» ¹Ş°Ô ÇÔ
-						panel.remove(ef);	//ef ¶óº§ Á¦°Å 
-						panel.add(skdf);	//skill ¶óº§ Ãß°¡
-						skdf.updateUI();	//¶óº§ °»½ÅÇØ¼­ ¿À·ù »èÁ¦
-						panel.setComponentZOrder(label, 30);	//skill¶óº§ÀÌ º¸¿©Áö±â À§ÇØ ¹è°æ ¶óº§ÀÇ ¿ì¼±¼øÀ§ Á¶Á¤
+			public void mouseReleased(MouseEvent e) {	//í´ë¦­ì€ ë™ì¼í•œ ìœ„ì¹˜ë¼ ì¸ì‹ì´ ì•ˆë˜ëŠ” ê²½ìš°ê°€ ì¢…ì¢… ìƒê¸°ë¯€ë¡œ Released ì‚¬ìš©
+					if(e.getSource() == df){	//getSourceë¥¼ atkë²„íŠ¼ì„ ë°›ê²Œ í•¨
+						//panel.remove(ef);	//ef ë¼ë²¨ ì œê±° 
+						panel.add(skdf);	//skill ë¼ë²¨ ì¶”ê°€
+						panel.revalidate();
+						panel.repaint();
+						//skdf.updateUI();	//ë¼ë²¨ ê°±ì‹ í•´ì„œ ì˜¤ë¥˜ ì‚­ì œ
+						panel.setComponentZOrder(label, 30);	//skillë¼ë²¨ì´ ë³´ì—¬ì§€ê¸° ìœ„í•´ ë°°ê²½ ë¼ë²¨ì˜ ìš°ì„ ìˆœìœ„ ì¡°ì •
 						
-						Timer ts = new Timer();	//Timer ½ÇÇà
-						TimerTask tsm = new TimerTask() {	//TimerTask ½ÇÇà
+						Timer ts = new Timer();	//Timer ì‹¤í–‰
+						TimerTask tsm = new TimerTask() {	//TimerTask ì‹¤í–‰
 							
-							//TimerTask·Î ½ÇÇàÇÒ ÀÛ¾÷ ³»¿ë Override
+							//TimerTaskë¡œ ì‹¤í–‰í•  ì‘ì—… ë‚´ìš© Override
 							@Override
 							public void run() {
-								panel.remove(skdf);	//skill ¶óº§ Á¦°Å 
-								panel.add(ef);			//ef ¶óº§ Ãß°¡
-								ef.updateUI();			//¶óº§ °»½Å 
-								panel.setComponentZOrder(label, 29);	//¹è°æ ¶óº§ ¿ì¼±¼øÀ§ Á¶Á¤
+								panel.remove(skdf);	//skill ë¼ë²¨ ì œê±° 
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef ë¼ë²¨ ì¶”ê°€
+								//ef.updateUI();			//ë¼ë²¨ ê°±ì‹  
+								panel.setComponentZOrder(label, 29);	//ë°°ê²½ ë¼ë²¨ ìš°ì„ ìˆœìœ„ ì¡°ì •
 							}
 
 						};
-						ts.schedule(tsm, 1400);	//Override¿¡ ÀÖ´Â ÀÛ¾÷ ½ÃÀÛ ½Ã°£ ¼³Á¤ 
+						ts.schedule(tsm, 1400);	//Overrideì— ìˆëŠ” ì‘ì—… ì‹œì‘ ì‹œê°„ ì„¤ì • 
 					}
 			}
 		});
 		
 		counter.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {	//Å¬¸¯Àº µ¿ÀÏÇÑ À§Ä¡¶ó ÀÎ½ÄÀÌ ¾ÈµÇ´Â °æ¿ì°¡ Á¾Á¾ »ı±â¹Ç·Î Released »ç¿ë
-					if(e.getSource() == counter){	//getSource¸¦ atk¹öÆ°À» ¹Ş°Ô ÇÔ
-						panel.remove(ef);	//ef ¶óº§ Á¦°Å 
-						panel.add(skct);	//skill ¶óº§ Ãß°¡
-						skct.updateUI();	//¶óº§ °»½ÅÇØ¼­ ¿À·ù »èÁ¦
-						panel.setComponentZOrder(label, 30);	//skill¶óº§ÀÌ º¸¿©Áö±â À§ÇØ ¹è°æ ¶óº§ÀÇ ¿ì¼±¼øÀ§ Á¶Á¤
+			public void mouseReleased(MouseEvent e) {	//í´ë¦­ì€ ë™ì¼í•œ ìœ„ì¹˜ë¼ ì¸ì‹ì´ ì•ˆë˜ëŠ” ê²½ìš°ê°€ ì¢…ì¢… ìƒê¸°ë¯€ë¡œ Released ì‚¬ìš©
+					if(e.getSource() == counter){	//getSourceë¥¼ atkë²„íŠ¼ì„ ë°›ê²Œ í•¨
+						//panel.remove(ef);	//ef ë¼ë²¨ ì œê±° 
+						panel.add(skct);	//skill ë¼ë²¨ ì¶”ê°€
+						panel.revalidate();
+						panel.repaint();
+						//skct.updateUI();	//ë¼ë²¨ ê°±ì‹ í•´ì„œ ì˜¤ë¥˜ ì‚­ì œ
+						panel.setComponentZOrder(label, 30);	//skillë¼ë²¨ì´ ë³´ì—¬ì§€ê¸° ìœ„í•´ ë°°ê²½ ë¼ë²¨ì˜ ìš°ì„ ìˆœìœ„ ì¡°ì •
 
-						Timer ts = new Timer();	//Timer ½ÇÇà
-						TimerTask tsm = new TimerTask() {	//TimerTask ½ÇÇà
+						Timer ts = new Timer();	//Timer ì‹¤í–‰
+						TimerTask tsm = new TimerTask() {	//TimerTask ì‹¤í–‰
 							
-							//TimerTask·Î ½ÇÇàÇÒ ÀÛ¾÷ ³»¿ë Override
+							//TimerTaskë¡œ ì‹¤í–‰í•  ì‘ì—… ë‚´ìš© Override
 							@Override
 							public void run() {
-								panel.remove(skct);	//skill ¶óº§ Á¦°Å 
-								panel.add(ef);			//ef ¶óº§ Ãß°¡
-								ef.updateUI();			//¶óº§ °»½Å 
-								panel.setComponentZOrder(label, 29);	//¹è°æ ¶óº§ ¿ì¼±¼øÀ§ Á¶Á¤
+								panel.remove(skct);	//skill ë¼ë²¨ ì œê±° 
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef ë¼ë²¨ ì¶”ê°€
+								//ef.updateUI();			//ë¼ë²¨ ê°±ì‹  
+								panel.setComponentZOrder(label, 29);	//ë°°ê²½ ë¼ë²¨ ìš°ì„ ìˆœìœ„ ì¡°ì •
 							}
 
 						};
-						ts.schedule(tsm, 1400);	//Override¿¡ ÀÖ´Â ÀÛ¾÷ ½ÃÀÛ ½Ã°£ ¼³Á¤ 
+						ts.schedule(tsm, 1400);	//Overrideì— ìˆëŠ” ì‘ì—… ì‹œì‘ ì‹œê°„ ì„¤ì • 
 					}
 			}
 		});

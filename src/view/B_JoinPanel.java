@@ -20,12 +20,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class JoinPanel extends JPanel{
+public class B_JoinPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	private boolean ischeck = false;
 	
-	public JoinPanel(JFrame mf){
+	public B_JoinPanel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
 		
@@ -34,13 +34,13 @@ public class JoinPanel extends JPanel{
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif").getImage().getScaledInstance(1300, 770, 0)));
 		label.setBounds(0, 0, 1300, 770);
 		
-		JLabel namelb = new JLabel("ÀÌ¸§");
-		JLabel idlb = new JLabel("¾ÆÀÌµğ");
-		JLabel pwlb = new JLabel("ºñ¹Ğ¹øÈ£");
-		JLabel pwchecklb = new JLabel("ºñ¹Ğ¹øÈ£ È®ÀÎ");
-		JLabel emaillb = new JLabel("ÀÌ¸ŞÀÏ");
-		JLabel certilb = new JLabel("ÀÎÁõ¹øÈ£");
-		JLabel test1 = new JLabel("ºñ¹Ğ¹øÈ£°¡ Æ²¸³´Ï´Ù.");
+		JLabel namelb = new JLabel("ì´ë¦„");
+		JLabel idlb = new JLabel("ì•„ì´ë””");
+		JLabel pwlb = new JLabel("ë¹„ë°€ë²ˆí˜¸");
+		JLabel pwchecklb = new JLabel("ë¹„ë°€ë²ˆí˜¸ í™•ì¸");
+		JLabel emaillb = new JLabel("ì´ë©”ì¼");
+		JLabel certilb = new JLabel("ì¸ì¦ë²ˆí˜¸");
+		JLabel test1 = new JLabel("ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤.");
 
 		
 		JTextField namefield = new JTextField();
@@ -50,11 +50,12 @@ public class JoinPanel extends JPanel{
 		JTextField emailfield = new JTextField();
 		JTextField certifield = new JTextField();
 		
-		JButton idbutton = new JButton("Áßº¹È®ÀÎ");
-		JButton joinbutton = new JButton("È¸¿ø°¡ÀÔ");
-		JButton jeonsongbutton = new JButton("ÀÎÁõ¹øÈ£ Àü¼Û");
-		JButton checkbutton = new JButton("ÀÎÁõ¹øÈ£ È®ÀÎ");
-		JButton cancelbutton = new JButton("Ãë¼Ò");
+		JButton idbutton = new JButton("ì¤‘ë³µí™•ì¸");
+		JButton joinbutton = new JButton("íšŒì›ê°€ì…");
+		JButton jeonsongbutton = new JButton("ì¸ì¦ë²ˆí˜¸ ì „ì†¡");
+		JButton checkbutton = new JButton("ì¸ì¦ë²ˆí˜¸ í™•ì¸");
+		JButton cancelbutton = new JButton("ì·¨ì†Œ");
+		JButton pwcheckbutton = new JButton("í™•ì¸");
 		
 		
 		namelb.setBounds(450, 300, 100, 70);
@@ -63,7 +64,7 @@ public class JoinPanel extends JPanel{
 		pwchecklb.setBounds(450, 435, 150, 70);
 		emaillb.setBounds(450, 480, 100, 70);
 		certilb.setBounds(450, 525, 100, 70);
-		test1.setBounds(800,440,200,70);
+		test1.setBounds(910,440,200,70);
 		
 		namefield.setBounds(600, 325, 180, 30);
 		idfield.setBounds(600, 370, 180, 30);
@@ -77,6 +78,7 @@ public class JoinPanel extends JPanel{
 		jeonsongbutton.setBounds(800, 505, 150, 30);
 		checkbutton.setBounds(800, 550, 150, 30);
 		cancelbutton.setBounds(550, 630, 100, 30);
+		pwcheckbutton.setBounds(800, 460, 100, 30);
 		
 		namelb.setFont(new Font("", Font.BOLD, 20));
 		namelb.setForeground(Color.white);
@@ -115,8 +117,8 @@ public class JoinPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ChangePanel cp = new ChangePanel(mf, panel);
-				CheckPanel chp = new CheckPanel(mf);
-				cp.replacePanel(chp);
+				B_CheckPanel bcp = new B_CheckPanel(mf);
+				cp.replacePanel(bcp);
 			}
 		
 		});
@@ -126,8 +128,8 @@ public class JoinPanel extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				
 				ChangePanel cp = new ChangePanel(mf, panel);
-				IntroVideoPanel ivp = new IntroVideoPanel(mf);
-				cp.replacePanel(ivp);
+				LoginPanel lp = new LoginPanel(mf);
+				cp.replacePanel(lp);
 			}
 		
 		});
@@ -137,7 +139,7 @@ public class JoinPanel extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(idfield.getText());
 				if(idfield.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.");
+					JOptionPane.showMessageDialog(null, "ì•„ì´ë””ë¥¼ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
 				}
 			}
 		});
@@ -147,11 +149,9 @@ public class JoinPanel extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(emailfield.getText());
 				if(emailfield.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.");
+					JOptionPane.showMessageDialog(null, "ì´ë©”ì¼ì„ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
 				}else {
-					JOptionPane.showMessageDialog(null, emailfield.getText()+"·Î ÀÎÁõ¹øÈ£¸¦ Àü¼ÛÇÏ¿´½À´Ï´Ù.");
-					test1.setText("ºñ¹Ğ¹øÈ£°¡ ¸Â½À´Ï´Ù!");
-					test1.setForeground(Color.blue);
+					JOptionPane.showMessageDialog(null, emailfield.getText()+"ë¡œ ì¸ì¦ë²ˆí˜¸ë¥¼ ì „ì†¡í•˜ì˜€ìŠµë‹ˆë‹¤.");
 				}
 			}
 		});
@@ -161,17 +161,24 @@ public class JoinPanel extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(certifield.getText());
 				if(certifield.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+					JOptionPane.showMessageDialog(null, "ì¸ì¦ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 				}else if(certifield.getText().equals("1234")) {
-					JOptionPane.showMessageDialog(null, "ÀÎÁõ¿¡ ¼º°øÇÏ¼Ì½À´Ï´Ù.");
+					JOptionPane.showMessageDialog(null, "ì¸ì¦ì— ì„±ê³µí•˜ì…¨ìŠµë‹ˆë‹¤.");
 					ischeck = true;
 				}else if(!certifield.getText().equals("1234")) {
-					JOptionPane.showMessageDialog(null, "ÀÎÁõ¹øÈ£°¡ Æ²·È½À´Ï´Ù.");
+					JOptionPane.showMessageDialog(null, "ì¸ì¦ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.");
 				}
 			}
 		});
 		
 	
+		pwcheckbutton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				test1.setText("ë¹„ë°€ë²ˆí˜¸ê°€ ë§ìŠµë‹ˆë‹¤!");
+				test1.setForeground(Color.blue);
+			}
+		});
 		
 		this.add(label);
 		this.add(idlb);
@@ -198,7 +205,8 @@ public class JoinPanel extends JPanel{
 		this.add(checkbutton);
 		this.add(cancelbutton);
 		this.add(test1);
-		this.setComponentZOrder(label, 18);
+		this.add(pwcheckbutton);
+		this.setComponentZOrder(label, 19);
 		
 		
 	}

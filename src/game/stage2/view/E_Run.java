@@ -1,9 +1,9 @@
 package game.stage2.view;
 
-public class Run {
+public class E_Run {
 
 	public static void main(String[] args) {
-		new Stage2MainFrame();
+		new E_Stage2MainFrame();
 	}
 
 }

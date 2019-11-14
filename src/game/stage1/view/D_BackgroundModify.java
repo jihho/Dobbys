@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class BackgroundModify extends JPanel{
+public class D_BackgroundModify extends JPanel{
 	
 	private int state;
 	private int x1, y1;
@@ -31,7 +31,7 @@ public class BackgroundModify extends JPanel{
 		return y2;
 	}
 
-	public BackgroundModify() {
+	public D_BackgroundModify() {
 		x1 = 0;
 		y1 = 0;
 		x2 = 1300;
