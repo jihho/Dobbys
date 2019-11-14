@@ -12,11 +12,11 @@ import javax.swing.JTextArea;
 
 import model.vo.Score;
 
-public class RankPanel extends JPanel{
+public class C_RankPanel extends JPanel{
 	private JFrame mf;
 	private ArrayList list;
 	
-	public RankPanel(JFrame mf, ArrayList list) {
+	public C_RankPanel(JFrame mf, ArrayList list) {
 		this.mf = mf;
 		this.list = list;
 		this.setBackground(Color.white);

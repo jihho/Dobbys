@@ -13,13 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class GameStage extends JPanel{
+public class C_GameStage extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
 	
 	
-	public GameStage(JFrame mf) {
+	public C_GameStage(JFrame mf) {
 		this.mf = mf;
 		this.setLayout(null);
 		

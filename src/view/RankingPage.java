@@ -46,7 +46,7 @@ public class RankingPage extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ChangePanel cp = new ChangePanel(mf, panel);
-				AssignDormitory ad = new AssignDormitory(mf);
+				C_AssignDormitory ad = new C_AssignDormitory(mf);
 				cp.replacePanel(ad);
 		
 			}
