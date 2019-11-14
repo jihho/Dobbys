@@ -11,10 +11,25 @@ public class BackgroundModify extends JPanel{
 	private int state;
 	private int x1, y1;
 	private int x2, y2;
-	private final int SPEED = 10;
+	private final int SPEED = 5;
 	
-	private static Image img1 = new ImageIcon("images/stage1/stage1_bg.png").getImage().getScaledInstance(1300, 770, 0);
-	private static Image img2 = new ImageIcon("images/stage1/stage1_bg.png").getImage().getScaledInstance(1300, 770, 0);
+	
+	
+	public int getX1() {
+		return x1;
+	}
+
+	public int getY1() {
+		return y1;
+	}
+
+	public int getX2() {
+		return x2;
+	}
+
+	public int getY2() {
+		return y2;
+	}
 
 	public BackgroundModify() {
 		x1 = 0;
@@ -35,8 +50,6 @@ public class BackgroundModify extends JPanel{
 		}
 	}
 	
-	public void draw(Graphics g) {
-		g.drawImage(img1, x1, y1, 1300, 770, this);
-		g.drawImage(img1, x2, y2, 1300, 770, this);
-	}
+	
+	
 }
