@@ -3,11 +3,11 @@ package game.stage2.view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ChangePanel {
+public class E_ChangePanel {
 	private JFrame mf;
 	private JPanel panel;
 	
-	public ChangePanel(JFrame mf, JPanel panel) {
+	public E_ChangePanel(JFrame mf, JPanel panel) {
 		this.mf = mf;
 		this.panel = panel;
 	}

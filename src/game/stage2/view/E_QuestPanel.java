@@ -2,8 +2,6 @@ package game.stage2.view;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,16 +9,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel{
+//게임 퀘스트 카운트화면
+public class E_QuestPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	//private JLabel quest1;
 	
-	public GamePanel(JFrame mf) {
+	
+	public E_QuestPanel(JFrame mf) {
 		this.mf = mf;
 		this.setLayout(null);
 		
 		panel = this;
+		
 		
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_bg2.PNG").
 				getImage().getScaledInstance(1280, 720, 0)));
@@ -30,24 +31,17 @@ public class GamePanel extends JPanel{
 		JLabel quest1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/quest1.PNG").
 				getImage().getScaledInstance(264, 275, 0)));
 		quest1.setBounds(910, 130, 264, 275);
-
-/*		Timer hide = new Timer();
-		TimerTask task = new TimerTask() {
-
+		
+		//퀘스트 클릭하면 없어지기
+/*		quest1.addMouseListener(new MouseAdapter() {
+			
 			@Override
-			public void run() {
-				 quest1 = new JLabel(new ImageIcon(new ImageIcon("image/stage2/quest1.PNG").
-						getImage().getScaledInstance(264, 275, 0)));
-				quest1.setBounds(910, 130, 264, 275);
-
+			public void mouseClicked(MouseEvent e) {
+				
+				remove(quest1);
+				repaint();
 			}
-		};
-		hide.schedule(task, 0, 3000);
-		//this.remove(quest1);
-		//hide.schedule(task, 5000);
-*/
-		
-		
+		});*/
 		
 		
 		JLabel hp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
@@ -74,7 +68,7 @@ public class GamePanel extends JPanel{
 		
 		
 		//버튼 투명화
-		//item1.setBorderPainted(false); //외곽선 없애줌
+		item1.setBorderPainted(false); //외곽선 없애줌
 		item1.setContentAreaFilled(false); //내용영역 채우기 안함
 		item1.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item1.setOpaque(false); //불투명해제
@@ -91,7 +85,7 @@ public class GamePanel extends JPanel{
 		//item1과 사이간격 125
 		
 		
-		//item2.setBorderPainted(false); //외곽선 없애줌
+		item2.setBorderPainted(false); //외곽선 없애줌
 		item2.setContentAreaFilled(false); //내용영역 채우기 안함
 		item2.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item2.setOpaque(false); //불투명해제
@@ -108,7 +102,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//item3.setBorderPainted(false); //외곽선 없애줌
+		item3.setBorderPainted(false); //외곽선 없애줌
 		item3.setContentAreaFilled(false); //내용영역 채우기 안함
 		item3.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item3.setOpaque(false); //불투명해제
@@ -125,7 +119,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//item4.setBorderPainted(false); //외곽선 없애줌
+		item4.setBorderPainted(false); //외곽선 없애줌
 		item4.setContentAreaFilled(false); //내용영역 채우기 안함
 		item4.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item4.setOpaque(false); //불투명해제
@@ -142,7 +136,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//item5.setBorderPainted(false); //외곽선 없애줌
+		item5.setBorderPainted(false); //외곽선 없애줌
 		item5.setContentAreaFilled(false); //내용영역 채우기 안함
 		item5.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item5.setOpaque(false); //불투명해제
@@ -159,7 +153,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//item6.setBorderPainted(false); //외곽선 없애줌
+		item6.setBorderPainted(false); //외곽선 없애줌
 		item6.setContentAreaFilled(false); //내용영역 채우기 안함
 		item6.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item6.setOpaque(false); //불투명해제
@@ -176,7 +170,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//item7.setBorderPainted(false); //외곽선 없애줌
+		item7.setBorderPainted(false); //외곽선 없애줌
 		item7.setContentAreaFilled(false); //내용영역 채우기 안함
 		item7.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item7.setOpaque(false); //불투명해제
@@ -193,7 +187,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//item8.setBorderPainted(false); //외곽선 없애줌
+		item8.setBorderPainted(false); //외곽선 없애줌
 		item8.setContentAreaFilled(false); //내용영역 채우기 안함
 		item8.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item8.setOpaque(false); //불투명해제
@@ -210,7 +204,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//item9.setBorderPainted(false); //외곽선 없애줌
+		item9.setBorderPainted(false); //외곽선 없애줌
 		item9.setContentAreaFilled(false); //내용영역 채우기 안함
 		item9.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item9.setOpaque(false); //불투명해제
@@ -227,7 +221,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//btnLeft.setBorderPainted(false); //외곽선 없애줌
+		btnLeft.setBorderPainted(false); //외곽선 없애줌
 		btnLeft.setContentAreaFilled(false); //내용영역 채우기 안함
 		btnLeft.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		btnLeft.setOpaque(false); //불투명해제
@@ -244,7 +238,7 @@ public class GamePanel extends JPanel{
 		
 		
 		
-		//btnRight.setBorderPainted(false); //외곽선 없애줌
+		btnRight.setBorderPainted(false); //외곽선 없애줌
 		btnRight.setContentAreaFilled(false); //내용영역 채우기 안함
 		btnRight.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		btnRight.setOpaque(false); //불투명해제
@@ -260,7 +254,6 @@ public class GamePanel extends JPanel{
 
 		
 		this.add(label);
-		//this.add(quest1);
 		this.add(hp1);
 		this.add(hp2);
 		this.add(hp3);
@@ -277,12 +270,14 @@ public class GamePanel extends JPanel{
 		this.add(item9);
 		this.add(btnLeft);
 		this.add(btnRight);
+		this.add(quest1);
 		
-		this.setComponentZOrder(label, 18);
+		this.setComponentZOrder(label, 17);//라벨을 16번째 이미지로 불러온다는것
 		//System.out.println("왜안돼");
 		
+
 		
-		
+
 		
 	}
 	
