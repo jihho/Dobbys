@@ -6,8 +6,7 @@ import javax.swing.JPanel;
 public class ChangePanel {
 	private JFrame mf;
 	private JPanel panel;
-
-
+	
 	public ChangePanel(JFrame mf, JPanel panel) {
 		this.mf = mf;
 		this.panel = panel;
@@ -21,9 +20,9 @@ public class ChangePanel {
 	}
 	
 	public void resetPanel(){
-		System.out.println("∆–≥Œ∫Ø∞Ê");
+		System.out.println("Ìå®ÎÑêÎ≥ÄÍ≤Ω");
 		mf.remove(panel);
-		//JPanel panel = new GamePanel(mf);
+		//JPanel panel = new BackgroundPanel_RandomAssign(mf);
 		mf.add(panel);
 		mf.repaint();
 	}
