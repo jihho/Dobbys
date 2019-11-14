@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-// 해리포터 
+
 public class ChangePanel {
 	private JFrame mf;
 	private JPanel panel;
@@ -15,6 +15,7 @@ public class ChangePanel {
 	public void replacePanel(JPanel changePanel) {
 		mf.remove(panel);
 		mf.add(changePanel);
+		mf.revalidate();
 		mf.repaint();
 	}
 	
@@ -31,5 +32,4 @@ public class ChangePanel {
 		mf.add(changePanel);
 		mf.repaint();
 	}
-	
 }

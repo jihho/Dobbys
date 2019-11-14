@@ -1,13 +1,10 @@
 package run;
 
-import javax.swing.JFrame;
-
 import view.MainFrame;
 
-public class Run extends JFrame{
-
+public class Run {
 	public static void main(String[] args) {
 		new MainFrame();
-	}
 
+	}
 }
