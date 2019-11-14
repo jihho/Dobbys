@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class FindPage extends JPanel {
+public class A_FindPage extends JPanel {
 	private JFrame mf;
 	private JPanel panel;
 	private JLabel label;
@@ -24,12 +24,13 @@ public class FindPage extends JPanel {
 	private JButton findpw;
 	private JButton backPage;
 	
-	public FindPage(JFrame mf) {
+	public A_FindPage(JFrame mf) {
 		JLabel findBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
 				.getImage().getScaledInstance(1300, 770, 0)));
 		findBackground.setBounds(0, 0, 1300, 770);
 		
 		this.mf = mf;
+		this.setLayout(null);
 		panel = this;
 		
 		label = new JLabel("아이디 찾기");
@@ -96,7 +97,7 @@ public class FindPage extends JPanel {
 				System.out.println("돌아가기");
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
-				LoginPanel fp = new LoginPanel(mf);
+				A_LoginPanel fp = new A_LoginPanel(mf);
 				
 				cp.replacePanel(fp);
 			}
