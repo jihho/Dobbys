@@ -2,7 +2,7 @@ package game.stage1.controller;
 
 import java.awt.Color;
 
-public class Util {
+public class D_Util {
 	public static int rand(int max) {
 		return (int)(Math.random()*(max + 1));
 	}

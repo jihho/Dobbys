@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-public class Dementor extends JPanel{
+public class D_Dementor extends JPanel{
 	public static final int DEMENTOR_ST_DEATH = 0;
 	public static final int DEMENTOR_ST_ALIVE = 1;
 	
@@ -15,7 +15,7 @@ public class Dementor extends JPanel{
 	
 	private Rectangle bb;	//bounding box
 	
-	public Dementor(){
+	public D_Dementor(){
 		state = DEMENTOR_ST_DEATH;
 		bb = new Rectangle(0, 0, 100, 100);
 	}
