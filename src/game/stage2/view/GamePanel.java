@@ -2,6 +2,8 @@ package game.stage2.view;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
+	//private JLabel quest1;
 	
 	public GamePanel(JFrame mf) {
 		this.mf = mf;
@@ -27,19 +30,20 @@ public class GamePanel extends JPanel{
 		JLabel quest1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/quest1.PNG").
 				getImage().getScaledInstance(264, 275, 0)));
 		quest1.setBounds(910, 130, 264, 275);
-		
-		/*		Timer hide = new Timer();
+
+/*		Timer hide = new Timer();
 		TimerTask task = new TimerTask() {
-			
+
 			@Override
 			public void run() {
-				 quest1 = new JLabel(new ImageIcon(new ImageIcon("image/stage2/quest1.PMG").
+				 quest1 = new JLabel(new ImageIcon(new ImageIcon("image/stage2/quest1.PNG").
 						getImage().getScaledInstance(264, 275, 0)));
-				quest1.setBounds(910,130,264,275);
-				
+				quest1.setBounds(910, 130, 264, 275);
+
 			}
 		};
-		hide.schedule(task, 3000);
+		hide.schedule(task, 0, 3000);
+		//this.remove(quest1);
 		//hide.schedule(task, 5000);
 */
 		
@@ -256,7 +260,7 @@ public class GamePanel extends JPanel{
 
 		
 		this.add(label);
-		this.add(quest1);
+		//this.add(quest1);
 		this.add(hp1);
 		this.add(hp2);
 		this.add(hp3);
@@ -274,7 +278,7 @@ public class GamePanel extends JPanel{
 		this.add(btnLeft);
 		this.add(btnRight);
 		
-		this.setComponentZOrder(label, 17);
+		this.setComponentZOrder(label, 18);
 		//System.out.println("왜안돼");
 		
 		
