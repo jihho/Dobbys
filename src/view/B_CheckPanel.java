@@ -17,12 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class CheckPanel extends JPanel{
+public class B_CheckPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	private int ctn = 0;
 	
-	public CheckPanel(JFrame mf){
+	public B_CheckPanel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
 
@@ -36,30 +36,32 @@ public class CheckPanel extends JPanel{
 		JLabel checkimg = new JLabel(new ImageIcon(new ImageIcon("images/main/check.png").getImage().getScaledInstance(300, 100, 0)));
 		checkimg.setBounds(380, 100, 600, 100);
 		checkimg.setOpaque(false);
-		String test1 = "Á¦1Á¶ (¸ñÀû)\r\n" + 
-				"º» ¾à°üÀº µµºñ½º ÁÖ½ÄÈ¸»ç(ÀÌÇÏ 'Dobbys')°¡ \n"
-				+ "°íµµ »çÀÌÆ®(ÀÌÇÏ ¡®»çÀÌÆ®¡¯)¸¦ ÅëÇÏ¿© ÀÎÅÍ³İ»ó¿¡¼­ \n"
-				+ "Á¦°øÇÏ´Â ¼­ºñ½º(ÀÌÇÏ ¡®¼­ºñ½º¡¯)¸¦ ÀÌ¿ëÇÏ´Â °í°´ (ÀÌÇÏ '°í°´')\n"
-				+ "°£ÀÇ ±Ç¸®¿Í ÀÇ¹« ¹× Ã¥ÀÓ µî ±âÅ¸ Á¦¹İ»çÇ×À» ±ÔÁ¤ÇÔÀ» ¸ñÀûÀ¸·Î ÇÕ´Ï´Ù.\r\n" + 
+		String test1 = "ì œ1ì¡° (ëª©ì )\r\n" + 
+				"ë³¸ ì•½ê´€ì€ ë„ë¹„ìŠ¤ ì£¼ì‹íšŒì‚¬(ì´í•˜ 'Dobbys')ê°€ \n"
+				+ "ê³ ë„ ì‚¬ì´íŠ¸(ì´í•˜ â€˜ì‚¬ì´íŠ¸â€™)ë¥¼ í†µí•˜ì—¬ ì¸í„°ë„·ìƒì—ì„œ \n"
+				+ "ì œê³µí•˜ëŠ” ì„œë¹„ìŠ¤(ì´í•˜ â€˜ì„œë¹„ìŠ¤â€™)ë¥¼ ì´ìš©í•˜ëŠ” ê³ ê° (ì´í•˜ 'ê³ ê°')\n"
+				+ "ê°„ì˜ ê¶Œë¦¬ì™€ ì˜ë¬´ ë° ì±…ì„ ë“± ê¸°íƒ€ ì œë°˜ì‚¬í•­ì„ ê·œì •í•¨ì„ ëª©ì ìœ¼ë¡œ í•©ë‹ˆë‹¤.\r\n" + 
 				"\r\n" + 
-				"Á¦2Á¶ (¿ë¾îÀÇ Á¤ÀÇ)\r\n" + 
-				"ÀÌ ¾à°ü¿¡¼­ »ç¿ëÇÏ´Â ¿ë¾îÀÇ Á¤ÀÇ´Â ´ÙÀ½°ú °°½À´Ï´Ù.\r\n" + 
-				"°¡. 'È¸¿ø'ÀÌ¶ó ÇÔÀº ÀÌ ¾à°ü¿¡ µ¿ÀÇÇÏ°í È¸¿ø°¡ÀÔÀ» \n"
-				+ "ÅëÇÏ¿© ÀÌ¿ëÀÚID(°íÀ¯¹øÈ£)¿Í ºñ¹Ğ¹øÈ£¸¦ ¹ß±Ş¹ŞÀº ÀÚ·Î¼­,\n"
-				+ " È¸»ç°¡ Á¦°øÇÏ´Â ¼­ºñ½º¸¦ ÀÌ¿ëÇÒ ¼ö ÀÖ´Â ÀÌ¿ëÀÚ¸¦ ¸»ÇÕ´Ï´Ù\n";
+				"ì œ2ì¡° (ìš©ì–´ì˜ ì •ì˜)\r\n" + 
+				"ì´ ì•½ê´€ì—ì„œ ì‚¬ìš©í•˜ëŠ” ìš©ì–´ì˜ ì •ì˜ëŠ” ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤.\r\n" + 
+				"ê°€. 'íšŒì›'ì´ë¼ í•¨ì€ ì´ ì•½ê´€ì— ë™ì˜í•˜ê³  íšŒì›ê°€ì…ì„ \n"
+				+ "í†µí•˜ì—¬ ì´ìš©ìID(ê³ ìœ ë²ˆí˜¸)ì™€ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë°œê¸‰ë°›ì€ ìë¡œì„œ,\n"
+				+ " íšŒì‚¬ê°€ ì œê³µí•˜ëŠ” ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•  ìˆ˜ ìˆëŠ” ì´ìš©ìë¥¼ ë§í•©ë‹ˆë‹¤\n";
+
 		
-		String test2 = "¡¸°³ÀÎÁ¤º¸º¸È£¹ı¡¹\n "
-				+ "Á¦15Á¶Á¦1Ç×Á¦1È£, Á¦17Á¶Á¦1Ç×Á¦1È£,\n"
-				+ " Á¦23Á¶Á¦1È£, Á¦24Á¶Á¦1Ç× Á¦1È£¿¡ µû¶ó \r\n" + 
-				"¾Æ·¡¿Í °°ÀÌ °³ÀÎÁ¤º¸ÀÇ ¼öÁı. ÀÌ¿ë¿¡ °üÇÏ¿© ±ÍÇÏÀÇ \n"
-				+ "µ¿ÀÇ¸¦ ¾ò°íÀÚ ÇÕ´Ï´Ù. \r\n" + 
+		String test2 = "ã€Œê°œì¸ì •ë³´ë³´í˜¸ë²•ã€\n "
+				+ "ì œ15ì¡°ì œ1í•­ì œ1í˜¸, ì œ17ì¡°ì œ1í•­ì œ1í˜¸,\n"
+				+ " ì œ23ì¡°ì œ1í˜¸, ì œ24ì¡°ì œ1í•­ ì œ1í˜¸ì— ë”°ë¼ \r\n" + 
+				"ì•„ë˜ì™€ ê°™ì´ ê°œì¸ì •ë³´ì˜ ìˆ˜ì§‘. ì´ìš©ì— ê´€í•˜ì—¬ ê·€í•˜ì˜ \n"
+				+ "ë™ì˜ë¥¼ ì–»ê³ ì í•©ë‹ˆë‹¤. \r\n" + 
 				"\r\n" + 
-				"µµºñ½º´Â ÀÌ¿ëÀÚÀÇ »çÀü µ¿ÀÇ ¾øÀÌ´Â ÀÌ¿ëÀÚÀÇ °³ÀÎÁ¤º¸¸¦\n"
-				+ " ÇÔºÎ·Î °ø°³ÇÏÁö ¾ÊÀ¸¸ç, ¼öÁıµÈ Á¤º¸´Â ¾Æ·¡¿Í \n"
-				+ "°°ÀÌ ÀÌ¿ëÇÏ°í ÀÖ½À´Ï´Ù. \r\n" + 
-				"ÀÌ¿ëÀÚ°¡ Á¦°øÇÑ ¸ğµç Á¤º¸´Â ¾Æ·¡ÀÇ ¸ñÀû¿¡ ÇÊ¿äÇÑ \n"
-				+ "¿ëµµ ÀÌ¿Ü·Î´Â »ç¿ëµÇÁö ¾ÊÀ¸¸ç ÀÌ¿ë ¸ñÀûÀÌ º¯°æµÉ ½Ã¿¡´Â\n"
-				+ " ÀÌ¸¦ ¾Ë¸®°í µ¿ÀÇ¸¦ ±¸ÇÒ °ÍÀÔ´Ï´Ù.\n";
+				"ë„ë¹„ìŠ¤ëŠ” ì´ìš©ìì˜ ì‚¬ì „ ë™ì˜ ì—†ì´ëŠ” ì´ìš©ìì˜ ê°œì¸ì •ë³´ë¥¼\n"
+				+ " í•¨ë¶€ë¡œ ê³µê°œí•˜ì§€ ì•Šìœ¼ë©°, ìˆ˜ì§‘ëœ ì •ë³´ëŠ” ì•„ë˜ì™€ \n"
+				+ "ê°™ì´ ì´ìš©í•˜ê³  ìˆìŠµë‹ˆë‹¤. \r\n" + 
+				"ì´ìš©ìê°€ ì œê³µí•œ ëª¨ë“  ì •ë³´ëŠ” ì•„ë˜ì˜ ëª©ì ì— í•„ìš”í•œ \n"
+				+ "ìš©ë„ ì´ì™¸ë¡œëŠ” ì‚¬ìš©ë˜ì§€ ì•Šìœ¼ë©° ì´ìš© ëª©ì ì´ ë³€ê²½ë  ì‹œì—ëŠ”\n"
+				+ " ì´ë¥¼ ì•Œë¦¬ê³  ë™ì˜ë¥¼ êµ¬í•  ê²ƒì…ë‹ˆë‹¤.\n";
+
 		
 		JTextArea textArea1 = new JTextArea(test1);
 		JTextArea textArea2 = new JTextArea(test2);
@@ -75,14 +77,19 @@ public class CheckPanel extends JPanel{
 		JCheckBox box1 = new JCheckBox();
 		JCheckBox box2 = new JCheckBox();
 		
-		JButton btn = new JButton("È¸¿ø°¡ÀÔ");
+		JButton btn = new JButton("ë™ì˜ ì™„ë£Œ");
 		btn.setFont(new Font("", Font.BOLD, 16));
+		
+		JButton cancelbutton = new JButton("ì·¨ì†Œ");
+		cancelbutton.setFont(new Font("", Font.BOLD, 16));
 		
 		scroll1.setBounds(450, 200, 450, 150);
 		scroll2.setBounds(450, 400, 450, 150);
-		btn.setBounds(620, 600, 130, 30);
+		btn.setBounds(770, 600, 130, 30);
 		box1.setBounds(910, 315, 50, 50);
 		box2.setBounds(910, 515, 50, 50);
+		cancelbutton.setBounds(450, 600, 100, 30);
+		
 		box1.setOpaque(false);
 		box2.setOpaque(false);
 		
@@ -92,11 +99,11 @@ public class CheckPanel extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				if(box1.isSelected()) {
 					ctn++;
-					System.out.println("box1 ¼±ÅÃ");
+					System.out.println("box1 ì„ íƒ");
 					System.out.println(ctn);
 				}else {
 					ctn--;
-					System.out.println("box1 ÇØÁ¦");
+					System.out.println("box1 í•´ì œ");
 					System.out.println(ctn);
 				}
 				
@@ -109,11 +116,11 @@ public class CheckPanel extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				if(box2.isSelected()) {
 					ctn++;
-					System.out.println("box2 ¼±ÅÃ");
+					System.out.println("box2 ì„ íƒ");
 					System.out.println(ctn);
 				}else {
 					ctn--;
-					System.out.println("box2 ÇØÁ¦");
+					System.out.println("box2 í•´ì œ");
 					System.out.println(ctn);
 				}
 			}
@@ -123,31 +130,25 @@ public class CheckPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(ctn != 2) {
-					JOptionPane.showMessageDialog(null, "¸ğµç ¾à°ü¿¡ µ¿ÀÇÇØÁÖ½Ã±æ ¹Ù¶ø´Ï´Ù.");
+					JOptionPane.showMessageDialog(null, "ëª¨ë“  ì•½ê´€ì— ë™ì˜í•´ì£¼ì‹œê¸¸ ë°”ëë‹ˆë‹¤.");
 				}
 				if(ctn == 2) {
 					ChangePanel cp = new ChangePanel(mf, panel);
-					JoinPanel jp = new JoinPanel(mf);
+					B_JoinPanel jp = new B_JoinPanel(mf);
 					cp.replacePanel(jp);
 				}
 			}
 		});
-		//		start.addMouseListener(new MouseAdapter() {
-		//			@Override
-		//			public void mouseClicked(MouseEvent e) {
-		//				ChangePanel cp = new ChangePanel(mf, panel);
-		//				//t1.setDaemon(true);
-		//				GamePanel gp = new GamePanel(mf);
-		//				Timer timer = new Timer(mf,gp);
-		//				Thread t1 = timer;
-		//				t1.start();
-		//				
-		//				
-		//				
-		//				cp.replacePanel(gp);
-		//			}
-		//			
-		//		});
+		
+		cancelbutton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ChangePanel cp = new ChangePanel(mf, panel);
+				LoginPanel lp = new LoginPanel(mf);
+				cp.replacePanel(lp);
+			}
+		});
+
 		this.add(label);
 		this.add(scroll1);
 		this.add(scroll2);
@@ -155,7 +156,8 @@ public class CheckPanel extends JPanel{
 		this.add(box1);
 		this.add(box2);
 		this.add(checkimg);
-		this.setComponentZOrder(label, 6);
+		this.add(cancelbutton);
+		this.setComponentZOrder(label, 7);
 
 
 	}

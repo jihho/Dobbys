@@ -8,7 +8,7 @@ public class MainFrame extends JFrame{
 		this.setBounds(0, 0, 1300, 770);
 		//this.setLayout(null);
 		
-		this.add(new CheckPanel(this));
+		this.add(new B_CheckPanel(this));
 		//this.add(new GraphicTest(this));
 		
 		this.setVisible(true);

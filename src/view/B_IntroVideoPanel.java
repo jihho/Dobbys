@@ -1,14 +1,17 @@
 package view;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class IntroVideoPanel extends JPanel{
+public class B_IntroVideoPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
-	public IntroVideoPanel(JFrame mf){
+	public B_IntroVideoPanel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
 		
@@ -21,6 +24,17 @@ public class IntroVideoPanel extends JPanel{
 		start.setBounds(180, 550, 300, 200);
 		
 
+		start.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ChangePanel cp = new ChangePanel(mf, panel);
+				GameStage gs = new GameStage(mf);
+				cp.replacePanel(gs);
+			}
+		
+		});
+		
 		this.add(label);
 		this.add(start);
 		this.setComponentZOrder(label, 1);
