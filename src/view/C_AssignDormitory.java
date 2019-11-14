@@ -16,12 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class AssignDormitory extends JPanel{
+public class C_AssignDormitory extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	
 	
-	public AssignDormitory(JFrame mf) {
+	public C_AssignDormitory(JFrame mf) {
 		this.mf = mf;
 		this.setLayout(null);
 		
@@ -44,11 +44,29 @@ public class AssignDormitory extends JPanel{
 		background.add(hat);
 		background.add(harry);
 		
+		
+		String str = "어렵군, 아주 어려워...\n용기가 충만하고, 총명하며,\n재능을 타고 났어!\n의욕이 하늘을 찌르는 군!\n근데 어디가 좋을까...\n가만보자...흐음....\n";
+		
+//		for(int i = 0; i < str.length(); i++) {
+//			try {
+//				char ch = str.charAt(i);
+//				Thread.sleep(150);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			
+//		}
+		
 		// JTextArea(대화 상자) 생성  
-		JTextArea ta = new JTextArea();  	//JTextArea 생성
+		JTextArea ta = new JTextArea(str);  	//JTextArea 생성
      	ta.setBounds(650, 50, 500, 500); 	//JTeatArea 크기 및 위치 지정
 	    ta.setEditable(false); 				//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+		ta.setFont(new Font("", Font.BOLD, 40)); 
 		
+	    
+//	    JLabel tb = new JLabel(new ImageIcon(new ImageIcon("images/main/TextBox.png").getImage().getScaledInstance(500, 500, 0)));
+//		tb.setBounds(650, 50, 500, 500);
+	    
     	/*
     		어렵군, 아주 어려워...
     		용기가 충만하고, 총명하며,
@@ -59,7 +77,8 @@ public class AssignDormitory extends JPanel{
      	*/
 			    
 	    // 패널에에 JTextArea 추가
-	    background.add(ta);
+		background.add(ta);
+		//background.add(tb);
 				
 	    
 	    // 반 배정 받기 버튼 추가 
@@ -78,7 +97,7 @@ public class AssignDormitory extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
-			RandomAssign ra = new RandomAssign(mf);
+			C_RandomAssign ra = new C_RandomAssign(mf);
 		
 						
 			cp.replacePanel(ra);
