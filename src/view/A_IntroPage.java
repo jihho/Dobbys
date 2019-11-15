@@ -13,11 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class IntroPage extends JPanel{
+public class A_IntroPage extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	
-	public IntroPage(JFrame mf){
+	public A_IntroPage(JFrame mf){
 		
 		this.mf = mf;
 		this.setLayout(null);
@@ -37,7 +37,7 @@ public class IntroPage extends JPanel{
 			public void mousePressed(MouseEvent e) {
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
-				LoginPanel gp = new LoginPanel(mf);
+				A_LoginPanel gp = new A_LoginPanel(mf);
 				
 				cp.replacePanel(gp);
 			}
@@ -49,7 +49,7 @@ public class IntroPage extends JPanel{
 			public void keyPressed(KeyEvent e) {
 					ChangePanel cp = new ChangePanel(mf, panel);
 					//t1.setDaemon(true);
-					LoginPanel gp = new LoginPanel(mf);
+					A_LoginPanel gp = new A_LoginPanel(mf);
 					
 					cp.replacePanel(gp);
 			}
