@@ -1,8 +1,11 @@
 eclipse.preferences.version=1
 encoding//src/game/stage1/controller/Controller.java=UTF-8
+encoding//src/game/stage1/controller/D_Controller.java=UTF-8
 encoding//src/game/stage1/model/vo/Harry.java=UTF-8
 encoding//src/game/stage2/view/BgPanel.java=UTF-8
 encoding//src/game/stage2/view/GamePanel.java=UTF-8
+encoding//src/game/stage3/controller/F_Stage3Play.java=UTF-8
+encoding//src/game/stage3/model/vo/F_General.java=UTF-8
 encoding//src/game/stage3/views/F_Stage3Frame.java=UTF-8
 encoding//src/game/stage3/views/F_Stage3Panel.java=UTF-8
 encoding/<project>=UTF-8
