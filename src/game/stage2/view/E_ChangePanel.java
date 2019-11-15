@@ -17,13 +17,20 @@ public class E_ChangePanel {
 		mf.add(changePanel);
 		mf.revalidate();
 		mf.repaint();
-		//System.out.println("퀘스트패널");
+		
 		
 	}
 	
-	public void playPanel() {
-		System.out.println("플레이패널");
+	public void resetPanel() {
+		System.out.println("패널변경~~");
+		mf.remove(panel);
 		mf.add(panel);
+		mf.repaint();
+	}
+	
+	public void replaceRankPanel(JPanel changePanel) {
+		mf.remove(panel);
+		mf.add(changePanel);
 		mf.repaint();
 	}
 	
