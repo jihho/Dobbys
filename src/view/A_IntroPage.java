@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -54,6 +57,13 @@ public class A_IntroPage extends JPanel{
 					cp.replacePanel(gp);
 			}
 		});
+		
+//		introBackground.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//		press.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/intromouse.png").getImage(),
+				new Point(0,0),"images/main/intromouse.png"));
+		
 		
 		this.add(press);
 		this.add(introBackground);
