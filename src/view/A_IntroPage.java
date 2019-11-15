@@ -3,13 +3,16 @@ package view;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -31,13 +34,13 @@ public class A_IntroPage extends JPanel{
 				.getImage().getScaledInstance(1300, 770, 0)));
 		introBackground.setBounds(0, 0, 1300, 770);
 		
-		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/pressbutton.gif")
-				.getImage().getScaledInstance(950, 150, 0)));
-		press.setBounds(200, 520, 950, 300);
+		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
+				.getImage().getScaledInstance(650, 40, 0)));
+		press.setBounds(320, 650, 650, 40);
 		
 		this.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				A_LoginPanel gp = new A_LoginPanel(mf);
@@ -45,6 +48,7 @@ public class A_IntroPage extends JPanel{
 				cp.replacePanel(gp);
 			}
 		});
+		
 		
 		this.addKeyListener(new KeyAdapter() {
 			
@@ -69,8 +73,9 @@ public class A_IntroPage extends JPanel{
 		this.add(introBackground);
 //		this.setComponentZOrder(label, 1);
 		
-		
+
 	}
-	
+		
+		
 }
 
