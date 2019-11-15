@@ -1,8 +1,11 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -56,7 +59,7 @@ public class A_LoginPanel extends JPanel {
 		text.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(text);
 		text.setColumns(15);
-		text.setOpaque(false);
+//		text.setOpaque(false);
 		
 		
 		label = new JLabel("Password");
@@ -94,12 +97,18 @@ public class A_LoginPanel extends JPanel {
 		loginBtn.setBorderPainted(false);
 		loginBtn.setPreferredSize(new Dimension(130,120));
 		
+		loginBtn.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse2.png").getImage(),
+				new Point(0,0),"images/main/mouse2.png"));
+		
+//		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		panel.add(loginBtn);
 //		JLabel loginLabel = new JLabel("LOGIN");
 //		loginLabel.setBounds(862, 450 , 300, 120);
 //		loginLabel.setFont(new Font("DungGeunMo", Font.BOLD, 40));
 //		
 //		panel.add(loginLabel);
-		panel.add(loginBtn);
 //		this.add(loginBtnImg);
 		
 		
@@ -122,6 +131,8 @@ public class A_LoginPanel extends JPanel {
 		findId1.setRolloverIcon(findId2);
 		findId1.setBorderPainted(false);
 		findId1.setPreferredSize(new Dimension(220, 35));
+		
+//		findId1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		panel.add(findId1);
 		
@@ -150,6 +161,8 @@ public class A_LoginPanel extends JPanel {
 		joinBtn1.setBorderPainted(false);
 		joinBtn1.setPreferredSize(new Dimension(380, 40));
 		
+//		joinBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		panel.add(joinBtn1);
 		
 		joinBtn1.addMouseListener(new MouseAdapter() {
@@ -158,7 +171,7 @@ public class A_LoginPanel extends JPanel {
 				System.out.println("회원가입 클릭");
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
-				CheckPanel fp = new CheckPanel(mf);
+				B_CheckPanel fp = new B_CheckPanel(mf);
 				
 				cp.replacePanel(fp);
 			}
@@ -194,7 +207,7 @@ public class A_LoginPanel extends JPanel {
 				
 				if(ctn == 0 && text.getText().equals("admin") && passwordText.getText().equals("admin")) {
 				ChangePanel cp = new ChangePanel(mf, panel);
-				IntroVideoPanel fp = new IntroVideoPanel(mf);
+				B_IntroVideoPanel fp = new B_IntroVideoPanel(mf);
 				cp.replacePanel(fp);
 				}
 			}
@@ -213,6 +226,10 @@ public class A_LoginPanel extends JPanel {
 				cp.replacePanel(fp);
 			}
 		});
+		
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse.png").getImage(),
+				new Point(0,0),"images/main/mouse.png"));
 		
 		this.add(loginLogo);
 		this.add(loginBackground);

@@ -29,7 +29,7 @@ public class B_IntroVideoPanel extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				
 				ChangePanel cp = new ChangePanel(mf, panel);
-				GameStage gs = new GameStage(mf);
+				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 			}
 		

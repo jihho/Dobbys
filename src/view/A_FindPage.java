@@ -1,7 +1,11 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -78,20 +82,34 @@ public class A_FindPage extends JPanel {
 		panel.add(email);
 		email.setColumns(15);
 		
-		findpw = new JButton("비밀번호 찾기");
+		findpw = new JButton("임시 비밀번호 전송");
 		findpw.setBounds(820, 440, 180, 130);
 		findpw.setFont(new Font("DungGeunMo", Font.BOLD, 20));
 		panel.add(findpw);
 		
 		
 		
-		backPage = new JButton("돌아가기");
-		backPage.setBounds(1100, 620, 140, 70);
-		backPage.setFont(new Font("DungGeunMo", Font.BOLD, 25));
-		panel.add(backPage);
+//		backPage = new JButton("돌아가기");
+//		backPage.setBounds(1100, 620, 140, 70);
+//		backPage.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+//		panel.add(backPage);
+		
+		JButton backBtn1 = new JButton(new ImageIcon("images/main/backBtn1.png"));
+		backBtn1.setBounds(1100, 620, 140, 70);
+		backBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		backBtn1.setBorderPainted(false);
+		
+		ImageIcon backBtn2 = new ImageIcon("images/main/backBtn2.png");
+		backBtn1.setRolloverIcon(backBtn2);
+		backBtn1.setBorderPainted(false);
+		backBtn1.setPreferredSize(new Dimension(140, 70));
+		
+//		backBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		panel.add(backBtn1);
 		
 	
-		backPage.addMouseListener(new MouseAdapter() {
+		backBtn1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("돌아가기");
@@ -103,10 +121,15 @@ public class A_FindPage extends JPanel {
 			}
 		});
 		
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse.png").getImage(),
+				new Point(0,0),"images/main/mouse.png"));
 		
 		
 		this.setBounds(0,0,1300,770);
 		
 		this.add(findBackground);
 	}
+	
+	
 }
