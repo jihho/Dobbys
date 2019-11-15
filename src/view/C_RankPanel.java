@@ -38,7 +38,7 @@ public class C_RankPanel extends JPanel{
 			}
 		}
 		ta.setBounds(0, 0, 800, 700);
-		ta.setFont(new Font("", Font.BOLD, 50));
+		ta.setFont(new Font("", Font.PLAIN, 50));
 		this.add(ta);
 	}
 }

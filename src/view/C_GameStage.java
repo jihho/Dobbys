@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -25,7 +27,6 @@ public class C_GameStage extends JPanel{
 		
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
-		System.out.println("패널 생성");
 
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		background.setBounds(0, 0, 1300, 770);
@@ -37,13 +38,114 @@ public class C_GameStage extends JPanel{
 		JButton stage3_btn = new JButton(new ImageIcon("images/main/stage3_icon2.png"));
 		JButton ranking_btn = new JButton(new ImageIcon("images/main/ranking_icon2.png"));
 		
+		JButton stage1_name = new JButton("Stage1");
+		JButton stage2_name = new JButton("Stage2");
+		JButton stage3_name = new JButton("Stage3");
+		JButton ranking_name = new JButton("Ranking");
+		
+		
 		// 버튼 위치와 크기 설정 
 		stage1_btn.setBounds(1140, 510, 72, 70);
 		stage2_btn.setBounds(860, 160, 72, 70);
 		stage3_btn.setBounds(130, 160, 72, 70);
 		ranking_btn.setBounds(110, 480, 72, 70);
 		
-
+		stage1_name.setBounds(1105, 465, 150, 50);
+		stage2_name.setBounds(825, 115, 150, 50);
+		stage3_name.setBounds(95, 115, 150, 50);
+		ranking_name.setBounds(75, 435, 150, 50);
+		
+		
+		stage1_name.setBackground(Color.GRAY);
+		stage1_name.setForeground(Color.WHITE);			   			 
+		stage1_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30)); 
+		
+		stage2_name.setBackground(Color.GRAY);
+		stage2_name.setForeground(Color.WHITE);			   			 
+		stage2_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		
+		stage3_name.setBackground(Color.GRAY);
+		stage3_name.setForeground(Color.WHITE);			   			 
+		stage3_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		
+		ranking_name.setBackground(Color.GRAY);
+		ranking_name.setForeground(Color.WHITE);			   			 
+		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		
+		
+		
+		
+		// 되돌아가기 버튼 생성
+		JButton return_btn = new JButton("RETURN");
+		return_btn.setBounds(1115, 660, 150, 50);
+//		return_Btn.setBackground(new Color(252, 220, 3));
+//		return_Btn.setForeground(Color.BLACK);			   			   // 버튼 글자 색깔 변경
+		return_btn.setBackground(Color.GRAY);
+		return_btn.setForeground(Color.WHITE);			   			   // 버튼 글자 색깔 변경
+		
+		return_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 30));      // 버튼 글자 폰트, 효과, 크기 변경
+		return_btn.setFocusPainted(false);
+		
+		return_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
+		//S_btn.setContentAreaFilled(false);	// JButton 내용영역 채우기 안함
+		return_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
+		
+		
+		
+		
+		
+		// return_Btn 버튼 이벤트
+		return_btn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			ChangePanel cp = new ChangePanel(mf, panel);
+			
+			C_RankingPage rp = new C_RankingPage(mf); 
+		
+			cp.replacePanel(rp);
+			}
+		});
+		
+		
+		// stage1_btn 버튼 이벤트
+		stage1_btn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			ChangePanel cp = new ChangePanel(mf, panel);
+			
+			C_RankingPage rp = new C_RankingPage(mf); 
+		
+			cp.replacePanel(rp);
+			}
+		});
+		
+		// stage2_btn 버튼 이벤트
+		stage2_btn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			ChangePanel cp = new ChangePanel(mf, panel);
+			
+			C_RankingPage rp = new C_RankingPage(mf); 
+		
+			cp.replacePanel(rp);
+			}
+		});
+		
+		// stage3_btn 버튼 이벤트
+		stage3_btn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			ChangePanel cp = new ChangePanel(mf, panel);
+			
+			C_RankingPage rp = new C_RankingPage(mf); 
+		
+			cp.replacePanel(rp);
+			}
+		});
 		
 		// ranking_btn 버튼 이벤트
 		ranking_btn.addMouseListener(new MouseAdapter() {
@@ -52,7 +154,7 @@ public class C_GameStage extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
-			RankingPage rp = new RankingPage(mf); 
+			C_RankingPage rp = new C_RankingPage(mf); 
 		
 			cp.replacePanel(rp);
 			}
@@ -87,11 +189,40 @@ public class C_GameStage extends JPanel{
 		ranking_btn.setOpaque(false);
 
 		
+		stage1_name.setBorderPainted(false);		
+		stage1_name.setContentAreaFilled(false);	
+		stage1_name.setFocusPainted(false);		
+		stage1_name.setOpaque(false);
+		
+		stage2_name.setBorderPainted(false);		
+		stage2_name.setContentAreaFilled(false);	
+		stage2_name.setFocusPainted(false);		
+		stage2_name.setOpaque(false);
+		
+		stage3_name.setBorderPainted(false);		
+		stage3_name.setContentAreaFilled(false);	
+		stage3_name.setFocusPainted(false);		
+		stage3_name.setOpaque(false);
+		
+		ranking_name.setBorderPainted(false);		
+		ranking_name.setContentAreaFilled(false);	
+		ranking_name.setFocusPainted(false);		
+		ranking_name.setOpaque(false);
+		
+		
+		
 		// 패널에다 버튼 추가
+		this.add(return_btn);
+		
 		this.add(stage1_btn);
 		this.add(stage2_btn);
 		this.add(stage3_btn);
 		this.add(ranking_btn);
+		
+		this.add(stage1_name);
+		this.add(stage2_name);
+		this.add(stage3_name);
+		this.add(ranking_name);
 
 		// 패널에다 배경 라벨 추가
 		this.add(background);
