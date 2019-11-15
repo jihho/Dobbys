@@ -28,15 +28,15 @@ public class E_Timer extends Thread{
 	@Override
 	public void run() {
 		JTextField timeCount = new JTextField("남은시간: ");
-		timeCount.setBounds(700, 20 , 145, 50);
-		timeCount.setFont(new Font("둥근모꼴", 0, 25));
+		timeCount.setBounds(695, 20 , 155, 50);
+		timeCount.setFont(new Font("DungGeunMo", 0, 25));
 		//timeCount.setOpaque(false);
 
 		panel.add(timeCount);
 		for(int i = 10; i >= 0; i--) {
 			try {
 				System.out.println(i);
-				this.sleep(1000);
+				this.sleep(100);
 				timeCount.setText("남은시간: "+ i);
 				
 			} catch (InterruptedException e) {
