@@ -28,7 +28,10 @@ public class D_Controller extends JPanel {
 	//public static int MAX_HP = ;
 	
 	//이펙트 효과 시간
-	public final int EFFECT_TIME = 36;
+	public final int EFFECT_TIME = 30;
+	
+	//클리어 효과 시간
+	public final int CLEAR_TIME = 90;
 	
 	//필살기 게이지 차는 시간
 	public final int GAGE_SPEED = 10;
@@ -38,6 +41,7 @@ public class D_Controller extends JPanel {
 	public final int ST_GAME = 1;
 	public final int ST_ENDING = 2;
 	public final int ST_ALTIMATE = 3;
+	public final int ST_CLEAR = 4;
 
 	private int gameState;
 	
@@ -50,7 +54,7 @@ public class D_Controller extends JPanel {
 	private int harryHp;
 	private static int altimateGage = 0;
 	
-	private boolean altimateOnOff = false;
+	private int clearCount = CLEAR_TIME;
 	private int effectCount = EFFECT_TIME;
 	
 	// 배경 이미지
@@ -99,6 +103,10 @@ public class D_Controller extends JPanel {
 	//필살기 이펙트 
 	private static Image altiEffect = new ImageIcon("images/stage1/harrySkill.gif").getImage().
 			getScaledInstance(1300 , 500, 0); 
+	
+	//클리어 영상
+	private static Image clear = new ImageIcon("images/stage1/stage1_video.gif").getImage().
+			getScaledInstance(1300 , 770, 0); 
 	
 	//이미지 이중 버퍼
 	Image img;
@@ -167,6 +175,7 @@ public class D_Controller extends JPanel {
 								harry.blast();
 								altimateGage = 0;
 								effectCount = EFFECT_TIME;
+								clearCount = CLEAR_TIME;
 								gameState = ST_ENDING;
 								
 							}
@@ -190,6 +199,13 @@ public class D_Controller extends JPanel {
 				effectCount--;	
 			}else if(effectCount == 0){				
 				effectCount = EFFECT_TIME;
+				gameState = ST_CLEAR;
+			}
+			
+			if(clearCount > 0 && gameState == ST_CLEAR) {
+				clearCount--;
+			}else if(clearCount == 0) {
+				clearCount = CLEAR_TIME;
 				gameState = ST_TITLE;
 			}
 			
@@ -228,6 +244,8 @@ public class D_Controller extends JPanel {
 		}
 		
 		
+		
+		
 		//게임 시작
 		if (gameState == ST_GAME) {
 			//버퍼에 해리 추가
@@ -250,6 +268,7 @@ public class D_Controller extends JPanel {
 			}else if(altimateGage == 820) {
 				img_g.drawImage(rButtonAlti, 1200, 5, this);
 			}					
+			
 		}		
 		
 		if(gameState == ST_ALTIMATE && effectCount > 0) {
@@ -257,6 +276,9 @@ public class D_Controller extends JPanel {
 			img_g.drawImage(altiEffect, 0, 100, this);
 		}
 		
+		if(gameState == ST_CLEAR && clearCount > 0) {
+			img_g.drawImage(clear, 0, 0, this);
+		}
 		
 		if(harry.getState() == D_Harry.HARRY_ST_BLAST) {
 			for(int i = 1 ; i < harry.getCount() ; i++) {
@@ -293,6 +315,7 @@ public class D_Controller extends JPanel {
 				if(code == KeyEvent.VK_SPACE) {
 					harry.startHarry();
 					effectCount = EFFECT_TIME;
+					clearCount = CLEAR_TIME;
 					altimateGage = 0;
 					gameState = ST_GAME;
 				}
