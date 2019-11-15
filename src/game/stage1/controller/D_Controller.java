@@ -1,5 +1,6 @@
 package game.stage1.controller;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,7 @@ import javax.swing.Timer;
 import game.stage1.model.vo.D_Dementor;
 import game.stage1.model.vo.D_Harry;
 import game.stage1.view.D_BackgroundModify;
-import view.GameStage;
+import view.C_GameStage;
 
 public class D_Controller extends JPanel {
 
@@ -26,10 +27,17 @@ public class D_Controller extends JPanel {
 	public final int MAX_DEMENTOR = 5;
 	//public static int MAX_HP = ;
 	
+	//이펙트 효과 시간
+	public final int EFFECT_TIME = 36;
+	
+	//필살기 게이지 차는 시간
+	public final int GAGE_SPEED = 10;
+	
 	//게임 상태 판단 변수
 	public final int ST_TITLE = 0;
 	public final int ST_GAME = 1;
 	public final int ST_ENDING = 2;
+	public final int ST_ALTIMATE = 3;
 
 	private int gameState;
 	
@@ -40,7 +48,11 @@ public class D_Controller extends JPanel {
 	private D_Harry harry;
 	private D_BackgroundModify back;
 	private int harryHp;
-
+	private static int altimateGage = 0;
+	
+	private boolean altimateOnOff = false;
+	private int effectCount = EFFECT_TIME;
+	
 	// 배경 이미지
 	private static Image backImg1 = new ImageIcon("images/stage1/stage1_bg.png").getImage().
 			getScaledInstance(1300, 770, 0);
@@ -58,6 +70,7 @@ public class D_Controller extends JPanel {
 	// 해리 체력 이미지
 	private static Image hpImg  = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
 	
+	// 배경 이미지
 	private static Image spaceBar = new ImageIcon("images/stage1/spacebar_w.png").getImage().
 			getScaledInstance(818, 64, 0);
 	
@@ -66,6 +79,26 @@ public class D_Controller extends JPanel {
 	
 	private static Image endWord = new ImageIcon("images/stage1/endWord.png").getImage().
 			getScaledInstance(818, 400, 0);
+	
+	//필살기 게이지
+	private static Image gageBar = new ImageIcon("images/stage1/gageBar_dot.png").getImage().
+			getScaledInstance(850, 50, 0);
+	
+	//필살기 활성화 게이지
+	private static Image altimateBar = new ImageIcon("images/stage1/altimate_dot.png").getImage().
+			getScaledInstance(10, 40, 0);
+	
+	//필살기 버튼
+	private static Image rButton = new ImageIcon("images/stage1/r_button_dot.png").getImage().
+				getScaledInstance(60, 60, 0); 
+	
+	//필살기 활성화 된 버튼
+	private static Image rButtonAlti = new ImageIcon("images/stage1/altimate_R.gif").getImage().
+			getScaledInstance(60 , 60, 0); 
+	
+	//필살기 이펙트 
+	private static Image altiEffect = new ImageIcon("images/stage1/harrySkill.gif").getImage().
+			getScaledInstance(1300 , 500, 0); 
 	
 	//이미지 이중 버퍼
 	Image img;
@@ -101,6 +134,7 @@ public class D_Controller extends JPanel {
 			dementor[i] = new D_Dementor();
 		}
 		
+		altimateGage = 0;
 		
 		hpImg = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
 		
@@ -131,7 +165,10 @@ public class D_Controller extends JPanel {
 							harry.setLife(harry.getLife() - 1);
 							if(harry.getLife() == 0) {
 								harry.blast();
+								altimateGage = 0;
+								effectCount = EFFECT_TIME;
 								gameState = ST_ENDING;
+								
 							}
 						}
 					}
@@ -141,6 +178,20 @@ public class D_Controller extends JPanel {
 			back.move();
 
 			
+			//필살기 게이지 체우는 효과
+			if(altimateGage < 820) {
+				altimateGage += GAGE_SPEED;
+			}else {
+				altimateGage = 820;
+			}
+			
+			//필살기 효과 시간
+			if(effectCount > 0 && gameState == ST_ALTIMATE) {
+				effectCount--;	
+			}else if(effectCount == 0){				
+				effectCount = EFFECT_TIME;
+				gameState = ST_TITLE;
+			}
 			
 			
 			//전체 다시 그리기
@@ -187,9 +238,26 @@ public class D_Controller extends JPanel {
 				img_g.drawImage(hpImg, i * 50, 0, this);
 			}
 			
+			//필살기 게이지 바 추가
+			img_g.drawImage(gageBar, 330, 10, this);
 			
-			
+			//필살기 활성화 게이지 바 추가
+			img_g.drawImage(altimateBar, 340, 15, 10 + altimateGage, 40, this);
+
+			//필살기 버튼
+			if(altimateGage < 820) {
+				img_g.drawImage(rButton, 1200, 5, this);
+			}else if(altimateGage == 820) {
+				img_g.drawImage(rButtonAlti, 1200, 5, this);
+			}					
 		}		
+		
+		if(gameState == ST_ALTIMATE && effectCount > 0) {
+			img_g.drawImage(blackBack, 0, 0, this);
+			img_g.drawImage(altiEffect, 0, 100, this);
+		}
+		
+		
 		if(harry.getState() == D_Harry.HARRY_ST_BLAST) {
 			for(int i = 1 ; i < harry.getCount() ; i++) {
 				img_g.setColor(D_Util.randColor(128, 255));
@@ -223,8 +291,10 @@ public class D_Controller extends JPanel {
 
 			if(gameState == ST_TITLE) {
 				if(code == KeyEvent.VK_SPACE) {
-					gameState = ST_GAME;
 					harry.startHarry();
+					effectCount = EFFECT_TIME;
+					altimateGage = 0;
+					gameState = ST_GAME;
 				}
 			}else if(gameState == ST_GAME) {
 				//위아래로 해리 조정
@@ -233,6 +303,12 @@ public class D_Controller extends JPanel {
 				} else if (code == KeyEvent.VK_DOWN) {
 					harry.moveDown();
 				}
+				
+				if(code == KeyEvent.VK_R && altimateGage == 820) {
+					gameState = ST_ALTIMATE;
+				}
+				
+				
 			}else if(gameState == ST_ENDING) {
 				
 				if(code == KeyEvent.VK_ENTER) {
@@ -240,11 +316,12 @@ public class D_Controller extends JPanel {
 				}
 				if(code == KeyEvent.VK_ESCAPE) {
 					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
-					GameStage gs = new GameStage(mf);						
+					C_GameStage gs = new C_GameStage(mf);						
 					cp.replacePanel(gs);
-				}
-				
+				}				
 			}
+			
+			
 
 			repaint();
 		}

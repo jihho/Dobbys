@@ -8,9 +8,11 @@ public class MainFrame extends JFrame{
 		this.setBounds(0, 0, 1300, 770);
 		//this.setLayout(null);
 		
+
 		this.add(new A_IntroPage(this));
 //		this.add(new C_AssignDormitory(this));
 //		this.add(new B_CheckPanel(this));
+
 
 		//this.add(new GraphicTest(this));
 		
