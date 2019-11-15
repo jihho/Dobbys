@@ -144,7 +144,7 @@ public class B_CheckPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ChangePanel cp = new ChangePanel(mf, panel);
-				LoginPanel lp = new LoginPanel(mf);
+				A_LoginPanel lp = new A_LoginPanel(mf);
 				cp.replacePanel(lp);
 			}
 		});
