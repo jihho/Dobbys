@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -14,6 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import game.stage1.controller.D_Controller;
+import game.stage2.view.E_BgPanel;
+import game.stage3.views.F_Stage3Panel;
 
 public class C_GameStage extends JPanel{
 	private ImageIcon icon;
@@ -30,6 +37,19 @@ public class C_GameStage extends JPanel{
 
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		background.setBounds(0, 0, 1300, 770);
+		
+		
+		
+		// JTextArea(대화 상자) 생성  
+		JTextArea ta = new JTextArea("ID : 타락파워전사");   	//JTextArea 생성
+		ta.setBounds(530, 640, 400, 60); 	    			//JTeatArea 크기 및 위치 지정
+	    ta.setEditable(false); 				   				 //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 45)); 
+		ta.setBackground(new Color(0, 0, 0, 150));
+		ta.setForeground(Color.WHITE);			
+		ta.setMargin(new Insets(5, 10, 5, 10));
+		
+		background.add(ta);
 		
 		
 		// 버튼 생성 - 아이콘 크기 (72 * 70)
@@ -116,7 +136,7 @@ public class C_GameStage extends JPanel{
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
 			C_RankingPage rp = new C_RankingPage(mf); 
-		
+			
 			cp.replacePanel(rp);
 			}
 		});
@@ -125,7 +145,7 @@ public class C_GameStage extends JPanel{
 		stage2_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
 			C_RankingPage rp = new C_RankingPage(mf); 
@@ -138,11 +158,11 @@ public class C_GameStage extends JPanel{
 		stage3_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
 			C_RankingPage rp = new C_RankingPage(mf); 
-		
+			
 			cp.replacePanel(rp);
 			}
 		});
@@ -151,7 +171,7 @@ public class C_GameStage extends JPanel{
 		ranking_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
 			C_RankingPage rp = new C_RankingPage(mf); 
@@ -160,12 +180,6 @@ public class C_GameStage extends JPanel{
 			}
 		});
 		
-		
-		
-		
-		
-		
-
 		
 		// 버튼 투명화
 		//stage1_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
@@ -224,12 +238,19 @@ public class C_GameStage extends JPanel{
 		this.add(stage3_name);
 		this.add(ranking_name);
 
+		
+		// 마우스 효과 - 하영씨
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse.png").getImage(),
+				new Point(0,0),"images/main/mouse.png"));
+		
+		
 		// 패널에다 배경 라벨 추가
 		this.add(background);
 
-		
-		
 	}
-
-
+		
 }
+
+
+

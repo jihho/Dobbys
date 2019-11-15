@@ -101,6 +101,10 @@ public class A_LoginPanel extends JPanel {
 				new ImageIcon("images/main/mouse2.png").getImage(),
 				new Point(0,0),"images/main/mouse2.png"));
 		
+		loginBtn.setContentAreaFilled(false);		//내용영역 채우기 없음
+		loginBtn.setBorderPainted(false);		//외곽선 제거
+		loginBtn.setOpaque(false);	//투명하게
+		
 //		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		panel.add(loginBtn);
