@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 
 public class C_AssignDormitory extends JPanel{
@@ -45,7 +47,7 @@ public class C_AssignDormitory extends JPanel{
 		background.add(harry);
 		
 		
-		String str = "어렵군, 아주 어려워...\n용기가 충만하고, 총명하며,\n재능을 타고 났어!\n의욕이 하늘을 찌르는 군!\n근데 어디가 좋을까...\n가만보자...흐음....\n";
+		String str = "어렵군, 아주 어려워...\n\n용기가 충만하고, 총명하며,\n\n재능을 타고 났어!\n\n의욕이 하늘을 찌르는 군!\n\n근데 어디가 좋을까...\n\n그리핀도르? 래번클로? \n\n슬리데린? 후플푸프?\n\n흐음...어디보자...\n";
 		
 //		for(int i = 0; i < str.length(); i++) {
 //			try {
@@ -59,26 +61,16 @@ public class C_AssignDormitory extends JPanel{
 		
 		// JTextArea(대화 상자) 생성  
 		JTextArea ta = new JTextArea(str);  	//JTextArea 생성
-     	ta.setBounds(650, 50, 500, 500); 	//JTeatArea 크기 및 위치 지정
+     	ta.setBounds(640, 50, 510, 500); 	//JTeatArea 크기 및 위치 지정
 	    ta.setEditable(false); 				//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
-		ta.setFont(new Font("", Font.BOLD, 40)); 
+		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 38)); 
+		ta.setBackground(new Color(9, 71, 34));
+		ta.setForeground(Color.WHITE);			
+		ta.setMargin(new Insets(5, 10, 5, 10));
+	    
 		
-	    
-//	    JLabel tb = new JLabel(new ImageIcon(new ImageIcon("images/main/TextBox.png").getImage().getScaledInstance(500, 500, 0)));
-//		tb.setBounds(650, 50, 500, 500);
-	    
-    	/*
-    		어렵군, 아주 어려워...
-    		용기가 충만하고, 총명하며,
-    		재능을 타고 났어!
-    		의욕이 하늘을 찌르는 군
-    		근데 어디가 좋을까...
-    		흐음....  	
-     	*/
-			    
 	    // 패널에에 JTextArea 추가
 		background.add(ta);
-		//background.add(tb);
 				
 	    
 	    // 반 배정 받기 버튼 추가 
@@ -86,7 +78,7 @@ public class C_AssignDormitory extends JPanel{
 	    choice_btn.setBounds(777, 590, 250, 100);  
 	    choice_btn.setBackground(Color.GRAY);        	   		  // 버튼 색깔 변경
 	    choice_btn.setForeground(Color.WHITE);			   	      // 버튼 글자 색깔 변경
-	    choice_btn.setFont(new Font("DungGeunMo", Font.BOLD, 35));    // 버튼 글자 폰트, 효과, 크기 변경
+	    choice_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 35));    // 버튼 글자 폰트, 효과, 크기 변경
 	    choice_btn.setFocusPainted(false);				  		  // ?? 뭔가 글자 주변 테두리를 없앴다.
 
 

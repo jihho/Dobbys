@@ -9,9 +9,12 @@ public class MainFrame extends JFrame{
 		//this.setLayout(null);
 		
 
+
+
 		this.add(new A_IntroPage(this));
 //		this.add(new C_AssignDormitory(this));
 //		this.add(new B_CheckPanel(this));
+
 
 
 		//this.add(new GraphicTest(this));
