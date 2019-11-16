@@ -13,20 +13,24 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import game.stage3.controller.F_Stage3Play;
+import game.stage3.model.vo.F_Harry;
 
 public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	//JLabel ef;	//스킬 이펙트 없앨때 사용할 라벨
 	private F_Stage3Play sp;
-	
+
 	JLabel skill;	//스킬 이펙트 용 라벨
 	JLabel sksmash;
 	JLabel skdf;
 	JLabel skct;
-
+	F_Harry harry = new F_Harry(10, 10, 20, 30);
+	
+	JLabel[] hp = new JLabel[10];
+	JLabel[] vmhp = new JLabel[10];
 	public F_Stage3Panel(){
-		
+
 		this.mf = mf;
 		this.setLayout(null);
 
@@ -35,7 +39,7 @@ public class F_Stage3Panel extends JPanel{
 		//스테이지 용 라벨
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
-		
+
 		//해리포터 캐릭터 라벨
 		JLabel hr = new JLabel(new ImageIcon(new ImageIcon("images/stage3/harry.png").getImage().getScaledInstance(225, 225, 0)));
 		hr.setBounds(191, 277, 225, 225);
@@ -47,9 +51,9 @@ public class F_Stage3Panel extends JPanel{
 		//해리포터 체력 바
 		JLabel hpbar = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		hpbar.setBounds(190, 200, 34, 35);
-		
-		JLabel[] hp = new JLabel[10];
-		
+
+
+
 		hp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[0].setBounds(230, 180, 23, 70);
 		hp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
@@ -70,7 +74,7 @@ public class F_Stage3Panel extends JPanel{
 		hp[8].setBounds(390, 180, 23, 70);
 		hp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[9].setBounds(410, 180, 23, 70);
-		
+
 		/*
 		JLabel hp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp0.setBounds(230, 180, 23, 70);
@@ -98,7 +102,33 @@ public class F_Stage3Panel extends JPanel{
 		JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		bmhp.setBounds(1120, 200, 34, 35);
 
-		JLabel bmhp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[0].setBounds(1100, 180, 23, 70);
+		vmhp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[1].setBounds(1080, 180, 23, 70);
+		vmhp[2] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[2].setBounds(1060, 180, 23, 70);
+		vmhp[3] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[3].setBounds(1040, 180, 23, 70);
+		vmhp[4] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[4].setBounds(1020, 180, 23, 70);
+		vmhp[5] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[5].setBounds(1000, 180, 23, 70);
+		vmhp[6] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[6].setBounds(980, 180, 23, 70);
+		vmhp[7] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[7].setBounds(960, 180, 23, 70);
+		vmhp[8] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[8].setBounds(940, 180, 23, 70);
+		vmhp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[9].setBounds(920, 180, 23, 70);
+
+
+
+
+
+
+		/*JLabel bmhp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
 		bmhp0.setBounds(1100, 180, 23, 70);
 		JLabel bmhp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		bmhp1.setBounds(1080, 180, 23, 70);
@@ -117,7 +147,7 @@ public class F_Stage3Panel extends JPanel{
 		JLabel bmhp8 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		bmhp8.setBounds(940, 180, 23, 70);
 		JLabel bmhp9 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp9.setBounds(920, 180, 23, 70);
+		bmhp9.setBounds(920, 180, 23, 70);*/
 
 
 		//공격 버튼
@@ -194,16 +224,16 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(hp[9]);
 
 		this.add(bmhp);
-		this.add(bmhp0);
-		this.add(bmhp1);
-		this.add(bmhp2);
-		this.add(bmhp3);
-		this.add(bmhp4);
-		this.add(bmhp5);
-		this.add(bmhp6);
-		this.add(bmhp7);
-		this.add(bmhp8);
-		this.add(bmhp9);
+		panel.add(vmhp[0]);
+		panel.add(vmhp[1]);
+		panel.add(vmhp[2]);
+		panel.add(vmhp[3]);
+		panel.add(vmhp[4]);
+		panel.add(vmhp[5]);
+		panel.add(vmhp[6]);
+		panel.add(vmhp[7]);
+		panel.add(vmhp[8]);
+		panel.add(vmhp[9]);
 
 		this.add(atk);
 		this.add(df);
@@ -214,7 +244,7 @@ public class F_Stage3Panel extends JPanel{
 		//라벨을 가장 마지막에 추가함으로서 자동적으로 우선순위를 최 하위로 변경
 		//setComponentZOrder를 여기서 사용할 필요 없게 됨
 		this.add(label);
-		
+
 		//배경 라벨의 우선 순위를 가장 아래로 내림으로서 나머지 라벨 등장 
 		//this.setComponentZOrder(label,29);
 
@@ -224,7 +254,7 @@ public class F_Stage3Panel extends JPanel{
 			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
 				if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
 					//sp = new F_Stage3Play(mf);
-					
+
 					//panel.remove(ef);	//ef 라벨 제거 
 					panel.add(skill);	//skill 라벨 추가
 					panel.revalidate();	//updateUI보다 revaildate + repaint가 안정적
@@ -239,9 +269,13 @@ public class F_Stage3Panel extends JPanel{
 						@Override
 						public void run() {
 							panel.remove(skill);	//skill 라벨 제거 
-							/*for(int i = 9; i<0; i--) {
-								panel.remove(hp[i]);
-							}*/
+							harry.setHp(harry.getHp()-1);
+							for(int i = 9; i>=0; i--) {
+								if(i == harry.getHp()) {
+									panel.remove(vmhp[i]);
+								}
+							}
+
 							panel.revalidate();
 							panel.repaint();
 							//panel.add(ef);			//ef 라벨 추가
