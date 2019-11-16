@@ -49,7 +49,7 @@ public class A_LoginPanel extends JPanel {
 		
 		JLabel loginLogo = new JLabel(new ImageIcon(new ImageIcon("images/main/loginLogo.gif")
 				.getImage().getScaledInstance(900, 350, 0)));
-		loginLogo.setBounds(220 , 50, 900, 350);
+		loginLogo.setBounds(210 , 50, 900, 350);
 		
 		JLabel allImg = new JLabel(new ImageIcon(new ImageIcon("images/main/all.png")
 				.getImage().getScaledInstance(150, 150, 0)));
@@ -59,7 +59,7 @@ public class A_LoginPanel extends JPanel {
 		
 		//음악 on/off
 		JButton bgmOnOffBtn = new JButton();
-		bgmOnOffBtn.setBounds(10, 700, 50,50);
+		bgmOnOffBtn.setBounds(0, 670, 100,100);
 		bgmOnOffBtn.setContentAreaFilled(false);		//내용영역 채우기 없음
 		bgmOnOffBtn.setBorderPainted(false);		//외곽선 제거
 		bgmOnOffBtn.setOpaque(false);	//투명하게
@@ -71,53 +71,43 @@ public class A_LoginPanel extends JPanel {
 		bgmOnImg.setBounds(30, 680, 50,50);
 		this.add(bgmOnImg);
 		
+		
 		//off이미지
 		JLabel bgmOffImg = new JLabel(new ImageIcon(new ImageIcon("images/main/sound-off.png")
 				.getImage().getScaledInstance(50, 50, 0)));
-		bgmOnImg.setBounds(30, 680, 50,50);
+		bgmOffImg.setBounds(30, 680, 50,50);
 		
-//		//음악 on/off 버튼 클릭시 작동할 메소드
-//		bgmOnOffBtn.addMouseListener(new MouseAdapter() {
-//			public void mouseReleased(MouseEvent e) {
-//				
-//				if(bgmOnOff == 0) {
-//					new A_Music().intoBgmStop();
-//					bgmOnOff = 1;
-//					add(bgmOffImg);
-//					
-//				} else if(bgmOnOff == 1) {
-//					new A_Music().introBgm();
-//					bgmOnOff = 0;
-//				}
-//			}
-//		});
-		
-		//음악 on/off 레이블 클릭시 이미지 변경
-				bgmOnImg.addMouseListener(new MouseAdapter() {
-					public void mouseReleased(MouseEvent e) {
-						System.out.println("음악 on/off");
-						
-						if(e.getSource().equals(bgmOnImg)) {
-							new A_Music().intoBgmStop();
-							panel.remove(bgmOnImg);
-							panel.add(bgmOffImg);
-							bgmOffImg.updateUI();
-							
-						} else if(e.getSource().equals(bgmOffImg)) {
-							new A_Music().introBgm();
-							panel.remove(bgmOffImg);
-							panel.add(bgmOnImg);
-						}
-					}
-				});
-		
+		//음악 on/off 버튼 클릭시 작동할 메소드
+		bgmOnOffBtn.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				
+				if(bgmOnOff == 0) {
+					new A_Music().intoBgmStop();
+					bgmOnOff = 1;
+					panel.remove(bgmOnImg);
+					panel.add(bgmOffImg);	
+					panel.revalidate();	
+					panel.repaint();
+					panel.setComponentZOrder(bgmOffImg, 0);
+					
+				} else if(bgmOnOff == 1) {
+					new A_Music().introBgm();
+					bgmOnOff = 0;
+					panel.remove(bgmOffImg);
+					panel.add(bgmOnImg);	
+					panel.revalidate();	
+					panel.repaint();
+					panel.setComponentZOrder(bgmOnImg, 0);
+				}
+			}
+		});
 		
 		
 		
 		//마우스커서
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
-				new Point(0,0),"images/main/mouse.png"));
+				new Point(0,0),"DobbyCursor"));
 		
 		
 		//아이디

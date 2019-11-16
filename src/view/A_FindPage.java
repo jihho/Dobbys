@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -232,6 +233,9 @@ public class A_FindPage extends JPanel implements ActionListener{
 				cp.replacePanel(fp);
 			}
 		});
+		
+		
+		
 		
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),

@@ -26,7 +26,7 @@ public class A_Music {
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
 			clip.start();
-//			clip.loop(5);
+			clip.loop(3);
 			
 		} catch (Exception e) {
 			System.out.println("err : " + e);
