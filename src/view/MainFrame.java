@@ -7,6 +7,7 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 		this.setBounds(0, 0, 1300, 770);
 		//this.setLayout(null);
+		this.setLocationRelativeTo(null);
 		
 
 

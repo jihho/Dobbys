@@ -10,8 +10,13 @@ public class E_Items {
 	private int item7 = 7;	//생선
 	private int item8 = 8;	//깃털
 	private int item9 = 9;	//해골
-	private int leftBtn = 10;	//왼화살표
+	private int item;
+/*	private int leftBtn = 10;	//왼화살표
 	private int rigthBtn = 11;	//오른화살표
+	
+*/	
+	
+	//9, 7, 6, 3, 2, 4, 6, 8, 1 문제1번순서
 	
 	private static int MAX_HP = 5;
 	private int hp = MAX_HP;
@@ -24,8 +29,25 @@ public class E_Items {
 	
 	public E_Items() {}
 
+	
+	public E_Items(int item) {
+		
+		this.item = item;
+	}
+
+
+	public int getItem() {
+		return item;
+	}
+
+
+	public void setItem(int item) {
+		this.item = item;
+	}
+
+
 	public E_Items(int item1, int item2, int item3, int item4, int item5, int item6, int item7, int item8, int item9,
-			int hp, int qeust1, int quest2, int quest3, int leftBtn, int centerBtn, int rigthBtn) {
+			int hp, int qeust1, int quest2, int quest3, int centerBtn) {
 		
 		this.item1 = item1;
 		this.item2 = item2;
@@ -40,9 +62,8 @@ public class E_Items {
 		this.qeust1 = qeust1;
 		this.quest2 = quest2;
 		this.quest3 = quest3;
-		this.leftBtn = leftBtn;
+		
 		this.centerBtn = centerBtn;
-		this.rigthBtn = rigthBtn;
 		
 		
 	}
@@ -103,17 +124,13 @@ public class E_Items {
 		return quest3;
 	}
 
-	public int getLeftBtn() {
-		return leftBtn;
-	}
+
 
 	public int getCenterBtn() {
 		return centerBtn;
 	}
 
-	public int getRigthBtn() {
-		return rigthBtn;
-	}
+
 
 	public void setItem1(int item1) {
 		this.item1 = item1;
@@ -171,17 +188,13 @@ public class E_Items {
 		this.quest3 = quest3;
 	}
 
-	public void setLeftBtn(int leftBtn) {
-		this.leftBtn = leftBtn;
-	}
+
 
 	public void setCenterBtn(int centerBtn) {
 		this.centerBtn = centerBtn;
 	}
 
-	public void setRigthBtn(int rigthBtn) {
-		this.rigthBtn = rigthBtn;
-	}
+
 	
 	
 	

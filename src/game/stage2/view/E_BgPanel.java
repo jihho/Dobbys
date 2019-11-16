@@ -14,7 +14,7 @@ public class E_BgPanel extends JPanel {
 	private JFrame mf;
 	private JPanel panel;
 	
-	//private JLabel quest1 ;
+
 	public E_BgPanel(JFrame mf) {
 		mf.setTitle("HarryPotter ~Stage2~ ");
 		this.mf = mf;
@@ -22,14 +22,17 @@ public class E_BgPanel extends JPanel {
 		
 		panel = this;
 		
+		//백그라운드화면
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_bg2.PNG").
 				getImage().getScaledInstance(1280, 720, 0)));
 		label.setBounds(0, 0, 1280, 720);
 		
+		//검정화면
 		JLabel bg1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/bg1.PNG").
 				getImage().getScaledInstance(1280, 720, 0)));
 		bg1.setBounds(0, 0, 1280, 720);
 		
+		//hp이미지
 		JLabel hp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
 				getImage().getScaledInstance(60, 80, 0) ));
 		hp1.setBounds(110, 25, 120, 80);
@@ -51,7 +54,7 @@ public class E_BgPanel extends JPanel {
 		hp5.setBounds(390, 25, 120, 80);
 		
 
-		
+		//재료이미지
 		JButton item1 = new JButton(new ImageIcon("images/stage2/item1.PNG"));
 		item1.setBounds(75, 580, 100, 100);
 		
@@ -62,67 +65,41 @@ public class E_BgPanel extends JPanel {
 		item1.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item1.setOpaque(false); //불투명해제
 		
-/*		item1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item2 = new JButton(new ImageIcon("images/stage2/item2.PNG"));
 		item2.setBounds(200, 580, 100, 100);
 		//item1과 사이간격 125
-		
-		
+				
 		item2.setBorderPainted(false); //외곽선 없애줌
 		item2.setContentAreaFilled(false); //내용영역 채우기 안함
 		item2.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item2.setOpaque(false); //불투명해제
 		
-/*		item2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item3 = new JButton(new ImageIcon("images/stage2/item3.PNG"));
 		item3.setBounds(325, 580, 100, 100);
-		
-		
-		
+					
 		item3.setBorderPainted(false); //외곽선 없애줌
 		item3.setContentAreaFilled(false); //내용영역 채우기 안함
 		item3.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item3.setOpaque(false); //불투명해제
 		
-/*		item3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item4 = new JButton(new ImageIcon("images/stage2/item4.PNG"));
 		item4.setBounds(450, 580, 100, 100);
-		
-		
 		
 		item4.setBorderPainted(false); //외곽선 없애줌
 		item4.setContentAreaFilled(false); //내용영역 채우기 안함
 		item4.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item4.setOpaque(false); //불투명해제
 		
-/*		item4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item5 = new JButton(new ImageIcon("images/stage2/item5.PNG"));
 		item5.setBounds(575, 580, 100, 100);
-		
 		
 		
 		item5.setBorderPainted(false); //외곽선 없애줌
@@ -130,16 +107,10 @@ public class E_BgPanel extends JPanel {
 		item5.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item5.setOpaque(false); //불투명해제
 		
-/*		item5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item6 = new JButton(new ImageIcon("images/stage2/item6.PNG"));
 		item6.setBounds(700, 580, 100, 100);
-		
 		
 		
 		item6.setBorderPainted(false); //외곽선 없애줌
@@ -147,16 +118,10 @@ public class E_BgPanel extends JPanel {
 		item6.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item6.setOpaque(false); //불투명해제
 		
-/*		item6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item7 = new JButton(new ImageIcon("images/stage2/item7.PNG"));
 		item7.setBounds(825, 580, 100, 100);
-		
 		
 		
 		item7.setBorderPainted(false); //외곽선 없애줌
@@ -164,16 +129,10 @@ public class E_BgPanel extends JPanel {
 		item7.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item7.setOpaque(false); //불투명해제
 		
-/*		item7.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item8 = new JButton(new ImageIcon("images/stage2/item8.PNG"));
 		item8.setBounds(950, 580, 100, 100);
-		
 		
 		
 		item8.setBorderPainted(false); //외곽선 없애줌
@@ -181,16 +140,10 @@ public class E_BgPanel extends JPanel {
 		item8.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item8.setOpaque(false); //불투명해제
 		
-/*		item8.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item9 = new JButton(new ImageIcon("images/stage2/item9.PNG"));
 		item9.setBounds(1075, 580, 100, 100);
-		
 		
 		
 		item9.setBorderPainted(false); //외곽선 없애줌
@@ -198,14 +151,9 @@ public class E_BgPanel extends JPanel {
 		item9.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item9.setOpaque(false); //불투명해제
 		
-/*		item9.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
-		JButton btnLeft = new JButton(new ImageIcon("images/stage2/b_left.PNG"));
+/*		JButton btnLeft = new JButton(new ImageIcon("images/stage2/b_left.PNG"));
 		btnLeft.setBounds(300, 400, 60, 80);
 		
 		
@@ -237,12 +185,9 @@ public class E_BgPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				
 			}
-		});
+		});*/
 		
-/*		JLabel quest1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/quest1.PNG").
-				getImage().getScaledInstance(264, 275, 0)));
-		quest1.setBounds(910, 130, 264, 275);
-		*/
+
 		
 		JButton rule = new JButton(new ImageIcon("images/stage2/rule3.PNG"));
 		rule.setBounds(300, 140, 640, 401);
@@ -254,10 +199,11 @@ public class E_BgPanel extends JPanel {
 		rule.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		rule.setOpaque(false); //불투명해제
 		
+		//게임방법 창을 누르면 패널전환됨
 		rule.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				E_QuestPanel qp = new E_QuestPanel(mf);
@@ -268,14 +214,11 @@ public class E_BgPanel extends JPanel {
 				
 				cp.replacePanel(qp);
 				
-				//cp.replacePanel(gp);
-				
-				
 				
 			}
 		});
 		
-
+		
 	
 		
 		this.add(rule);
@@ -295,24 +238,22 @@ public class E_BgPanel extends JPanel {
 		this.add(item7);
 		this.add(item8);
 		this.add(item9);
-		this.add(btnLeft);
-		this.add(btnRight);
+		//this.add(btnLeft);
+		//this.add(btnRight);
 		//this.add(quest1);
 		
 		
 		
-		this.setComponentZOrder(label, 18);
-		//라벨제외 17개
+		this.setComponentZOrder(label, 16);
+		//라벨제외 16개
 		
-		
-		
-		
-	}
 		
 
-		
-		
 	}
+
+
+
+}
 	
 	
 	
