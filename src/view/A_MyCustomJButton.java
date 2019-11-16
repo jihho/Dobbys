@@ -12,6 +12,7 @@ import javax.swing.JButton;
 //버튼에 올리면 손가락 커서로 변경
 //(버튼명).setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+
 @SuppressWarnings("serial")
 public class A_MyCustomJButton extends JButton implements MouseListener
 {
