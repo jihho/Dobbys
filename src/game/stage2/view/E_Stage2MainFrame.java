@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 public class E_Stage2MainFrame extends JFrame{
 	public E_Stage2MainFrame() {
 		this.setSize(1300, 770);
+		this.setLocationRelativeTo(null);
 		
 		this.add(new E_BgPanel(this));
 		//this.add(new GamePanel(this));
