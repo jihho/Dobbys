@@ -211,6 +211,7 @@ public class A_LoginPanel extends JPanel {
 				if(text.getText().equals("") && !passwordText.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
 					ctn++;
+					
 				}
 				
 				if(passwordText.getText().equals("") && !text.getText().equals("")) {
