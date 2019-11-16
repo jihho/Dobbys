@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.stage2.controller.E_GameManager;
 import view.C_GameStage;
 
 class test{
@@ -100,14 +101,19 @@ public class E_GamePanel extends JPanel {
 
 		item1.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item1.setBounds(910, 115, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				ctn++;
-				
 				item1.setBounds(x, y, 100, 100);
 				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(1);
+				E_GameManager.ctn++;
 				
 			}
 		});
@@ -125,15 +131,21 @@ public class E_GamePanel extends JPanel {
 
 		item2.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item2.setBounds(1000, 115, 100, 100);
 				//사이간격 90
 				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				ctn++;			
-				
 				item2.setBounds(x, y, 100, 100);
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(2);
+				E_GameManager.ctn++;
+				
 			}
 		});
 
@@ -149,13 +161,19 @@ public class E_GamePanel extends JPanel {
 
 		item3.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item3.setBounds(1090, 115, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				ctn++;	
-				
 				item3.setBounds(x, y, 100, 100);
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(3);
+				E_GameManager.ctn++;
 			}
 		});
 
@@ -171,14 +189,23 @@ public class E_GamePanel extends JPanel {
 
 		item4.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item4.setBounds(910, 215, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				
 				ctn++;
 				
 				item4.setBounds(x, y, 100, 100);
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(4);
+				E_GameManager.ctn++;
+				
+				
 			}
 		});
 
@@ -194,8 +221,10 @@ public class E_GamePanel extends JPanel {
 
 		item5.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item5.setBounds(1000, 215, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				
@@ -203,6 +232,11 @@ public class E_GamePanel extends JPanel {
 				
 				item5.setBounds(x, y, 100, 100);
 				
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(5);
+				E_GameManager.ctn++;
 			}
 		});
 
@@ -218,13 +252,20 @@ public class E_GamePanel extends JPanel {
 
 		item6.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item6.setBounds(1090, 215, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				
 				ctn++;
 				item6.setBounds(x, y, 100, 100);
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(6);
+				E_GameManager.ctn++;
 			}
 		});
 
@@ -240,13 +281,20 @@ public class E_GamePanel extends JPanel {
 
 		item7.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item7.setBounds(910, 305, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				
 				ctn++;
 				item7.setBounds(x, y, 100, 100);
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(7);
+				E_GameManager.ctn++;
 			}
 		});
 
@@ -262,13 +310,20 @@ public class E_GamePanel extends JPanel {
 
 		item8.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item8.setBounds(1000, 305, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 				
 				ctn++;
 				item8.setBounds(x, y, 100, 100);
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(8);
+				E_GameManager.ctn++;
 				
 			}
 		});
@@ -285,19 +340,26 @@ public class E_GamePanel extends JPanel {
 
 		item9.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				//item9.setBounds(1090, 305, 100, 100);
+				
+				//로그창에 선택한 아이템 출력
 				int x = choose[ctn].getX();
 				int y = choose[ctn].getY();
 										
 				ctn++;
 				item9.setBounds(x, y, 100, 100);
+				
+				//item 값을 GameManager클래스로 전송
+				E_GameManager gm = new E_GameManager();
+				gm.setChoice(9);
+				E_GameManager.ctn++;
 				//System.out.println("총:" + ctn);
 				
 			}
 		});
 
-		JButton btnLeft = new JButton(new ImageIcon("images/stage2/b_left.PNG"));
+/*		JButton btnLeft = new JButton(new ImageIcon("images/stage2/b_left.PNG"));
 		btnLeft.setBounds(300, 400, 60, 80);
 
 
@@ -331,7 +393,7 @@ public class E_GamePanel extends JPanel {
 				rCtn++;
 				System.out.println(rCtn);
 			}
-		});
+		});*/
 		
 		JButton home = new JButton(new ImageIcon("images/stage2/home.png"));
 		home.setBounds(5, 5, 50, 56);
@@ -342,7 +404,7 @@ public class E_GamePanel extends JPanel {
 		
 		home.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				C_GameStage main = new C_GameStage(mf);
 				cp.replacePanel(main);
@@ -351,7 +413,7 @@ public class E_GamePanel extends JPanel {
 		
 		JButton pot = new JButton("  ");
 		
-		pot.setBounds(395, 400, 110, 110);
+		pot.setBounds(390, 390, 130, 130);
 		
 		//pot.setBorderPainted(false);
 		pot.setContentAreaFilled(false);
@@ -361,7 +423,9 @@ public class E_GamePanel extends JPanel {
 		pot.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				E_GameManager gm = new E_GameManager();
+				gm.compare();
+						
 			}
 		});
 		
@@ -382,15 +446,15 @@ public class E_GamePanel extends JPanel {
 		this.add(item7);
 		this.add(item8);
 		this.add(item9);
-		this.add(btnLeft);
-		this.add(btnRight);
+/*		this.add(btnLeft);
+		this.add(btnRight);*/
 		this.add(home);
 		this.add(pot);
 		
 		
 		
 		
-		this.setComponentZOrder(label, 18);
+		this.setComponentZOrder(label, 16);
 		
 		
 		

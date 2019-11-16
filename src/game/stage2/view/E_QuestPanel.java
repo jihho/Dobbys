@@ -9,11 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-//게임 퀘스트 카운트화면
+//게임 퀘스트 카운트화면(문제나오는 화면)
 public class E_QuestPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
-	//private JLabel quest1;
+
 	
 	
 	public E_QuestPanel(JFrame mf) {
@@ -73,12 +73,7 @@ public class E_QuestPanel extends JPanel{
 		item1.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item1.setOpaque(false); //불투명해제
 		
-/*		item1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item2 = new JButton(new ImageIcon("images/stage2/item2.PNG"));
 		item2.setBounds(200, 580, 100, 100);
@@ -90,12 +85,7 @@ public class E_QuestPanel extends JPanel{
 		item2.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item2.setOpaque(false); //불투명해제
 		
-/*		item2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item3 = new JButton(new ImageIcon("images/stage2/item3.PNG"));
 		item3.setBounds(325, 580, 100, 100);
@@ -107,12 +97,7 @@ public class E_QuestPanel extends JPanel{
 		item3.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item3.setOpaque(false); //불투명해제
 		
-/*		item3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item4 = new JButton(new ImageIcon("images/stage2/item4.PNG"));
 		item4.setBounds(450, 580, 100, 100);
@@ -124,12 +109,7 @@ public class E_QuestPanel extends JPanel{
 		item4.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item4.setOpaque(false); //불투명해제
 		
-/*		item4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item5 = new JButton(new ImageIcon("images/stage2/item5.PNG"));
 		item5.setBounds(575, 580, 100, 100);
@@ -141,12 +121,7 @@ public class E_QuestPanel extends JPanel{
 		item5.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item5.setOpaque(false); //불투명해제
 		
-/*		item5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item6 = new JButton(new ImageIcon("images/stage2/item6.PNG"));
 		item6.setBounds(700, 580, 100, 100);
@@ -158,12 +133,7 @@ public class E_QuestPanel extends JPanel{
 		item6.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item6.setOpaque(false); //불투명해제
 		
-/*		item6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item7 = new JButton(new ImageIcon("images/stage2/item7.PNG"));
 		item7.setBounds(825, 580, 100, 100);
@@ -175,12 +145,7 @@ public class E_QuestPanel extends JPanel{
 		item7.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item7.setOpaque(false); //불투명해제
 		
-/*		item7.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item8 = new JButton(new ImageIcon("images/stage2/item8.PNG"));
 		item8.setBounds(950, 580, 100, 100);
@@ -192,12 +157,7 @@ public class E_QuestPanel extends JPanel{
 		item8.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item8.setOpaque(false); //불투명해제
 		
-/*		item8.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
 		JButton item9 = new JButton(new ImageIcon("images/stage2/item9.PNG"));
 		item9.setBounds(1075, 580, 100, 100);
@@ -209,14 +169,9 @@ public class E_QuestPanel extends JPanel{
 		item9.setFocusPainted(false);  //선택될때 생기는 테두리 사용 안함
 		item9.setOpaque(false); //불투명해제
 		
-/*		item9.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});*/
+
 		
-		JButton btnLeft = new JButton(new ImageIcon("images/stage2/b_left.PNG"));
+/*		JButton btnLeft = new JButton(new ImageIcon("images/stage2/b_left.PNG"));
 		btnLeft.setBounds(300, 400, 60, 80);
 		
 		
@@ -248,7 +203,7 @@ public class E_QuestPanel extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				
 			}
-		});
+		});*/
 		
 		
 
@@ -268,11 +223,11 @@ public class E_QuestPanel extends JPanel{
 		this.add(item7);
 		this.add(item8);
 		this.add(item9);
-		this.add(btnLeft);
-		this.add(btnRight);
+/*		this.add(btnLeft);
+		this.add(btnRight);*/
 		this.add(quest1);
 		
-		this.setComponentZOrder(label, 17);//라벨을 16번째 이미지로 불러온다는것
+		this.setComponentZOrder(label, 15);//라벨을 15번째 이미지로 불러온다는것
 		//System.out.println("왜안돼");
 		
 

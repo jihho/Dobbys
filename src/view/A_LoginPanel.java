@@ -115,6 +115,7 @@ public class A_LoginPanel extends JPanel {
 		loginBtn.setContentAreaFilled(false);		//내용영역 채우기 없음
 		loginBtn.setBorderPainted(false);		//외곽선 제거
 		loginBtn.setOpaque(false);	//투명하게
+
 		
 		panel.add(loginBtn);
 		
