@@ -1,0 +1,55 @@
+package view;
+
+import java.io.File;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+
+public class A_Music {
+	public static Clip clip;
+	
+	public static void introBgm() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/intro.wav"); // 사용시에는 개별 폴더로 변경할 것
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+//			clip.loop(5);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void intoBgmStop() {
+		clip.stop();
+		clip.close();
+	}
+	
+
+//	public static void main(String[] args) {
+//		A_Music test = new A_Music();
+//		while(true) {
+//			try {
+//				test.abc();
+//			} catch(Exception e) {
+//				
+//			}
+//		}
+//
+//	}
+
+}
