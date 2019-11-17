@@ -17,7 +17,7 @@ public class A_Music {
 		AudioFormat format;
 		DataLine.Info info;
 		
-		bgm = new File("sounds/intro.wav"); // 사용시에는 개별 폴더로 변경할 것
+		bgm = new File("sounds/intro.wav");
 		
 		try {
 			stream = AudioSystem.getAudioInputStream(bgm);
@@ -26,7 +26,30 @@ public class A_Music {
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
 			clip.start();
-			clip.loop(3);
+			clip.loop(5);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void lightningEffect() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/introEffect.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			clip.loop(1);
 			
 		} catch (Exception e) {
 			System.out.println("err : " + e);

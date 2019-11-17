@@ -153,7 +153,7 @@ public class A_LoginPanel extends JPanel {
 		loginBtn.setFont(new Font("DungGeunMo", Font.BOLD, 40));
 		loginBtn.setBorderPainted(false);
 		
-		ImageIcon loginBtnImg2 = new ImageIcon("images/main/loginBtn2.png");
+		ImageIcon loginBtnImg2 = new ImageIcon("images/main/loginBtn2-1.png");
 		loginBtn.setRolloverIcon(loginBtnImg2);
 		loginBtn.setBorderPainted(false);
 		loginBtn.setPreferredSize(new Dimension(130,120));
@@ -265,7 +265,7 @@ public class A_LoginPanel extends JPanel {
 					B_IntroVideoPanel fp = new B_IntroVideoPanel(mf);
 					cp.replacePanel(fp);
 					
-					//음악정
+					//음악정지
 					stopMusic.intoBgmStop();
 				}
 				

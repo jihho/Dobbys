@@ -33,7 +33,7 @@ public class A_IntroPage extends JPanel{
 	public A_IntroPage(JFrame mf){
 		
 		//음악재생
-		new A_Music().introBgm();
+		new A_Music().lightningEffect();
 		
 		this.mf = mf;
 		this.setLayout(null);
@@ -43,6 +43,10 @@ public class A_IntroPage extends JPanel{
 		this.setBackground(Color.BLACK);
 		
 		JLabel introBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/intro1-1.gif")
+				.getImage().getScaledInstance(1330, 785, 0)));
+		introBackground.setBounds(0, 0, 1300, 770);
+		
+		JLabel introNext = new JLabel(new ImageIcon(new ImageIcon("images/main/intro3-5sec.gif")
 				.getImage().getScaledInstance(1330, 785, 0)));
 		introBackground.setBounds(0, 0, 1300, 770);
 		
@@ -57,6 +61,14 @@ public class A_IntroPage extends JPanel{
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop();	//음악정지(천둥소리)
+				new A_Music().introBgm();		//해리포터 bgm
+				
+//				panel.remove(introBackground);
+//				panel.add(introNext);	
+//				panel.revalidate();	
+//				panel.repaint();
+//				panel.setComponentZOrder(introNext, 0);
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				A_LoginPanel gp = new A_LoginPanel(mf);
@@ -70,11 +82,11 @@ public class A_IntroPage extends JPanel{
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-					ChangePanel cp = new ChangePanel(mf, panel);
-					//t1.setDaemon(true);
-					A_LoginPanel gp = new A_LoginPanel(mf);
-					
-					cp.replacePanel(gp);
+				ChangePanel cp = new ChangePanel(mf, panel);
+				// t1.setDaemon(true);
+				A_LoginPanel gp = new A_LoginPanel(mf);
+
+				cp.replacePanel(gp);
 			}
 		});
 		
@@ -88,12 +100,7 @@ public class A_IntroPage extends JPanel{
 		this.add(press);
 		this.add(introBackground);
 //		this.setComponentZOrder(label, 1);
-		
-		
 
 	}
-	
-	
-		
 }
 

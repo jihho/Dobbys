@@ -25,8 +25,9 @@ public class A_FindPage extends JPanel implements ActionListener{
 	private JLabel label;
 	private JTextField text;
 	private JTextField name;
+	private JTextField emailId;
 	private JTextField id;
-	private JTextField email;
+	private JTextField emailPw;
 	private JButton findIdBtn1;
 	private JButton findPwBtn1;
 	private JLabel findPwLabel;
@@ -66,11 +67,11 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
 		
-		email = new JTextField();
-		email.setBounds(300,260,500,60);
-		email.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		panel.add(email);
-		email.setColumns(15);
+		emailId = new JTextField();
+		emailId.setBounds(300,260,500,60);
+		emailId.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		panel.add(emailId);
+		emailId.setColumns(15);
 		
 		label = new JLabel("이메일 : ");
 		label.setBounds(170, 260, 300, 50);
@@ -144,11 +145,11 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
 		
-		email = new JTextField();
-		email.setBounds(300,540,500,60);
-		email.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		panel.add(email);
-		email.setColumns(15);
+		emailPw = new JTextField();
+		emailPw.setBounds(300,540,500,60);
+		emailPw.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		panel.add(emailPw);
+		emailPw.setColumns(15);
 		
 		label = new JLabel("이메일 : ");
 		label.setBounds(170, 540, 300, 50);
@@ -276,8 +277,9 @@ public class A_FindPage extends JPanel implements ActionListener{
 		
 		//찾기 버튼 클릭 후 textfield 초기화
 		name.setText("");
-		email.setText("");
+		emailId.setText("");
 		id.setText("");
+		emailPw.setText("");
 		
 	}
 	
