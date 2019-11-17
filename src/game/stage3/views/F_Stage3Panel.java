@@ -2,6 +2,7 @@ package game.stage3.views;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,30 +13,37 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
 import game.stage3.controller.F_Stage3Play;
+import game.stage3.model.vo.F_Harry;
 
 public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	//JLabel ef;	//스킬 이펙트 없앨때 사용할 라벨
 	private F_Stage3Play sp;
-	
+
 	JLabel skill;	//스킬 이펙트 용 라벨
 	JLabel sksmash;
 	JLabel skdf;
 	JLabel skct;
-
+	JButton atk;
+	JButton df;
+	JButton smash;
+	JButton counter;
+	
+	JLabel[] hp = new JLabel[10];
+	JLabel[] vmhp = new JLabel[10];
 	public F_Stage3Panel(){
-		
 		this.mf = mf;
 		this.setLayout(null);
-
 		panel = this;
 		this.setBounds(0, 0, 1280, 720);
+		
 		//스테이지 용 라벨
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
-		
+
 		//해리포터 캐릭터 라벨
 		JLabel hr = new JLabel(new ImageIcon(new ImageIcon("images/stage3/harry.png").getImage().getScaledInstance(225, 225, 0)));
 		hr.setBounds(191, 277, 225, 225);
@@ -47,9 +55,7 @@ public class F_Stage3Panel extends JPanel{
 		//해리포터 체력 바
 		JLabel hpbar = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		hpbar.setBounds(190, 200, 34, 35);
-		
-		JLabel[] hp = new JLabel[10];
-		
+
 		hp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[0].setBounds(230, 180, 23, 70);
 		hp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
@@ -70,7 +76,7 @@ public class F_Stage3Panel extends JPanel{
 		hp[8].setBounds(390, 180, 23, 70);
 		hp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[9].setBounds(410, 180, 23, 70);
-		
+
 		/*
 		JLabel hp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp0.setBounds(230, 180, 23, 70);
@@ -98,7 +104,33 @@ public class F_Stage3Panel extends JPanel{
 		JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		bmhp.setBounds(1120, 200, 34, 35);
 
-		JLabel bmhp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[0].setBounds(1100, 180, 23, 70);
+		vmhp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[1].setBounds(1080, 180, 23, 70);
+		vmhp[2] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[2].setBounds(1060, 180, 23, 70);
+		vmhp[3] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[3].setBounds(1040, 180, 23, 70);
+		vmhp[4] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[4].setBounds(1020, 180, 23, 70);
+		vmhp[5] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[5].setBounds(1000, 180, 23, 70);
+		vmhp[6] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[6].setBounds(980, 180, 23, 70);
+		vmhp[7] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[7].setBounds(960, 180, 23, 70);
+		vmhp[8] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[8].setBounds(940, 180, 23, 70);
+		vmhp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+		vmhp[9].setBounds(920, 180, 23, 70);
+
+
+
+
+
+
+		/*JLabel bmhp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
 		bmhp0.setBounds(1100, 180, 23, 70);
 		JLabel bmhp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		bmhp1.setBounds(1080, 180, 23, 70);
@@ -117,23 +149,23 @@ public class F_Stage3Panel extends JPanel{
 		JLabel bmhp8 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		bmhp8.setBounds(940, 180, 23, 70);
 		JLabel bmhp9 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp9.setBounds(920, 180, 23, 70);
+		bmhp9.setBounds(920, 180, 23, 70);*/
 
 
 		//공격 버튼
-		JButton atk = new JButton(new ImageIcon("images/stage3/atk.png"));
+		atk = new JButton(new ImageIcon("images/stage3/atk.png"));
 		atk.setBounds(40, 530, 186, 81);
 
 		//디펜스 버튼
-		JButton df = new JButton(new ImageIcon("images/stage3/df.png"));
+		df = new JButton(new ImageIcon("images/stage3/df.png"));
 		df.setBounds(270, 530, 186, 81);
 
 		//스매쉬 버튼
-		JButton smash = new JButton(new ImageIcon("images/stage3/smash.png"));
+		smash = new JButton(new ImageIcon("images/stage3/smash.png"));
 		smash.setBounds(40, 620, 186, 81);
 
 		//카운터 버튼
-		JButton counter = new JButton(new ImageIcon("images/stage3/counter.png"));
+		counter = new JButton(new ImageIcon("images/stage3/counter.png"));
 		counter.setBounds(270, 620, 186, 81);
 
 		//로그 텍스트 필드
@@ -194,161 +226,288 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(hp[9]);
 
 		this.add(bmhp);
-		this.add(bmhp0);
-		this.add(bmhp1);
-		this.add(bmhp2);
-		this.add(bmhp3);
-		this.add(bmhp4);
-		this.add(bmhp5);
-		this.add(bmhp6);
-		this.add(bmhp7);
-		this.add(bmhp8);
-		this.add(bmhp9);
+		panel.add(vmhp[0]);
+		panel.add(vmhp[1]);
+		panel.add(vmhp[2]);
+		panel.add(vmhp[3]);
+		panel.add(vmhp[4]);
+		panel.add(vmhp[5]);
+		panel.add(vmhp[6]);
+		panel.add(vmhp[7]);
+		panel.add(vmhp[8]);
+		panel.add(vmhp[9]);
 
-		this.add(atk);
-		this.add(df);
-		this.add(smash);
-		this.add(counter);
+		panel.add(atk);
+		panel.add(df);
+		panel.add(smash);
+		panel.add(counter);
 
 		this.add(log);
 		//라벨을 가장 마지막에 추가함으로서 자동적으로 우선순위를 최 하위로 변경
 		//setComponentZOrder를 여기서 사용할 필요 없게 됨
 		this.add(label);
-		
+
 		//배경 라벨의 우선 순위를 가장 아래로 내림으로서 나머지 라벨 등장 
 		//this.setComponentZOrder(label,29);
+		class MouseSelect implements MouseListener(int reusult) {
+			/*
+			//마우스 이펙트 사용
+			atk.addMouseListener(new MouseAdapter() {*/
+				@Override
+				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+					if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
+						JPanel p = (atk)e.getSource();
+						//sp = new F_Stage3Play(mf);
+						int harryChoice = 0;
+						F_Stage3Play hrch = new F_Stage3Play(mf);
+						hrch.GamePlay(harryChoice);
+						
+						if(result == 0) {
+							panel.add(df);
+							panel.revalidate();
+							panel.repaint();
+							Timer ts = new Timer();	//Timer 실행
+							TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
-		//마우스 이펙트 사용
-		atk.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
-					//sp = new F_Stage3Play(mf);
+								//TimerTask로 실행할 작업 내용 Override
+								@Override
+								public void run() {
+									panel.remove(df);	//skill 라벨 제거 
+									panel.revalidate();
+									panel.repaint();
+									//panel.add(ef);			//ef 라벨 추가
+									//ef.updateUI();			//라벨 갱신 
+									//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								}
+
+							};
+							ts.schedule(tsm, 1400);
+						}
+						
+						if(result == 1) {
+							panel.add(skill);
+							panel.revalidate();
+							panel.repaint();
+							Timer ts = new Timer();	//Timer 실행
+							TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+								//TimerTask로 실행할 작업 내용 Override
+								@Override
+								public void run() {
+									panel.remove(skill);	//skill 라벨 제거 
+									harry.setHplife(harry.getHplife()-1);
+									for(int i = 9; i>=0; i--) {
+										if(i >= harry.getHplife()) {
+											panel.remove(vmhp[i]);
+										}
+										
+									}
+									panel.revalidate();
+									panel.repaint();
+									//panel.add(ef);			//ef 라벨 추가
+									//ef.updateUI();			//라벨 갱신 
+									//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								}
+								@Override
+								public void mouseClicked(MouseEvent e) {
+									// TODO Auto-generated method stub
+									
+								}
+								@Override
+								public void mousePressed(MouseEvent e) {
+									// TODO Auto-generated method stub
+									
+								}
+								@Override
+								public void mouseEntered(MouseEvent e) {
+									// TODO Auto-generated method stub
+									
+								}
+								@Override
+								public void mouseExited(MouseEvent e) {
+									// TODO Auto-generated method stub
+									
+								}
+
+							};
+							ts.schedule(tsm, 1400);
+						}
+						//panel.remove(ef);	//ef 라벨 제거 
+						panel.add(skill);	//skill 라벨 추가
+						panel.revalidate();	//updateUI보다 revaildate + repaint가 안정적
+						panel.repaint();
+						//skill.updateUI();	//라벨 갱신해서 오류 삭제
+						panel.setComponentZOrder(skill, 0);	//skill라벨의 우선순위를 최우선으로 변경해서 화면 위에 출력
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(skill);	//skill 라벨 제거 
+								harry.setHplife(harry.getHplife()-1);
+								for(int i = 9; i>=0; i--) {
+									if(i >= harry.getHplife()) {
+										panel.remove(vmhp[i]);
+									}
+								}
+
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+
+						};
+						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
 					
-					//panel.remove(ef);	//ef 라벨 제거 
-					panel.add(skill);	//skill 라벨 추가
-					panel.revalidate();	//updateUI보다 revaildate + repaint가 안정적
-					panel.repaint();
-					//skill.updateUI();	//라벨 갱신해서 오류 삭제
-					panel.setComponentZOrder(skill, 0);	//skill라벨의 우선순위를 최우선으로 변경해서 화면 위에 출력
-					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-					Timer ts = new Timer();	//Timer 실행
-					TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-						//TimerTask로 실행할 작업 내용 Override
 						@Override
-						public void run() {
-							panel.remove(skill);	//skill 라벨 제거 
-							/*for(int i = 9; i<0; i--) {
-								panel.remove(hp[i]);
-							}*/
-							panel.revalidate();
-							panel.repaint();
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+						public void mouseClicked(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
 						}
-
-					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-				}
-			}
-		});
-
-		smash.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == smash){	//getSource를 atk버튼을 받게 함
-					//panel.remove(ef);	//ef 라벨 제거 
-					panel.add(sksmash);	//skill 라벨 추가
-					panel.revalidate();
-					panel.repaint();
-					panel.setComponentZOrder(sksmash, 0);
-					//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
-					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-					Timer ts = new Timer();	//Timer 실행
-					TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-						//TimerTask로 실행할 작업 내용 Override
 						@Override
-						public void run() {
-							panel.remove(sksmash);	//skill 라벨 제거 
-							panel.revalidate();
-							panel.repaint();
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+						public void mousePressed(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
 						}
-
-					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-				}
-			}
-		});
-
-		df.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == df){	//getSource를 atk버튼을 받게 함
-					//panel.remove(ef);	//ef 라벨 제거 
-					panel.add(skdf);	//skill 라벨 추가
-					panel.revalidate();
-					panel.repaint();
-					panel.setComponentZOrder(skdf, 0);
-					//skdf.updateUI();	//라벨 갱신해서 오류 삭제
-					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-					Timer ts = new Timer();	//Timer 실행
-					TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-						//TimerTask로 실행할 작업 내용 Override
 						@Override
-						public void run() {
-							panel.remove(skdf);	//skill 라벨 제거 
-							panel.revalidate();
-							panel.repaint();
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+						public void mouseReleased(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
 						}
-
-					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-				}
-			}
-		});
-
-		counter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == counter){	//getSource를 atk버튼을 받게 함
-					//panel.remove(ef);	//ef 라벨 제거 
-					panel.add(skct);	//skill 라벨 추가
-					panel.revalidate();
-					panel.repaint();
-					panel.setComponentZOrder(skct, 0);
-					//skct.updateUI();	//라벨 갱신해서 오류 삭제
-					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-					Timer ts = new Timer();	//Timer 실행
-					TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-						//TimerTask로 실행할 작업 내용 Override
 						@Override
-						public void run() {
-							panel.remove(skct);	//skill 라벨 제거 
-							panel.revalidate();
-							panel.repaint();
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+						public void mouseEntered(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
 						}
-
-					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+						@Override
+						public void mouseExited(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+						}}
 				}
-			}
-		});
+			});
+
+			smash.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+					if(e.getSource() == smash){	//getSource를 atk버튼을 받게 함
+						int harryChoice = 2;
+						F_Stage3Play hrch = new F_Stage3Play(mf);
+						hrch.GamePlay(harryChoice);
+						//panel.remove(ef);	//ef 라벨 제거 
+						panel.add(sksmash);	//skill 라벨 추가
+						panel.revalidate();
+						panel.repaint();
+						panel.setComponentZOrder(sksmash, 0);
+						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(sksmash);	//skill 라벨 제거 
+								harry.setHplife(harry.getHplife()-2);
+								for(int i = 9; i>=0; i--) {
+									if(i >= harry.getHplife()) {
+										panel.remove(vmhp[i]);
+									}
+								}
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+
+						};
+						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					}
+				}
+			});
+
+			df.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+					if(e.getSource() == df){	//getSource를 atk버튼을 받게 함
+						int harryChoice = 1;
+						F_Stage3Play hrch = new F_Stage3Play(mf);
+						hrch.GamePlay(harryChoice);
+						//panel.remove(ef);	//ef 라벨 제거 
+						panel.add(skdf);	//skill 라벨 추가
+						panel.revalidate();
+						panel.repaint();
+						panel.setComponentZOrder(skdf, 0);
+						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(skdf);	//skill 라벨 제거 
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+
+						};
+						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					}
+				}
+			});
+
+			counter.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+					if(e.getSource() == counter){	//getSource를 atk버튼을 받게 함
+						//panel.remove(ef);	//ef 라벨 제거 
+						int harryChoice = 3;
+						F_Stage3Play hrch = new F_Stage3Play(mf);
+						hrch.GamePlay(harryChoice);
+						panel.add(skct);	//skill 라벨 추가
+						panel.revalidate();
+						panel.repaint();
+						panel.setComponentZOrder(skct, 0);
+						//skct.updateUI();	//라벨 갱신해서 오류 삭제
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(skct);	//skill 라벨 제거 
+								harry.setHplife(harry.getHplife()-3);
+								for(int i = 9; i>=0; i--) {
+									if(i >= harry.getHplife()) {
+										panel.remove(vmhp[i]);
+									}
+								}
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+
+						};
+						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					}
+				}
+			});
+		}
+		
 	}
 }
