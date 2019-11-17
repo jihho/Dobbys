@@ -33,6 +33,7 @@ public class C_AssignDormitory extends JPanel{
 		
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
+		System.out.println("반 배정 패널 생성");
 		
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/sortpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		background.setBounds(0, 0, 1300, 770);
@@ -66,20 +67,7 @@ public class C_AssignDormitory extends JPanel{
 		ta.setForeground(Color.WHITE);			
 		ta.setMargin(new Insets(5, 10, 5, 10));
 		
-
-		
-/*		
-		final ImageIcon imageIcon = new ImageIcon("draft.gif");
-		
-		JTextArea textArea = new JTextArea() {
-		      Image image = imageIcon.getImage();
-
-		      Image grayImage = GrayFilter.createDisabledImage(image);
-		      {
-		        setOpaque(false);
-		      }
-*/
-		
+ 	
 
 	    // 패널에 JTextArea 추가
 		background.add(ta);
