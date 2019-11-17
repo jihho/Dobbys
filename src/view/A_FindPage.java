@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,12 +25,13 @@ public class A_FindPage extends JPanel implements ActionListener{
 	private JLabel label;
 	private JTextField text;
 	private JTextField name;
+	private JTextField emailId;
 	private JTextField id;
-	private JTextField email;
+	private JTextField emailPw;
 	private JButton findIdBtn1;
-	private JLabel findIdLabel;
 	private JButton findPwBtn1;
 	private JLabel findPwLabel;
+	private JLabel findIdLabel;
 	private JButton findpw;
 	private JButton backPage;
 	
@@ -65,11 +67,11 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
 		
-		email = new JTextField();
-		email.setBounds(300,260,500,60);
-		email.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		panel.add(email);
-		email.setColumns(15);
+		emailId = new JTextField();
+		emailId.setBounds(300,260,500,60);
+		emailId.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		panel.add(emailId);
+		emailId.setColumns(15);
 		
 		label = new JLabel("이메일 : ");
 		label.setBounds(170, 260, 300, 50);
@@ -143,11 +145,11 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
 		
-		email = new JTextField();
-		email.setBounds(300,540,500,60);
-		email.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		panel.add(email);
-		email.setColumns(15);
+		emailPw = new JTextField();
+		emailPw.setBounds(300,540,500,60);
+		emailPw.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		panel.add(emailPw);
+		emailPw.setColumns(15);
 		
 		label = new JLabel("이메일 : ");
 		label.setBounds(170, 540, 300, 50);
@@ -233,6 +235,9 @@ public class A_FindPage extends JPanel implements ActionListener{
 			}
 		});
 		
+		
+		
+		
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
 				new Point(0,0),"images/main/mouse.png"));
@@ -245,10 +250,16 @@ public class A_FindPage extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		findIdLabel.setText("");
+		findPwLabel.setText("");
+		
+		
 		//아이디찾기
 		if(e.getSource() == findIdBtn1 && name.getText().equals("박하영")) {
 			findIdLabel.setText("박하영님의 아이디는 'admin' 입니다.");
 			findIdLabel.setForeground(new Color(0, 200, 0));
+			
 		} else if(name.getText().length() >= 1){
 			findIdLabel.setText("일치하는 회원이 없습니다.");
 			findIdLabel.setForeground(new Color(230, 0, 0));
@@ -264,8 +275,11 @@ public class A_FindPage extends JPanel implements ActionListener{
 			findPwLabel.setForeground(new Color(230, 0, 0));
 		}
 		
-		
-		
+		//찾기 버튼 클릭 후 textfield 초기화
+		name.setText("");
+		emailId.setText("");
+		id.setText("");
+		emailPw.setText("");
 		
 	}
 	

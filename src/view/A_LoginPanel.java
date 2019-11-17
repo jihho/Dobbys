@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,22 +30,10 @@ public class A_LoginPanel extends JPanel {
 	private JLabel intro;
 	private JTextField text;
 	private JPasswordField passwordText;
+	
+	int bgmOnOff;
 	User user = new User();
 	public A_LoginPanel(JFrame mf) {
-		
-		
-		JLabel loginBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
-				.getImage().getScaledInstance(1300, 770, 0)));
-		loginBackground.setBounds(0, 0, 1300, 770);
-		
-		JLabel loginLogo = new JLabel(new ImageIcon(new ImageIcon("images/main/loginLogo.gif")
-				.getImage().getScaledInstance(900, 350, 0)));
-		loginLogo.setBounds(220 , 50, 900, 350);
-		
-		JLabel allImg = new JLabel(new ImageIcon(new ImageIcon("images/main/all.png")
-				.getImage().getScaledInstance(150, 150, 0)));
-		allImg.setBounds(1150 , 0, 150,150);
-		
 		
 		this.mf = mf;
 		this.setLayout(null);
@@ -53,12 +42,75 @@ public class A_LoginPanel extends JPanel {
 		this.setBounds(0, 0, 1300, 770);
 		System.out.println("패널생성");
 		
+		
+		JLabel loginBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
+				.getImage().getScaledInstance(1300, 770, 0)));
+		loginBackground.setBounds(0, 0, 1300, 770);
+		
+		JLabel loginLogo = new JLabel(new ImageIcon(new ImageIcon("images/main/loginLogo.gif")
+				.getImage().getScaledInstance(900, 350, 0)));
+		loginLogo.setBounds(210 , 50, 900, 350);
+		
+		JLabel allImg = new JLabel(new ImageIcon(new ImageIcon("images/main/all.png")
+				.getImage().getScaledInstance(150, 150, 0)));
+		allImg.setBounds(1150 , 0, 150,150);
+		
+		
+		
+		//음악 on/off
+		JButton bgmOnOffBtn = new JButton();
+		bgmOnOffBtn.setBounds(0, 670, 100,100);
+		bgmOnOffBtn.setContentAreaFilled(false);		//내용영역 채우기 없음
+		bgmOnOffBtn.setBorderPainted(false);		//외곽선 제거
+		bgmOnOffBtn.setOpaque(false);	//투명하게
+		this.add(bgmOnOffBtn);
+		
+		//on이미지
+		JLabel bgmOnImg = new JLabel(new ImageIcon(new ImageIcon("images/main/sound-on.png")
+				.getImage().getScaledInstance(50, 50, 0)));
+		bgmOnImg.setBounds(30, 680, 50,50);
+		this.add(bgmOnImg);
+		
+		
+		//off이미지
+		JLabel bgmOffImg = new JLabel(new ImageIcon(new ImageIcon("images/main/sound-off.png")
+				.getImage().getScaledInstance(50, 50, 0)));
+		bgmOffImg.setBounds(30, 680, 50,50);
+		
+		//음악 on/off 버튼 클릭시 작동할 메소드
+		bgmOnOffBtn.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				
+				if(bgmOnOff == 0) {
+					new A_Music().intoBgmStop();
+					bgmOnOff = 1;
+					panel.remove(bgmOnImg);
+					panel.add(bgmOffImg);	
+					panel.revalidate();	
+					panel.repaint();
+					panel.setComponentZOrder(bgmOffImg, 0);
+					
+				} else if(bgmOnOff == 1) {
+					new A_Music().introBgm();
+					bgmOnOff = 0;
+					panel.remove(bgmOffImg);
+					panel.add(bgmOnImg);	
+					panel.revalidate();	
+					panel.repaint();
+					panel.setComponentZOrder(bgmOnImg, 0);
+				}
+			}
+		});
+		
+		
+		
 		//마우스커서
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
-				new Point(0,0),"images/main/mouse.png"));
-//		IntroImage();
+				new Point(0,0),"DobbyCursor"));
 		
+		
+		//아이디
 		label = new JLabel("User ID");
 		label.setBounds(350, 450, 150, 50);
 		label.setForeground(new Color(255, 255, 255));
@@ -73,6 +125,7 @@ public class A_LoginPanel extends JPanel {
 //		text.setOpaque(false);
 		
 		
+		//비밀번호
 		label = new JLabel("Password");
 		label.setBounds(330, 515, 150, 50);
 		label.setForeground(new Color(255, 255, 255));
@@ -87,23 +140,20 @@ public class A_LoginPanel extends JPanel {
 		
 		
 		
+		//게임 버전 표시
+		label = new JLabel("Dobbys v1.0.0");
+		label.setBounds(1120, 710, 180, 30);
+		label.setForeground(new Color(255, 255, 255));
+		label.setFont(new Font("DungGeunMo", Font.BOLD, 23));
+		panel.add(label);
 		
-		
-//		JButton loginBtn = new JButton("LOGIN");
-//		loginBtn.setBounds(763, 450 , 300, 120);
-//		loginBtn.setFont(new Font("DungGeunMo", Font.BOLD, 40));
-//		loginBtn.setBorderPainted(false);
-		
-//		JLabel loginBtnImg = new JLabel(new ImageIcon(new ImageIcon("images/main/loginBtn.png")
-//				.getImage().getScaledInstance(130, 118, 0)));
-//		loginBtnImg.setBounds(850, 450, 130, 120);
-		
+		//로그인 버튼
 		JButton loginBtn = new JButton(new ImageIcon("images/main/loginBtn1.png"));
 		loginBtn.setBounds(850, 447 , 130, 120);
 		loginBtn.setFont(new Font("DungGeunMo", Font.BOLD, 40));
 		loginBtn.setBorderPainted(false);
 		
-		ImageIcon loginBtnImg2 = new ImageIcon("images/main/loginBtn2.png");
+		ImageIcon loginBtnImg2 = new ImageIcon("images/main/loginBtn2-1.png");
 		loginBtn.setRolloverIcon(loginBtnImg2);
 		loginBtn.setBorderPainted(false);
 		loginBtn.setPreferredSize(new Dimension(130,120));
@@ -121,24 +171,8 @@ public class A_LoginPanel extends JPanel {
 		
 //		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-//		JLabel loginLabel = new JLabel("LOGIN");
-//		loginLabel.setBounds(862, 450 , 300, 120);
-//		loginLabel.setFont(new Font("DungGeunMo", Font.BOLD, 40));
-//		
-//		panel.add(loginLabel);
-//		this.add(loginBtnImg);
 		
-		
-		
-//		JButton findId = new JButton("아이디 / 비밀번호 찾기");
-//		findId.setBounds(460,620, 220, 35);
-//		findId.setFont(new Font("DungGeunMo", Font.BOLD, 18));
-////		findId.setForeground(new Color(255, 255, 255));
-////		findId.setContentAreaFilled(false);		//내용영역 채우기 없음
-////		findId.setBorderPainted(false);		//외곽선 제거
-////		findId.setOpaque(false);	//투명하게
-//		panel.add(findId);
-		
+		//아이디 비밀번호 찾기 버튼
 		JButton findId1 = new JButton(new ImageIcon("images/main/findId1.png"));
 		findId1.setBounds(460,635, 220, 35);
 		findId1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
@@ -157,20 +191,13 @@ public class A_LoginPanel extends JPanel {
 		panel.add(findId1);
 		
 		
-		
-		
 		JButton changeInfo = new JButton("회원정보 수정");
 		changeInfo.setBounds(690,635, 150, 35);
 		changeInfo.setFont(new Font("DungGeunMo", Font.BOLD, 18));
 		panel.add(changeInfo);
 		
 		
-		
-//		JButton joinUser = new JButton("회    원    가    입");
-//		joinUser.setBounds(460,575, 380, 40);
-//		joinUser.setFont(new Font("DungGeunMo", Font.BOLD, 22));
-//		panel.add(joinUser);
-		
+		//회원가입 버튼
 		JButton joinBtn1 = new JButton(new ImageIcon("images/main/joinBtn1.png"));
 		joinBtn1.setBounds(460,580, 380, 40);
 		joinBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
@@ -207,6 +234,10 @@ public class A_LoginPanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				int ctn = 0;
+				//로그인 성공시 음악정지
+				A_Music stopMusic = new A_Music();
+				
+				
 				System.out.println("로그인 클릭");
 				if(text.getText().equals("") && !passwordText.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
@@ -229,22 +260,24 @@ public class A_LoginPanel extends JPanel {
 				}
 				
 				if(ctn == 0 && text.getText().equals("admin") && passwordText.getText().equals("admin")) {
+					
 					ChangePanel cp = new ChangePanel(mf, panel);
 					B_IntroVideoPanel fp = new B_IntroVideoPanel(mf);
 					cp.replacePanel(fp);
+					
+					//음악정지
+					stopMusic.intoBgmStop();
 				}
 				
 				
 				System.out.println(user.getId());
 				System.out.println(passwordText.getText());
 				if(text.getText().equals(user.getId()) && passwordText.getText().equals(user.getPw())) {
+					new A_Music().intoBgmStop();
 					ChangePanel cp = new ChangePanel(mf, panel);
 					B_IntroVideoPanel fp = new B_IntroVideoPanel(mf);
 					cp.replacePanel(fp);
 				}
-				
-				
-				
 			}
 		});
 		
@@ -266,7 +299,6 @@ public class A_LoginPanel extends JPanel {
 		this.add(loginLogo);
 		this.add(loginBackground);
 
-		
 	}
 	
 }
