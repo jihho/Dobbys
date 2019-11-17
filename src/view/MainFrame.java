@@ -12,7 +12,7 @@ public class MainFrame extends JFrame{
 
 
 
-		this.add(new C_AssignDormitory(this));
+		this.add(new A_IntroPage(this));
 //		this.add(new B_CheckPanel(this));
 
 
