@@ -20,12 +20,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.B_UserManager;
 import model.vo.User;
 
 public class B_JoinPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
-	private boolean ischeck = false;
+	private boolean isIdcheck = false;
+	private boolean isPwcheck = false;
+	private boolean isemailcheck = false;
+	private boolean iscertNumcheck = false;
 	private User user = new User();
 	
 	public B_JoinPanel(JFrame mf){
@@ -140,20 +144,49 @@ public class B_JoinPanel extends JPanel{
 		joinbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				user.setId(idfield.getText());
 				char[] ch = pwfield.getPassword();
-				String str = "";
+				String strPw = "";
 				for(int i = 0; i < ch.length; i++) {
-					str+=ch[i];
+					strPw += ch[i];
 				}
-				user.setPw(str); 
-				user.setName(namefield.getText());
-				user.seteMail(emailfield.getText());
-				ChangePanel cp = new ChangePanel(mf, panel);
-				A_LoginPanel lp = new A_LoginPanel(mf);
-				cp.replacePanel(lp);
-				System.out.println(user);
+				
+				char[] ch2 = pwcheckfield.getPassword();
+				String strPwCheck = "";
+				for(int i = 0; i < ch2.length; i++) {
+					strPwCheck += ch2[i];
+				}
+				
+				if(namefield.getText().equals("")||idfield.getText().equals("")||strPw.equals("")
+						||strPwCheck.equals("")||emailfield.getText().equals("")||certifield.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "모든 입력 창을 입력해주세요.");
+				}else {
+					if(isIdcheck == false) {
+						JOptionPane.showMessageDialog(null, "아이디 중복체크를 해주세요.");
+					}else {
+						user.setId(idfield.getText());
+						user.setPw(strPw);
+						user.setName(namefield.getText());
+						user.seteMail(emailfield.getText());
+						
+						B_UserManager um = new B_UserManager();
+						um.insertUser(user);
+						
+						ChangePanel cp = new ChangePanel(mf, panel);
+						A_LoginPanel lp = new A_LoginPanel(mf);
+						cp.replacePanel(lp);
+						
+					}
+				}
+//				user.setId(idfield.getText());
+//				char[] ch = pwfield.getPassword();
+//				String str = "";
+//				for(int i = 0; i < ch.length; i++) {
+//					str+=ch[i];
+//				}
+//				user.setPw(str); 
+//				user.setName(namefield.getText());
+//				user.seteMail(emailfield.getText());
+				//System.out.println(user);
 			}
 		
 		});
@@ -165,6 +198,15 @@ public class B_JoinPanel extends JPanel{
 				System.out.println(idfield.getText());
 				if(idfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "아이디를 입력해 주십시오.");
+				}else {
+					B_UserManager um = new B_UserManager();
+					if(um.checkUserId(idfield.getText())) {
+						JOptionPane.showMessageDialog(null, "사용할 수 없는 아이디 입니다.");
+						isIdcheck = false;
+					}else {
+						JOptionPane.showMessageDialog(null, "사용 가능한 아이디 입니다.");
+						isIdcheck = true;
+					}
 				}
 			}
 		});
@@ -191,7 +233,7 @@ public class B_JoinPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, "인증번호를 입력해 주세요.");
 				}else if(certifield.getText().equals("1234")) {
 					JOptionPane.showMessageDialog(null, "인증에 성공하셨습니다.");
-					ischeck = true;
+					//ischeck = true;
 				}else if(!certifield.getText().equals("1234")) {
 					JOptionPane.showMessageDialog(null, "인증번호가 틀렸습니다.");
 				}
