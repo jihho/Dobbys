@@ -1,4 +1,4 @@
-package game.stage2.model.vo;
+/*package game.stage2.model.vo;
 
 public class E_Items {
 	private int item1 = 1;	//당근
@@ -11,14 +11,14 @@ public class E_Items {
 	private int item8 = 8;	//깃털
 	private int item9 = 9;	//해골
 	private int item;
-/*	private int leftBtn = 10;	//왼화살표
+	private int leftBtn = 10;	//왼화살표
 	private int rigthBtn = 11;	//오른화살표
 	
-*/	
+	
 	
 	//9, 7, 6, 3, 2, 4, 6, 8, 1 문제1번순서
 	
-	private static int MAX_HP = 5;
+	private static int MAX_HP = 3;
 	private int hp = MAX_HP;
 	
 	private int qeust1;
@@ -203,3 +203,4 @@ public class E_Items {
 	
 	
 }
+*/

@@ -7,7 +7,7 @@ public class E_Stage2MainFrame extends JFrame{
 		this.setSize(1300, 770);
 		this.setLocationRelativeTo(null);
 		
-		this.add(new E_BgPanel(this));
+		this.add(new E_StartPanel(this));
 		//this.add(new GamePanel(this));
 		//new BgPanel(this);
 		
