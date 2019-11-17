@@ -5,15 +5,16 @@ public class F_General {
 	private int atk;
 	private int smash;
 	private int counter;
-
+	private int hplife;
 	
 	public F_General() {}
 	
-	public F_General(int hp, int atk, int smash, int counter) {
+	public F_General(int hp, int atk, int smash, int counter, int hplife) {
 		this.hp = hp;
 		this.atk = atk;
 		this.smash = smash;
 		this.counter = counter;
+		this.hplife = hplife;
 	}
 
 	public int getHp() {
@@ -31,6 +32,10 @@ public class F_General {
 	public int getCounter() {
 		return counter;
 	}
+	
+	public int getHplife() {
+		return hplife;
+	}
 
 	public void setHp(int hp) {
 		this.hp = hp;
@@ -46,6 +51,10 @@ public class F_General {
 
 	public void setCounter(int counter) {
 		this.counter = counter;
+	}
+	
+	public void setHplife(int hplife) {
+		this.hplife = hplife;
 	}
 
 }

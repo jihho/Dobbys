@@ -25,7 +25,7 @@ public class F_Stage3Panel extends JPanel{
 	JLabel sksmash;
 	JLabel skdf;
 	JLabel skct;
-	F_Harry harry = new F_Harry(10, 10, 20, 30);
+	F_Harry harry = new F_Harry(100, 10, 20, 30, 10);
 	
 	JLabel[] hp = new JLabel[10];
 	JLabel[] vmhp = new JLabel[10];
@@ -51,8 +51,6 @@ public class F_Stage3Panel extends JPanel{
 		//해리포터 체력 바
 		JLabel hpbar = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		hpbar.setBounds(190, 200, 34, 35);
-
-
 
 		hp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[0].setBounds(230, 180, 23, 70);
@@ -269,9 +267,9 @@ public class F_Stage3Panel extends JPanel{
 						@Override
 						public void run() {
 							panel.remove(skill);	//skill 라벨 제거 
-							harry.setHp(harry.getHp()-1);
+							harry.setHplife(harry.getHplife()-1);
 							for(int i = 9; i>=0; i--) {
-								if(i == harry.getHp()) {
+								if(i >= harry.getHplife()) {
 									panel.remove(vmhp[i]);
 								}
 							}
@@ -308,6 +306,12 @@ public class F_Stage3Panel extends JPanel{
 						@Override
 						public void run() {
 							panel.remove(sksmash);	//skill 라벨 제거 
+							harry.setHplife(harry.getHplife()-2);
+							for(int i = 9; i>=0; i--) {
+								if(i >= harry.getHplife()) {
+									panel.remove(vmhp[i]);
+								}
+							}
 							panel.revalidate();
 							panel.repaint();
 							//panel.add(ef);			//ef 라벨 추가
@@ -372,6 +376,12 @@ public class F_Stage3Panel extends JPanel{
 						@Override
 						public void run() {
 							panel.remove(skct);	//skill 라벨 제거 
+							harry.setHplife(harry.getHplife()-3);
+							for(int i = 9; i>=0; i--) {
+								if(i >= harry.getHplife()) {
+									panel.remove(vmhp[i]);
+								}
+							}
 							panel.revalidate();
 							panel.repaint();
 							//panel.add(ef);			//ef 라벨 추가
