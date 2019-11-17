@@ -29,6 +29,7 @@ public class C_RankingPage extends JPanel{
 		
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
+		System.out.println("랭킹 페이지 패널 생성");
 		
 		// 배경 라벨 생성
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/score.png").getImage().getScaledInstance(1300, 770, 0)));

@@ -34,6 +34,7 @@ public class C_RandomAssign extends JPanel{
 		
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
+		System.out.println("랜덤 반 배정 패널 생성");
 		
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/sortpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		background.setBounds(0, 0, 1300, 770);
@@ -181,6 +182,10 @@ public class C_RandomAssign extends JPanel{
 		H_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ChangePanel cp = new ChangePanel(mf, panel);
+				C_GameStage gs = new C_GameStage(mf);
+				cp.replacePanel(gs);
+				
 				H_sd.dispose();
 				
 			}
@@ -188,12 +193,20 @@ public class C_RandomAssign extends JPanel{
 		R_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ChangePanel cp = new ChangePanel(mf, panel);
+				C_GameStage gs = new C_GameStage(mf);
+				cp.replacePanel(gs);
+				
 				R_sd.dispose();
 			}
 		});
 		G_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ChangePanel cp = new ChangePanel(mf, panel);
+				C_GameStage gs = new C_GameStage(mf);
+				cp.replacePanel(gs);
+				
 				G_sd.dispose();
 			}
 		});

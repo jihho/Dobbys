@@ -34,7 +34,8 @@ public class C_GameStage extends JPanel{
 		
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
-
+		System.out.println("게임 스테이지 패널 생성");
+		
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		background.setBounds(0, 0, 1300, 770);
 		
