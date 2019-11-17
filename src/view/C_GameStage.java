@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import game.stage1.controller.D_Controller;
-import game.stage2.view.E_BgPanel;
+import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
 
 public class C_GameStage extends JPanel{

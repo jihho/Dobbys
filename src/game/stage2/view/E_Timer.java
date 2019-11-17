@@ -11,10 +11,10 @@ import javax.swing.border.Border;
 public class E_Timer extends Thread{
 	private JFrame mf;
 	private JPanel panel;
-	//private JLabel quest1;
+
 
 	
-	public E_Timer(JFrame mf, JPanel panel/*, JLabel quest1*/) {
+	public E_Timer(JFrame mf, JPanel panel) {
 		this.mf = mf;
 		this.panel = panel;
 		//this.quest1 = quest1;
@@ -42,7 +42,7 @@ public class E_Timer extends Thread{
 		panel.add(timeCount);
 		for(int i = 10; i >= 0; i--) {
 			try {
-				System.out.println(i);
+				System.out.print(i + " ");
 				this.sleep(100);
 				timeCount.setText(" 남은시간:"+ i);
 				
