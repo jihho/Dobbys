@@ -1,7 +1,10 @@
 package game.stage2.view;
 
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,8 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.C_GameStage;
 import game.stage2.model.vo.E_Quest;
-import view.C_GameStage;
 
 class test{
 	//유저로그창 아이템 좌표
@@ -81,6 +84,15 @@ public class E_GamePanel extends JPanel {
 				getImage().getScaledInstance(1280, 720, 0)));
 		label.setBounds(0, 0, 1280, 720);
 
+		//항아리 이펙트
+		JLabel potEffect = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_effect1.gif").
+				getImage().getScaledInstance(102, 29, 0)));
+		potEffect.setBounds(401, 409, 102, 29);
+		
+		//실패시 이펙트
+		JLabel failEffect = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_effect2.gif").
+				getImage().getScaledInstance(417, 399, 0)));
+		failEffect.setBounds(220, 150, 417, 399);
 
 		
 		//버튼 변수
@@ -123,6 +135,19 @@ public class E_GamePanel extends JPanel {
 		home = new JButton(new ImageIcon("images/stage2/home.png"));
 		pot = new JButton("  ");
 		
+		//버튼위에 올라가면 손가락 커서로 변경
+		item1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item7.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item8.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		item9.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		pot.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		potEffect.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		
 		//item 위치 설정 (사이 간격 125)
 		item1.setBounds(75, 580, 100, 100);
@@ -142,7 +167,7 @@ public class E_GamePanel extends JPanel {
 		
 		
 		//home, pot 위치 설정
-		home.setBounds(5, 5, 50, 56);
+		home.setBounds(5, 15, 50, 56);
 		pot.setBounds(375, 370, 150, 150);
 		
 
@@ -218,6 +243,17 @@ public class E_GamePanel extends JPanel {
 				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 1;
 				System.out.println(userChoice[ctn]);
+				
+				//재료 9개 모두 선택되면 항아리 이펙트 나오기
+				if(ctn == 9) {
+					
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+				}
+				
 
 				ctn++;
 				
@@ -242,6 +278,16 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;			
 				
+				if(ctn == 9) {
+
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+					
+				}
 
 			}
 		});
@@ -263,6 +309,16 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;	
 				
+				if(ctn == 9) {
+
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+
+				}
 
 			}
 		});
@@ -285,6 +341,16 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
+				if(ctn == 9) {
+
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+
+				}
 
 				
 			}
@@ -307,6 +373,16 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
+				if(ctn == 9) {
+
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+
+				}
 
 				
 			}
@@ -330,6 +406,16 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
+				if(ctn == 9) {
+
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+
+				}
 
 			}
 		});
@@ -352,6 +438,16 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
+				if(ctn == 9) {
+
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+
+				}
 
 			}
 		});
@@ -374,6 +470,16 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
+				if(ctn == 9) {
+
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");
+
+				}
 
 				
 			}
@@ -395,12 +501,28 @@ public class E_GamePanel extends JPanel {
 				userChoice[ctn] = 9;
 				System.out.println(userChoice[ctn]);
 				
+				
 				ctn++;
 				
+				if(ctn == 9) {
+					
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					panel.add(potEffect);
+					panel.setComponentZOrder(potEffect, 0);
+					panel.revalidate();
+					panel.repaint();
+					System.out.println("항아리이펙트");					
+					
+				}
 				
 				
 			}
 		});
+
+
+		
+		
+		
 
 		//퀘스트 문제 불러오기
 		E_Quest qq = new E_Quest();
@@ -411,6 +533,8 @@ public class E_GamePanel extends JPanel {
 		pot.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+					panel.remove(potEffect);
+					panel.repaint();
 					
 				if(hp == MAX_HP) {
 					
@@ -419,12 +543,33 @@ public class E_GamePanel extends JPanel {
 							//System.out.println("일치");
 							
 						}else {
-							//실패시hp감소
+							
 							System.out.println("불일치");
+							
+							//틀리면 실패이팩트 출력
+							panel.add(failEffect);
+							panel.setComponentZOrder(failEffect, 0);
+							panel.repaint();
+							
+							//hp이미지 삭제, hp감소
 							panel.remove(hp3);
 							hp--;
 							System.out.println("hp:" + hp);
 							repaint();
+							
+							//실패이펙트 타이머
+							Timer timer = new Timer();
+							TimerTask task = new TimerTask() {
+								@Override
+								public void run() {
+									panel.remove(failEffect);
+									panel.revalidate();
+									panel.repaint();
+								}
+							};
+							timer.schedule(task, 500);
+							
+							//재료 위치 리셋
 							ctn = 0;
 							item1.setBounds(75, 580, 100, 100);
 							item2.setBounds(200, 580, 100, 100);
@@ -435,7 +580,8 @@ public class E_GamePanel extends JPanel {
 							item7.setBounds(825, 580, 100, 100);
 							item8.setBounds(950, 580, 100, 100);
 							item9.setBounds(1075, 580, 100, 100);
-
+							
+							
 							repaint();
 							return;
 						}
@@ -445,6 +591,7 @@ public class E_GamePanel extends JPanel {
 						
 					}
 					System.out.println("다맞아요");
+					//문제 값과 유저값 일치하면 성공이미지 패널로 이동
 					E_ChangePanel cp = new E_ChangePanel(mf, panel);
 
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
@@ -460,12 +607,32 @@ public class E_GamePanel extends JPanel {
 							System.out.println("일치2");
 						}else {
 							System.out.println("불일치2");
+							
+							//틀리면 실패 이펙트 출력
+							panel.add(failEffect);
+							panel.setComponentZOrder(failEffect, 0);
+							panel.revalidate();
+							panel.repaint();
+							
+							//hp이미지 삭제, hp감소
 							panel.remove(hp2);
 							hp--;
 							System.out.println("2hp:" + hp);
 							repaint();
 							
+							//실패이펙트 타이머
+							Timer timer = new Timer();
+							TimerTask task = new TimerTask() {
+								@Override
+								public void run() {
+									panel.remove(failEffect);
+									panel.revalidate();
+									panel.repaint();
+								}
+							};
+							timer.schedule(task, 1000);
 							
+							//재료 위치 리셋
 							ctn = 0;
 							item1.setBounds(75, 580, 100, 100);
 							item2.setBounds(200, 580, 100, 100);
@@ -477,12 +644,14 @@ public class E_GamePanel extends JPanel {
 							item8.setBounds(950, 580, 100, 100);
 							item9.setBounds(1075, 580, 100, 100);
 							
+							
 							repaint();
 							return;
 							
 						}
 					}
 					System.out.println("2번째에맞춤");
+					//퀘스트 값과 유저선택 값이 같으면 성공패널로 이동
 					E_ChangePanel cp = new E_ChangePanel(mf, panel);
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
 					
@@ -497,11 +666,19 @@ public class E_GamePanel extends JPanel {
 							
 						}else {
 							System.out.println("불일치3");
+							
+							/*//틀리면 실패 이펙트 출력
+							panel.add(failEffect);
+							panel.setComponentZOrder(failEffect, 0);
+							panel.repaint();*/
+							
+							//hp이미지 삭제, hp감소
 							panel.remove(hp1);
 							hp--;
 							System.out.println("3hp:"+ hp);
 							repaint();
 							
+							//재료 위치 리셋
 							ctn = 0;
 							item1.setBounds(75, 580, 100, 100);
 							item2.setBounds(200, 580, 100, 100);
@@ -513,8 +690,22 @@ public class E_GamePanel extends JPanel {
 							item8.setBounds(950, 580, 100, 100);
 							item9.setBounds(1075, 580, 100, 100);
 							
+							/*//실패 이펙트 타이머
+							Timer timer = new Timer();
+							TimerTask task = new TimerTask() {
+								@Override
+								public void run() {
+									panel.remove(failEffect);
+									panel.revalidate();
+									panel.repaint();
+								}
+							};
+							timer.schedule(task, 1000);*/
+							
+							//새로고침
 							repaint();
 							
+							//hp 0되면 실패 이미지 패널로 이동
 							if(hp == 0) {
 								E_ChangePanel cp = new E_ChangePanel(mf, panel);
 								E_FailPanel fp = new E_FailPanel(mf);
@@ -524,6 +715,7 @@ public class E_GamePanel extends JPanel {
 						}
 					}
 					System.out.println("3번째에 맞춤");
+					//퀘스트값과 유저값 일치하면 성공이미지 패널로 이동
 					E_ChangePanel cp = new E_ChangePanel(mf, panel);
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
 					
@@ -534,6 +726,8 @@ public class E_GamePanel extends JPanel {
 						
 			}
 		});
+		
+
 		
 		
 		//home 이벤트 -> 메인페이지로 이동
@@ -548,7 +742,6 @@ public class E_GamePanel extends JPanel {
 		
 		
 		//패널에 추가하기
-		this.add(label);
 		
 
 		this.add(item1);
@@ -568,7 +761,9 @@ public class E_GamePanel extends JPanel {
 		this.add(home);
 		this.add(pot);
 		
-		this.setComponentZOrder(label, 14);
+		this.add(label);
+		
+		//this.setComponentZOrder(label, 14);
 		
 		
 		
