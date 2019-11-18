@@ -574,45 +574,84 @@ public class F_Stage3Panel extends JPanel{
 
 						};
 						ts.schedule(tsm, 1400);
-					}
-					panel.add(skct);	//skill 라벨 추가
-					panel.revalidate();
-					panel.repaint();
-					panel.setComponentZOrder(skct, 0);
-					//skct.updateUI();	//라벨 갱신해서 오류 삭제
-					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+					}else if(vmchoice == 1 || vmchoice ==3) {
+						panel.add(skct);	//skill 라벨 추가
+						panel.add(vmskdf);
+						panel.setComponentZOrder(skct, 0);
+						panel.setComponentZOrder(vmskdf, 0);
+						panel.revalidate();
+						panel.repaint();
+						System.out.println("공격이 무효화되었습니다.");
+						//skct.updateUI();	//라벨 갱신해서 오류 삭제
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
-					Timer ts = new Timer();	//Timer 실행
-					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
-						//TimerTask로 실행할 작업 내용 Override
-						@Override
-						public void run() {
-							panel.remove(skct);	//skill 라벨 제거 
-							harry.setHplife(harry.getHplife()-3);
-							for(int i = 9; i>=0; i--) {
-								if(i >= harry.getHplife()) {
-									panel.remove(vmhp[i]);
-								}
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(skct);	//skill 라벨 제거 
+								panel.remove(vmskdf);
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 							}
-							panel.revalidate();
-							panel.repaint();
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-						}
 
-					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+						};
+						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					}else if(vmchoice == 2) {
+						panel.add(vmsksmash);	//skill 라벨 추가
+						panel.add(skct);
+						panel.setComponentZOrder(vmsksmash, 0);
+						panel.setComponentZOrder(skct, 0);
+						panel.revalidate();
+						panel.repaint();
+						
+						voldmort.setHp(voldmort.getHp() -30);
+						voldmort.setHplife(voldmort.getHplife() -3);
+						System.out.println("해리의 카운터! 볼드모트의 체력이 30 감소합니다.");
+						System.out.println("볼드모트의 체력 : " + voldmort.getHp());
+						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(vmsksmash);	//skill 라벨 제거 
+								panel.remove(skct);
+								panel.revalidate();
+								panel.repaint();
+								for(int i = 9; i>=0; i--) {
+									if(i >= voldmort.getHplife()) {
+										panel.remove(vmhp[i]);
+									}
+								}
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+
+						};
+						ts.schedule(tsm, 1400);
+					}
+					if(voldmort.getHp()<=0) {
+						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+					}
+					if(harry.getHp()<=0){
+						System.out.println("재도전하시겠습니까?");
+					}
 				}
 			}
 		});
-		if(voldmort.getHp()<=0) {
-			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
-		}
-		if(harry.getHp()<=0){
-			System.out.println("재도전하시겠습니까?");
-		}
+		
 
 	}
 }
