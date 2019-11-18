@@ -1,10 +1,9 @@
 package game.stage3.views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,50 +12,53 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
-import game.stage3.controller.F_ChoiceResult;
+import controller.C_GameStage;
 import game.stage3.controller.F_Stage3Play;
 import game.stage3.model.vo.F_General;
 import game.stage3.model.vo.F_Harry;
 import game.stage3.model.vo.F_Voldmort;
+import game.stage3.views.F_SuccessPanel;
+import game.stage3.views.F_FailPanel;
 
 public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	//JLabel ef;	//스킬 이펙트 없앨때 사용할 라벨
-	private F_Stage3Play sp;
+	
+	private JLabel skill;	//스킬 이펙트 용 라벨
+	private JLabel sksmash;
+	private JLabel skdf;
+	private JLabel skct;
+	private JLabel vmskill;	//볼드모트 스킬 이펙트 용 라벨
+	private JLabel vmsksmash;
+	private JLabel vmskdf;
+	private JLabel vmskct;	
+	
+	private JTextArea log;
+	
+	private JButton atk;
+	private JButton df;
+	private JButton smash;
+	private JButton counter;
 
-	JLabel skill;	//스킬 이펙트 용 라벨
-	JLabel sksmash;
-	JLabel skdf;
-	JLabel skct;
-	JLabel vmskill;	//볼드모트 스킬 이펙트 용 라벨
-	JLabel vmsksmash;
-	JLabel vmskdf;
-	JLabel vmskct;	
 
-	JButton atk;
-	JButton df;
-	JButton smash;
-	JButton counter;
+	private F_General harry = new F_Harry(100, 10, 20, 30, 10);	//체력, 공격, 스매쉬, 카운터
+	private F_General voldmort = new F_Voldmort(100, 10, 20, 30, 10);
 
-
-	F_General harry = new F_Harry(100, 10, 20, 30, 10);	//체력, 공격, 스매쉬, 카운터
-	F_General voldmort = new F_Voldmort(100, 10, 20, 30, 10);
-
-	JLabel[] hp = new JLabel[10];
-	JLabel[] vmhp = new JLabel[10];
+	private JLabel[] hp = new JLabel[10];
+	private JLabel[] vmhp = new JLabel[10];
 
 	int harryChoice = 0;
 
-	public F_Stage3Panel(){
+	public F_Stage3Panel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 		this.setBounds(0, 0, 1280, 720);
 
-		//스테이지 용 라벨
+		//스테이지 배경 라벨로 올림
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
 
@@ -186,9 +188,27 @@ public class F_Stage3Panel extends JPanel{
 		counter.setBounds(270, 620, 186, 81);
 
 		//로그 텍스트 필드
-		JTextField log = new JTextField();
+		log = new JTextArea();
 		log.setBounds(610, 520, 620, 180);
-
+		log.setEditable(false);
+		log.setFont(new Font("DungGeunMo", Font.PLAIN, 37));
+		log.setBackground(new Color(0, 60, 30));
+		log.setOpaque(false);
+		log.selectAll();
+		log.append(null);
+		
+		
+/*String str = "어렵군, 아주 어려워...\n용기가 충만하고, 총명하며,\n재능을 타고 났어!\n의욕이 하늘을 찌르는 군!\n근데 어디가 좋을까...\n그리핀도르? 래번클로? \n슬리데린? 후플푸프?\n흐음...어디보자...\n";
+		
+		// JTextArea(대화 상자) 생성  
+		ta = new JTextArea("");   	//JTextArea 생성
+		ta.setBounds(635, 50, 510, 500); 	    //JTeatArea 크기 및 위치 지정
+	    ta.setEditable(false); 				    //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 37)); 
+		ta.setBackground(new Color(0, 60, 30));
+		ta.setForeground(Color.WHITE);			
+		ta.setMargin(new Insets(20, 20, 5, 10));
+		ta.setOpaque(false);*/
 		//이펙트 가림용 라벨
 		//ef = new JLabel();
 
@@ -344,7 +364,10 @@ public class F_Stage3Panel extends JPanel{
 						ts.schedule(tsm, 1400);
 					}
 					if(voldmort.getHp()<=0) {
-						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+						System.out.println("!!!!!볼드모트를 물리쳤습니다.");
+						F_ChangePanel cp = new F_ChangePanel(mf, panel);
+						F_SuccessPanel sp = new F_SuccessPanel(mf);
+						cp.replacePanel(sp);
 					}
 				}
 			}
@@ -451,9 +474,15 @@ public class F_Stage3Panel extends JPanel{
 					}
 					if(voldmort.getHp()<=0) {
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+						F_ChangePanel cp = new F_ChangePanel(mf, panel);
+						F_SuccessPanel sp = new F_SuccessPanel(mf);
+						cp.replacePanel(sp);
 					}
 					if(harry.getHp()<=0){
 						System.out.println("재도전하시겠습니까?");
+						F_ChangePanel cp = new F_ChangePanel(mf, panel);
+						F_FailPanel fp = new F_FailPanel(mf);
+						cp.replacePanel(fp);
 					}
 				}
 			}
@@ -528,6 +557,12 @@ public class F_Stage3Panel extends JPanel{
 
 						};
 						ts.schedule(tsm, 1400);
+					}
+					if(harry.getHp()<=0){
+						System.out.println("재도전하시겠습니까?");
+						F_ChangePanel cp = new F_ChangePanel(mf, panel);
+						F_FailPanel fp = new F_FailPanel(mf);
+						cp.replacePanel(fp);
 					}
 				}
 			}
@@ -645,9 +680,15 @@ public class F_Stage3Panel extends JPanel{
 					}
 					if(voldmort.getHp()<=0) {
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+						F_ChangePanel cp = new F_ChangePanel(mf, panel);
+						F_SuccessPanel sp = new F_SuccessPanel(mf);
+						cp.replacePanel(sp);
 					}
 					if(harry.getHp()<=0){
 						System.out.println("재도전하시겠습니까?");
+						F_ChangePanel cp = new F_ChangePanel(mf, panel);
+						F_FailPanel fp = new F_FailPanel(mf);
+						cp.replacePanel(fp);
 					}
 				}
 			}
