@@ -11,13 +11,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controller.B_UserManager;
+import model.dao.B_UserDao;
+import model.vo.User;
 
 public class A_FindPage extends JPanel implements ActionListener{
 	private JFrame mf;
@@ -35,9 +42,12 @@ public class A_FindPage extends JPanel implements ActionListener{
 	private JButton findpw;
 	private JButton backPage;
 	
+	private B_UserDao ud = new B_UserDao();
+	
 	//할일 리스트
 	//찾기 버튼 눌렀을때 label이 동시에 바뀌는 오류 수정하기
 	//User 정보 가져와서 비교하고 이메일 전송하기.
+//	backBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));  //손가락 모양 커서
 	
 	public A_FindPage(JFrame mf) {
 		JLabel findBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
@@ -79,10 +89,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
 		
-//		findid = new JButton("이메일로 아이디 전송");
-//		findid.setBounds(820, 260, 250, 60);
-//		findid.setFont(new Font("DungGeunMo", Font.BOLD, 20));
-//		panel.add(findid);
 		
 		
 		//아이디 찾기 버튼
@@ -101,17 +107,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		
 		panel.add(findIdBtn1);
 		
-//		findIdBtn1.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseReleased(MouseEvent e) {
-//				System.out.println("아이디 찾기 버튼");
-//				JButton loginLogo = new JButton(new ImageIcon(new ImageIcon("images/main/all.png")
-//						.getImage().getScaledInstance(730, 300, 0)));
-//				loginLogo.setBounds(290, 100, 730, 300);
-//				
-//				panel.add(loginLogo);
-//			}
-//		});
+		
 		
 		
 		//아이디 찾기 버튼 누르면 아이디 Label 출력.
@@ -121,9 +117,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 		findIdLabel.setForeground(new Color(255, 255, 255));
 		findIdLabel.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(findIdLabel);
-		
-		
-		
 		
 		
 		//비밀번호 찾기 (아이디, 이메일)
@@ -157,10 +150,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
 		
-//		findpw = new JButton("임시 비밀번호 발급");
-//		findpw.setBounds(820, 510, 250, 60);
-//		findpw.setFont(new Font("DungGeunMo", Font.BOLD, 20));
-//		panel.add(findpw);
 		
 		
 		//임시비밀번호 발급 버튼
@@ -179,17 +168,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 		
 		panel.add(findPwBtn1);
 		
-//		findPwBtn1.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseReleased(MouseEvent e) {
-//				System.out.println("돌아가기");
-//				ChangePanel cp = new ChangePanel(mf, panel);
-//				//t1.setDaemon(true);
-//				A_LoginPanel fp = new A_LoginPanel(mf);
-//				
-//				cp.replacePanel(fp);
-//			}
-//		});
 		
 		findPwBtn1.addActionListener(this);
 		findPwLabel = new JLabel("");
@@ -200,13 +178,8 @@ public class A_FindPage extends JPanel implements ActionListener{
 		
 		
 		
-//		backPage = new JButton("돌아가기");
-//		backPage.setBounds(1100, 620, 140, 70);
-//		backPage.setFont(new Font("DungGeunMo", Font.BOLD, 25));
-//		panel.add(backPage);
-		
 		JButton backBtn1 = new JButton(new ImageIcon("images/main/backBtn1.png"));
-		backBtn1.setBounds(1100, 620, 140, 70);
+		backBtn1.setBounds(1140, 660, 140, 70);
 		backBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
 		backBtn1.setBorderPainted(false);
 		
@@ -218,7 +191,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		backBtn1.setBorderPainted(false);		//외곽선 제거
 		backBtn1.setOpaque(false);	//투명하게
 		
-//		backBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
 		
 		panel.add(backBtn1);
 		
@@ -248,33 +221,98 @@ public class A_FindPage extends JPanel implements ActionListener{
 		this.add(findBackground);
 	}
 
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		findIdLabel.setText("");
 		findPwLabel.setText("");
-		
+
+		B_UserManager um = new B_UserManager();
+
 		
 		//아이디찾기
-		if(e.getSource() == findIdBtn1 && name.getText().equals("박하영")) {
-			findIdLabel.setText("박하영님의 아이디는 'admin' 입니다.");
-			findIdLabel.setForeground(new Color(0, 200, 0));
-			
-		} else if(name.getText().length() >= 1){
-			findIdLabel.setText("일치하는 회원이 없습니다.");
+		// 로그인창 아이디창 공백일시
+		if (e.getSource() == findIdBtn1 && (name.getText().equals("") || (emailId.getText().equals("")))) {
+			findIdLabel.setText("이름,이메일 정보를 입력해주세요.");
 			findIdLabel.setForeground(new Color(230, 0, 0));
+		} else {
+
+			if (e.getSource() == findIdBtn1 && um.checkUserName(name.getText())) {
+				System.out.println("이름 존재");
+				// 로그인창 아이디와 입력값이 같으면 비밀번호 체크
+				ArrayList<User> list = ud.readUserList();
+
+				// 일치하는 user 정보를 담을 레퍼런스 변수 초기화
+				User selectedUser = null;
+				// 조회에 성공하면 유저 아이디와 일치하는 비밀번호를 리스트에서 탐색
+				if (list != null) {
+					for (int i = 0; i < list.size(); i++) {
+						if (list.get(i).getName().equals(name.getText())) {
+							selectedUser = list.get(i);
+							break;
+						}
+					}
+				}
+
+				if (selectedUser.geteMail().equals(emailId.getText())) {
+					findIdLabel.setText(selectedUser.getName() + "님의 아이디는 '"+ selectedUser.getId() + "' 입니다.");
+					findIdLabel.setForeground(new Color(0, 200, 0));
+				} else {
+					findIdLabel.setText(selectedUser.getName() + "님의 이메일 정보와 일치하지 않습니다.");
+					findIdLabel.setForeground(new Color(230, 0, 0));
+				}
+			} else if(name.getText().length() >= 1) {
+				findIdLabel.setText("일치하는 회원이 없습니다.");
+				findIdLabel.setForeground(new Color(230, 0, 0));
+			}
 		}
 		
 		
-		//비밀번호찾기
-		if(e.getSource() == findPwBtn1 && id.getText().equals("admin")) {
-			findPwLabel.setText("이메일로 임시 비밀번호 보냈습니다.");
-			findPwLabel.setForeground(new Color(0, 200, 0));
-		} else if(id.getText().length() >=1){
-			findPwLabel.setText("회원정보가 일치하지 않습니다.");
+		
+		//비밀번호 찾기 (임시비밀번호 발급)
+		if (e.getSource() == findPwBtn1 && (id.getText().equals("") || (emailPw.getText().equals("")))) {
+			findPwLabel.setText("아이디,이메일 정보를 입력해주세요.");
 			findPwLabel.setForeground(new Color(230, 0, 0));
+		} else {
+
+			if (e.getSource() == findPwBtn1 && um.checkUserId(id.getText())) {
+				System.out.println("아이디 존재");
+				
+				// 로그인창 아이디와 입력값이 같으면 비밀번호 체크
+				ArrayList<User> list = ud.readUserList();
+
+				User selectedUser = null;
+				if (list != null) {
+					for (int i = 0; i < list.size(); i++) {
+						if (list.get(i).getId().equals(id.getText())) {
+							selectedUser = list.get(i);
+							break;
+						}
+					}
+				}
+
+				if (selectedUser.geteMail().equals(emailPw.getText())) {
+					findPwLabel.setText(selectedUser.geteMail() +"로 임시 비밀번호를 전송 했습니다.");
+					findPwLabel.setForeground(new Color(0, 200, 0));
+					
+					//임시비밀번호 변경
+					selectedUser.setPw(subPassword());
+					//임시비밀번호 전송하기
+					
+					
+				} else {
+					findPwLabel.setText(selectedUser.getId() + "님의 이메일 정보와 일치하지 않습니다.");
+					findPwLabel.setForeground(new Color(230, 0, 0));
+				}
+			} else if(id.getText().length() >= 1) {
+				findPwLabel.setText("일치하는 회원이 없습니다.");
+				findPwLabel.setForeground(new Color(230, 0, 0));
+			}
 		}
 		
+	
 		//찾기 버튼 클릭 후 textfield 초기화
 		name.setText("");
 		emailId.setText("");
@@ -283,5 +321,27 @@ public class A_FindPage extends JPanel implements ActionListener{
 		
 	}
 	
+	
+	//임시 비밀번호 생성
+	public String subPassword() {
+	
+		StringBuffer key = new StringBuffer();
+		Random rnd = new Random();
+		
+		for(int i = 0; i < 10; i++) {
+			int index = rnd.nextInt(3);
+			
+			switch (index) {
+			//소문자
+			case 0: key.append((char) ((int) (rnd.nextInt(26)) + 97)); break;
+			//대문자
+			case 1: key.append((char) ((int) (rnd.nextInt(26)) + 65)); break;
+			//0~9 숫자
+			case 2: key.append((rnd.nextInt(10))); break;
+			}
+		}
+		
+		return key.toString();
+	}
 	
 }

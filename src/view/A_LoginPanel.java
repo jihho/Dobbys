@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
@@ -20,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.B_UserManager;
+import model.dao.B_UserDao;
 import model.vo.User;
 
 
@@ -30,6 +33,7 @@ public class A_LoginPanel extends JPanel {
 	private JLabel intro;
 	private JTextField text;
 	private JPasswordField passwordText;
+	private B_UserDao ud = new B_UserDao();
 	
 	int bgmOnOff;
 	User user = new User();
@@ -233,50 +237,54 @@ public class A_LoginPanel extends JPanel {
 		loginBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				int ctn = 0;
-				//로그인 성공시 음악정지
+				System.out.println("로그인 버튼 클릭");
+				//로그인 성공시 음악정지 (변수)
 				A_Music stopMusic = new A_Music();
 				
+				B_UserManager um = new B_UserManager();
 				
-				System.out.println("로그인 클릭");
-				if(text.getText().equals("") && !passwordText.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
-					ctn++;
-				}
 				
-				if(passwordText.getText().equals("") && !text.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요.");
-					ctn++;
-				}
 				
-				if(passwordText.getText().equals("") && text.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "아이디,비밀번호를 입력해주세요.");
-					ctn++;
-				}
-				
-				if(ctn == 0 && text.getText().equals("admin") && !passwordText.getText().equals("admin")) {
-					JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.");
-					ctn++;
-				}
-				
-				if(ctn == 0 && text.getText().equals("admin") && passwordText.getText().equals("admin")) {
+				//로그인창 아이디창 공백일시
+				if(text.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "아이디를 입력해 주십시오.");
+				}else {
 					
-					ChangePanel cp = new ChangePanel(mf, panel);
-					B_IntroVideoPanel fp = new B_IntroVideoPanel(mf);
-					cp.replacePanel(fp);
-					
-					//음악정지
-					stopMusic.intoBgmStop();
-				}
-				
-				
-				System.out.println(user.getId());
-				System.out.println(passwordText.getText());
-				if(text.getText().equals(user.getId()) && passwordText.getText().equals(user.getPw())) {
-					new A_Music().intoBgmStop();
-					ChangePanel cp = new ChangePanel(mf, panel);
-					B_IntroVideoPanel fp = new B_IntroVideoPanel(mf);
-					cp.replacePanel(fp);
+					if(um.checkUserId(text.getText())) {
+						System.out.println("아이디 존재");
+						//로그인창 아이디와 입력값이 같으면 비밀번호 체크
+						ArrayList<User> list = ud.readUserList();
+						
+						
+						
+						//일치하는 user 정보를 담을 레퍼런스 변수 초기화
+						User selectedUser = null;
+						//조회에 성공하면 유저 아이디와 일치하는 비밀번호를 리스트에서 탐색
+						if(list != null) {
+							for(int i = 0; i < list.size(); i++) {
+								if(list.get(i).getId().equals(text.getText())) {
+									selectedUser = list.get(i);
+									break;
+								}
+							}
+						}
+						
+						
+						
+						if(selectedUser.getPw().equals(passwordText.getText())) {
+							System.out.println("로그인 성공!");
+							//음악정지
+							stopMusic.intoBgmStop();
+							ChangePanel cp = new ChangePanel(mf, panel);
+							B_IntroVideoPanel iv = new B_IntroVideoPanel(mf);
+							cp.replacePanel(iv);
+						} else {
+							JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.");
+						}
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다.");
+					}
 				}
 			}
 		});
