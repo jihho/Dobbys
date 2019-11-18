@@ -5,9 +5,12 @@ import java.io.Serializable;
 public class User implements Serializable{
 	
 	private String id;
+	public static String playerId;
 	private String pw;
 	private String name;
 	private String eMail;
+	private String dormitory = "";
+	private int loginCount = 0;
 	private int score1 = 0;
 	private int score2 = 0;
 	private int score3 = 0;
@@ -17,11 +20,14 @@ public class User implements Serializable{
 	
 	public User(String id, String pw, String name, String eMail) {
 		this.id = id;
+		User.playerId = id;
 		this.pw = pw;
 		this.name = name;
 		this.eMail = eMail;
 	}
 	
+	
+
 	public String getId() {
 		return id;
 	}
@@ -53,7 +59,14 @@ public class User implements Serializable{
 	public int getTotal() {
 		return total;
 	}
-
+	public String getDormitory() {
+		return dormitory;
+	}
+	public int getLoginCount() {
+		return loginCount;
+	}
+	
+	
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -85,12 +98,22 @@ public class User implements Serializable{
 	public void setTotal(int total) {
 		this.total = total;
 	}
+	
+	public void setDormitory(String dormitory) {
+		this.dormitory = dormitory;
+	}
+
+	public void setLoginCount(int loginCount) {
+		this.loginCount = loginCount;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", pw=" + pw + ", name=" + name + ", eMail=" + eMail + ", score1=" + score1
-				+ ", score2=" + score2 + ", score3=" + score3 + ", total=" + total + "]";
+		return "User [id=" + id + ", pw=" + pw + ", name=" + name + ", eMail=" + eMail + ", dormitory=" + dormitory
+				+ ", loginCount=" + loginCount + ", score1=" + score1 + ", score2=" + score2 + ", score3=" + score3
+				+ ", total=" + total + "]";
 	}
+	
 	
 	
 	

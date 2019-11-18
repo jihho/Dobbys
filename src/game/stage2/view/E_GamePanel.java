@@ -446,12 +446,12 @@ public class E_GamePanel extends JPanel {
 					}
 					System.out.println("다맞아요");
 					E_ChangePanel cp = new E_ChangePanel(mf, panel);
+
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
 					
 					cp.replacePanel(sp);
 					
 
-					
 				}
 				if(hp == 2) {
 					
