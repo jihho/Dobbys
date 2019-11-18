@@ -21,13 +21,13 @@ public class B_IntroVideoPanel extends JPanel{
 		label.setBounds(0, 0, 1300, 770);
 		
 		JLabel start = new JLabel(new ImageIcon(new ImageIcon("images/main/skipButton.PNG").getImage().getScaledInstance(300, 200, 0)));
-		start.setBounds(180, 550, 300, 200);
-		
+		start.setBounds(10, 550, 300, 200);
+		new A_Music().trainSound();
 
 		start.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				new A_Music().intoBgmStop();
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
