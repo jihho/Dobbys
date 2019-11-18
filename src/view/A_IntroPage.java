@@ -35,9 +35,9 @@ public class A_IntroPage extends JPanel{
 		//음악재생
 		new A_Music().lightningEffect();
 		
+		
 		this.mf = mf;
 		this.setLayout(null);
-		
 		
 		panel = this;
 		this.setBackground(Color.BLACK);
