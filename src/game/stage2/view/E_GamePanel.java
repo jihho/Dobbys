@@ -513,6 +513,7 @@ public class E_GamePanel extends JPanel {
 					panel.repaint();
 					System.out.println("항아리이펙트");
 					
+					
 				}
 				
 				
