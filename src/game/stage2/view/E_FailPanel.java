@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import view.C_GameStage;
+import controller.C_GameStage;
 
 public class E_FailPanel extends JPanel {
 	private JFrame mf;

@@ -1,5 +1,6 @@
 package game.stage2.view;
 
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -8,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import view.A_Music;
 
 //게임 시작 화면
 public class E_StartPanel extends JPanel {
@@ -23,6 +26,8 @@ public class E_StartPanel extends JPanel {
 		this.setLayout(null);
 		
 		panel = this;
+		
+		new A_Music().stage2_BgSound();
 		
 		//백그라운드화면
     	JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_bg2.PNG").
@@ -150,6 +155,7 @@ public class E_StartPanel extends JPanel {
 		//게임 방법 설명 이미지
 		JButton rule = new JButton(new ImageIcon("images/stage2/rule3.PNG"));
 		rule.setBounds(300, 140, 640, 401);
+		rule.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		
 		

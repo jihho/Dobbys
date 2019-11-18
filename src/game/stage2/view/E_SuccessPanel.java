@@ -3,7 +3,6 @@ package game.stage2.view;
 
 import java.awt.Dialog;
 import java.awt.Font;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import view.C_GameStage;
+import controller.C_GameStage;
 
 
 public class E_SuccessPanel extends JPanel{
