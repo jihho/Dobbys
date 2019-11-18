@@ -638,6 +638,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 							}
+							
 
 						};
 						ts.schedule(tsm, 1400);
