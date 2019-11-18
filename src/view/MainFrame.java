@@ -10,7 +10,17 @@ public class MainFrame extends JFrame{
 		this.setLocationRelativeTo(null);
 
 
+
 		this.add(new C_AssignDormitory(this));
+
+		
+		this.add(new A_IntroPage(this));
+		//this.add(new B_IntroVideoPanel(this));
+
+//		this.add(new B_CheckPanel(this));
+
+
+
 		//this.add(new GraphicTest(this));
 		
 		this.setVisible(true);

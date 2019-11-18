@@ -1,41 +1,55 @@
 package game.stage2.model.vo;
 
+import java.util.Random;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import game.stage2.view.E_QuestPanel;
 
-public class E_Quest {
+public class E_Quest extends JPanel{
+	private JFrame mf;
+	private JPanel panel;
+	public static int random = new Random().nextInt(3) + 1;
+	
+	public static int getRandom() {
+		return random;
+	}
 
-	
-//	private int item1 = 1;	//당근
-//	private int item2 = 2;	//사과
-//	private int item3 = 3;	//귤
-//	private int item4 = 4;	//박쥐날개
-//	private int item5 = 5;	//클로버
-//	private int item6 = 6;	//버섯
-//	private int item7 = 7;	//생선
-//	private int item8 = 8;	//깃털
-//	private int item9 = 9;	//해골
-	
-	
-	
-	public void quest1(int num) {
+	public static void setRandom(int random) {
+		E_Quest.random = random;
+	}
+
+	public int[] getQuest() {
+		//퀘스트 문제 
 		
-		//퀘스트 문제1
-		int[] q1 = {5, 6, 7, 8, 9, 1, 2, 3, 4};
+		 
+		
+		int[] q = new int[9];
+		
+		System.out.println("q1 랜덤:" + random);
+		
+		if(random == 1) {
+			 int[] q1 = {5, 6, 7, 8, 9, 1, 2, 3, 4};
+			 q = q1;
+		}
+		
+		if(random == 2) {
+			int[] q2 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+			q = q2;
+		}
+		
+		if(random == 3) {
+			int[] q3 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+			q = q3;
+		}
+		
+		return q;
+				
+		
 		
 	}
-	
-	public void quest2() {
-		
-		//퀘스트 문제 2
-		int[] q2 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
-		
-	}
-	
-	public void quest3() {
-		
-		//퀘스트 문제 3
-		int[] q3 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-	}
+
 	
 	
 }

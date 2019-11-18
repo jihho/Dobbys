@@ -1,11 +1,11 @@
 package game.stage3.model.vo;
 
 public class F_General {
-	private int hp;
+	public int hp;
 	private int atk;
 	private int smash;
 	private int counter;
-	private int hplife;
+	public int hplife;
 	
 	public F_General() {}
 	

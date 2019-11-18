@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.stage2.model.vo.E_Quest;
 import view.C_GameStage;
 
 class test{
@@ -42,35 +43,17 @@ public class E_GamePanel extends JPanel {
 	private JFrame mf;
 	private JPanel panel;
 	private int ctn = 0;	//유저아이템 카운트
-	private int num = 0; 	//아이템 넘버
 	private int[] userChoice;
 	private static int MAX_HP = 3;
 	private int hp = MAX_HP;
-	//라벨변수
+	
+	//hp 라벨변수
 	private JLabel hp1;
 	private JLabel hp2;
 	private JLabel hp3;
 	
 	//10초 지난뒤 게임 시작 페이지
-	
-/*	public E_GamePanel(JFrame mf, int hp) {
 
-		
-		//hp 이미지 삽입
-		hp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		
-		hp2 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		
-		hp3 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		
-		//hp 위치 설정
-		hp1.setBounds(110, 25, 120, 80);
-		hp2.setBounds(180, 25, 120, 80);
-		hp3.setBounds(250, 25, 120, 80);
-	}*/
 	
 	public E_GamePanel(JFrame mf) {
 		this.mf = mf;
@@ -92,27 +75,11 @@ public class E_GamePanel extends JPanel {
 		//유저가 선택한 값 담기 , 퀘스트문제와 비교용
 		userChoice = new int[9];
 		
-		//hp 이미지 삽입
-		hp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		
-		hp2 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		
-		hp3 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		
-		//hp 위치 설정
-		hp1.setBounds(110, 25, 120, 80);
-		hp2.setBounds(180, 25, 120, 80);
-		hp3.setBounds(250, 25, 120, 80);
-		
 		
 		//배경
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_bg2.PNG").
 				getImage().getScaledInstance(1280, 720, 0)));
 		label.setBounds(0, 0, 1280, 720);
-
 
 
 		
@@ -129,7 +96,6 @@ public class E_GamePanel extends JPanel {
 		JButton home;
 		JButton pot;
 		
-
 		
 		//item 이미지 삽입
 		item1 = new JButton(new ImageIcon("images/stage2/item1.PNG"));
@@ -142,12 +108,21 @@ public class E_GamePanel extends JPanel {
 		item8 = new JButton(new ImageIcon("images/stage2/item8.PNG"));
 		item9 = new JButton(new ImageIcon("images/stage2/item9.PNG"));
 
+		//hp 이미지 삽입
+		hp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
+				getImage().getScaledInstance(60, 80, 0) ));
+		
+		hp2 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
+				getImage().getScaledInstance(60, 80, 0) ));
+		
+		hp3 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
+				getImage().getScaledInstance(60, 80, 0) ));
+		
+		
 		//home, pot 이미지 삽입
 		home = new JButton(new ImageIcon("images/stage2/home.png"));
 		pot = new JButton("  ");
 		
-
-
 		
 		//item 위치 설정 (사이 간격 125)
 		item1.setBounds(75, 580, 100, 100);
@@ -160,9 +135,15 @@ public class E_GamePanel extends JPanel {
 		item8.setBounds(950, 580, 100, 100);
 		item9.setBounds(1075, 580, 100, 100);
 
+		//hp 위치 설정
+		hp1.setBounds(110, 25, 120, 80);
+		hp2.setBounds(180, 25, 120, 80);
+		hp3.setBounds(250, 25, 120, 80);
+		
+		
 		//home, pot 위치 설정
 		home.setBounds(5, 5, 50, 56);
-		pot.setBounds(390, 390, 130, 130);
+		pot.setBounds(375, 370, 150, 150);
 		
 
 		//버튼 투명화
@@ -215,7 +196,7 @@ public class E_GamePanel extends JPanel {
 		home.setFocusPainted(false);
 		home.setOpaque(false);
 		
-		//pot.setBorderPainted(false);
+		pot.setBorderPainted(false);
 		pot.setContentAreaFilled(false);
 		pot.setFocusPainted(false);
 		pot.setOpaque(false);
@@ -241,13 +222,6 @@ public class E_GamePanel extends JPanel {
 				ctn++;
 				
 				
-				//num = 1;
-				
-/*				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(1);
-				E_GameManager.count++;*/
-				
 			}
 		});
 	
@@ -268,13 +242,7 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;			
 				
-/*				num = 2;
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(2);
-				E_GameManager.count++;
-				*/
+
 			}
 		});
 
@@ -295,12 +263,7 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;	
 				
-/*				num = 3;
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(3);
-				E_GameManager.count++;*/
+
 			}
 		});
 
@@ -322,14 +285,7 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
-				
-/*				num = 4;
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(4);
-				E_GameManager.count++;
-				*/
+
 				
 			}
 		});
@@ -351,14 +307,7 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
-				
-/*				num = 5;
-				
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(5);
-				E_GameManager.count++;*/
+
 				
 			}
 		});
@@ -381,12 +330,7 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
-/*				num = 6;
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(6);
-				E_GameManager.count++;*/
+
 			}
 		});
 
@@ -408,12 +352,7 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
-/*				num = 7;
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(7);
-				E_GameManager.count++;*/
+
 			}
 		});
 
@@ -435,12 +374,7 @@ public class E_GamePanel extends JPanel {
 
 				ctn++;
 				
-/*				num = 8;
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(8);
-				E_GameManager.count++;*/
+
 				
 			}
 		});
@@ -463,26 +397,21 @@ public class E_GamePanel extends JPanel {
 				
 				ctn++;
 				
-/*				num = 9;
-				
-				//item 값을 GameManager클래스로 전송
-				E_GameManager gm = new E_GameManager();
-				gm.setChoice(9);
-				E_GameManager.count++;*/
 				
 				
 			}
 		});
 
+		//퀘스트 문제 불러오기
+		E_Quest qq = new E_Quest();
+		int[] q1 = qq.getQuest();
+		
 		
 		//pot이벤트 -> 성공, 실패 여부 판단
 		pot.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				//E_QuestPanel qp = new E_QuestPanel(mf);
-				int[] q1 = {5, 6, 7, 8, 9, 1, 2, 3, 4};
-				
-				
+					
 				if(hp == MAX_HP) {
 					
 					for(int i = 0; i < 9; i++) {
@@ -495,27 +424,34 @@ public class E_GamePanel extends JPanel {
 							panel.remove(hp3);
 							hp--;
 							System.out.println("hp:" + hp);
-							
-							//E_ChangePanel cp = new E_ChangePanel(mf, panel);
-							//E_GamePanel gp = new E_GamePanel(mf);
-							
-							panel.remove(hp3);
-							//cp.replacePanel(gp);
+							repaint();
+							ctn = 0;
+							item1.setBounds(75, 580, 100, 100);
+							item2.setBounds(200, 580, 100, 100);
+							item3.setBounds(325, 580, 100, 100);
+							item4.setBounds(450, 580, 100, 100);
+							item5.setBounds(575, 580, 100, 100);
+							item6.setBounds(700, 580, 100, 100);
+							item7.setBounds(825, 580, 100, 100);
+							item8.setBounds(950, 580, 100, 100);
+							item9.setBounds(1075, 580, 100, 100);
+
 							repaint();
 							return;
 						}
 						
-						System.out.println("일치할때만나오기:" + userChoice[i]);
-						
-						//System.out.println("qp.quest(): " + qp.getQuest());
+						//System.out.println("일치할때만나오기:" + userChoice[i]);
+
 						
 					}
 					System.out.println("다맞아요");
 					E_ChangePanel cp = new E_ChangePanel(mf, panel);
+
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
-					cp.replacePanel(sp);
-					repaint();
 					
+					cp.replacePanel(sp);
+					
+
 				}
 				if(hp == 2) {
 					
@@ -529,19 +465,71 @@ public class E_GamePanel extends JPanel {
 							System.out.println("2hp:" + hp);
 							repaint();
 							
-							E_ChangePanel cp = new E_ChangePanel(mf, panel);
-							E_GamePanel gp = new E_GamePanel(mf);
-							cp.replacePanel(gp);
-							panel.remove(hp2);
+							
+							ctn = 0;
+							item1.setBounds(75, 580, 100, 100);
+							item2.setBounds(200, 580, 100, 100);
+							item3.setBounds(325, 580, 100, 100);
+							item4.setBounds(450, 580, 100, 100);
+							item5.setBounds(575, 580, 100, 100);
+							item6.setBounds(700, 580, 100, 100);
+							item7.setBounds(825, 580, 100, 100);
+							item8.setBounds(950, 580, 100, 100);
+							item9.setBounds(1075, 580, 100, 100);
+							
+							repaint();
+							return;
+							
+						}
+					}
+					System.out.println("2번째에맞춤");
+					E_ChangePanel cp = new E_ChangePanel(mf, panel);
+					E_SuccessPanel sp = new E_SuccessPanel(mf);
+					
+					cp.replacePanel(sp);
+				}
+				
+				if(hp == 1) {
+					
+					for(int i = 0; i < 9; i++) {
+						if(userChoice[i] == q1[i]) {
+							System.out.println("일치3");
+							
+						}else {
+							System.out.println("불일치3");
+							panel.remove(hp1);
+							hp--;
+							System.out.println("3hp:"+ hp);
+							repaint();
+							
+							ctn = 0;
+							item1.setBounds(75, 580, 100, 100);
+							item2.setBounds(200, 580, 100, 100);
+							item3.setBounds(325, 580, 100, 100);
+							item4.setBounds(450, 580, 100, 100);
+							item5.setBounds(575, 580, 100, 100);
+							item6.setBounds(700, 580, 100, 100);
+							item7.setBounds(825, 580, 100, 100);
+							item8.setBounds(950, 580, 100, 100);
+							item9.setBounds(1075, 580, 100, 100);
+							
+							repaint();
+							
+							if(hp == 0) {
+								E_ChangePanel cp = new E_ChangePanel(mf, panel);
+								E_FailPanel fp = new E_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
 							return;
 						}
 					}
+					System.out.println("3번째에 맞춤");
+					E_ChangePanel cp = new E_ChangePanel(mf, panel);
+					E_SuccessPanel sp = new E_SuccessPanel(mf);
+					
+					cp.replacePanel(sp);
 				}
 				
-				
-				
-
-			
 				
 						
 			}

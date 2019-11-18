@@ -35,7 +35,7 @@ public class D_Harry extends JPanel{
 		state = HARRY_ST_ALIVE;
 		x = 30;
 		y = 350;
-		bb = new Rectangle(x, y, 100, 100);
+		bb = new Rectangle(x + 10, y + 10, 80, 80);
 		life = HARRY_MAX_HP;
 		count = 30;
 	}
@@ -44,7 +44,7 @@ public class D_Harry extends JPanel{
 		if(state == HARRY_ST_ALIVE) {
 			if(y > 100) {
 				y -= 20;
-				bb.y = y;
+				bb.y = y + 10;
 			}
 		}
 	}
@@ -53,7 +53,7 @@ public class D_Harry extends JPanel{
 		if(state == HARRY_ST_ALIVE) {
 			if(y < 610 ) {
 				y += 20;
-				bb.y = y;
+				bb.y = y + 10;
 			}
 		}
 	}

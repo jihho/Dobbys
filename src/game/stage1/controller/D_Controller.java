@@ -1,6 +1,7 @@
 package game.stage1.controller;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -10,12 +11,16 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import game.stage1.model.vo.D_Dementor;
 import game.stage1.model.vo.D_Harry;
+import game.stage1.model.vo.D_Snitch;
 import game.stage1.view.D_BackgroundModify;
+import model.vo.User;
+import view.A_Music;
 import view.C_GameStage;
 
 public class D_Controller extends JPanel {
@@ -28,7 +33,10 @@ public class D_Controller extends JPanel {
 	//public static int MAX_HP = ;
 	
 	//이펙트 효과 시간
-	public final int EFFECT_TIME = 30;
+	public final int EFFECT_TIME = 80;
+	
+	//스니치 먹었을 때 더해지는 게이지 
+	public final int SNITCH_SCORE = 30;
 	
 	//클리어 효과 시간
 	public final int CLEAR_TIME = 90;
@@ -42,6 +50,7 @@ public class D_Controller extends JPanel {
 	public final int ST_ENDING = 2;
 	public final int ST_ALTIMATE = 3;
 	public final int ST_CLEAR = 4;
+	public final int ST_SCORE = 5;
 
 	private int gameState;
 	
@@ -49,10 +58,14 @@ public class D_Controller extends JPanel {
 	private Timer t;
 
 	private D_Dementor[] dementor;
+	private D_Snitch snitch;
 	private D_Harry harry;
 	private D_BackgroundModify back;
 	private int harryHp;
 	private static int altimateGage = 0;
+	
+	//stage1 점수
+	private int score = 0;
 	
 	private int clearCount = CLEAR_TIME;
 	private int effectCount = EFFECT_TIME;
@@ -62,6 +75,22 @@ public class D_Controller extends JPanel {
 			getScaledInstance(1300, 770, 0);
 	private static Image backImg2 = new ImageIcon("images/stage1/stage1_bg.png").getImage().
 			getScaledInstance(1300, 770, 0);
+	
+	// 클리어 점수 이미지
+	private static Image score200 = new ImageIcon("images/stage1/score200.png").getImage().
+			getScaledInstance(900, 500, 0);
+	private static Image score400 = new ImageIcon("images/stage1/score400.png").getImage().
+			getScaledInstance(900, 500, 0);
+	private static Image score600 = new ImageIcon("images/stage1/score600.png").getImage().
+			getScaledInstance(900, 500, 0);
+	private static Image score800 = new ImageIcon("images/stage1/score800.png").getImage().
+			getScaledInstance(900, 500, 0);
+	private static Image score1000 = new ImageIcon("images/stage1/score1000.png").getImage().
+			getScaledInstance(900, 500, 0);
+	
+	// 스니치 이미지
+	private static Image snitImg = new ImageIcon("images/stage1/ssni.gif").getImage().
+	getScaledInstance(80, 150, 0);
 
 	// 디멘터 이미지
 	private static Image deImg = new ImageIcon("images/stage1/dementor2_Move.gif").getImage().
@@ -112,6 +141,13 @@ public class D_Controller extends JPanel {
 	Image img;
 	Graphics img_g;
 	
+	//점수 넘겨주기 위한 객체 생성
+	User user = new User();
+	
+	//배경음악
+	A_Music backSound = new A_Music();
+	
+	
 	
 	
 	public D_Controller(JFrame mf) {
@@ -120,6 +156,8 @@ public class D_Controller extends JPanel {
 
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
+		
+		
 
 		// 메인 배경 패널
 		// ChangePanel cp = new ChangePanel(mf, panel);
@@ -146,10 +184,14 @@ public class D_Controller extends JPanel {
 		
 		hpImg = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
 		
-		//harry 생성
-		
+		//harry 생성		
 		harry = new D_Harry();
 		harry.startHarry();
+		
+		//snitch 생성
+		snitch = new D_Snitch();
+		
+		
 
 	}
 
@@ -157,32 +199,56 @@ public class D_Controller extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 
 			
-			//디멘터 생성 및 이동
-			for (D_Dementor d : dementor) {
-				if (d.getState() == D_Dementor.DEMENTOR_ST_DEATH) {
-					//디멘터가 사라지거나 부딪쳐서 사라지면 다시 생성
-					d.birth();
-				}
-				d.move();
-				
-				//디멘터 히트박스와 해리포터 히트박스 충돌 판단
-				if(d.getState() == D_Dementor.DEMENTOR_ST_ALIVE && gameState == ST_GAME) {
-					if(harry.getState() == D_Harry.HARRY_ST_ALIVE) {
-						if(harry.getBBox().intersects(d.getBBox())) {
-							d.setState(D_Dementor.DEMENTOR_ST_DEATH);
-							harry.setLife(harry.getLife() - 1);
-							if(harry.getLife() == 0) {
-								harry.blast();
-								altimateGage = 0;
-								effectCount = EFFECT_TIME;
-								clearCount = CLEAR_TIME;
-								gameState = ST_ENDING;
-								
+			// 디멘터 생성 및 이동
+			if (gameState != ST_SCORE) {
+				for (D_Dementor d : dementor) {
+					if (d.getState() == D_Dementor.DEMENTOR_ST_DEATH) {
+						// 디멘터가 사라지거나 부딪쳐서 사라지면 다시 생성
+						d.birth();
+					}
+					d.move();
+
+					// 디멘터 히트박스와 해리포터 히트박스 충돌 판단
+					if (d.getState() == D_Dementor.DEMENTOR_ST_ALIVE && gameState == ST_GAME) {
+						if (harry.getState() == D_Harry.HARRY_ST_ALIVE) {
+
+							if (harry.getBBox().intersects(d.getBBox())) {
+								d.setState(D_Dementor.DEMENTOR_ST_DEATH);
+								harry.setLife(harry.getLife() - 1);
+								if (harry.getLife() == 0) {
+									harry.blast();
+									altimateGage = 0;
+									effectCount = EFFECT_TIME;
+									clearCount = CLEAR_TIME;
+									gameState = ST_ENDING;
+
+								}
 							}
+
 						}
 					}
+				}				
+			}else {
+				for (D_Dementor d : dementor) {
+					d.setState(D_Dementor.DEMENTOR_ST_DEATH);
 				}
 			}
+			
+			if(snitch.getState() == snitch.SNITCH_ST_DEATH && D_Util.prob100(1)) {
+				snitch.birth();
+			} 
+			
+			if (snitch.getState() == snitch.SNITCH_ST_ALIVE) {
+				snitch.move();
+				if (harry.getState() == D_Harry.HARRY_ST_ALIVE) {
+					if (harry.getBBox().intersects(snitch.getBBox())) {
+						snitch.setState(D_Snitch.SNITCH_ST_DEATH);
+						altimateGage += SNITCH_SCORE;
+					}
+				}
+
+			}
+			
 
 			back.move();
 
@@ -206,7 +272,8 @@ public class D_Controller extends JPanel {
 				clearCount--;
 			}else if(clearCount == 0) {
 				clearCount = CLEAR_TIME;
-				gameState = ST_TITLE;
+				//gameState = ST_TITLE;
+				gameState = ST_SCORE;
 			}
 			
 			
@@ -243,7 +310,19 @@ public class D_Controller extends JPanel {
 			img_g.drawImage(endWord, 240, 100, this);
 		}
 		
-		
+		if(gameState == ST_SCORE) {
+			img_g.drawImage(blackBack, 0, 0, this);
+			
+			//남은 hp 별로 점수 출력밑 넘겨줘야함
+			switch(harry.getLife()) {
+			case 1: img_g.drawImage(score200, 200, 100, this); break;
+			case 2: img_g.drawImage(score400, 200, 100, this); break;
+			case 3: img_g.drawImage(score600, 200, 100, this); break;
+			case 4: img_g.drawImage(score800, 200, 100, this); break;
+			case 5: img_g.drawImage(score1000, 200, 100, this); break;
+			}
+
+		}
 		
 		
 		//게임 시작
@@ -269,11 +348,17 @@ public class D_Controller extends JPanel {
 				img_g.drawImage(rButtonAlti, 1200, 5, this);
 			}					
 			
+			if(snitch.getState() == D_Snitch.SNITCH_ST_ALIVE) {
+				img_g.drawImage(snitImg, snitch.getX(), snitch.getY(), this);
+				
+			}
+			
 		}		
 		
 		if(gameState == ST_ALTIMATE && effectCount > 0) {
 			img_g.drawImage(blackBack, 0, 0, this);
 			img_g.drawImage(altiEffect, 0, 100, this);
+			
 		}
 		
 		if(gameState == ST_CLEAR && clearCount > 0) {
@@ -318,9 +403,13 @@ public class D_Controller extends JPanel {
 					clearCount = CLEAR_TIME;
 					altimateGage = 0;
 					gameState = ST_GAME;
+					backSound.stage1_backgroundSound();
+					score = 0;
+					
 				}
 			}else if(gameState == ST_GAME) {
 				//위아래로 해리 조정
+				
 				if (code == KeyEvent.VK_UP) {
 					harry.moveUp();
 				} else if (code == KeyEvent.VK_DOWN) {
@@ -329,6 +418,11 @@ public class D_Controller extends JPanel {
 				
 				if(code == KeyEvent.VK_R && altimateGage == 820) {
 					gameState = ST_ALTIMATE;
+					backSound.intoBgmStop();
+					backSound.harrySkillSound();
+					
+					score = harry.getLife() * 200;
+					System.out.println(score);
 				}
 				
 				
@@ -336,12 +430,22 @@ public class D_Controller extends JPanel {
 				
 				if(code == KeyEvent.VK_ENTER) {
 					gameState = ST_TITLE;
+					backSound.intoBgmStop();
+					
 				}
 				if(code == KeyEvent.VK_ESCAPE) {
+					backSound.intoBgmStop();
 					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
 					C_GameStage gs = new C_GameStage(mf);						
 					cp.replacePanel(gs);
 				}				
+			}else if(gameState == ST_SCORE) {
+				if(code == KeyEvent.VK_Z) {
+					backSound.intoBgmStop();
+					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
+					C_GameStage gs = new C_GameStage(mf);						
+					cp.replacePanel(gs);
+				}
 			}
 			
 			

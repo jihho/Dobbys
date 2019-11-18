@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.EventHandler;
 
+import javax.mail.MessagingException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.B_SendMail;
 import controller.B_UserManager;
 import model.vo.User;
 
@@ -29,7 +31,7 @@ public class B_JoinPanel extends JPanel{
 	private boolean isIdcheck = false;
 	private boolean isPwcheck = false;
 	private boolean isemailcheck = false;
-	private boolean iscertNumcheck = false;
+	private String certPassword = "";
 	private User user = new User();
 	
 	public B_JoinPanel(JFrame mf){
@@ -160,20 +162,28 @@ public class B_JoinPanel extends JPanel{
 						||strPwCheck.equals("")||emailfield.getText().equals("")||certifield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "모든 입력 창을 입력해주세요.");
 				}else {
-					if(isIdcheck == false) {
+					if(isIdcheck == false) {	//중복체크를 하지 않았을 경우
 						JOptionPane.showMessageDialog(null, "아이디 중복체크를 해주세요.");
 					}else {
-						user.setId(idfield.getText());
-						user.setPw(strPw);
-						user.setName(namefield.getText());
-						user.seteMail(emailfield.getText());
-						
-						B_UserManager um = new B_UserManager();
-						um.insertUser(user);
-						
-						ChangePanel cp = new ChangePanel(mf, panel);
-						A_LoginPanel lp = new A_LoginPanel(mf);
-						cp.replacePanel(lp);
+						if(isPwcheck == false) {	//비밀번호 확인을 하지 않았을 경우
+							JOptionPane.showMessageDialog(null, "비밀번호 확인을 해주세요.");
+						}else {
+							if(isemailcheck == false) {	//이메일 인증번호를 하지 않았을 경우
+								JOptionPane.showMessageDialog(null, "이메일 인증번호 확인을 해주세요.");
+							}else {
+								user.setId(idfield.getText());
+								user.setPw(strPw);
+								user.setName(namefield.getText());
+								user.seteMail(emailfield.getText());
+								
+								B_UserManager um = new B_UserManager();
+								um.insertUser(user);
+								
+								ChangePanel cp = new ChangePanel(mf, panel);
+								A_LoginPanel lp = new A_LoginPanel(mf);
+								cp.replacePanel(lp);
+							}
+						}
 						
 					}
 				}
@@ -219,6 +229,15 @@ public class B_JoinPanel extends JPanel{
 				if(emailfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "이메일을 입력해 주십시오.");
 				}else {
+					B_SendMail sm = new B_SendMail();
+					certPassword = sm.generateCertPassword();
+					System.out.println(certPassword);
+					try {
+						sm.sendMail(certPassword, emailfield.getText());
+					} catch (MessagingException e1) {
+						e1.printStackTrace();
+					}
+					
 					JOptionPane.showMessageDialog(null, emailfield.getText()+"로 인증번호를 전송하였습니다.");
 				}
 			}
@@ -231,11 +250,13 @@ public class B_JoinPanel extends JPanel{
 				System.out.println(certifield.getText());
 				if(certifield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "인증번호를 입력해 주세요.");
-				}else if(certifield.getText().equals("1234")) {
+					isemailcheck = false;
+				}else if(certifield.getText().equals(certPassword)) {
 					JOptionPane.showMessageDialog(null, "인증에 성공하셨습니다.");
-					//ischeck = true;
-				}else if(!certifield.getText().equals("1234")) {
+					isemailcheck = true;
+				}else if(!certifield.getText().equals(certPassword)) {
 					JOptionPane.showMessageDialog(null, "인증번호가 틀렸습니다.");
+					isemailcheck = false;
 				}
 			}
 		});
@@ -257,10 +278,12 @@ public class B_JoinPanel extends JPanel{
 				}
 				if(str.equals(str2)) {
 					test1.setText("비밀번호가 맞습니다!");
-					test1.setForeground(Color.blue);					
+					test1.setForeground(Color.blue);
+					isPwcheck = true;
 				}else {
 					test1.setText("비밀번호가 틀립니다.");
 					test1.setForeground(Color.red);
+					isPwcheck = false;
 				}
 			}
 		});

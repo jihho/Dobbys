@@ -43,7 +43,7 @@ public class E_Timer extends Thread{
 		for(int i = 10; i >= 0; i--) {
 			try {
 				System.out.print(i + " ");
-				this.sleep(100);
+				this.sleep(200);
 				timeCount.setText(" 남은시간:"+ i);
 				
 			} catch (InterruptedException e) {
@@ -58,7 +58,7 @@ public class E_Timer extends Thread{
 		
 		panel.remove(timeCount);
 		
-		panel.repaint();
+		//panel.repaint();
 		
 	}
 	

@@ -20,7 +20,6 @@ public class B_UserManager {
 			System.out.println(list);
 			//유저 번호를 1로 변경
 		}
-		//입력하려는 user 객체에 userNo 변경
 		//리스트에 user객체 추가
 		list.add(u);
 		System.out.println(list);
@@ -51,7 +50,7 @@ public class B_UserManager {
 		
 		return false;
 	}
-	
+
 	public void selectUserPw(String Id) {
 		
 		//전체 User을 조회
@@ -70,6 +69,30 @@ public class B_UserManager {
 		}
 		
 		System.out.println("비밀번호는 : " + selectedUser.getPw());
+	}
+	
+	//Score1 변경용 메소드
+	public void updateScore1(String id, int score1) {
+		//전체 리스트 조회
+		ArrayList<User> list = ud.readUserList();
+		//결과를 컨트롤할 변수 선언
+		int result = 0;
+		
+		//id와 일치하는 유저 탐색
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getId().equals(id)) {
+				//탐색 결과가 있는 경우 score1 수정
+				list.get(i).setScore1(score1);
+				//수정 후 다시 파일에 리스트 저장
+				result = ud.writeUserList(list);
+				break;
+			}
+		}
+		
+		//결과에 따른 화면 연결
+		if(result > 0) {
+			System.out.println("updateScore1");
+		}
 	}
 
 }
