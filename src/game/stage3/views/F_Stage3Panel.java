@@ -1,5 +1,7 @@
 package game.stage3.views;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,9 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+import game.stage3.controller.F_ChoiceResult;
 import game.stage3.controller.F_Stage3Play;
+import game.stage3.model.vo.F_General;
 import game.stage3.model.vo.F_Harry;
+import game.stage3.model.vo.F_Voldmort;
 
 public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
@@ -27,19 +31,31 @@ public class F_Stage3Panel extends JPanel{
 	JLabel sksmash;
 	JLabel skdf;
 	JLabel skct;
+	JLabel vmskill;	//볼드모트 스킬 이펙트 용 라벨
+	JLabel vmsksmash;
+	JLabel vmskdf;
+	JLabel vmskct;	
+
 	JButton atk;
 	JButton df;
 	JButton smash;
 	JButton counter;
-	
+
+
+	F_General harry = new F_Harry(100, 10, 20, 30, 10);	//체력, 공격, 스매쉬, 카운터
+	F_General voldmort = new F_Voldmort(100, 10, 20, 30, 10);
+
 	JLabel[] hp = new JLabel[10];
 	JLabel[] vmhp = new JLabel[10];
+
+	int harryChoice = 0;
+
 	public F_Stage3Panel(){
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 		this.setBounds(0, 0, 1280, 720);
-		
+
 		//스테이지 용 라벨
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
@@ -156,6 +172,7 @@ public class F_Stage3Panel extends JPanel{
 		atk = new JButton(new ImageIcon("images/stage3/atk.png"));
 		atk.setBounds(40, 530, 186, 81);
 
+
 		//디펜스 버튼
 		df = new JButton(new ImageIcon("images/stage3/df.png"));
 		df.setBounds(270, 530, 186, 81);
@@ -181,6 +198,12 @@ public class F_Stage3Panel extends JPanel{
 		skdf  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/df22.gif").getImage().getScaledInstance(150, 200, 0)));
 		skct  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/ct2.gif").getImage().getScaledInstance(250, 200, 0)));
 
+		//볼드모트 스킬 이펙트 라벨
+		vmskill = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk1.gif").getImage().getScaledInstance(650, 200, 0)));
+		vmsksmash = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash2.gif").getImage().getScaledInstance(650, 200, 0)));
+		vmskdf = new JLabel(new ImageIcon(new ImageIcon("images/stage3/df2.gif").getImage().getScaledInstance(150, 200, 0)));
+		vmskct = new JLabel(new ImageIcon(new ImageIcon("images/stage3/ct1.gif").getImage().getScaledInstance(250, 200, 0)));
+
 		//스킬이 가려질 수 있게 ef의 사이즈를 스킬보다 살짝 크게 
 		//ef.setBounds(400, 277, 700, 200);
 		skill.setBounds(440, 277, 650, 200);
@@ -188,6 +211,10 @@ public class F_Stage3Panel extends JPanel{
 		skdf.setBounds(440, 277, 150, 250);
 		skct.setBounds(400, 277, 250, 200);
 
+		vmskill.setBounds(440, 277, 650, 200);
+		vmsksmash.setBounds(440, 277, 650, 200);
+		vmskdf.setBounds(800, 277, 150, 250);
+		vmskct.setBounds(400, 277, 250, 200);
 		/*atk.setBorderPainted(false);
 				atk.setContentAreaFilled(false);
 				atk.setFocusPainted(false);
@@ -245,100 +272,28 @@ public class F_Stage3Panel extends JPanel{
 		this.add(log);
 		//라벨을 가장 마지막에 추가함으로서 자동적으로 우선순위를 최 하위로 변경
 		//setComponentZOrder를 여기서 사용할 필요 없게 됨
-		this.add(label);
+
 
 		//배경 라벨의 우선 순위를 가장 아래로 내림으로서 나머지 라벨 등장 
 		//this.setComponentZOrder(label,29);
-		class MouseSelect implements MouseListener(int reusult) {
-			/*
-			//마우스 이펙트 사용
-			atk.addMouseListener(new MouseAdapter() {*/
-				@Override
-				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-					if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
-						JPanel p = (atk)e.getSource();
-						//sp = new F_Stage3Play(mf);
-						int harryChoice = 0;
-						F_Stage3Play hrch = new F_Stage3Play(mf);
-						hrch.GamePlay(harryChoice);
-						
-						if(result == 0) {
-							panel.add(df);
-							panel.revalidate();
-							panel.repaint();
-							Timer ts = new Timer();	//Timer 실행
-							TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
-								//TimerTask로 실행할 작업 내용 Override
-								@Override
-								public void run() {
-									panel.remove(df);	//skill 라벨 제거 
-									panel.revalidate();
-									panel.repaint();
-									//panel.add(ef);			//ef 라벨 추가
-									//ef.updateUI();			//라벨 갱신 
-									//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								}
-
-							};
-							ts.schedule(tsm, 1400);
-						}
-						
-						if(result == 1) {
-							panel.add(skill);
-							panel.revalidate();
-							panel.repaint();
-							Timer ts = new Timer();	//Timer 실행
-							TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-								//TimerTask로 실행할 작업 내용 Override
-								@Override
-								public void run() {
-									panel.remove(skill);	//skill 라벨 제거 
-									harry.setHplife(harry.getHplife()-1);
-									for(int i = 9; i>=0; i--) {
-										if(i >= harry.getHplife()) {
-											panel.remove(vmhp[i]);
-										}
-										
-									}
-									panel.revalidate();
-									panel.repaint();
-									//panel.add(ef);			//ef 라벨 추가
-									//ef.updateUI();			//라벨 갱신 
-									//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								}
-								@Override
-								public void mouseClicked(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								@Override
-								public void mousePressed(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								@Override
-								public void mouseEntered(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								@Override
-								public void mouseExited(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-
-							};
-							ts.schedule(tsm, 1400);
-						}
-						//panel.remove(ef);	//ef 라벨 제거 
-						panel.add(skill);	//skill 라벨 추가
-						panel.revalidate();	//updateUI보다 revaildate + repaint가 안정적
+		System.out.println("버튼을 선택해주세요");
+		//볼드모트의 선택이 될 랜덤 수
+		this.add(label);
+		//마우스 이펙트 사용
+		atk.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+				if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
+					int vmchoice = (int)(Math.random()*4);
+					if(vmchoice == 0 || vmchoice == 1 || vmchoice == 2) {
+						panel.add(skill);
+						panel.add(vmskdf);
+						panel.setComponentZOrder(skill, 0);
+						panel.setComponentZOrder(vmskdf, 0);
+						panel.revalidate();
 						panel.repaint();
-						//skill.updateUI();	//라벨 갱신해서 오류 삭제
-						panel.setComponentZOrder(skill, 0);	//skill라벨의 우선순위를 최우선으로 변경해서 화면 위에 출력
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+						System.out.println("공격이 무효화 되었습니다.");
 						Timer ts = new Timer();	//Timer 실행
 						TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
@@ -346,13 +301,37 @@ public class F_Stage3Panel extends JPanel{
 							@Override
 							public void run() {
 								panel.remove(skill);	//skill 라벨 제거 
-								harry.setHplife(harry.getHplife()-1);
+								panel.remove(vmskdf);
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+						};
+						ts.schedule(tsm, 1400);
+					}else if(vmchoice == 3) {
+						panel.add(skill);
+						panel.setComponentZOrder(skill, 0);
+						panel.revalidate();
+						panel.repaint();
+
+						voldmort.setHp(voldmort.getHp() -10);
+						voldmort.setHplife(voldmort.getHplife() -1);
+						System.out.println("공격 성공!! 볼드모트의 체력이 10 감소합니다.");
+						System.out.println("볼드모트의 체력 : " + voldmort.getHp());
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(skill);	//skill 라벨 제거 
 								for(int i = 9; i>=0; i--) {
-									if(i >= harry.getHplife()) {
+									if(i >= voldmort.getHplife()) {
 										panel.remove(vmhp[i]);
 									}
 								}
-
 								panel.revalidate();
 								panel.repaint();
 								//panel.add(ef);			//ef 라벨 추가
@@ -360,49 +339,55 @@ public class F_Stage3Panel extends JPanel{
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 							}
 
-						};
-						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-					
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						@Override
-						public void mousePressed(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						@Override
-						public void mouseEntered(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						@Override
-						public void mouseExited(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}}
-				}
-			});
 
-			smash.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-					if(e.getSource() == smash){	//getSource를 atk버튼을 받게 함
-						int harryChoice = 2;
-						F_Stage3Play hrch = new F_Stage3Play(mf);
-						hrch.GamePlay(harryChoice);
-						//panel.remove(ef);	//ef 라벨 제거 
+						};
+						ts.schedule(tsm, 1400);
+					}
+					if(voldmort.getHp()<=0) {
+						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+					}
+				}
+			}
+		});
+
+		smash.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+				if(e.getSource() == smash){	//getSource를 atk버튼을 받게 함
+					int vmchoice = (int)(Math.random()*4);
+					if(vmchoice == 0 || vmchoice == 2) {
+						panel.add(sksmash);
+						panel.add(vmskdf);
+						panel.setComponentZOrder(sksmash, 0);
+						panel.setComponentZOrder(vmskdf, 0);
+						panel.revalidate();
+						panel.repaint();
+						System.out.println("공격이 무효화 되었습니다.");
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(sksmash);	//skill 라벨 제거 
+								panel.remove(vmskdf);
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+						};
+						ts.schedule(tsm, 1400);
+					}else if(vmchoice == 1) {
 						panel.add(sksmash);	//skill 라벨 추가
 						panel.revalidate();
 						panel.repaint();
 						panel.setComponentZOrder(sksmash, 0);
+						voldmort.setHp(voldmort.getHp() -20);
+						voldmort.setHplife(voldmort.getHplife() -2);
+						System.out.println("공격 성공!! 볼드모트의 체력이 20 감소합니다.");
+						System.out.println("볼드모트의 체력 : " + voldmort.getHp());
 						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -413,9 +398,9 @@ public class F_Stage3Panel extends JPanel{
 							@Override
 							public void run() {
 								panel.remove(sksmash);	//skill 라벨 제거 
-								harry.setHplife(harry.getHplife()-2);
+								
 								for(int i = 9; i>=0; i--) {
-									if(i >= harry.getHplife()) {
+									if(i >= voldmort.getHplife()) {
 										panel.remove(vmhp[i]);
 									}
 								}
@@ -428,22 +413,65 @@ public class F_Stage3Panel extends JPanel{
 
 						};
 						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					}else if(vmchoice == 3) {
+						panel.add(vmsksmash);	//skill 라벨 추가
+						panel.revalidate();
+						panel.repaint();
+						panel.setComponentZOrder(vmsksmash, 0);
+						harry.setHp(harry.getHp() -30);
+						harry.setHplife(harry.getHplife() -3);
+						System.out.println("볼드모트의 카운터! 해리포터의 체력이 30 감소합니다.");
+						System.out.println("해리의 체력 : " + harry.getHp());
+						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(vmsksmash);	//skill 라벨 제거 
+								panel.revalidate();
+								panel.repaint();
+								for(int i = 9; i>=0; i--) {
+									if(i >= harry.getHplife()) {
+										panel.remove(hp[i]);
+									}
+								}
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+
+						};
+						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					}
+					if(voldmort.getHp()<=0) {
+						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+					}
+					if(harry.getHp()<=0){
+						System.out.println("재도전하시겠습니까?");
 					}
 				}
-			});
+			}
+		});
 
-			df.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-					if(e.getSource() == df){	//getSource를 atk버튼을 받게 함
-						int harryChoice = 1;
-						F_Stage3Play hrch = new F_Stage3Play(mf);
-						hrch.GamePlay(harryChoice);
-						//panel.remove(ef);	//ef 라벨 제거 
+		df.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+				if(e.getSource() == df){	//getSource를 atk버튼을 받게 함
+					int vmchoice = (int)(Math.random()*4);
+					if(vmchoice == 0 || vmchoice == 1 || vmchoice == 3) {
 						panel.add(skdf);	//skill 라벨 추가
+						panel.add(vmskill);
 						panel.revalidate();
 						panel.repaint();
 						panel.setComponentZOrder(skdf, 0);
+						panel.setComponentZOrder(vmskill, 0);
+						System.out.println("공격이 무효화 되었습니다.");
 						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -454,6 +482,7 @@ public class F_Stage3Panel extends JPanel{
 							@Override
 							public void run() {
 								panel.remove(skdf);	//skill 라벨 제거 
+								panel.add(vmskill);
 								panel.revalidate();
 								panel.repaint();
 								//panel.add(ef);			//ef 라벨 추가
@@ -463,23 +492,18 @@ public class F_Stage3Panel extends JPanel{
 
 						};
 						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-					}
-				}
-			});
-
-			counter.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-					if(e.getSource() == counter){	//getSource를 atk버튼을 받게 함
-						//panel.remove(ef);	//ef 라벨 제거 
-						int harryChoice = 3;
-						F_Stage3Play hrch = new F_Stage3Play(mf);
-						hrch.GamePlay(harryChoice);
-						panel.add(skct);	//skill 라벨 추가
+					}else if(vmchoice == 2){
+						panel.add(skdf);	//skill 라벨 추가
+						panel.add(vmsksmash);
+						panel.setComponentZOrder(skdf, 0);
+						panel.setComponentZOrder(vmsksmash, 0);
 						panel.revalidate();
 						panel.repaint();
-						panel.setComponentZOrder(skct, 0);
-						//skct.updateUI();	//라벨 갱신해서 오류 삭제
+						harry.setHp(harry.getHp() -20);
+						harry.setHplife(harry.getHplife() -2);
+						System.out.println("볼드모트의 스매쉬!! 해리포터의 체력이 20 감소합니다 ");
+						System.out.println("해리의 체력 : " + harry.getHp());
+						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
 						Timer ts = new Timer();	//Timer 실행
@@ -488,11 +512,11 @@ public class F_Stage3Panel extends JPanel{
 							//TimerTask로 실행할 작업 내용 Override
 							@Override
 							public void run() {
-								panel.remove(skct);	//skill 라벨 제거 
-								harry.setHplife(harry.getHplife()-3);
+								panel.remove(skdf);	//skill 라벨 제거 
+								panel.remove(vmsksmash);
 								for(int i = 9; i>=0; i--) {
 									if(i >= harry.getHplife()) {
-										panel.remove(vmhp[i]);
+										panel.remove(hp[i]);
 									}
 								}
 								panel.revalidate();
@@ -503,11 +527,92 @@ public class F_Stage3Panel extends JPanel{
 							}
 
 						};
-						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+						ts.schedule(tsm, 1400);
 					}
 				}
-			});
+			}
+		});
+
+		counter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
+				if(e.getSource() == counter){	//getSource를 atk버튼을 받게 함
+					int vmchoice = (int)(Math.random()*4);
+					if(vmchoice == 0) {
+						panel.add(skct);	//skill 라벨 추가
+						panel.add(vmskill);
+						panel.setComponentZOrder(skct, 0);
+						panel.setComponentZOrder(vmskill, 0);
+						panel.revalidate();
+						panel.repaint();
+						harry.setHp(harry.getHp() -10);
+						harry.setHplife(harry.getHplife() -1);
+						System.out.println("볼드모트의 공격!! 해리포터의 체력이 10 감소합니다 ");
+						System.out.println("해리의 체력 : " + harry.getHp());
+						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
+						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+						Timer ts = new Timer();	//Timer 실행
+						TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+							//TimerTask로 실행할 작업 내용 Override
+							@Override
+							public void run() {
+								panel.remove(skct);	//skill 라벨 제거 
+								panel.remove(vmskill);
+								for(int i = 9; i>=0; i--) {
+									if(i >= harry.getHplife()) {
+										panel.remove(hp[i]);
+									}
+								}
+								panel.revalidate();
+								panel.repaint();
+								//panel.add(ef);			//ef 라벨 추가
+								//ef.updateUI();			//라벨 갱신 
+								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							}
+
+						};
+						ts.schedule(tsm, 1400);
+					}
+					panel.add(skct);	//skill 라벨 추가
+					panel.revalidate();
+					panel.repaint();
+					panel.setComponentZOrder(skct, 0);
+					//skct.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(skct);	//skill 라벨 제거 
+							harry.setHplife(harry.getHplife()-3);
+							for(int i = 9; i>=0; i--) {
+								if(i >= harry.getHplife()) {
+									panel.remove(vmhp[i]);
+								}
+							}
+							panel.revalidate();
+							panel.repaint();
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+						}
+
+					};
+					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+				}
+			}
+		});
+		if(voldmort.getHp()<=0) {
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
 		}
-		
+		if(harry.getHp()<=0){
+			System.out.println("재도전하시겠습니까?");
+		}
+
 	}
 }

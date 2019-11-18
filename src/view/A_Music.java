@@ -83,6 +83,51 @@ public class A_Music {
 		clip.close();
 	}
 	
+	public static void harrySkillSound() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/harrySkillSound.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void stage1_backgroundSound() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/stage1_Background.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
 
 //	public static void main(String[] args) {
 //		A_Music test = new A_Music();
