@@ -511,8 +511,7 @@ public class E_GamePanel extends JPanel {
 					panel.setComponentZOrder(potEffect, 0);
 					panel.revalidate();
 					panel.repaint();
-					System.out.println("항아리이펙트");
-					
+					System.out.println("항아리이펙트");					
 					
 				}
 				
