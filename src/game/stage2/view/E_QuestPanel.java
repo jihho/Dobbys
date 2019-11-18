@@ -9,36 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.stage2.model.vo.E_Quest;
+
 //게임 퀘스트 카운트화면(문제나오는 화면)
 public class E_QuestPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
-	private int random = new Random().nextInt(3) + 1;
-	private String rQuest;	//퀘스트랜덤출력
-	private int[] q1;
-	private int[] q2;
-	private int[] q3;
-			
-
-
-/*
-	public int getRandom() {
-		return random;
-	}
-
-
-
-	public void setRandom(int random) {
-		this.random = random;
-	}
-
-
-
-	public E_QuestPanel(int random) {
-		
-		this.random = random;
-	}
-*/
+	private int count = 0;
 
 
 	
@@ -55,22 +32,6 @@ public class E_QuestPanel extends JPanel{
 		label.setBounds(0, 0, 1280, 720);
 		
 
-		
-		JLabel hp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		hp1.setBounds(110, 25, 120, 80);
-		
-		JLabel hp2 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		hp2.setBounds(180, 25, 120, 80);
-		
-		JLabel hp3 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hpmark.PNG").
-				getImage().getScaledInstance(60, 80, 0) ));
-		hp3.setBounds(250, 25, 120, 80);
-		
-
-		
-		
 		JButton item1 = new JButton(new ImageIcon("images/stage2/item1.PNG"));
 		item1.setBounds(75, 580, 100, 100);
 		
@@ -180,16 +141,19 @@ public class E_QuestPanel extends JPanel{
 		
 		
 		//퀘스트 랜덤 출력
-		//random = new Random().nextInt(3) + 1;
-		rQuest = "quest" + random + ".png";
 		
+		E_Quest qq = new E_Quest();
+		
+		int random = qq.getRandom();
+
+		System.out.println("questpanel random:"+random);
+		String rQuest = "quest" + random + ".png";
+
 		JLabel quest = new JLabel(new ImageIcon(new ImageIcon("images/stage2/"+rQuest).
 				getImage().getScaledInstance(264, 275, 0)));
 		quest.setBounds(910, 130, 264, 275);
-		
-		
-		
-		
+
+
 		
 		//패널에 얹기
 		this.add(label);
@@ -206,9 +170,7 @@ public class E_QuestPanel extends JPanel{
 
 		this.add(quest);
 
-		this.add(hp1);
-		this.add(hp2);
-		this.add(hp3);
+
 		
 		this.setComponentZOrder(label, 10);
 		//라벨을 13번째 이미지로 불러온다는것
@@ -220,32 +182,39 @@ public class E_QuestPanel extends JPanel{
 		
 	}
 
-	public void setQuest(int random) {
+
+
+
+
+/*	public int[] getQuest() {
 		//퀘스트 문제 
 
+		int[] q = new int[9];
+		
+		System.out.println("q1 랜덤:" + random);
 		
 		if(random == 1) {
-			int[] q1 = {5, 6, 7, 8, 9, 1, 2, 3, 4};
+			 int[] q1 = {5, 6, 7, 8, 9, 1, 2, 3, 4};
+			 q = q1;
 		}
 		
 		if(random == 2) {
 			int[] q2 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+			q = q2;
 		}
 		
 		if(random == 3) {
 			int[] q3 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+			q = q3;
 		}
 		
+		return q;
 				
 		
 		
-	}
+	}*/
 	
-	public int[] getQuest() {
-		return q1;
-		
-	}
-			
+	
 		
 
 		
