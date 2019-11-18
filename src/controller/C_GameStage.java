@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,11 +21,15 @@ import javax.swing.JTextArea;
 import game.stage1.controller.D_Controller;
 import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
+import view.C_RankingPage;
+import view.ChangePanel;
 
 public class C_GameStage extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
+	private JTextArea ta;
+	private JButton return_btn;
 	
 	
 	public C_GameStage(JFrame mf) {
@@ -42,7 +46,7 @@ public class C_GameStage extends JPanel{
 		
 		
 		// JTextArea(대화 상자) 생성  
-		JTextArea ta = new JTextArea("ID : 타락파워전사");   	//JTextArea 생성
+		ta = new JTextArea("ID : 타락파워전사");   	//JTextArea 생성
 		ta.setBounds(530, 640, 400, 60); 	    			//JTeatArea 크기 및 위치 지정
 	    ta.setEditable(false); 				   				 //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 45)); 
@@ -250,6 +254,8 @@ public class C_GameStage extends JPanel{
 		this.add(background);
 
 	}
+	
+	
 		
 }
 
