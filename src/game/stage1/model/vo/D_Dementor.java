@@ -17,7 +17,7 @@ public class D_Dementor extends JPanel{
 	
 	public D_Dementor(){
 		state = DEMENTOR_ST_DEATH;
-		bb = new Rectangle(0, 0, 100, 100);
+		bb = new Rectangle(0, 0, 80, 80);
 	}
 	
 	
@@ -34,8 +34,8 @@ public class D_Dementor extends JPanel{
 		y = new Random().nextInt(500) + 100;
 		dx = new Random().nextInt(15) + 10;
 		state = DEMENTOR_ST_ALIVE;
-		bb.x = x;
-		bb.y = y;
+		bb.x = x + 10;
+		bb.y = y + 10;
 	}
 	
 	public void move() {
