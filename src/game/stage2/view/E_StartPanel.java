@@ -169,11 +169,10 @@ public class E_StartPanel extends JPanel {
 				E_QuestPanel qp = new E_QuestPanel(mf);
 				E_Timer timer = new E_Timer(mf, qp);
 				Thread t1 = timer;
+				t1.setDaemon(true);
 				t1.start();
-				E_GamePanel gp = new E_GamePanel(mf);
-				
-				
 				cp.replacePanel(qp);
+				
 				
 				
 			}
