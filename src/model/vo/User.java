@@ -13,7 +13,6 @@ public class User implements Serializable{
 	private int score3 = 0;
 	private int total = 0;
 	
-	public User() {}
 	
 	public User(String id, String pw, String name, String eMail) {
 		this.id = id;

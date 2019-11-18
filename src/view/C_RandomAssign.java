@@ -22,10 +22,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import controller.C_GameStage;
+
 public class C_RandomAssign extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
+	private JLabel background;
+	private JLabel slytherin;
+	private JLabel ravaenclaw;
+	private JLabel huffepuff;
+	private JLabel gryffindor;
+	private JButton randomButton;
 	
 	public C_RandomAssign(JFrame mf) {
 		
@@ -40,10 +48,10 @@ public class C_RandomAssign extends JPanel{
 		background.setBounds(0, 0, 1300, 770);
 		
 		// 이미지 라벨 생성
-		JLabel slytherin = new JLabel(new ImageIcon("images/main/z_slytherin(200x250).png"));
-		JLabel ravaenclaw = new JLabel(new ImageIcon("images/main/z_ravaenclaw(200x250).png"));
-		JLabel huffepuff = new JLabel(new ImageIcon("images/main/z_huffepuff(200x250).png"));
-		JLabel gryffindor = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
+		slytherin = new JLabel(new ImageIcon("images/main/z_slytherin(200x250).png"));
+		ravaenclaw = new JLabel(new ImageIcon("images/main/z_ravaenclaw(200x250).png"));
+		huffepuff = new JLabel(new ImageIcon("images/main/z_huffepuff(200x250).png"));
+		gryffindor = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
 		
 		// 이미지 라벨 위치 및 크기 지정
 		slytherin.setBounds(-350, -50, 1000, 500);
@@ -61,7 +69,7 @@ public class C_RandomAssign extends JPanel{
 
 		
 		// 랜덤 버튼 생성 
-		JButton randomButton = new JButton("배 정");
+		randomButton = new JButton("배 정");
 		randomButton.setBounds(540, 500, 200, 100);
 		randomButton.setBackground(Color.GRAY);        	   		// 버튼 색깔 변경
 		randomButton.setForeground(Color.WHITE);			    // 버튼 글자 색깔 변경
