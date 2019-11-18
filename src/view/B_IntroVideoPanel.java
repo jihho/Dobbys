@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.C_GameStage;
+
 public class B_IntroVideoPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
@@ -26,7 +28,7 @@ public class B_IntroVideoPanel extends JPanel{
 
 		start.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				new A_Music().intoBgmStop();
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);

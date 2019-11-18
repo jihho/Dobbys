@@ -128,7 +128,7 @@ public class B_CheckPanel extends JPanel{
 		System.out.println(ctn);
 		btn.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				if(ctn != 2) {
 					JOptionPane.showMessageDialog(null, "모든 약관에 동의해주시길 바랍니다.");
 				}
