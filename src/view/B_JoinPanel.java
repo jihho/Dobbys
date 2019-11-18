@@ -134,7 +134,7 @@ public class B_JoinPanel extends JPanel{
 		//취소 이벤트 -> 이용약관페이지으로 이동
 		cancelbutton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				ChangePanel cp = new ChangePanel(mf, panel);
 				B_CheckPanel bcp = new B_CheckPanel(mf);
 				cp.replacePanel(bcp);
@@ -145,7 +145,7 @@ public class B_JoinPanel extends JPanel{
 		// 회원가입 버튼 이벤트 -> 로그인페이지로 이동
 		joinbutton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				char[] ch = pwfield.getPassword();
 				String strPw = "";
 				for(int i = 0; i < ch.length; i++) {
@@ -204,7 +204,7 @@ public class B_JoinPanel extends JPanel{
 		//중복확인 버튼 이벤트
 		idbutton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				System.out.println(idfield.getText());
 				if(idfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "아이디를 입력해 주십시오.");
@@ -224,7 +224,7 @@ public class B_JoinPanel extends JPanel{
 		//인증번호 전송 버튼 이벤트
 		jeonsongbutton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				System.out.println(emailfield.getText());
 				if(emailfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "이메일을 입력해 주십시오.");
@@ -246,7 +246,7 @@ public class B_JoinPanel extends JPanel{
 		//인증번호 확인 버튼 이벤트
 		checkbutton.addMouseListener(new MouseAdapter(){
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				System.out.println(certifield.getText());
 				if(certifield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "인증번호를 입력해 주세요.");
@@ -265,7 +265,7 @@ public class B_JoinPanel extends JPanel{
 		//비밀번호값과 비밀번호 확인 값이 같을때, 다를때 이벤트 구현 
 		pwcheckbutton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				char[] ch = pwfield.getPassword();
 				String str = "";
 				for(int i = 0; i < ch.length; i++) {
