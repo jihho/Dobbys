@@ -63,6 +63,24 @@ public class D_Harry extends JPanel{
 		count = 30;
 	}
 	
+	public void moveLeft() {
+		if(state == HARRY_ST_ALIVE) {
+			if(x > 100) {
+				x -= 20;
+				bb.x = x + 10;
+			}
+		}
+	}
+	
+	public void moveRight() {
+		if(state == HARRY_ST_ALIVE) {
+			if(x < 1200) {
+				x += 20;
+				bb.x = x + 10;
+			}
+		}
+	}
+	
 	
 	
 }

@@ -55,6 +55,7 @@ public class D_Controller extends JPanel {
 
 	private int gameState;
 	
+	private boolean aliveDeath = true;
 
 	private Timer t;
 
@@ -210,7 +211,7 @@ public class D_Controller extends JPanel {
 			if (gameState != ST_SCORE) {
 				for (D_Dementor d : dementor) {
 					if (d.getState() == D_Dementor.DEMENTOR_ST_DEATH ) {
-						if(harry.getState() == D_Harry.HARRY_ST_ALIVE) {
+						if(aliveDeath) {
 							d.birth();
 						}
 					}
@@ -232,6 +233,11 @@ public class D_Controller extends JPanel {
 								harry.setLife(harry.getLife() - 1);
 								if (harry.getLife() == 0) {
 									harry.blast();
+									aliveDeath = false;
+									for (D_Dementor de : dementor) {
+										de.setState(D_Dementor.DEMENTOR_ST_DEATH);
+										
+									}
 									altimateGage = 0;
 									effectCount = EFFECT_TIME;
 									clearCount = CLEAR_TIME;
@@ -246,6 +252,7 @@ public class D_Controller extends JPanel {
 			}else {
 				for (D_Dementor d : dementor) {
 					d.setState(D_Dementor.DEMENTOR_ST_DEATH);
+					aliveDeath = false;
 				}
 			}
 			
@@ -308,12 +315,7 @@ public class D_Controller extends JPanel {
 		img_g.drawImage(backImg2, back.getX2(), back.getY2(), this);
 		
 		//버퍼에 디멘터 추가
-		for(D_Dementor d : dementor) {
-			if(d.getState() == D_Dementor.DEMENTOR_ST_ALIVE) {
-				img_g.drawImage(deImg, d.getX(), d.getY(), this);
-			}
-			
-		}
+		
 		
 		if(gameState == ST_TITLE) {
 			img_g.drawImage(blackBack, 0, 0, this);
@@ -348,6 +350,13 @@ public class D_Controller extends JPanel {
 			// 버퍼에 hp 추가
 			for (int i = 0; i < harry.getLife(); i++) {
 				img_g.drawImage(hpImg, i * 50, 0, this);
+			}
+			
+			for(D_Dementor d : dementor) {
+				if(d.getState() == D_Dementor.DEMENTOR_ST_ALIVE) {
+					img_g.drawImage(deImg, d.getX(), d.getY(), this);
+				}
+				
 			}
 			
 			//필살기 게이지 바 추가
@@ -391,6 +400,7 @@ public class D_Controller extends JPanel {
 			harry.setCount(harry.getCount()-1);
 			if(harry.getCount() == 0) {
 				harry.blast();
+				aliveDeath = false;
 				harry.startHarry();
 			}
 			
@@ -420,6 +430,7 @@ public class D_Controller extends JPanel {
 					clearCount = CLEAR_TIME;
 					altimateGage = 0;
 					gameState = ST_GAME;
+					aliveDeath = true;
 					backSound.stage1_backgroundSound();
 					score = 0;
 					
@@ -431,6 +442,10 @@ public class D_Controller extends JPanel {
 					harry.moveUp();
 				} else if (code == KeyEvent.VK_DOWN) {
 					harry.moveDown();
+				} else if( code == KeyEvent.VK_RIGHT) {
+					harry.moveRight();
+				} else if( code == KeyEvent.VK_LEFT) {
+					harry.moveLeft();
 				}
 				
 				if(code == KeyEvent.VK_R && altimateGage == 820) {
@@ -444,7 +459,7 @@ public class D_Controller extends JPanel {
 				
 				
 			}else if(gameState == ST_ENDING) {
-				
+
 				if(code == KeyEvent.VK_ENTER) {
 					gameState = ST_TITLE;
 					backSound.intoBgmStop();
@@ -463,13 +478,13 @@ public class D_Controller extends JPanel {
 					
 					//남은 hp 별로 점수 출력밑 넘겨줘야함
 					switch(harry.getLife()) {
-					case 1: new B_UserManager().updateScore1("hstar0124", 200); break;
-					case 2: new B_UserManager().updateScore1("hstar0124", 400); break;
-					case 3: new B_UserManager().updateScore1("hstar0124", 600); break;
-					case 4: new B_UserManager().updateScore1("hstar0124", 800); break;
-					case 5: new B_UserManager().updateScore1("hstar0124", 1000); break;
+					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
+					case 2: new B_UserManager().updateScore1(User.playerId, 400); break;
+					case 3: new B_UserManager().updateScore1(User.playerId, 600); break;
+					case 4: new B_UserManager().updateScore1(User.playerId, 800); break;
+					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
 					}
-					
+					new B_UserManager().printAll();
 					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
 					C_GameStage gs = new C_GameStage(mf);						
 					cp.replacePanel(gs);
