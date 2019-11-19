@@ -40,6 +40,7 @@ public class B_JoinPanel extends JPanel{
 		
 		panel = this;
 		
+		//user.playerId = "jiho";
 		//배경
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif").getImage().getScaledInstance(1300, 770, 0)));
 		label.setBounds(0, 0, 1300, 770);
@@ -229,15 +230,16 @@ public class B_JoinPanel extends JPanel{
 				if(emailfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "이메일을 입력해 주십시오.");
 				}else {
-					B_SendMail sm = new B_SendMail();
-					certPassword = sm.generateCertPassword();
-					System.out.println(certPassword);
-					try {
-						sm.sendMail(certPassword, emailfield.getText());
-					} catch (MessagingException e1) {
-						e1.printStackTrace();
-					}
-					
+//					B_SendMail sm = new B_SendMail();
+//					certPassword = sm.generateCertPassword();
+//					System.out.println(certPassword);
+//					
+//					try {
+//						sm.sendMail(certPassword, emailfield.getText());
+//					} catch (MessagingException e1) {
+//						e1.printStackTrace();
+//					}
+					certPassword = "1234";
 					JOptionPane.showMessageDialog(null, emailfield.getText()+"로 인증번호를 전송하였습니다.");
 				}
 			}
