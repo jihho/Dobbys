@@ -1,7 +1,5 @@
 package game.stage1.controller;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -11,17 +9,20 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import controller.B_UserManager;
+import controller.C_GameStage;
 import game.stage1.model.vo.D_Dementor;
 import game.stage1.model.vo.D_Harry;
 import game.stage1.model.vo.D_Snitch;
 import game.stage1.view.D_BackgroundModify;
 import model.vo.User;
 import view.A_Music;
+
 import controller.C_GameStage;
+
 
 public class D_Controller extends JPanel {
 
@@ -157,7 +158,7 @@ public class D_Controller extends JPanel {
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
 		
-		
+		System.out.println("스테이지1 생성");
 
 		// 메인 배경 패널
 		// ChangePanel cp = new ChangePanel(mf, panel);
@@ -170,9 +171,15 @@ public class D_Controller extends JPanel {
 
 		t = new Timer(TIME_SLICE, new TimerHandler());
 		t.start();
+		
+		
 
-		this.addKeyListener(new KeyHandler());
-		this.setFocusable(true);
+		//키리스너 추가
+		mf.addKeyListener(new KeyHandler());
+		
+		//키리스너가 작용되게 포커스 설정
+		mf.requestFocus();
+		mf.setFocusable(true);
 
 		// 디멘터 생성
 		dementor = new D_Dementor[MAX_DEMENTOR];
@@ -393,8 +400,10 @@ public class D_Controller extends JPanel {
 
 	class KeyHandler extends KeyAdapter {
 		
+		@Override
 		public void keyPressed(KeyEvent e) {
 			int code = e.getKeyCode();
+			//System.out.println("키리스터 생성");
 
 			if(gameState == ST_TITLE) {
 				if(code == KeyEvent.VK_SPACE) {
@@ -442,6 +451,17 @@ public class D_Controller extends JPanel {
 			}else if(gameState == ST_SCORE) {
 				if(code == KeyEvent.VK_Z) {
 					backSound.intoBgmStop();
+					
+					
+					//남은 hp 별로 점수 출력밑 넘겨줘야함
+					switch(harry.getLife()) {
+					case 1: new B_UserManager().updateScore1("hstar0124", 200); break;
+					case 2: new B_UserManager().updateScore1("hstar0124", 400); break;
+					case 3: new B_UserManager().updateScore1("hstar0124", 600); break;
+					case 4: new B_UserManager().updateScore1("hstar0124", 800); break;
+					case 5: new B_UserManager().updateScore1("hstar0124", 1000); break;
+					}
+					
 					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
 					C_GameStage gs = new C_GameStage(mf);						
 					cp.replacePanel(gs);
