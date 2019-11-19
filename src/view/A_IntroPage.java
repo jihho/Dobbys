@@ -79,21 +79,21 @@ public class A_IntroPage extends JPanel{
 		});
 		
 		
-		mf.addKeyListener(new KeyAdapter() {
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
-				new A_Music().intoBgmStop();	//음악정지(천둥소리)
-				new A_Music().introBgm();		//해리포터 bgm
-				
-;				ChangePanel cp = new ChangePanel(mf, panel);
-				// t1.setDaemon(true);
-				A_LoginPanel gp = new A_LoginPanel(mf);
-
-				cp.replacePanel(gp);
-			}
-		});
+//		mf.addKeyListener(new KeyAdapter() {
+//			
+//			@Override
+//			public void keyPressed(KeyEvent e) {
+//				
+//				new A_Music().intoBgmStop();	//음악정지(천둥소리)
+//				new A_Music().introBgm();		//해리포터 bgm
+//				
+//;				ChangePanel cp = new ChangePanel(mf, panel);
+//				// t1.setDaemon(true);
+//				A_LoginPanel gp = new A_LoginPanel(mf);
+//
+//				cp.replacePanel(gp);
+//			}
+//		});
 		
 //		introBackground.setCursor(new Cursor(Cursor.HAND_CURSOR));
 //		press.setCursor(new Cursor(Cursor.HAND_CURSOR));

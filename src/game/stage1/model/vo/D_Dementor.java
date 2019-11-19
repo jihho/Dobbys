@@ -40,7 +40,7 @@ public class D_Dementor extends JPanel{
 	
 	public void move() {
 		if(state == DEMENTOR_ST_ALIVE) {
-			x -= dx;
+			x -= dx;			
 			bb.x = x;
 			bb.y = y;
 			
@@ -50,6 +50,31 @@ public class D_Dementor extends JPanel{
 		}
 	}
 	
+	public void yMinusMove() {
+		if(state == DEMENTOR_ST_ALIVE) {
+			x -= dx;
+			y -= 5;
+			bb.x = x;
+			bb.y = y;
+			
+			if( x < -50 ) {
+				state = DEMENTOR_ST_DEATH;
+			}
+		}
+	}
+	
+	public void yPlusMove() {
+		if(state == DEMENTOR_ST_ALIVE) {
+			x -= dx;	
+			y += 5;
+			bb.x = x;
+			bb.y = y;
+			
+			if( x < -50 ) {
+				state = DEMENTOR_ST_DEATH;
+			}
+		}
+	}
 
 	
 	
