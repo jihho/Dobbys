@@ -94,5 +94,47 @@ public class B_UserManager {
 			System.out.println("updateScore1");
 		}
 	}
+	
+	//아이디 찾기용 (이름)
+	public boolean checkUserName(String Id) {
+
+		ArrayList<User> list = ud.readUserList();
+
+		User selectedUser = null;
+
+		if (list != null) {
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getName().equals(Id)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+	
+	// 임시 비밀번호 변경
+	public void updatePw(String id, String Pw) {
+		// 전체 리스트 조회
+		ArrayList<User> list = ud.readUserList();
+		// 결과를 컨트롤할 변수 선언
+		int result = 0;
+
+		// id와 일치하는 유저 탐색
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getId().equals(id)) {
+				// 탐색 결과가 있는 경우 score1 수정
+				list.get(i).setPw(Pw);
+				// 수정 후 다시 파일에 리스트 저장
+				result = ud.writeUserList(list);
+				break;
+			}
+		}
+
+		// 결과에 따른 화면 연결
+		if (result > 0) {
+			System.out.println("비밀번호 변경");
+		}
+	}
 
 }

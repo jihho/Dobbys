@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.mail.MessagingException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.B_SendMail;
 import controller.B_UserManager;
 import model.dao.B_UserDao;
 import model.vo.User;
@@ -41,13 +43,14 @@ public class A_FindPage extends JPanel implements ActionListener{
 	private JLabel findIdLabel;
 	private JButton findpw;
 	private JButton backPage;
+	private String temporaryPw = "";
 	
 	private B_UserDao ud = new B_UserDao();
 	
 	//할일 리스트
 	//찾기 버튼 눌렀을때 label이 동시에 바뀌는 오류 수정하기
 	//User 정보 가져와서 비교하고 이메일 전송하기.
-//	backBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));  //손가락 모양 커서
+//	버튼명.setCursor(new Cursor(Cursor.HAND_CURSOR));  //손가락 모양 커서
 	
 	public A_FindPage(JFrame mf) {
 		JLabel findBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
@@ -217,12 +220,9 @@ public class A_FindPage extends JPanel implements ActionListener{
 		
 		
 		this.setBounds(0,0,1300,770);
-		
 		this.add(findBackground);
 	}
 
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -230,7 +230,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 		findPwLabel.setText("");
 
 		B_UserManager um = new B_UserManager();
-
 		
 		//아이디찾기
 		// 로그인창 아이디창 공백일시
@@ -293,13 +292,23 @@ public class A_FindPage extends JPanel implements ActionListener{
 					}
 				}
 
+				//임시비밀번호 전송
 				if (selectedUser.geteMail().equals(emailPw.getText())) {
 					findPwLabel.setText(selectedUser.geteMail() +"로 임시 비밀번호를 전송 했습니다.");
 					findPwLabel.setForeground(new Color(0, 200, 0));
 					
+					//이메일전송
+					B_SendMail sm = new B_SendMail();
+					temporaryPw = sm.temporaryPw();
+					System.out.println(temporaryPw);
+					try {
+						sm.sendTemporaryPw(temporaryPw, emailPw.getText());
+					} catch (MessagingException e1) {
+						e1.printStackTrace();
+					}
+					
 					//임시비밀번호 변경
-					selectedUser.setPw(subPassword());
-					//임시비밀번호 전송하기
+					um.updatePw(id.getText(), temporaryPw);
 					
 					
 				} else {

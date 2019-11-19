@@ -195,10 +195,10 @@ public class A_LoginPanel extends JPanel {
 		panel.add(findId1);
 		
 		
-		JButton changeInfo = new JButton("회원정보 수정");
-		changeInfo.setBounds(690,635, 150, 35);
-		changeInfo.setFont(new Font("DungGeunMo", Font.BOLD, 18));
-		panel.add(changeInfo);
+		JButton changePw = new JButton("회원정보 수정");
+		changePw.setBounds(690,635, 150, 35);
+		changePw.setFont(new Font("DungGeunMo", Font.BOLD, 18));
+		panel.add(changePw);
 		
 		
 		//회원가입 버튼
@@ -231,7 +231,17 @@ public class A_LoginPanel extends JPanel {
 			}
 		});
 		
-		
+		changePw.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("회원정보 수정 클릭");
+				ChangePanel cp = new ChangePanel(mf, panel);
+				//t1.setDaemon(true);
+				A_ChangePage fp = new A_ChangePage(mf);
+				
+				cp.replacePanel(fp);
+			}
+		});
 		
 		
 		loginBtn.addMouseListener(new MouseAdapter() {
