@@ -22,7 +22,7 @@ public class F_ChangePanel {
 	}
 
 	public void resetPanel() {
-		System.out.println("ÆĞ³Îº¯°æ");
+		System.out.println("íŒ¨ë„ë³€ê²½");
 		mf.remove(panel);
 		mf.add(panel);
 		mf.repaint();

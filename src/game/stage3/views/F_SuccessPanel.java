@@ -4,6 +4,8 @@ import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import view.A_Music;
+import view.C_RankingPage;
 
 public class F_SuccessPanel extends JPanel{
 	private JFrame mf;
@@ -27,24 +31,38 @@ public class F_SuccessPanel extends JPanel{
 		
 		JLabel suc = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage3_sucs.gif").getImage().getScaledInstance(1280, 720, 0)));
 		suc.setBounds(0, 0 , 1280, 720);
+		new A_Music().stage3_sc();
 		
-		Dialog succ = new Dialog(mf, "º∫∞¯∆Àæ˜");
+		
+		Dialog succ = new Dialog(mf, "ÏÑ±Í≥µ");
 		succ.setLayout(null);
 		succ.setSize(500, 250);
 		succ.setLocationRelativeTo(null);
 		
-		JLabel succmsg = new JLabel("∫ºµÂ∏∆Æ∏¶ π∞∏Æ√∆Ω¿¥œ¥Ÿ!!");
+		JLabel succmsg = new JLabel("Î≥ºÎìúÎ™®Ìä∏Î•º Î¨ºÎ¶¨Ï≥§ÏäµÎãàÎã§!!");
 		succmsg.setBounds(140, 50, 300, 100);
-		succmsg.setFont(new Font("DungGeunMo", 0 , 30));
+		succmsg.setFont(new Font("DungGeunMo", 0 , 20));
 		
-		JButton tomain = new JButton("∏ﬁ¿Œ∆‰¿Ã¡ˆ∑Œ µπæ∆∞©¥œ¥Ÿ.");
-		tomain.setBounds(100, 150, 300, 50);
-		tomain.setFont(new Font("DungGeunMo", 0, 25));
+		JButton ranking = new JButton("Í≤åÏûÑ ÌÅ¥Î¶¨Ïñ¥!");
+		ranking.setBounds(100, 150, 300, 50);
+		ranking.setFont(new Font("DungGeunMo", 0, 25));
 		
 		succ.add(succmsg);
-		succ.add(tomain);
+		succ.add(ranking);
 		
 		this.add(suc);
+		
+		Timer ts = new Timer();	//Timer Ïã§Ìñâ
+		TimerTask tsm = new TimerTask() {
+
+			@Override
+			public void run() {
+				succ.setVisible(true);
+			}//TimerTask Ïã§Ìñâ
+			
+		};
+		ts.schedule(tsm, 50000);	
+		
 		
 		suc.addMouseListener(new MouseAdapter() {
 			@Override
@@ -53,12 +71,13 @@ public class F_SuccessPanel extends JPanel{
 			}
 		});
 		
-		tomain.addMouseListener(new MouseAdapter() {
+		ranking.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop();
 				F_ChangePanel cp = new F_ChangePanel(mf, panel);
-				C_GameStage gs = new C_GameStage(mf);
-				cp.replacePanel(gs);
+				C_RankingPage rp = new C_RankingPage(mf);
+				cp.replacePanel(rp);
 				succ.dispose();
 			}
 		});
