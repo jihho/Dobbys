@@ -29,9 +29,6 @@ public class C_GameStage extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
-	private JTextArea ta;
-	private JButton return_btn;
-	
 	
 	public C_GameStage(JFrame mf) {
 		this.mf = mf;
@@ -47,7 +44,7 @@ public class C_GameStage extends JPanel{
 		
 		
 		// JTextArea(대화 상자) 생성  
-		ta = new JTextArea("ID : 도비1");   	//JTextArea 생성
+		JTextArea ta = new JTextArea("ID : 도비1");   	//JTextArea 생성
 		ta.setBounds(530, 640, 400, 60); 	    			//JTeatArea 크기 및 위치 지정
 	    ta.setEditable(false); 				   				 //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 45)); 
@@ -98,9 +95,6 @@ public class C_GameStage extends JPanel{
 		ranking_name.setForeground(Color.WHITE);			   			 
 		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		
-		
-		
-		
 		// 되돌아가기 버튼 생성
 		JButton return_btn = new JButton("RETURN");
 		return_btn.setBounds(1115, 660, 150, 50);
@@ -115,10 +109,6 @@ public class C_GameStage extends JPanel{
 		return_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
 		//S_btn.setContentAreaFilled(false);	// JButton 내용영역 채우기 안함
 		return_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
-		
-		
-		
-		
 		
 		// return_Btn 버튼 이벤트
 		return_btn.addMouseListener(new MouseAdapter() {
@@ -141,9 +131,9 @@ public class C_GameStage extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
-			C_RankingPage rp = new C_RankingPage(mf); 
+			D_Controller st1 = new D_Controller(mf); 
 			
-			cp.replacePanel(rp);
+			cp.replacePanel(st1);
 			}
 		});
 		
@@ -154,9 +144,9 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
-			C_RankingPage rp = new C_RankingPage(mf); 
+			E_StartPanel st2 = new E_StartPanel(mf); 
 		
-			cp.replacePanel(rp);
+			cp.replacePanel(st2);
 			}
 		});
 		
@@ -167,9 +157,9 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
-			C_RankingPage rp = new C_RankingPage(mf); 
+			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
 			
-			cp.replacePanel(rp);
+			cp.replacePanel(str3);
 			}
 		});
 		
