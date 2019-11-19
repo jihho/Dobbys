@@ -50,13 +50,9 @@ public class A_IntroPage extends JPanel{
 //		introBackground.setBounds(0, 0, 1300, 770);
 		
 		
-//		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
-//				.getImage().getScaledInstance(650, 50, 0)));
-//		press.setBounds(320, 650, 650, 50);
-		
-		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/pressbutton.gif")
-				.getImage().getScaledInstance(820, 180, 0)));
-		press.setBounds(270, 570, 800, 180);
+		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
+				.getImage().getScaledInstance(650, 50, 0)));
+		press.setBounds(320, 650, 650, 50);
 		
 		
 		this.addMouseListener(new MouseAdapter() {

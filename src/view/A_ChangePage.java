@@ -183,7 +183,7 @@ public class A_ChangePage extends JPanel {
 
 					//아이디 존재여부
 					if (um.checkUserId(textId.getText())) {
-						//아이디가 존재하면 비밀번호 체크
+						//아이디와 같은 유저 정보 불러오기
 						ArrayList<User> list = ud.readUserList();
 
 						// 일치하는 user 정보를 담을 레퍼런스 변수 초기화
@@ -207,12 +207,16 @@ public class A_ChangePage extends JPanel {
 							//모든 정보가 일치 (비밀번호 변경)
 							if(newPw.getText().equals(checkPw.getText())
 									&& newPw.getText().length() > 0) {
+								//임시비밀번호 변경
+								um.updatePw(textId.getText(), checkPw.getText());
 								changeLabel.setText("비밀번호가 변경 되었습니다.");
 								changeLabel.setForeground(new Color(0, 200, 0));
+								textId.setText("");
+								nowPw.setText("");
+								newPw.setText("");
+								checkPw.setText("");
 								
 								
-								//임시비밀번호 변경
-								um.updatePw(textId.getText(), checkPw.getText().toString());
 							} else { 
 								//아이디, 비밀번호 일치하나 변경 비밀번호가 다름
 								changeLabel.setText("새 비밀번호가 일치하지 않습니다.");
