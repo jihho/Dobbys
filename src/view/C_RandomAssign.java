@@ -179,7 +179,8 @@ public class C_RandomAssign extends JPanel{
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
-				
+	    		
+				new A_Music().intoBgmStop();
 				G_sd.dispose();
 			}
 		});
