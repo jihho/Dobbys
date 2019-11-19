@@ -233,6 +233,8 @@ public class D_Controller extends JPanel {
 								harry.setLife(harry.getLife() - 1);
 								if (harry.getLife() == 0) {
 									harry.blast();
+									backSound.intoBgmStop();
+									backSound.stage1FailSound();
 									aliveDeath = false;
 									for (D_Dementor de : dementor) {
 										de.setState(D_Dementor.DEMENTOR_ST_DEATH);
@@ -459,7 +461,7 @@ public class D_Controller extends JPanel {
 				
 				
 			}else if(gameState == ST_ENDING) {
-
+				//backSound.stage1FailSound();
 				if(code == KeyEvent.VK_ENTER) {
 					gameState = ST_TITLE;
 					backSound.intoBgmStop();
