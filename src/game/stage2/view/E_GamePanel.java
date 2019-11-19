@@ -13,7 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import game.stage2.model.vo.E_EffectMusic;
 import game.stage2.model.vo.E_Quest;
+import view.A_Music;
 
 class test{
 	//유저로그창 아이템 좌표
@@ -243,6 +245,7 @@ public class E_GamePanel extends JPanel {
 				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 1;
 				System.out.println(userChoice[ctn]);
+				ctn++;
 				
 				//재료 9개 모두 선택되면 항아리 이펙트 나오기
 				if(ctn == 9) {
@@ -252,10 +255,11 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-				}
+					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 				
 
-				ctn++;
 				
 				
 			}
@@ -287,6 +291,8 @@ public class E_GamePanel extends JPanel {
 					panel.repaint();
 					System.out.println("항아리이펙트");
 					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();					
 				}
 
 			}
@@ -317,8 +323,9 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-
-				}
+					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 
 			}
 		});
@@ -342,15 +349,16 @@ public class E_GamePanel extends JPanel {
 				ctn++;
 				
 				if(ctn == 9) {
-
+					
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
 					panel.setComponentZOrder(potEffect, 0);
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-
-				}
+					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 
 				
 			}
@@ -381,8 +389,9 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-
-				}
+					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 
 				
 			}
@@ -414,8 +423,9 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-
-				}
+					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 
 			}
 		});
@@ -446,8 +456,9 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-
-				}
+					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 
 			}
 		});
@@ -478,8 +489,9 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-
-				}
+					
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 
 				
 			}
@@ -511,9 +523,10 @@ public class E_GamePanel extends JPanel {
 					panel.setComponentZOrder(potEffect, 0);
 					panel.revalidate();
 					panel.repaint();
-					System.out.println("항아리이펙트");					
+					System.out.println("항아리이펙트");	
 					
-				}
+					//재료9개되면 끓는소리출력
+					new E_EffectMusic().stage2_boiling();				}
 				
 				
 			}
@@ -535,6 +548,7 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 					panel.remove(potEffect);
 					panel.repaint();
+					new E_EffectMusic().intoBgmStop();
 					
 				if(hp == MAX_HP) {
 					
@@ -597,6 +611,7 @@ public class E_GamePanel extends JPanel {
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
 					
 					cp.replacePanel(sp);
+					//new A_Music().intoBgmStop();
 					
 
 				}
@@ -654,8 +669,8 @@ public class E_GamePanel extends JPanel {
 					//퀘스트 값과 유저선택 값이 같으면 성공패널로 이동
 					E_ChangePanel cp = new E_ChangePanel(mf, panel);
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
-					
 					cp.replacePanel(sp);
+					//new A_Music().intoBgmStop();
 				}
 				
 				if(hp == 1) {
@@ -710,6 +725,7 @@ public class E_GamePanel extends JPanel {
 								E_ChangePanel cp = new E_ChangePanel(mf, panel);
 								E_FailPanel fp = new E_FailPanel(mf);
 								cp.replacePanel(fp);
+								//new A_Music().intoBgmStop();
 							}
 							return;
 						}
@@ -718,8 +734,8 @@ public class E_GamePanel extends JPanel {
 					//퀘스트값과 유저값 일치하면 성공이미지 패널로 이동
 					E_ChangePanel cp = new E_ChangePanel(mf, panel);
 					E_SuccessPanel sp = new E_SuccessPanel(mf);
-					
 					cp.replacePanel(sp);
+					//new A_Music().intoBgmStop();
 				}
 				
 				
@@ -737,6 +753,8 @@ public class E_GamePanel extends JPanel {
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				C_GameStage main = new C_GameStage(mf);
 				cp.replacePanel(main);
+				//음악종료
+				new A_Music().intoBgmStop();
 			}
 		});
 		

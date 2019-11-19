@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import view.A_Music;
 
 public class E_FailPanel extends JPanel {
 	private JFrame mf;
@@ -31,7 +32,7 @@ public class E_FailPanel extends JPanel {
 		Dialog popfail = new Dialog(mf, "실패팝업");
 		popfail.setLayout(null);
 		popfail.setSize(500, 250);
-		popfail.setLocationRelativeTo(null);
+		popfail.setLocationRelativeTo(mf);
 		
 		//팝업속 메세지
 		JLabel failmsg = new JLabel("GAME OVER :(");
@@ -71,6 +72,7 @@ public class E_FailPanel extends JPanel {
 				E_StartPanel sp = new E_StartPanel(mf);
 				cp.replacePanel(sp);
 				popfail.dispose();
+				new A_Music().intoBgmStop();
 			}
 			
 		});
@@ -83,6 +85,7 @@ public class E_FailPanel extends JPanel {
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 				popfail.dispose();
+				new A_Music().intoBgmStop();
 			}
 		});
 		

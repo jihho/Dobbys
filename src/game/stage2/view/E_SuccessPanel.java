@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import view.A_Music;
 
 
 public class E_SuccessPanel extends JPanel{
@@ -22,6 +23,8 @@ public class E_SuccessPanel extends JPanel{
 
 	
 	public E_SuccessPanel(JFrame mf) {
+		
+		
 		
 		this.mf = mf;
 		panel = this;
@@ -36,7 +39,7 @@ public class E_SuccessPanel extends JPanel{
 		Dialog succ = new Dialog(mf, "성공팝업");
 		succ.setLayout(null);
 		succ.setSize(500, 250);
-		succ.setLocationRelativeTo(null);
+		succ.setLocationRelativeTo(mf);
 		
 		//팝업속 메세지
 		JLabel succmsg = new JLabel("Stage2 Clear!!");
@@ -70,6 +73,9 @@ public class E_SuccessPanel extends JPanel{
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 				succ.dispose();
+				new A_Music().intoBgmStop();
+				
+
 			}
 		});
 		
