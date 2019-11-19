@@ -21,6 +21,9 @@ import game.stage1.view.D_BackgroundModify;
 import model.vo.User;
 import view.A_Music;
 
+import controller.C_GameStage;
+
+
 public class D_Controller extends JPanel {
 
 	private JFrame mf;

@@ -79,7 +79,7 @@ public class C_RandomAssign extends JPanel{
 		R_sd.setBounds(390, 270, 550, 370); 
 		G_sd.setBounds(390, 270, 550, 370); 
 		
-		//S_sd.setLocationRelativeTo(mf);
+		S_sd.setLocationRelativeTo(mf);
 		H_sd.setLocationRelativeTo(mf);
 		R_sd.setLocationRelativeTo(mf);
 		G_sd.setLocationRelativeTo(mf);
