@@ -22,62 +22,47 @@ public class C_RankingPage extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
-	private JLabel background;
-	private JLabel score_title;
-	private JLabel stage1_la;
-	private JLabel stage2_la;
-	private JLabel stage3_la;
-	private JLabel ranking_la;
-	private JLabel stage1_name;
-	private JLabel stage2_name;
-	private JLabel stage3_name;
-	private JLabel ranking_name;
-	private JLabel gryffindor;
-	private JLabel huffepuff;
-	private JLabel ravaenclaw;
-	private JLabel slytherin;
-	private JButton return_btn;
-	
 	
 	public C_RankingPage(JFrame mf) {
 
 		this.mf = mf;
 		this.setLayout(null);
-		
 		panel = this;
-		this.setBounds(0, 0, 1300, 770);
 		System.out.println("랭킹 페이지 패널 생성");
 		
-		// 배경 라벨 생성
-		background = new JLabel(new ImageIcon(new ImageIcon("images/main/z_score.png").getImage().getScaledInstance(1300, 770, 0)));
-		background.setBounds(0, 0, 1300, 770);
 				
-		
-		
-		
-		
-		
 		// 라벨 생성 
-		score_title = new JLabel("SCORE");
+		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/z_score.png").getImage().getScaledInstance(1300, 770, 0)));
+		JLabel score_title = new JLabel("SCORE");
 
-		stage1_la = new JLabel(new ImageIcon("images/main/stage1_icon.png"));
-		stage2_la = new JLabel(new ImageIcon("images/main/stage2_icon.png"));
-		stage3_la = new JLabel(new ImageIcon("images/main/stage3_icon.png"));
-		ranking_la = new JLabel(new ImageIcon("images/main/ranking_icon.png"));
+		JLabel stage1_la = new JLabel(new ImageIcon("images/main/stage1_icon.png"));
+		JLabel stage2_la = new JLabel(new ImageIcon("images/main/stage2_icon.png"));
+		JLabel stage3_la = new JLabel(new ImageIcon("images/main/stage3_icon.png"));
+		JLabel ranking_la = new JLabel(new ImageIcon("images/main/ranking_icon.png"));
 		
-		stage1_name = new JLabel("Stage1");
-		stage2_name = new JLabel("Stage2");
-		stage3_name = new JLabel("Stage3");
-		ranking_name = new JLabel("Ranking");
+		JLabel stage1_name = new JLabel("Stage1");
+		JLabel stage2_name = new JLabel("Stage2");
+		JLabel stage3_name = new JLabel("Stage3");
+		JLabel ranking_name = new JLabel("Ranking");
 		
-		gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
-		huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
-		ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
-		slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
+		JLabel huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
 		
+		// 
+		JButton return_btn = new JButton("RETURN");
 		
+		// 점수 출력하는 JTextArea 생성
+		JTextArea ta = new JTextArea("1.  1000     1000     1000     3000    도비1\n\n"
+				+ "2.  1000     1000     1000     3000    도비2\n\n"
+				+ "3.  1000     1000     1000     3000    도비3\n\n"
+				+ "4.  1000     1000     1000     3000    도비4");
+
 		
-		// 라벨 위치와 크기 설정 	
+		// 위치와 크기 설정 	
+		this.setBounds(0, 0, 1300, 770);
+		background.setBounds(0, 0, 1300, 770);
 		score_title.setBounds(540, -70, 400, 300);
 		
 		stage1_la.setBounds(220, 140, 102, 100);
@@ -90,15 +75,15 @@ public class C_RankingPage extends JPanel{
 		stage3_name.setBounds(580, 245, 170, 50);
 		ranking_name.setBounds(750, 245, 200, 50);
 		
-		
 		gryffindor.setBounds(660, 85, 1000, 500);
 		huffepuff.setBounds(660, 165, 1000, 500);
 		ravaenclaw.setBounds(660, 245, 1000, 500);
 		slytherin.setBounds(660, 325, 1000, 500);
 
+		ta.setBounds(150, 310, 1100, 300); 	//JTeatArea 크기 및 위치 지정
 
 
-		
+		// 폰트 및 글씨 크기
 		score_title.setForeground(Color.WHITE);			   			 
 		score_title.setFont(new Font("DungGeunMo", Font.PLAIN, 110)); 
 		
@@ -114,27 +99,19 @@ public class C_RankingPage extends JPanel{
 		ranking_name.setForeground(Color.WHITE);			   			 
 		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		
-		
-		// 점수 출력하는 TextArea 생성
-		JTextArea ta = new JTextArea("1.  1000     1000     1000     3000    그리핀도르\n\n"
-				+ "2.  1000     1000     1000     3000    후플푸프\n\n"
-				+ "3.  1000     1000     1000     3000    래번클로\n\n"
-				+ "4.  1000     1000     1000     3000    슬리데린");
-		ta.setBounds(150, 310, 1100, 300); 	//JTeatArea 크기 및 위치 지정
-		ta.setEditable(false); 				//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
-		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
 		ta.setForeground(Color.WHITE);	
+		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		ta.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+
 		
+
 		background.add(ta);
 		this.add(background);
-		ta.setOpaque(false);
 		
 		
 		// 되돌아가기 버튼 생성
-		return_btn = new JButton("RETURN");
+
 		return_btn.setBounds(1115, 660, 150, 50);
-//		return_Btn.setBackground(new Color(252, 220, 3));
-//		return_Btn.setForeground(Color.BLACK);			   			   // 버튼 글자 색깔 변경
 		return_btn.setBackground(Color.GRAY);
 		return_btn.setForeground(Color.WHITE);			   			   // 버튼 글자 색깔 변경
 		
@@ -144,6 +121,12 @@ public class C_RankingPage extends JPanel{
 		//S_btn.setContentAreaFilled(false);	// JButton 내용영역 채우기 안함
 		return_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
 		
+		score_title.setOpaque(false);
+		stage1_name.setOpaque(false);
+		stage2_name.setOpaque(false);
+		stage3_name.setOpaque(false);
+		ranking_name.setOpaque(false);
+		ta.setOpaque(false);
 		
 		
 		
@@ -161,14 +144,8 @@ public class C_RankingPage extends JPanel{
 			}
 		});
 		
-		score_title.setOpaque(false);
-		stage1_name.setOpaque(false);
-		stage2_name.setOpaque(false);
-		stage3_name.setOpaque(false);
-		ranking_name.setOpaque(false);
 		
-		
-		// 패널에다 라벨 추가
+		// 패널에 추가
 		this.add(score_title);
 
 		this.add(stage1_la);
@@ -181,26 +158,19 @@ public class C_RankingPage extends JPanel{
 		this.add(stage3_name);
 		this.add(ranking_name);
 
-		// 라벨(background)에 라벨 추가 
-		background.add(slytherin);
-		background.add(ravaenclaw);
-		background.add(huffepuff);
-		background.add(gryffindor);
-		
+		this.add(slytherin);
+		this.add(ravaenclaw);
+		this.add(huffepuff);
+		this.add(gryffindor);
 		
 		this.add(return_btn);
+		this.add(background);
+
 		
-		// 마우스 효과 - 하영씨
+		// 마우스 효과 - 하영
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
 				new Point(0,0),"images/main/mouse.png"));
-		
-		
-		// 패널에다 배경 라벨 추가
-		this.add(background);
-		
-			
-		
 		
 	}
 	
