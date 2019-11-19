@@ -16,9 +16,22 @@ public class E_QuestPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	private int count = 0;
-
+	private JLabel quest;
+	
 
 	
+	public JLabel getQuest() {
+		return quest;
+	}
+
+
+
+	public void setQuest(JLabel quest) {
+		this.quest = quest;
+	}
+
+
+
 	public E_QuestPanel(JFrame mf) {
 		this.mf = mf;
 		this.setLayout(null);
@@ -149,7 +162,7 @@ public class E_QuestPanel extends JPanel{
 		System.out.println("questpanel random:"+random);
 		String rQuest = "quest" + random + ".png";
 
-		JLabel quest = new JLabel(new ImageIcon(new ImageIcon("images/stage2/"+rQuest).
+		quest = new JLabel(new ImageIcon(new ImageIcon("images/stage2/"+rQuest).
 				getImage().getScaledInstance(264, 275, 0)));
 		quest.setBounds(910, 130, 264, 275);
 
