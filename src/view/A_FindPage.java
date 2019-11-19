@@ -294,21 +294,27 @@ public class A_FindPage extends JPanel implements ActionListener{
 
 				//임시비밀번호 전송
 				if (selectedUser.geteMail().equals(emailPw.getText())) {
-					findPwLabel.setText(selectedUser.geteMail() +"로 임시 비밀번호를 전송 했습니다.");
+//					findPwLabel.setText(selectedUser.geteMail() +"로 임시 비밀번호를 전송 했습니다.");
+//					findPwLabel.setForeground(new Color(0, 200, 0));
+//					
+//					//이메일전송
+//					B_SendMail sm = new B_SendMail();
+//					temporaryPw = sm.temporaryPw();
+//					System.out.println(temporaryPw);
+//					try {
+//						sm.sendTemporaryPw(temporaryPw, emailPw.getText());
+//					} catch (MessagingException e1) {
+//						e1.printStackTrace();
+//					}
+//					
+//					//임시비밀번호 변경
+//					um.updatePw(id.getText(), temporaryPw);
+					
+					
+					findPwLabel.setText("임시 비밀번호는 dobbyisfree 입니다.");
 					findPwLabel.setForeground(new Color(0, 200, 0));
 					
-					//이메일전송
-					B_SendMail sm = new B_SendMail();
-					temporaryPw = sm.temporaryPw();
-					System.out.println(temporaryPw);
-					try {
-						sm.sendTemporaryPw(temporaryPw, emailPw.getText());
-					} catch (MessagingException e1) {
-						e1.printStackTrace();
-					}
-					
-					//임시비밀번호 변경
-					um.updatePw(id.getText(), temporaryPw);
+					um.updatePw(id.getText(), "dobbyisfree");
 					
 					
 				} else {
