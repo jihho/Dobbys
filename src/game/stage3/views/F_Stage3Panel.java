@@ -12,19 +12,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import controller.B_UserManager;
-import controller.C_GameStage;
-import game.stage3.controller.F_Stage3Play;
 import game.stage3.model.vo.F_General;
 import game.stage3.model.vo.F_Harry;
 import game.stage3.model.vo.F_Voldmort;
-import game.stage3.views.F_SuccessPanel;
 import model.vo.User;
 import view.A_Music;
-import view.C_RankingPage;
-import game.stage3.views.F_FailPanel;
 
 public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
@@ -41,7 +37,8 @@ public class F_Stage3Panel extends JPanel{
 	private JLabel vmskct;	
 
 	private JTextArea log;
-
+	private JScrollPane sc;
+	
 	private JButton atk;
 	private JButton df;
 	private JButton smash;
@@ -53,9 +50,11 @@ public class F_Stage3Panel extends JPanel{
 
 	private JLabel[] hp = new JLabel[10];
 	private JLabel[] vmhp = new JLabel[10];
-
+	
 	int harryChoice = 0;
 
+
+	
 	public F_Stage3Panel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
@@ -193,13 +192,24 @@ public class F_Stage3Panel extends JPanel{
 
 		//로그 텍스트에어리어
 		log = new JTextArea();
-		log.setBounds(610, 520, 620, 180);
-		log.setEditable(false);
-		log.setFont(new Font("DungGeunMo", Font.PLAIN, 37));
-		log.setBackground(new Color(0, 60, 30));
-		log.setOpaque(false);
-		log.selectAll();
-		log.append(null);
+		sc = new JScrollPane(log);
+		sc.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		sc.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		log.setLineWrap(true);
+		sc.setBounds(610, 520, 620, 190);
+		sc.setVisible(true);
+		
+		//log.setBounds(610, 520, 620, 180);
+		log.setFont(new Font("DungGeunMo", Font.PLAIN, 34));
+		sc.getViewport().getView().setBackground(new Color(135, 125, 106));
+		
+		//log.setBackground(new Color(135, 125, 106));
+		log.setOpaque(true);
+		//log.selectAll();
+		this.add(sc);
+		
+		//this.add(log);
+		//panel.add(scrollPane);
 
 		JButton success = new JButton();
 		success.setText("성공");
@@ -215,6 +225,12 @@ public class F_Stage3Panel extends JPanel{
 		fail.setFocusPainted(false);
 		fail.setOpaque(false);
 		
+		//textArea.setText(textArea.getText() + String.valueOf((char)paramInt));
+		
+		/*JTextArea textArea = new JTextArea(50, 10);
+		PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
+		System.setOut(printStream);
+		System.setErr(printStream);*/
 		/*String str = "어렵군, 아주 어려워...\n용기가 충만하고, 총명하며,\n재능을 타고 났어!\n의욕이 하늘을 찌르는 군!\n근데 어디가 좋을까...\n그리핀도르? 래번클로? \n슬리데린? 후플푸프?\n흐음...어디보자...\n";
 
 		// JTextArea(대화 상자) 생성  
@@ -307,23 +323,25 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(smash);
 		panel.add(counter);
 
-		this.add(log);
+		
 		//라벨을 가장 마지막에 추가함으로서 자동적으로 우선순위를 최 하위로 변경
 		//setComponentZOrder를 여기서 사용할 필요 없게 됨
 
 
 		//배경 라벨의 우선 순위를 가장 아래로 내림으로서 나머지 라벨 등장 
 		//this.setComponentZOrder(label,29);
-
-		System.out.println("버튼을 선택해주세요");
+		//log.setCaretPosition(log.getDocument().getLength());
+		log.append("버튼을 선택해주세요\n");
 		//볼드모트의 선택이 될 랜덤 수
 		this.add(label);
 		//마우스 이펙트 사용
+		
 		atk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
 				if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
 					int vmchoice = (int)(Math.random()*4);
+					
 					new F_EffectMusic().stage3_atk();
 					if(vmchoice == 0 || vmchoice == 1 || vmchoice == 2) {
 						panel.add(skill);
@@ -333,7 +351,8 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(vmskdf, 0);
 						panel.revalidate();
 						panel.repaint();
-						System.out.println("공격이 무효화 되었습니다.");
+						log.append("공격이 무효화 되었습니다.\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						Timer ts = new Timer();	//Timer 실행
 						TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
@@ -347,8 +366,11 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
+								F_RoundPanel rp = new F_RoundPanel(mf);
+								ap.replacePanel(rp);*/
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!볼드모트를 물리쳤습니다.\n");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -380,8 +402,9 @@ public class F_Stage3Panel extends JPanel{
 
 						voldmort.setHp(voldmort.getHp() -10);
 						voldmort.setHplife(voldmort.getHplife() -1);
-						System.out.println("공격 성공!! 볼드모트의 체력이 10 감소합니다.");
-						System.out.println("볼드모트의 체력 : " + voldmort.getHp());
+						log.append("공격 성공!!\n 볼드모트의 체력이 10 감소합니다.\n");
+						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						Timer ts = new Timer();	//Timer 실행
 						TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
@@ -396,11 +419,14 @@ public class F_Stage3Panel extends JPanel{
 								}
 								panel.revalidate();
 								panel.repaint();
+								/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
+								F_RoundPanel rp = new F_RoundPanel(mf);
+								ap.replacePanel(rp);*/
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!!!!볼드모트를 물리쳤습니다.\n");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -431,7 +457,7 @@ public class F_Stage3Panel extends JPanel{
 				}
 			}
 		});
-
+		
 		smash.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
@@ -445,7 +471,8 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(vmskdf, 0);
 						panel.revalidate();
 						panel.repaint();
-						System.out.println("공격이 무효화 되었습니다.");
+						log.append("공격이 무효화 되었습니다.\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						Timer ts = new Timer();	//Timer 실행
 						TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
@@ -460,7 +487,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!!!볼드모트를 물리쳤습니다.");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -482,7 +509,7 @@ public class F_Stage3Panel extends JPanel{
 									cp.replacePanel(sp);
 								}
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
@@ -499,8 +526,9 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(sksmash, 0);
 						voldmort.setHp(voldmort.getHp() -20);
 						voldmort.setHplife(voldmort.getHplife() -2);
-						System.out.println("공격 성공!! 볼드모트의 체력이 20 감소합니다.");
-						System.out.println("볼드모트의 체력 : " + voldmort.getHp());
+						log.append("공격 성공!!\n 볼드모트의 체력이 20 감소합니다.\n");
+						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -523,7 +551,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!!!볼드모트를 물리쳤습니다.");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -545,7 +573,7 @@ public class F_Stage3Panel extends JPanel{
 									cp.replacePanel(sp);
 								}
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
@@ -563,8 +591,9 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(vmsksmash, 0);
 						harry.setHp(harry.getHp() -30);
 						harry.setHplife(harry.getHplife() -3);
-						System.out.println("볼드모트의 카운터! 해리포터의 체력이 30 감소합니다.");
-						System.out.println("해리의 체력 : " + harry.getHp());
+						log.append("볼드모트의 카운터!\n 해리포터의 체력이 30 감소합니다.\n");
+						log.append("해리의 체력 : " + harry.getHp()+"\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -588,7 +617,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!!!볼드모트를 물리쳤습니다.");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -610,7 +639,7 @@ public class F_Stage3Panel extends JPanel{
 									cp.replacePanel(sp);
 								}
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
@@ -640,7 +669,7 @@ public class F_Stage3Panel extends JPanel{
 						panel.repaint();
 						panel.setComponentZOrder(skdf, 0);
 						panel.setComponentZOrder(vmskill, 0);
-						System.out.println("공격이 무효화 되었습니다.");
+						log.append("공격이 무효화 되었습니다.\n");
 						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -658,7 +687,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
@@ -678,8 +707,9 @@ public class F_Stage3Panel extends JPanel{
 						panel.repaint();
 						harry.setHp(harry.getHp() -20);
 						harry.setHplife(harry.getHplife() -2);
-						System.out.println("볼드모트의 스매쉬!! 해리포터의 체력이 20 감소합니다 ");
-						System.out.println("해리의 체력 : " + harry.getHp());
+						log.append("볼드모트의 스매쉬!!\n 해리포터의 체력이 20 감소합니다.\n");
+						log.append("해리의 체력 : " + harry.getHp()+"\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -702,7 +732,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
@@ -734,8 +764,9 @@ public class F_Stage3Panel extends JPanel{
 						panel.repaint();
 						harry.setHp(harry.getHp() -10);
 						harry.setHplife(harry.getHplife() -1);
-						System.out.println("볼드모트의 공격!! 해리포터의 체력이 10 감소합니다 ");
-						System.out.println("해리의 체력 : " + harry.getHp());
+						log.append("볼드모트의 공격!!\n 해리포터의 체력이 10 감소합니다.\n");
+						log.append("해리의 체력 : " + harry.getHp()+"\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -758,7 +789,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!!!볼드모트를 물리쳤습니다.");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -780,7 +811,7 @@ public class F_Stage3Panel extends JPanel{
 									cp.replacePanel(sp);
 								}
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
@@ -798,7 +829,8 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(vmskdf, 0);
 						panel.revalidate();
 						panel.repaint();
-						System.out.println("공격이 무효화되었습니다.");
+						log.append("공격이 무효화되었습니다.\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						//skct.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -816,7 +848,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!!!볼드모트를 물리쳤습니다.");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -838,7 +870,7 @@ public class F_Stage3Panel extends JPanel{
 									cp.replacePanel(sp);
 								}
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
@@ -859,8 +891,9 @@ public class F_Stage3Panel extends JPanel{
 
 						voldmort.setHp(voldmort.getHp() -30);
 						voldmort.setHplife(voldmort.getHplife() -3);
-						System.out.println("해리의 카운터! 볼드모트의 체력이 30 감소합니다.");
-						System.out.println("볼드모트의 체력 : " + voldmort.getHp());
+						log.append("해리의 카운터!!\n 볼드모트의 체력이 30 감소합니다.\n");
+						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
+						log.setCaretPosition(log.getDocument().getLength());
 						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
 
@@ -885,7 +918,7 @@ public class F_Stage3Panel extends JPanel{
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 								if(voldmort.getHp()<=0) {
-									System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									log.append("!!!!볼드모트를 물리쳤습니다.");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									
@@ -907,7 +940,7 @@ public class F_Stage3Panel extends JPanel{
 									cp.replacePanel(sp);
 								}
 								if(harry.getHp()<=0){
-									System.out.println("재도전하시겠습니까?");
+									log.append("재도전하시겠습니까?");
 									new A_Music().intoBgmStop();
 									new F_EffectMusic().intoBgmStop();
 									F_ChangePanel cp = new F_ChangePanel(mf, panel);
