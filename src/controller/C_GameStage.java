@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import game.stage1.controller.D_Controller;
 import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
+import view.C_RandomAssign;
 import view.C_RankingPage;
 import view.ChangePanel;
 
@@ -46,7 +47,7 @@ public class C_GameStage extends JPanel{
 		
 		
 		// JTextArea(대화 상자) 생성  
-		ta = new JTextArea("ID : 타락파워전사");   	//JTextArea 생성
+		ta = new JTextArea("ID : 도비1");   	//JTextArea 생성
 		ta.setBounds(530, 640, 400, 60); 	    			//JTeatArea 크기 및 위치 지정
 	    ta.setEditable(false); 				   				 //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 45)); 
@@ -126,9 +127,9 @@ public class C_GameStage extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
-			C_RankingPage rp = new C_RankingPage(mf); 
+			C_RandomAssign ra = new C_RandomAssign(mf); 
 		
-			cp.replacePanel(rp);
+			cp.replacePanel(ra);
 			}
 		});
 		
@@ -187,44 +188,44 @@ public class C_GameStage extends JPanel{
 		
 		
 		// 버튼 투명화
+		stage1_btn.setContentAreaFilled(false);		// JButtondml 내용영역 채우기 안함
 		//stage1_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
-		stage1_btn.setContentAreaFilled(false);	// JButtondml 내용영역 채우기 안함
 		//stage1_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
 		stage1_btn.setOpaque(false);
 		
-		//stage2_btn.setBorderPainted(false);		
 		stage2_btn.setContentAreaFilled(false);	
+		//stage2_btn.setBorderPainted(false);		
 		//stage2_btn.setFocusPainted(false);		
 		stage2_btn.setOpaque(false);
 		
-		//stage3_btn.setBorderPainted(false);		
 		stage3_btn.setContentAreaFilled(false);	
+		//stage3_btn.setBorderPainted(false);		
 		//stage3_btn.setFocusPainted(false);		
 		stage3_btn.setOpaque(false);
 		
-		//ranking_btn.setBorderPainted(false);		
 		ranking_btn.setContentAreaFilled(false);	
+		//ranking_btn.setBorderPainted(false);		
 		//ranking_btn.setFocusPainted(false);		
 		ranking_btn.setOpaque(false);
 
 		
-		stage1_name.setBorderPainted(false);		
 		stage1_name.setContentAreaFilled(false);	
+		stage1_name.setBorderPainted(false);		
 		stage1_name.setFocusPainted(false);		
 		stage1_name.setOpaque(false);
 		
-		stage2_name.setBorderPainted(false);		
 		stage2_name.setContentAreaFilled(false);	
+		stage2_name.setBorderPainted(false);		
 		stage2_name.setFocusPainted(false);		
 		stage2_name.setOpaque(false);
 		
-		stage3_name.setBorderPainted(false);		
 		stage3_name.setContentAreaFilled(false);	
+		stage3_name.setBorderPainted(false);		
 		stage3_name.setFocusPainted(false);		
 		stage3_name.setOpaque(false);
 		
-		ranking_name.setBorderPainted(false);		
 		ranking_name.setContentAreaFilled(false);	
+		ranking_name.setBorderPainted(false);		
 		ranking_name.setFocusPainted(false);		
 		ranking_name.setOpaque(false);
 		
