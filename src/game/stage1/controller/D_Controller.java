@@ -193,7 +193,7 @@ public class D_Controller extends JPanel {
 		
 		//harry 생성		
 		harry = new D_Harry();
-		harry.startHarry();
+		//harry.startHarry();
 		
 		//snitch 생성
 		snitch = new D_Snitch();
@@ -209,11 +209,19 @@ public class D_Controller extends JPanel {
 			// 디멘터 생성 및 이동
 			if (gameState != ST_SCORE) {
 				for (D_Dementor d : dementor) {
-					if (d.getState() == D_Dementor.DEMENTOR_ST_DEATH) {
-						// 디멘터가 사라지거나 부딪쳐서 사라지면 다시 생성
-						d.birth();
+					if (d.getState() == D_Dementor.DEMENTOR_ST_DEATH ) {
+						if(harry.getState() == D_Harry.HARRY_ST_ALIVE) {
+							d.birth();
+						}
 					}
-					d.move();
+					
+					if(d.getY() > harry.getY() && harry.getState() == D_Harry.HARRY_ST_ALIVE) {
+						d.yMinusMove();
+					}else if(d.getY() < harry.getY() && harry.getState() == D_Harry.HARRY_ST_ALIVE) {
+						d.yPlusMove();
+					}else if(harry.getState() == D_Harry.HARRY_ST_ALIVE){
+						d.move();						
+					}
 
 					// 디멘터 히트박스와 해리포터 히트박스 충돌 판단
 					if (d.getState() == D_Dementor.DEMENTOR_ST_ALIVE && gameState == ST_GAME) {
