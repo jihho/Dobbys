@@ -11,6 +11,7 @@ import javax.sound.sampled.FloatControl;
 
 public class A_Music {
 	public static Clip clip;
+	public static Clip effect;
 	
 	public static void introBgm() {
 		File bgm;
@@ -50,7 +51,7 @@ public class A_Music {
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
 			clip.start();
-			clip.loop(1);
+			clip.loop(0);
 			
 		} catch (Exception e) {
 			System.out.println("err : " + e);
@@ -306,6 +307,50 @@ public class A_Music {
 			System.out.println("err : " + e);
 			}
 		
+	}
+	
+	public static void loginEffect() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/loginEffect.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			effect = (Clip)AudioSystem.getLine(info);
+			effect.open(stream);
+			effect.start();
+			effect.loop(0);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+	}
+	
+	public static void btnEffect() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/btnEffect.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			effect = (Clip)AudioSystem.getLine(info);
+			effect.open(stream);
+			effect.start();
+			effect.loop(0);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
 	}
 	
 	

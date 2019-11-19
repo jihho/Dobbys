@@ -26,6 +26,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.stage2.view.E_ChangePanel;
+import game.stage2.view.E_QuestPanel;
+import game.stage2.view.E_Timer;
+
 public class A_IntroPage extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
@@ -41,9 +45,9 @@ public class A_IntroPage extends JPanel{
 		panel = this;
 		this.setBackground(Color.BLACK);
 		
-		JLabel introBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/intro1-1.gif")
-				.getImage().getScaledInstance(1330, 785, 0)));
-		introBackground.setBounds(0, 0, 1300, 770);
+		JLabel introBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/intro1_1.gif")
+				.getImage().getScaledInstance(1300, 810, 0)));
+		introBackground.setBounds(0, 0, 1300, 810);
 		
 //		JLabel introNext = new JLabel(new ImageIcon(new ImageIcon("images/main/intro3-5sec.gif")
 //				.getImage().getScaledInstance(1330, 785, 0)));
@@ -58,41 +62,28 @@ public class A_IntroPage extends JPanel{
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				
+//				ChangePanel cp = new ChangePanel(mf, panel);
+//				//t1.setDaemon(true);
+//				A_LoginPanel gp = new A_LoginPanel(mf);
+//				
+//				cp.replacePanel(gp);
+				
+				//버튼눌렀을경우 IntroPage1 (타이머 재생)
 				new A_Music().intoBgmStop();	//음악정지(천둥소리)
+				new A_Music().loginEffect();
 				new A_Music().introBgm();		//해리포터 bgm
-				
-//				panel.remove(introBackground);
-//				panel.add(introNext);	
-//				panel.revalidate();	
-//				panel.repaint();
-//				panel.setComponentZOrder(introNext, 0);
 				ChangePanel cp = new ChangePanel(mf, panel);
-				//t1.setDaemon(true);
-				A_LoginPanel gp = new A_LoginPanel(mf);
-				
-				cp.replacePanel(gp);
+				A_IntroPage_2 qp = new A_IntroPage_2 (mf);
+				A_IntroChanger timer = new A_IntroChanger(mf, qp);
+				Thread t1 = timer;
+				t1.setDaemon(true);
+				t1.start();
+				cp.replacePanel(qp);
 			}
 		});
 		
 		
-//		mf.addKeyListener(new KeyAdapter() {
-//			
-//			@Override
-//			public void keyPressed(KeyEvent e) {
-//				
-//				new A_Music().intoBgmStop();	//음악정지(천둥소리)
-//				new A_Music().introBgm();		//해리포터 bgm
-//				
-//;				ChangePanel cp = new ChangePanel(mf, panel);
-//				// t1.setDaemon(true);
-//				A_LoginPanel gp = new A_LoginPanel(mf);
-//
-//				cp.replacePanel(gp);
-//			}
-//		});
-		
-//		introBackground.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//		press.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/intromouse.png").getImage(),
 				new Point(0,0),"images/main/intromouse.png"));

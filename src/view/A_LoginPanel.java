@@ -36,9 +36,9 @@ public class A_LoginPanel extends JPanel {
 	private JPasswordField passwordText;
 	private B_UserDao ud = new B_UserDao();
 	
-	int bgmOnOff;
 	User user = new User();
 	public A_LoginPanel(JFrame mf) {
+		
 		
 		this.mf = mf;
 		this.setLayout(null);
@@ -243,6 +243,8 @@ public class A_LoginPanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("회원가입 클릭");
+				new A_Music().btnEffect();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				B_CheckPanel fp = new B_CheckPanel(mf);
@@ -255,6 +257,8 @@ public class A_LoginPanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("회원정보 수정 클릭");
+				new A_Music().btnEffect();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				A_ChangePage fp = new A_ChangePage(mf);
@@ -268,6 +272,8 @@ public class A_LoginPanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("로그인 버튼 클릭");
+				new A_Music().btnEffect();
+				
 				//로그인 성공시 음악정지 (변수)
 				A_Music stopMusic = new A_Music();
 				
@@ -330,6 +336,8 @@ public class A_LoginPanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("아이디 / 비밀번호 찾기 패널");
+				new A_Music().btnEffect();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				A_FindPage fp = new A_FindPage(mf);
