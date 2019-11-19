@@ -20,13 +20,15 @@ import game.stage3.model.vo.F_General;
 import game.stage3.model.vo.F_Harry;
 import game.stage3.model.vo.F_Voldmort;
 import game.stage3.views.F_SuccessPanel;
+import view.A_Music;
+import view.C_RankingPage;
 import game.stage3.views.F_FailPanel;
 
 public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	//JLabel ef;	//스킬 이펙트 없앨때 사용할 라벨
-	
+
 	private JLabel skill;	//스킬 이펙트 용 라벨
 	private JLabel sksmash;
 	private JLabel skdf;
@@ -35,9 +37,9 @@ public class F_Stage3Panel extends JPanel{
 	private JLabel vmsksmash;
 	private JLabel vmskdf;
 	private JLabel vmskct;	
-	
+
 	private JTextArea log;
-	
+
 	private JButton atk;
 	private JButton df;
 	private JButton smash;
@@ -57,7 +59,7 @@ public class F_Stage3Panel extends JPanel{
 		this.setLayout(null);
 		panel = this;
 		this.setBounds(0, 0, 1280, 720);
-
+		new A_Music().stage3_backgroundSound();
 		//스테이지 배경 라벨로 올림
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
@@ -196,10 +198,23 @@ public class F_Stage3Panel extends JPanel{
 		log.setOpaque(false);
 		log.selectAll();
 		log.append(null);
+
+		JButton success = new JButton();
+		success.setText("성공");
+		success.setBounds(1250, 530, 100, 30);
+		success.setContentAreaFilled(false);
+		success.setFocusPainted(false);
+		success.setOpaque(false);
 		
+		JButton fail = new JButton();
+		fail.setText("실패");
+		fail.setBounds(1250, 620, 100, 30);
+		fail.setContentAreaFilled(false);
+		fail.setFocusPainted(false);
+		fail.setOpaque(false);
 		
-/*String str = "어렵군, 아주 어려워...\n용기가 충만하고, 총명하며,\n재능을 타고 났어!\n의욕이 하늘을 찌르는 군!\n근데 어디가 좋을까...\n그리핀도르? 래번클로? \n슬리데린? 후플푸프?\n흐음...어디보자...\n";
-		
+		/*String str = "어렵군, 아주 어려워...\n용기가 충만하고, 총명하며,\n재능을 타고 났어!\n의욕이 하늘을 찌르는 군!\n근데 어디가 좋을까...\n그리핀도르? 래번클로? \n슬리데린? 후플푸프?\n흐음...어디보자...\n";
+
 		// JTextArea(대화 상자) 생성  
 		ta = new JTextArea("");   	//JTextArea 생성
 		ta.setBounds(635, 50, 510, 500); 	    //JTeatArea 크기 및 위치 지정
@@ -259,7 +274,8 @@ public class F_Stage3Panel extends JPanel{
 
 		this.add(hr);
 		this.add(bm);
-
+		this.add(success);
+		this.add(fail);
 		this.add(hpbar);
 		panel.add(hp[0]);
 		panel.add(hp[1]);
@@ -357,6 +373,7 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+
 							}
 
 
@@ -365,6 +382,7 @@ public class F_Stage3Panel extends JPanel{
 					}
 					if(voldmort.getHp()<=0) {
 						System.out.println("!!!!!볼드모트를 물리쳤습니다.");
+						new A_Music().intoBgmStop();
 						F_ChangePanel cp = new F_ChangePanel(mf, panel);
 						F_SuccessPanel sp = new F_SuccessPanel(mf);
 						cp.replacePanel(sp);
@@ -421,7 +439,7 @@ public class F_Stage3Panel extends JPanel{
 							@Override
 							public void run() {
 								panel.remove(sksmash);	//skill 라벨 제거 
-								
+
 								for(int i = 9; i>=0; i--) {
 									if(i >= voldmort.getHplife()) {
 										panel.remove(vmhp[i]);
@@ -467,19 +485,22 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+
 							}
 
 						};
 						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
 					}
 					if(voldmort.getHp()<=0) {
-						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+						System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+						new A_Music().intoBgmStop();
 						F_ChangePanel cp = new F_ChangePanel(mf, panel);
 						F_SuccessPanel sp = new F_SuccessPanel(mf);
 						cp.replacePanel(sp);
 					}
 					if(harry.getHp()<=0){
 						System.out.println("재도전하시겠습니까?");
+						new A_Music().intoBgmStop();
 						F_ChangePanel cp = new F_ChangePanel(mf, panel);
 						F_FailPanel fp = new F_FailPanel(mf);
 						cp.replacePanel(fp);
@@ -553,6 +574,7 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+
 							}
 
 						};
@@ -560,6 +582,7 @@ public class F_Stage3Panel extends JPanel{
 					}
 					if(harry.getHp()<=0){
 						System.out.println("재도전하시겠습니까?");
+						new A_Music().intoBgmStop();
 						F_ChangePanel cp = new F_ChangePanel(mf, panel);
 						F_FailPanel fp = new F_FailPanel(mf);
 						cp.replacePanel(fp);
@@ -644,7 +667,7 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(skct, 0);
 						panel.revalidate();
 						panel.repaint();
-						
+
 						voldmort.setHp(voldmort.getHp() -30);
 						voldmort.setHplife(voldmort.getHplife() -3);
 						System.out.println("해리의 카운터! 볼드모트의 체력이 30 감소합니다.");
@@ -672,20 +695,21 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-							}
-							
 
+							}
 						};
 						ts.schedule(tsm, 1400);
 					}
 					if(voldmort.getHp()<=0) {
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+						new A_Music().intoBgmStop();
 						F_ChangePanel cp = new F_ChangePanel(mf, panel);
 						F_SuccessPanel sp = new F_SuccessPanel(mf);
 						cp.replacePanel(sp);
 					}
 					if(harry.getHp()<=0){
 						System.out.println("재도전하시겠습니까?");
+						new A_Music().intoBgmStop();
 						F_ChangePanel cp = new F_ChangePanel(mf, panel);
 						F_FailPanel fp = new F_FailPanel(mf);
 						cp.replacePanel(fp);
@@ -693,7 +717,25 @@ public class F_Stage3Panel extends JPanel{
 				}
 			}
 		});
+		success.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop();
+				F_ChangePanel cp = new F_ChangePanel(mf, panel);
+				F_SuccessPanel sp = new F_SuccessPanel(mf);
+				cp.replacePanel(sp);
+			}
+		});
 		
+		fail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop();
+				F_ChangePanel cp = new F_ChangePanel(mf, panel);
+				F_FailPanel fp = new F_FailPanel(mf);
+				cp.replacePanel(fp);
+			}
+		});
 
 	}
 }

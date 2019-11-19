@@ -4,6 +4,8 @@ import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import view.A_Music;
 
 public class F_FailPanel extends JPanel{
 	private JFrame mf;
@@ -24,29 +27,42 @@ public class F_FailPanel extends JPanel{
 		
 		JLabel fail = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage3_fail.gif").getImage().getScaledInstance(1280, 720, 0)));
 		fail.setBounds(0, 0, 1280, 720);
+		new A_Music().stage3_fail();
 		
-		Dialog popfail = new Dialog(mf, "ÆĞ¹è");
+		Dialog popfail = new Dialog(mf, "íŒ¨ë°°");
 		popfail.setLayout(null);
 		popfail.setSize(500, 250);
 		popfail.setLocationRelativeTo(null);
 		
-		JLabel failmsg = new JLabel("º¼µå¸ğÆ®¿¡°Ô ÆĞ¹èÇÏ¿´½À´Ï´Ù.");
+		JLabel failmsg = new JLabel("ë³¼ë“œëª¨íŠ¸ì—ê²Œ íŒ¨ë°°í•˜ì…¨ìŠµë‹ˆë‹¤...");
 		failmsg.setBounds(140, 50, 300, 100);
-		failmsg.setFont(new Font("DungGenMo", 0, 30));
+		failmsg.setFont(new Font("DungGenMo", 0, 20));
 		
-		JButton retry = new JButton("ÀçµµÀüÇÏ½Ã°Ú½À´Ï±î");
+		JButton retry = new JButton("ì¬ë„ì „");
 		retry.setBounds(90, 150, 150, 50);
 		retry.setFont(new Font("DungGeunMo", 0, 20));
 		
-		JButton tomain = new JButton("¸ŞÀÎÆäÀÌÁö·Î µ¹¾Æ°©´Ï´Ù.");
+		JButton tomain = new JButton("ë©”ì¸í˜ì´ì§€ë¡œ...");
 		tomain.setBounds(280, 150, 150, 50);
-		tomain.setFont(new Font("DungGeunMo", 0, 20));
+		tomain.setFont(new Font("DungGeunMo", 0, 15));
 		
 		popfail.add(failmsg);
 		popfail.add(retry);
 		popfail.add(tomain);
 		
 		this.add(fail);
+		Timer ts = new Timer();	//Timer ì‹¤í–‰
+		TimerTask tsm = new TimerTask() {
+
+			@Override
+			public void run() {
+				popfail.setVisible(true);
+			}//TimerTask ì‹¤í–‰
+			
+		};
+		ts.schedule(tsm, 3200);	
+		
+		
 		
 		fail.addMouseListener(new MouseAdapter() {
 			@Override
@@ -58,6 +74,7 @@ public class F_FailPanel extends JPanel{
 		retry.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop();
 				F_ChangePanel cp = new F_ChangePanel(mf, panel);
 				F_Stage3Panel sp = new F_Stage3Panel(mf);
 				cp.replacePanel(sp);
@@ -69,6 +86,7 @@ public class F_FailPanel extends JPanel{
 		tomain.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop();
 				F_ChangePanel cp = new F_ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
