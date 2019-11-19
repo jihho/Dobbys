@@ -160,6 +160,8 @@ public class A_ChangePage extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("돌아가기");
+				new A_Music().btnEffect();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				A_LoginPanel fp = new A_LoginPanel(mf);
@@ -173,6 +175,7 @@ public class A_ChangePage extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				B_UserManager um = new B_UserManager();
+				new A_Music().btnEffect();
 
 				
 				//아이디 혹은 비밀번호 공백일시

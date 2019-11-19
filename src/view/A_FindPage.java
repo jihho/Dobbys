@@ -203,6 +203,8 @@ public class A_FindPage extends JPanel implements ActionListener{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("돌아가기");
+				new A_Music().btnEffect();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				A_LoginPanel fp = new A_LoginPanel(mf);
@@ -228,6 +230,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 
 		findIdLabel.setText("");
 		findPwLabel.setText("");
+		new A_Music().btnEffect();
 
 		B_UserManager um = new B_UserManager();
 		
