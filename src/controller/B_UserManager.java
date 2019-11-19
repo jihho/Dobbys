@@ -9,7 +9,7 @@ import model.vo.User;
 public class B_UserManager {
 	private B_UserDao ud = new B_UserDao();
 
-	//새 유저 등록용 메소드
+	//새 유저 등록용 메소드 (회원가입 페이지에서 사용)
 	public void insertUser(User u) {
 
 		//파일에 기록된 리스트 조회
@@ -35,6 +35,10 @@ public class B_UserManager {
 
 	}
 
+	//사용 예시)
+	//B_UserManager um = new B_UserManager();
+	//um.printAll();
+	//파일에 들어있는 모든 유저의 값 출력
 	public void printAll() {
 		ArrayList<User> list = ud.readUserList();
 		if(list == null) {
@@ -104,7 +108,23 @@ public class B_UserManager {
 		return false;
 	}
 
-	//LoginCount 찾기용 (count = 0일시 반배정화면 count=1일시 메인화면)
+	//네임 찾기용 (메인페이지 사용) 
+	public String selectName(String Id) {
+		ArrayList<User> list = ud.readUserList();
+		
+		User selectedUser = null;
+		if(list != null) {
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getId().equals(Id)) {
+					selectedUser = list.get(i);
+					break;
+				}
+			}
+		}
+		return selectedUser.getName();
+	}
+	
+	//LoginCount 찾기용 (count = 0일시 반배정화면 count=1일시 메인화면), 로그인 후 인트로비디오페이지영상에서 사용
 	public int selectLoginCount(String Id) {
 		ArrayList<User> list = ud.readUserList();
 
@@ -140,6 +160,7 @@ public class B_UserManager {
 
 
 	}
+	
 	// 임시 비밀번호 변경
 	public void updatePw(String id, String Pw) {
 		// 전체 리스트 조회
@@ -164,7 +185,11 @@ public class B_UserManager {
 		}
 	}
 
-	
+	//사용 예시)
+	//UserManager um = new UserManager();
+	//String[] result = um.selectUserScore(User.playerId);
+	//result[0] -> 현재 유저의 score1값
+	//result[1] -> 현재 유저의 score2값
 	//현재 유저의 score1, score2, score3, total, 이름, 기숙사값 반환 (랭킹에서 사용)
 	public String[] selectUserScore(String Id) {
 		String[] userScore = new String[6];
@@ -189,7 +214,7 @@ public class B_UserManager {
 		return userScore;
 	}
 
-	//	Score1, Score2, Score3 변경 방법 예시)
+	//	Score1, Score2, Score3 변경 사용 예시)
 	//	UserManager um = new UserManager();
 	//	um.updateScore1(User.playerid, 700);
 	
@@ -272,6 +297,9 @@ public class B_UserManager {
 		}
 	}
 
+	//사용예시)
+	//B_UserManager um = new B_UserManager();
+	//um.updateDormitory(User.playerId, "그리핀도르")
 	//배정된 기숙사 입력 메소드 (기숙사 배정 페이지에서 사용)
 	public void updateDormitory(String id, String dormitory) {
 		ArrayList<User> list = ud.readUserList();
@@ -291,6 +319,12 @@ public class B_UserManager {
 		}
 	}
 	
+	//사용 예시)
+	//UserManager um = new UserManager();
+	//String[][] result = um.sortList(new DescUserTotal());
+	//result[0][0]의 의미 => total값 1위  User 객체의 score1 점수 값
+	//result[0][1]의 의미 => total값 1위  User 객체의 score2 점수 값
+	//result[1][5]의 의미 => total값 2위 User 객체의  dormitory(기숙사) 값 (예) 그리핀도르, 슬리데린...)
 	//정렬 처리용 메소드 (랭킹 페이지에서 사용)
 	public String[][] sortList(Comparator c) {
 		//리스트 전체 조회
