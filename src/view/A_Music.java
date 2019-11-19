@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.FloatControl;
 
 public class A_Music {
 	public static Clip clip;
@@ -215,6 +216,9 @@ public class A_Music {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
+			FloatControl gainControl = 
+				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-9.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			clip.loop(1);
 			

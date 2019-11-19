@@ -14,12 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import controller.B_UserManager;
 import controller.C_GameStage;
 import game.stage3.controller.F_Stage3Play;
 import game.stage3.model.vo.F_General;
 import game.stage3.model.vo.F_Harry;
 import game.stage3.model.vo.F_Voldmort;
 import game.stage3.views.F_SuccessPanel;
+import model.vo.User;
 import view.A_Music;
 import view.C_RankingPage;
 import game.stage3.views.F_FailPanel;
@@ -46,7 +48,7 @@ public class F_Stage3Panel extends JPanel{
 	private JButton counter;
 
 
-	private F_General harry = new F_Harry(100, 10, 20, 30, 10);	//체력, 공격, 스매쉬, 카운터
+	private F_General harry = new F_Harry(100, 10, 20, 30, 10);	//체력, 공격, 스매쉬, 카운터, 체력 칸
 	private F_General voldmort = new F_Voldmort(100, 10, 20, 30, 10);
 
 	private JLabel[] hp = new JLabel[10];
@@ -189,7 +191,7 @@ public class F_Stage3Panel extends JPanel{
 		counter = new JButton(new ImageIcon("images/stage3/counter.png"));
 		counter.setBounds(270, 620, 186, 81);
 
-		//로그 텍스트 필드
+		//로그 텍스트에어리어
 		log = new JTextArea();
 		log.setBounds(610, 520, 620, 180);
 		log.setEditable(false);
@@ -322,9 +324,11 @@ public class F_Stage3Panel extends JPanel{
 			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
 				if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
 					int vmchoice = (int)(Math.random()*4);
+					new F_EffectMusic().stage3_atk();
 					if(vmchoice == 0 || vmchoice == 1 || vmchoice == 2) {
 						panel.add(skill);
 						panel.add(vmskdf);
+						
 						panel.setComponentZOrder(skill, 0);
 						panel.setComponentZOrder(vmskdf, 0);
 						panel.revalidate();
@@ -343,6 +347,28 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
 							}
 						};
 						ts.schedule(tsm, 1400);
@@ -373,20 +399,35 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
 							}
 
 
 						};
 						ts.schedule(tsm, 1400);
 					}
-					if(voldmort.getHp()<=0) {
-						System.out.println("!!!!!볼드모트를 물리쳤습니다.");
-						new A_Music().intoBgmStop();
-						F_ChangePanel cp = new F_ChangePanel(mf, panel);
-						F_SuccessPanel sp = new F_SuccessPanel(mf);
-						cp.replacePanel(sp);
-					}
+					
 				}
 			}
 		});
@@ -395,6 +436,7 @@ public class F_Stage3Panel extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
 				if(e.getSource() == smash){	//getSource를 atk버튼을 받게 함
+					new F_EffectMusic().stage3_smash();
 					int vmchoice = (int)(Math.random()*4);
 					if(vmchoice == 0 || vmchoice == 2) {
 						panel.add(sksmash);
@@ -417,6 +459,36 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 						};
 						ts.schedule(tsm, 1400);
@@ -450,6 +522,36 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 
 						};
@@ -485,26 +587,42 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 
 						};
 						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
 					}
-					if(voldmort.getHp()<=0) {
-						System.out.println("!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
-						new A_Music().intoBgmStop();
-						F_ChangePanel cp = new F_ChangePanel(mf, panel);
-						F_SuccessPanel sp = new F_SuccessPanel(mf);
-						cp.replacePanel(sp);
-					}
-					if(harry.getHp()<=0){
-						System.out.println("재도전하시겠습니까?");
-						new A_Music().intoBgmStop();
-						F_ChangePanel cp = new F_ChangePanel(mf, panel);
-						F_FailPanel fp = new F_FailPanel(mf);
-						cp.replacePanel(fp);
-					}
+					
 				}
 			}
 		});
@@ -513,6 +631,7 @@ public class F_Stage3Panel extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
 				if(e.getSource() == df){	//getSource를 atk버튼을 받게 함
+					new F_EffectMusic().stage3_df();
 					int vmchoice = (int)(Math.random()*4);
 					if(vmchoice == 0 || vmchoice == 1 || vmchoice == 3) {
 						panel.add(skdf);	//skill 라벨 추가
@@ -538,6 +657,14 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 
 						};
@@ -574,19 +701,20 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 
 						};
 						ts.schedule(tsm, 1400);
 					}
-					if(harry.getHp()<=0){
-						System.out.println("재도전하시겠습니까?");
-						new A_Music().intoBgmStop();
-						F_ChangePanel cp = new F_ChangePanel(mf, panel);
-						F_FailPanel fp = new F_FailPanel(mf);
-						cp.replacePanel(fp);
-					}
+					
 				}
 			}
 		});
@@ -595,6 +723,7 @@ public class F_Stage3Panel extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
 				if(e.getSource() == counter){	//getSource를 atk버튼을 받게 함
+					new F_EffectMusic().stage3_ct();
 					int vmchoice = (int)(Math.random()*4);
 					if(vmchoice == 0) {
 						panel.add(skct);	//skill 라벨 추가
@@ -628,6 +757,36 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 
 						};
@@ -656,6 +815,36 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 
 						};
@@ -695,25 +884,41 @@ public class F_Stage3Panel extends JPanel{
 								//panel.add(ef);			//ef 라벨 추가
 								//ef.updateUI();			//라벨 갱신 
 								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-
+								if(voldmort.getHp()<=0) {
+									System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									
+									switch(harry.getHplife()) {
+									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+									}
+									
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_SuccessPanel sp = new F_SuccessPanel(mf);
+									cp.replacePanel(sp);
+								}
+								if(harry.getHp()<=0){
+									System.out.println("재도전하시겠습니까?");
+									new A_Music().intoBgmStop();
+									new F_EffectMusic().intoBgmStop();
+									F_ChangePanel cp = new F_ChangePanel(mf, panel);
+									F_FailPanel fp = new F_FailPanel(mf);
+									cp.replacePanel(fp);
+								}
 							}
 						};
 						ts.schedule(tsm, 1400);
 					}
-					if(voldmort.getHp()<=0) {
-						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!볼드모트를 물리쳤습니다.");
-						new A_Music().intoBgmStop();
-						F_ChangePanel cp = new F_ChangePanel(mf, panel);
-						F_SuccessPanel sp = new F_SuccessPanel(mf);
-						cp.replacePanel(sp);
-					}
-					if(harry.getHp()<=0){
-						System.out.println("재도전하시겠습니까?");
-						new A_Music().intoBgmStop();
-						F_ChangePanel cp = new F_ChangePanel(mf, panel);
-						F_FailPanel fp = new F_FailPanel(mf);
-						cp.replacePanel(fp);
-					}
+					
 				}
 			}
 		});
@@ -721,6 +926,20 @@ public class F_Stage3Panel extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				new A_Music().intoBgmStop();
+				
+				switch(harry.getHplife()) {
+				case 1: new B_UserManager().updateScore3("playerId", 100); break;
+				case 2: new B_UserManager().updateScore3("playerId", 200); break;
+				case 3: new B_UserManager().updateScore3("playerId", 300); break;
+				case 4: new B_UserManager().updateScore3("playerId", 400); break;
+				case 5: new B_UserManager().updateScore3("playerId", 500); break;
+				case 6: new B_UserManager().updateScore3("playerId", 600); break;
+				case 7: new B_UserManager().updateScore3("playerId", 700); break;
+				case 8: new B_UserManager().updateScore3("playerId", 800); break;
+				case 9: new B_UserManager().updateScore3("playerId", 900); break;
+				case 10: new B_UserManager().updateScore3("playerId", 1000); break;
+				}
+				
 				F_ChangePanel cp = new F_ChangePanel(mf, panel);
 				F_SuccessPanel sp = new F_SuccessPanel(mf);
 				cp.replacePanel(sp);
