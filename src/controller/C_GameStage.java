@@ -16,6 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import game.stage1.controller.D_Controller;
+import game.stage2.view.E_StartPanel;
+import game.stage3.views.F_Stage3Panel;
+import view.A_Music;
 import view.C_RandomAssign;
 import view.C_RankingPage;
 import view.ChangePanel;
@@ -117,17 +120,19 @@ public class C_GameStage extends JPanel{
 			cp.replacePanel(ra);
 			}
 		});
-		
+
 		
 		// stage1_btn 버튼 이벤트
 		stage1_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-        
+			new A_Music().door();
+			
 			ChangePanel cp = new ChangePanel(mf, panel);			
 			D_Controller dc = new D_Controller(mf); 			
 			cp.replacePanel(dc);
+			
 
 			}
 		});
@@ -137,10 +142,10 @@ public class C_GameStage extends JPanel{
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-			ChangePanel cp = new ChangePanel(mf, panel);
+			new A_Music().door();
 			
+			ChangePanel cp = new ChangePanel(mf, panel);
 			E_StartPanel st2 = new E_StartPanel(mf); 
-		
 			cp.replacePanel(st2);
 			}
 		});
@@ -150,10 +155,10 @@ public class C_GameStage extends JPanel{
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
+			new A_Music().door();
+			
 			ChangePanel cp = new ChangePanel(mf, panel);
-			
 			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
-			
 			cp.replacePanel(str3);
 			}
 		});
@@ -163,10 +168,9 @@ public class C_GameStage extends JPanel{
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
+			new A_Music().door();
 			ChangePanel cp = new ChangePanel(mf, panel);
-			
 			C_RankingPage rp = new C_RankingPage(mf); 
-		
 			cp.replacePanel(rp);
 			}
 		});
