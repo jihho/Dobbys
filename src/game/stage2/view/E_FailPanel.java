@@ -4,6 +4,7 @@ import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import game.stage2.model.vo.E_EffectMusic;
+import game.stage2.model.vo.E_Quest;
 import view.A_Music;
 
 public class E_FailPanel extends JPanel {
@@ -22,6 +25,8 @@ public class E_FailPanel extends JPanel {
 		this.mf = mf;
 		panel = this;
 		this.setLayout(null);
+		
+		new E_EffectMusic().stage2_fire();
 		
 		//실패이미지 출력
 		JLabel fail = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_fail.gif").
@@ -72,6 +77,10 @@ public class E_FailPanel extends JPanel {
 				E_StartPanel sp = new E_StartPanel(mf);
 				cp.replacePanel(sp);
 				popfail.dispose();
+				
+				E_Quest qq = new E_Quest();
+				qq.setRandom(new Random().nextInt(3) + 1);
+				
 				new A_Music().intoBgmStop();
 			}
 			
@@ -85,6 +94,10 @@ public class E_FailPanel extends JPanel {
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 				popfail.dispose();
+				
+				E_Quest qq = new E_Quest();
+				qq.setRandom(new Random().nextInt(3) + 1);
+				
 				new A_Music().intoBgmStop();
 			}
 		});

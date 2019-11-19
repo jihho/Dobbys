@@ -5,6 +5,7 @@ import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import game.stage2.model.vo.E_EffectMusic;
+import game.stage2.model.vo.E_Quest;
 import view.A_Music;
 
 
@@ -34,6 +37,8 @@ public class E_SuccessPanel extends JPanel{
 		suc = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_suss.gif").
 				getImage().getScaledInstance(1280, 720, 0)));
 		suc.setBounds(0, 0 , 1280, 720);
+		
+		new E_EffectMusic().stage2_suc();
 		
 		//성공팝업
 		Dialog succ = new Dialog(mf, "성공팝업");
@@ -73,6 +78,9 @@ public class E_SuccessPanel extends JPanel{
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 				succ.dispose();
+				E_Quest qq = new E_Quest();
+				qq.setRandom(new Random().nextInt(3) + 1);
+				
 				new A_Music().intoBgmStop();
 				
 

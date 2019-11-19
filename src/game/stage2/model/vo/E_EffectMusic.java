@@ -38,5 +38,74 @@ public class E_EffectMusic {
 		clip.stop();
 		clip.close();
 	}
+	public static void stage2_fire() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/stage2_fire.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void stage2_click() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/stage2_click.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void stage2_suc() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/stage2_suc2.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
 	
 }
