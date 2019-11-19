@@ -24,12 +24,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import controller.B_UserManager;
 import controller.C_GameStage;
+import model.vo.User;
 
 public class C_RandomAssign extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
+	private int ctn = 0;
 	
 	public C_RandomAssign(JFrame mf) {
 		
@@ -41,10 +44,10 @@ public class C_RandomAssign extends JPanel{
 		
 		// 라벨 생성
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/sortpage.png").getImage().getScaledInstance(1300, 770, 0)));
-		JLabel slytherin = new JLabel(new ImageIcon("images/main/z_slytherin(200x250).png"));
-		JLabel ravaenclaw = new JLabel(new ImageIcon("images/main/z_ravaenclaw(200x250).png"));
-		JLabel huffepuff = new JLabel(new ImageIcon("images/main/z_huffepuff(200x250).png"));
-		JLabel gryffindor = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
+		JLabel slytherin_la = new JLabel(new ImageIcon("images/main/z_slytherin(200x250).png"));
+		JLabel ravaenclaw_la = new JLabel(new ImageIcon("images/main/z_ravaenclaw(200x250).png"));
+		JLabel huffepuff_la = new JLabel(new ImageIcon("images/main/z_huffepuff(200x250).png"));
+		JLabel gryffindor_la = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
 
 		//JButton 생성
 		JButton random_btn = new JButton("배 정");
@@ -59,15 +62,18 @@ public class C_RandomAssign extends JPanel{
 		JDialog R_sd = new JDialog(mf, "Ravaenclaw");
 		JDialog G_sd = new JDialog(mf, "Gryffindor");
 
+		// User 매니저 생성자 생성
+		B_UserManager um = new B_UserManager();
+		
 		// 위치 및 크기 지정
 		this.setBounds(0, 0, 1300, 770);
 		background.setBounds(0, 0, 1300, 770);
 		random_btn.setBounds(540, 500, 200, 100);
 
-		slytherin.setBounds(-350, -50, 1000, 500);
-		ravaenclaw.setBounds(-20, -50, 1000, 500);
-		huffepuff.setBounds(300, -50, 1000, 500);
-		gryffindor.setBounds(600, -50, 1000, 500);
+		slytherin_la.setBounds(-350, -50, 1000, 500);
+		ravaenclaw_la.setBounds(-20, -50, 1000, 500);
+		huffepuff_la.setBounds(300, -50, 1000, 500);
+		gryffindor_la.setBounds(600, -50, 1000, 500);
 
 		S_btn.setBounds(540, 500, 120, 70);
 		H_btn.setBounds(540, 500, 120, 70);
@@ -85,8 +91,8 @@ public class C_RandomAssign extends JPanel{
 		G_sd.setLocationRelativeTo(mf);
 		
 		// 폰트, 색상 설정
-		random_btn.setBackground(Color.GRAY);        	   		// 버튼 색깔 변경
-		random_btn.setForeground(Color.WHITE);			    // 버튼 글자 색깔 변경
+		random_btn.setBackground(Color.GRAY);        	   				 // 버튼 색깔 변경
+		random_btn.setForeground(Color.WHITE);			  			     // 버튼 글자 색깔 변경
 		random_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 40));      // 버튼 글자 폰트, 효과, 크기 변경
 		
 		S_btn.setBackground(new Color(9, 71, 34));
@@ -124,20 +130,22 @@ public class C_RandomAssign extends JPanel{
 		G_btn.setBorderPainted(false);		
 		G_btn.setFocusPainted(false);		
 		//G_btn.setContentAreaFilled(false);	
-		
+
 		
 		// 이벤트 설정
  		random_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				um.updateLoginCount(User.playerId);
+
 				int ra_random = new Random().nextInt(4) + 1;
-				
 				switch(ra_random) {
-				case 1 : S_sd.setVisible(true); break;
-				case 2 : H_sd.setVisible(true); break;
-				case 3 : R_sd.setVisible(true); break;
-				case 4 : G_sd.setVisible(true); new A_Music().gryffindor(); break;	
+				case 1 : um.updateDormitory(User.playerId, "slytherin"); S_sd.setVisible(true); break;
+				case 2 : um.updateDormitory(User.playerId, "huffepuff"); H_sd.setVisible(true); break;
+				case 3 : um.updateDormitory(User.playerId, "ravaenclaw"); R_sd.setVisible(true); break;
+				case 4 : um.updateDormitory(User.playerId, "gryffindor"); G_sd.setVisible(true); new A_Music().gryffindor(); break;	
 				}
+
 			}
 		});
 
@@ -203,10 +211,10 @@ public class C_RandomAssign extends JPanel{
 		G_sd.add(G_btn, "South");
 		
 		// 패널에  추가
-		this.add(slytherin);
-		this.add(ravaenclaw);
-		this.add(huffepuff);
-		this.add(gryffindor);
+		this.add(slytherin_la);
+		this.add(ravaenclaw_la);
+		this.add(huffepuff_la);
+		this.add(gryffindor_la);
 		
 		this.add(random_btn);
 		this.add(background);

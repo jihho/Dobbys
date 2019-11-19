@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,11 +20,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import controller.B_UserManager;
+import controller.C_GameStage;
+import model.comparator.DescUserTotal;
+import model.vo.User;
+
 public class C_RankingPage extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
-	
 	public C_RankingPage(JFrame mf) {
 
 		this.mf = mf;
@@ -54,20 +60,74 @@ public class C_RankingPage extends JPanel{
 		// 버튼 생성 
 		JButton return_btn = new JButton("RETURN");
 
-		// 랭킹점수 출력하는 JTextArea 생성
-		JTextArea ta1 = new JTextArea("0.  1000     1000     1000     3000    유저 닉네임");
+		
+		// 현재 유저의 정보값 불러오기
+		B_UserManager um = new B_UserManager();
+		String[] test = um.selectUserScore(User.playerId);
+		//test[0] score1 값
+		//test[1] score2 값
+		//test[2] score3 값
+		//test[3] Total 값
+		//test[4] 닉네임
+		//test[5] 배정된 기숙사
 		
 		// 랭킹점수 출력하는 JTextArea 생성
-		JTextArea ta2 = new JTextArea(
-				  "1.  1000     1000     1000     3000    도비1\n"
-				+ "2.  1000     1000     1000     3000    도비2\n"
-				+ "3.  1000     1000     1000     3000    도비3\n"
-				+ "4.  1000     1000     1000     3000    도비4\n"
-				+ "5.  1000     1000     1000     3000    도비5\n"
-				+ "6.  1000     1000     1000     3000    도비6\n"
-				+ "7.  1000     1000     1000     3000    도비7\n"
-				);
-
+		JTextArea score1 = new JTextArea(test[0]);
+		JTextArea score2 = new JTextArea(test[1]);
+		JTextArea score3 = new JTextArea(test[2]);
+		JTextArea total = new JTextArea(test[3]);
+		JTextArea name = new JTextArea(test[4]);
+		JTextArea dormitory = new JTextArea(test[5]);
+		
+		switch(test[5]) {
+		case "griyffindor" : System.out.println("그리핀도르"); break; 
+		case "ravaenclaw" : System.out.println("래번클로"); break;
+		case "huffepuff" : System.out.println("후플푸프"); break;
+		case "slytherin" : System.out.println("슬리데린"); break;
+		default : System.out.println("왜 안나와");
+		}
+		
+		
+		score1.setBounds(260, 310, 500, 300);
+		score2.setBounds(440, 310, 500, 300);
+		score3.setBounds(610, 310, 500, 300);
+		total.setBounds(780, 310, 500, 300);
+		name.setBounds(920, 310, 500, 300);
+		//dormitory.setBounds(980, 310, 500, 300);
+		
+		score1.setForeground(Color.YELLOW);	
+		score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		score1.setEditable(false); 	
+		score2.setForeground(Color.YELLOW);	
+		score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		score2.setEditable(false);
+		score3.setForeground(Color.YELLOW);	
+		score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		score3.setEditable(false);
+		total.setForeground(Color.YELLOW);	
+		total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		total.setEditable(false);
+		name.setForeground(Color.YELLOW);	
+		name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		name.setEditable(false);
+		dormitory.setForeground(Color.YELLOW);	
+		dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		dormitory.setEditable(false);
+		
+		
+		// 랭킹점수 출력하는 JTextArea 생성
+//		JTextArea ta2 = new JTextArea();
+//	
+//		String[][] test2 = um.sortList(DescUserTotal.compare(aaTextInfo, aaTextInfo));
+//		
+//		for(int i = 0; i < 7; i++) {
+//			ta2 = new JTextArea(test2[i][0] + "     " + test2[i][1] + "     " + test2[i][2] 
+//			+ "     " + test2[i][3] + "     " + test2[i][4] + "     " + test2[i][5]);
+//		
+//		ta2.setBounds(150, 360, 1100, 300); 	//JTeatArea 크기 및 위치 지정		
+//		ta2.setForeground(Color.WHITE);	
+//		ta2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+//		ta2.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 		
 		// 위치와 크기 설정 	
 		this.setBounds(0, 0, 1300, 770);
@@ -90,8 +150,8 @@ public class C_RankingPage extends JPanel{
 		slytherin.setBounds(670, 212, 1000, 500);
 
 
-		ta1.setBounds(150, 310, 1100, 300); 
-		ta2.setBounds(150, 360, 1100, 300); 	//JTeatArea 크기 및 위치 지정
+ 
+
 
 
 		// 폰트 및 글씨 크기
@@ -111,16 +171,18 @@ public class C_RankingPage extends JPanel{
 		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		
 		
-		ta1.setForeground(Color.YELLOW);	
-		ta1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		ta1.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
-		
-		ta2.setForeground(Color.WHITE);	
-		ta2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		ta2.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 
-		background.add(ta1);
-		background.add(ta2);
+		
+
+
+		background.add(score1);
+		background.add(score2);
+		background.add(score3);
+		background.add(total);
+		background.add(name);
+		background.add(dormitory);
+		
+//		background.add(ta2);
 		this.add(background);
 		
 		
@@ -142,9 +204,12 @@ public class C_RankingPage extends JPanel{
 		stage3_name.setOpaque(false);
 		ranking_name.setOpaque(false);
 
-		ta1.setOpaque(false);
-		ta2.setOpaque(false);
-		
+		score1.setOpaque(false);
+		score2.setOpaque(false);
+		score3.setOpaque(false);
+		total.setOpaque(false);
+		name.setOpaque(false);
+		dormitory.setOpaque(false);		
 		
 		
 		
@@ -155,9 +220,9 @@ public class C_RankingPage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
 			
-			C_RandomAssign ra = new C_RandomAssign(mf); 
+			C_GameStage gs = new C_GameStage(mf); 
 		
-			cp.replacePanel(ra);
+			cp.replacePanel(gs);
 			}
 		});
 		

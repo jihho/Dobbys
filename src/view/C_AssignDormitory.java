@@ -22,10 +22,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
+import controller.B_UserManager;
+import model.vo.User;
+
 public class C_AssignDormitory extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
-	private boolean sw = true;
 	
 	public C_AssignDormitory(JFrame mf) {
 		this.mf = mf;
@@ -69,6 +71,7 @@ public class C_AssignDormitory extends JPanel{
 	    this.add(choice_btn);
 	    this.add(background);
 	    
+	    
 	    // choice_btn 버튼 이벤트
 	    choice_btn.addMouseListener(new MouseAdapter() {
 	    	
@@ -79,6 +82,7 @@ public class C_AssignDormitory extends JPanel{
 	    		
 	    		cp.replacePanel(ra);
 	    		new A_Music().intoBgmStop();
+	    		
 	    	}
 	    });
 	    
