@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/controller/B_UserManager.java=UTF-8
 encoding//src/game/stage1/controller/Controller.java=UTF-8
 encoding//src/game/stage1/controller/D_ChangePanel.java=UTF-8
 encoding//src/game/stage1/controller/D_Controller.java=UTF-8
@@ -34,5 +35,7 @@ encoding//src/view/B_CheckPanel.java=UTF-8
 encoding//src/view/B_JoinPanel.java=UTF-8
 encoding//src/view/C_AssignDormitory.java=UTF-8
 encoding//src/view/C_RandomAssign.java=UTF-8
+encoding//src/view/C_RankPanel.java=UTF-8
+encoding//src/view/C_RankingPage.java=UTF-8
 encoding/<project>=UTF-8
 encoding/src=UTF-8

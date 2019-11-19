@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.B_UserManager;
 import controller.C_GameStage;
 import view.A_Music;
 import view.C_RankingPage;
