@@ -164,9 +164,10 @@ public class B_UserManager {
 		}
 	}
 
-	//현재 유저의 score1, score2, score3, total값 반환 (랭킹에서 사용)
+	
+	//현재 유저의 score1, score2, score3, total, 이름, 기숙사값 반환 (랭킹에서 사용)
 	public String[] selectUserScore(String Id) {
-		String[] userScore = new String[5];
+		String[] userScore = new String[6];
 
 		ArrayList<User> list = ud.readUserList();
 		User selectedUser = null;
@@ -183,13 +184,14 @@ public class B_UserManager {
 		userScore[2] = Integer.toString(selectedUser.getScore3());
 		userScore[3] = Integer.toString(selectedUser.getTotal());
 		userScore[4] = selectedUser.getName();
-
+		userScore[5] = selectedUser.getDormitory();
+		
 		return userScore;
 	}
 
 	//	Score1, Score2, Score3 변경 방법 예시)
 	//	UserManager um = new UserManager();
-	//	um.updateScore1("test1", 700);
+	//	um.updateScore1(User.playerid, 700);
 	
 	//Score1 변경용 메소드 (Stage1 게임에서 사용)
 	public void updateScore1(String id, int score1) {
@@ -270,6 +272,24 @@ public class B_UserManager {
 		}
 	}
 
+	//배정된 기숙사 입력 메소드 (기숙사 배정 페이지에서 사용)
+	public void updateDormitory(String id, String dormitory) {
+		ArrayList<User> list = ud.readUserList();
+		
+		int result = 0;
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getId().equals(id)) {
+				list.get(i).setDormitory(dormitory);
+				result = ud.writeUserList(list);
+				break;
+			}
+		}
+		
+		if(result > 0) {
+			System.out.println("updateDormitory");
+		}
+	}
 	
 	//정렬 처리용 메소드 (랭킹 페이지에서 사용)
 	public String[][] sortList(Comparator c) {
@@ -277,7 +297,7 @@ public class B_UserManager {
 		ArrayList<User> list = ud.readUserList();
 		//정렬
 		list.sort(c);
-		String[][] sortList = new String[list.size()][5];
+		String[][] sortList = new String[list.size()][6];
 		for(int i = 0; i < list.size(); i++) {
 			//System.out.println(list.get(i).getTotal());
 			sortList[i][0] = Integer.toString(list.get(i).getScore1());
@@ -285,7 +305,7 @@ public class B_UserManager {
 			sortList[i][2] = Integer.toString(list.get(i).getScore3());
 			sortList[i][3] = Integer.toString(list.get(i).getTotal());
 			sortList[i][4] = list.get(i).getName();
-
+			sortList[i][5] = list.get(i).getDormitory();
 		}
 
 		return sortList;
