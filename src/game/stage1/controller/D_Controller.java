@@ -21,7 +21,7 @@ import game.stage1.model.vo.D_Snitch;
 import game.stage1.view.D_BackgroundModify;
 import model.vo.User;
 import view.A_Music;
-import view.C_GameStage;
+import controller.C_GameStage;
 
 public class D_Controller extends JPanel {
 

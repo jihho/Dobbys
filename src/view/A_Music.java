@@ -160,7 +160,7 @@ public class A_Music {
 		AudioFormat format;
 		DataLine.Info info;
 		
-		bgm = new File("sounds/gryffindor2.wav");
+		bgm = new File("sounds/gryffindor.wav");
 		
 		try {
 			stream = AudioSystem.getAudioInputStream(bgm);
