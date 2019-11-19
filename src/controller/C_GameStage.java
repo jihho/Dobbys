@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
@@ -18,8 +19,8 @@ import javax.swing.JTextArea;
 import game.stage1.controller.D_Controller;
 import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
-
-
+import model.vo.User;
+import view.A_IntroPage;
 import view.A_Music;
 
 import view.C_RandomAssign;
@@ -42,11 +43,13 @@ public class C_GameStage extends JPanel{
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		background.setBounds(0, 0, 1300, 770);
 		
+		B_UserManager um = new B_UserManager();
+		String[] test = um.selectUserScore(User.playerId);
 		
 		
 		// JTextArea(대화 상자) 생성  
-		JTextArea ta = new JTextArea("ID : 도비1");   	//JTextArea 생성
-		ta.setBounds(530, 640, 400, 60); 	    			//JTeatArea 크기 및 위치 지정
+		JTextArea ta = new JTextArea(test[4] + "님이 접속하셨습니다.");   	//JTextArea 생성
+		ta.setBounds(380, 640, test[4].length()*50 + 450, 60); 	    			//JTeatArea 크기 및 위치 지정
 	    ta.setEditable(false); 				   				 //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 45)); 
 		ta.setBackground(new Color(0, 0, 0, 150));
@@ -67,6 +70,17 @@ public class C_GameStage extends JPanel{
 		JButton stage3_name = new JButton("Stage3");
 		JButton ranking_name = new JButton("Ranking");
 		
+		ImageIcon key = new ImageIcon("images/main/key.gif");
+		
+		// 열쇠 이미지 효과
+		stage1_btn.setRolloverIcon(key);
+		stage2_btn.setRolloverIcon(key);
+		stage3_btn.setRolloverIcon(key);
+		ranking_btn.setRolloverIcon(key);
+		stage1_btn.setBorderPainted(false);
+		stage2_btn.setBorderPainted(false);
+		stage3_btn.setBorderPainted(false);
+		ranking_btn.setBorderPainted(false);
 		
 		// 버튼 위치와 크기 설정 
 		stage1_btn.setBounds(1140, 510, 72, 70);
@@ -78,7 +92,6 @@ public class C_GameStage extends JPanel{
 		stage2_name.setBounds(825, 115, 150, 50);
 		stage3_name.setBounds(95, 115, 150, 50);
 		ranking_name.setBounds(75, 435, 150, 50);
-		
 		
 		stage1_name.setBackground(Color.GRAY);
 		stage1_name.setForeground(Color.WHITE);			   			 
@@ -97,14 +110,12 @@ public class C_GameStage extends JPanel{
 		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		
 		// 되돌아가기 버튼 생성
-		JButton return_btn = new JButton("RETURN");
+		JButton return_btn = new JButton("로그아웃");
 		return_btn.setBounds(1115, 660, 150, 50);
-//		return_Btn.setBackground(new Color(252, 220, 3));
-//		return_Btn.setForeground(Color.BLACK);			   			   // 버튼 글자 색깔 변경
 		return_btn.setBackground(Color.GRAY);
-		return_btn.setForeground(Color.WHITE);			   			   // 버튼 글자 색깔 변경
+		return_btn.setForeground(Color.WHITE);			   			     // 버튼 글자 색깔 변경
 		
-		return_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 30));      // 버튼 글자 폰트, 효과, 크기 변경
+		return_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25));      // 버튼 글자 폰트, 효과, 크기 변경
 		return_btn.setFocusPainted(false);
 		
 		return_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
@@ -117,10 +128,8 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
-			
-			C_RandomAssign ra = new C_RandomAssign(mf); 
-		
-			cp.replacePanel(ra);
+			A_IntroPage ip = new A_IntroPage(mf); 
+			cp.replacePanel(ip);
 			}
 		});
 
@@ -135,8 +144,6 @@ public class C_GameStage extends JPanel{
 			ChangePanel cp = new ChangePanel(mf, panel);			
 			D_Controller dc = new D_Controller(mf); 			
 			cp.replacePanel(dc);
-			
-
 			}
 		});
 		
@@ -225,7 +232,7 @@ public class C_GameStage extends JPanel{
 		
 		// 패널에다 버튼 추가
 		this.add(return_btn);
-		
+
 		this.add(stage1_btn);
 		this.add(stage2_btn);
 		this.add(stage3_btn);
