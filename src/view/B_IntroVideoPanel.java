@@ -8,7 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.B_UserManager;
 import controller.C_GameStage;
+import model.vo.User;
 
 public class B_IntroVideoPanel extends JPanel{
 	private JFrame mf;
@@ -29,10 +31,20 @@ public class B_IntroVideoPanel extends JPanel{
 		start.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				new A_Music().intoBgmStop();
-				ChangePanel cp = new ChangePanel(mf, panel);
-				C_GameStage gs = new C_GameStage(mf);
-				cp.replacePanel(gs);
+				B_UserManager um = new B_UserManager();
+				//um.updateLoginCount(User.playerId);
+				//System.out.println(User.playerId);
+				if(um.selectLoginCount(User.playerId) == 0) {
+					new A_Music().intoBgmStop();
+					ChangePanel cp = new ChangePanel(mf, panel);
+					C_AssignDormitory ad = new C_AssignDormitory(mf);
+					cp.replacePanel(ad);
+				}else {
+					new A_Music().intoBgmStop();
+					ChangePanel cp = new ChangePanel(mf, panel);
+					C_GameStage gs = new C_GameStage(mf);
+					cp.replacePanel(gs);
+				}
 			}
 		
 		});

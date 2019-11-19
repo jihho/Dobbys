@@ -50,14 +50,23 @@ public class C_RankingPage extends JPanel{
 		JLabel ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
 		JLabel slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
 		
-		// 
-		JButton return_btn = new JButton("RETURN");
 		
-		// 점수 출력하는 JTextArea 생성
-		JTextArea ta = new JTextArea("1.  1000     1000     1000     3000    도비1\n\n"
-				+ "2.  1000     1000     1000     3000    도비2\n\n"
-				+ "3.  1000     1000     1000     3000    도비3\n\n"
-				+ "4.  1000     1000     1000     3000    도비4");
+		// 버튼 생성 
+		JButton return_btn = new JButton("RETURN");
+
+		// 랭킹점수 출력하는 JTextArea 생성
+		JTextArea ta1 = new JTextArea("0.  1000     1000     1000     3000    유저 닉네임");
+		
+		// 랭킹점수 출력하는 JTextArea 생성
+		JTextArea ta2 = new JTextArea(
+				  "1.  1000     1000     1000     3000    도비1\n"
+				+ "2.  1000     1000     1000     3000    도비2\n"
+				+ "3.  1000     1000     1000     3000    도비3\n"
+				+ "4.  1000     1000     1000     3000    도비4\n"
+				+ "5.  1000     1000     1000     3000    도비5\n"
+				+ "6.  1000     1000     1000     3000    도비6\n"
+				+ "7.  1000     1000     1000     3000    도비7\n"
+				);
 
 		
 		// 위치와 크기 설정 	
@@ -75,12 +84,14 @@ public class C_RankingPage extends JPanel{
 		stage3_name.setBounds(580, 245, 170, 50);
 		ranking_name.setBounds(750, 245, 200, 50);
 		
-		gryffindor.setBounds(660, 85, 1000, 500);
-		huffepuff.setBounds(660, 165, 1000, 500);
-		ravaenclaw.setBounds(660, 245, 1000, 500);
-		slytherin.setBounds(660, 325, 1000, 500);
+		gryffindor.setBounds(670, 82, 1000, 500);
+		huffepuff.setBounds(670, 132, 1000, 500);
+		ravaenclaw.setBounds(670, 167, 1000, 500);
+		slytherin.setBounds(670, 212, 1000, 500);
 
-		ta.setBounds(150, 310, 1100, 300); 	//JTeatArea 크기 및 위치 지정
+
+		ta1.setBounds(150, 310, 1100, 300); 
+		ta2.setBounds(150, 360, 1100, 300); 	//JTeatArea 크기 및 위치 지정
 
 
 		// 폰트 및 글씨 크기
@@ -99,13 +110,17 @@ public class C_RankingPage extends JPanel{
 		ranking_name.setForeground(Color.WHITE);			   			 
 		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		
-		ta.setForeground(Color.WHITE);	
-		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		ta.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
-
 		
+		ta1.setForeground(Color.YELLOW);	
+		ta1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		ta1.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+		
+		ta2.setForeground(Color.WHITE);	
+		ta2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		ta2.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 
-		background.add(ta);
+		background.add(ta1);
+		background.add(ta2);
 		this.add(background);
 		
 		
@@ -126,7 +141,9 @@ public class C_RankingPage extends JPanel{
 		stage2_name.setOpaque(false);
 		stage3_name.setOpaque(false);
 		ranking_name.setOpaque(false);
-		ta.setOpaque(false);
+
+		ta1.setOpaque(false);
+		ta2.setOpaque(false);
 		
 		
 		

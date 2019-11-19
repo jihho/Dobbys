@@ -88,11 +88,11 @@ public class A_ChangePage extends JPanel {
 		panel.add(label);
 
 		// 변경할 비밀번호
-		nowPw = new JPasswordField();
-		nowPw.setBounds(400, 420, 500, 60);
-		nowPw.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		panel.add(nowPw);
-		nowPw.setColumns(15);
+		newPw = new JPasswordField();
+		newPw.setBounds(400, 420, 500, 60);
+		newPw.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		panel.add(newPw);
+		newPw.setColumns(15);
 
 		label = new JLabel("새 비밀번호");
 		label.setBounds(400, 380, 300, 50);
@@ -101,11 +101,11 @@ public class A_ChangePage extends JPanel {
 		panel.add(label);
 
 		// 변경할 비밀번호 확인
-		nowPw = new JPasswordField();
-		nowPw.setBounds(400, 520, 500, 60);
-		nowPw.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		panel.add(nowPw);
-		nowPw.setColumns(15);
+		checkPw = new JPasswordField();
+		checkPw.setBounds(400, 520, 500, 60);
+		checkPw.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		panel.add(checkPw);
+		checkPw.setColumns(15);
 
 		label = new JLabel("새 비밀번호 확인");
 		label.setBounds(400, 480, 300, 50);
@@ -114,7 +114,7 @@ public class A_ChangePage extends JPanel {
 		panel.add(label);
 		
 		changeLabel = new JLabel("");
-		changeLabel.setBounds(400, 570, 300, 50);
+		changeLabel.setBounds(400, 570, 700, 50);
 		changeLabel.setForeground(new Color(255, 255, 255));
 		changeLabel.setFont(new Font("DungGeunMo", Font.BOLD, 25));
 		panel.add(changeLabel);
@@ -176,12 +176,13 @@ public class A_ChangePage extends JPanel {
 
 				
 				//아이디 혹은 비밀번호 공백일시
-				if (e.getSource() == changeBtn1 && ((textId.getText().equals("") || (nowPw.getText().equals(""))))) {
+				if ((textId.getText().equals("") || (nowPw.getText().equals("")))) {
 					changeLabel.setText("아이디와 비밀번호를 입력해주세요.");
 					changeLabel.setForeground(new Color(230, 0, 0));
 				} else {
 
-					if (e.getSource() == changeBtn1 && um.checkUserId(textId.getText())) {
+					//아이디 존재여부
+					if (um.checkUserId(textId.getText())) {
 						//아이디가 존재하면 비밀번호 체크
 						ArrayList<User> list = ud.readUserList();
 
@@ -196,13 +197,24 @@ public class A_ChangePage extends JPanel {
 								}
 							}
 						}
-						
+						//아이디가 없을시
+						if(selectedUser == null) {
+							changeLabel.setText("아이디가 존재하지 않습니다.");
+							changeLabel.setForeground(new Color(230, 0, 0));
+						}
+						//아이디와 비밀번호 일치시
 						if (selectedUser.getPw().equals(nowPw.getText())) {
-							
-							if(newPw.getText() == checkPw.getText()) {
+							//모든 정보가 일치 (비밀번호 변경)
+							if(newPw.getText().equals(checkPw.getText())
+									&& newPw.getText().length() > 0) {
 								changeLabel.setText("비밀번호가 변경 되었습니다.");
 								changeLabel.setForeground(new Color(0, 200, 0));
+								
+								
+								//임시비밀번호 변경
+								um.updatePw(textId.getText(), checkPw.getText().toString());
 							} else { 
+								//아이디, 비밀번호 일치하나 변경 비밀번호가 다름
 								changeLabel.setText("새 비밀번호가 일치하지 않습니다.");
 								changeLabel.setForeground(new Color(230, 0, 0));
 								newPw.setText("");
@@ -210,17 +222,20 @@ public class A_ChangePage extends JPanel {
 							}
 							
 						} else {
+							//아이디가 존재, 비밀번호 불일치
 							changeLabel.setText("현재 비밀번호가 일치하지 않습니다.");
 							changeLabel.setForeground(new Color(230, 0, 0));
 							nowPw.setText("");
 						}
 			
-//						//찾기 버튼 클릭 후 textfield 초기화
-//						name.setText("");
-//						emailId.setText("");
-//						id.setText("");
-//						emailPw.setText("");
-						
+					} else {
+						//아이디가 없음
+						changeLabel.setText("아이디가 존재하지 않습니다.");
+						changeLabel.setForeground(new Color(230, 0, 0));
+						textId.setText("");
+						nowPw.setText("");
+						newPw.setText("");
+						checkPw.setText("");
 					}
 				}
 			}

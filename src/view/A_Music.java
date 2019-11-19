@@ -83,6 +83,7 @@ public class A_Music {
 		clip.close();
 	}
 	
+	
 	public static void harrySkillSound() {
 		File bgm;
 		AudioInputStream stream;
@@ -160,7 +161,7 @@ public class A_Music {
 		AudioFormat format;
 		DataLine.Info info;
 		
-		bgm = new File("sounds/gryffindor2.wav");
+		bgm = new File("sounds/gryffindor.wav");
 		
 		try {
 			stream = AudioSystem.getAudioInputStream(bgm);
@@ -177,6 +178,29 @@ public class A_Music {
 		
 	}
 	
+	public static void stage2_BgSound() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/stage2_bgsound2.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+
 	public static void stage3_backgroundSound() {
 		File bgm;
 		AudioInputStream stream;
@@ -243,6 +267,7 @@ public class A_Music {
 			}
 		
 	}
+
 
 //	public static void main(String[] args) {
 //		A_Music test = new A_Music();
