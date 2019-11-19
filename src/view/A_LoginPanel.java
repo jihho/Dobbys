@@ -30,6 +30,7 @@ public class A_LoginPanel extends JPanel {
 	private JFrame mf;
 	private JPanel panel;
 	private JLabel label;
+	private JLabel loginInfo;
 	private JLabel intro;
 	private JTextField text;
 	private JPasswordField passwordText;
@@ -116,7 +117,7 @@ public class A_LoginPanel extends JPanel {
 		
 		//아이디
 		label = new JLabel("User ID");
-		label.setBounds(350, 450, 150, 50);
+		label.setBounds(330, 450, 150, 50);
 		label.setForeground(new Color(255, 255, 255));
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
@@ -131,22 +132,30 @@ public class A_LoginPanel extends JPanel {
 		
 		//비밀번호
 		label = new JLabel("Password");
-		label.setBounds(330, 515, 150, 50);
+		label.setBounds(310, 515, 150, 50);
 		label.setForeground(new Color(255, 255, 255));
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
 		panel.add(label);
 		
 		passwordText = new JPasswordField();
 		passwordText.setBounds(460,510,380,60);
-		passwordText.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		passwordText.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		panel.add(passwordText);
 		passwordText.setColumns(15);
+		
+		
+		//로그인시 일치여부 문구
+		loginInfo = new JLabel("");
+		loginInfo.setBounds(460, 400, 500, 50);
+		loginInfo.setForeground(new Color(255,255,255));
+		loginInfo.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		panel.add(loginInfo);
 		
 		
 		
 		//게임 버전 표시
 		label = new JLabel("Dobbys v1.6.22");
-		label.setBounds(1110, 700, 180, 30);
+		label.setBounds(1080, 700, 230, 30);
 		label.setForeground(new Color(255, 255, 255));
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 23));
 		panel.add(label);
@@ -268,7 +277,8 @@ public class A_LoginPanel extends JPanel {
 				
 				//로그인창 아이디창 공백일시
 				if(text.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "아이디를 입력해 주십시오.");
+					loginInfo.setText("아이디를 입력해 주세요.");
+					loginInfo.setForeground(new Color(230, 0, 0));
 				}else {
 					
 					if(um.checkUserId(text.getText())) {
@@ -298,11 +308,17 @@ public class A_LoginPanel extends JPanel {
 							B_IntroVideoPanel iv = new B_IntroVideoPanel(mf);
 							cp.replacePanel(iv);
 						} else {
-							JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.");
+							loginInfo.setText("비밀번호가 틀렸습니다.");
+							loginInfo.setForeground(new Color(230, 0, 0));
+							passwordText.setText("");
 						}
 						
 					}else {
-						JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다.");
+						loginInfo.setText("아이디가 존재하지 않습니다.");
+						loginInfo.setForeground(new Color(230, 0, 0));
+						text.setText("");
+						passwordText.setText("");
+						
 					}
 				}
 			}

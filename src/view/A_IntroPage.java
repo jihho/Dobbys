@@ -50,13 +50,9 @@ public class A_IntroPage extends JPanel{
 //		introBackground.setBounds(0, 0, 1300, 770);
 		
 		
-//		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
-//				.getImage().getScaledInstance(650, 50, 0)));
-//		press.setBounds(320, 650, 650, 50);
-		
-		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/pressbutton.gif")
-				.getImage().getScaledInstance(820, 180, 0)));
-		press.setBounds(270, 570, 800, 180);
+		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
+				.getImage().getScaledInstance(650, 50, 0)));
+		press.setBounds(320, 650, 650, 50);
 		
 		
 		this.addMouseListener(new MouseAdapter() {
@@ -79,21 +75,21 @@ public class A_IntroPage extends JPanel{
 		});
 		
 		
-		mf.addKeyListener(new KeyAdapter() {
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
-				new A_Music().intoBgmStop();	//음악정지(천둥소리)
-				new A_Music().introBgm();		//해리포터 bgm
-				
-;				ChangePanel cp = new ChangePanel(mf, panel);
-				// t1.setDaemon(true);
-				A_LoginPanel gp = new A_LoginPanel(mf);
-
-				cp.replacePanel(gp);
-			}
-		});
+//		mf.addKeyListener(new KeyAdapter() {
+//			
+//			@Override
+//			public void keyPressed(KeyEvent e) {
+//				
+//				new A_Music().intoBgmStop();	//음악정지(천둥소리)
+//				new A_Music().introBgm();		//해리포터 bgm
+//				
+//;				ChangePanel cp = new ChangePanel(mf, panel);
+//				// t1.setDaemon(true);
+//				A_LoginPanel gp = new A_LoginPanel(mf);
+//
+//				cp.replacePanel(gp);
+//			}
+//		});
 		
 //		introBackground.setCursor(new Cursor(Cursor.HAND_CURSOR));
 //		press.setCursor(new Cursor(Cursor.HAND_CURSOR));
