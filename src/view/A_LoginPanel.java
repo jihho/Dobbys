@@ -145,8 +145,8 @@ public class A_LoginPanel extends JPanel {
 		
 		
 		//게임 버전 표시
-		label = new JLabel("Dobbys v1.0.0");
-		label.setBounds(1120, 710, 180, 30);
+		label = new JLabel("Dobbys v1.6.22");
+		label.setBounds(1110, 700, 180, 30);
 		label.setForeground(new Color(255, 255, 255));
 		label.setFont(new Font("DungGeunMo", Font.BOLD, 23));
 		panel.add(label);
@@ -170,10 +170,8 @@ public class A_LoginPanel extends JPanel {
 		loginBtn.setBorderPainted(false);		//외곽선 제거
 		loginBtn.setOpaque(false);	//투명하게
 
-		
 		panel.add(loginBtn);
 		
-//		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		
 		//아이디 비밀번호 찾기 버튼
@@ -191,14 +189,27 @@ public class A_LoginPanel extends JPanel {
 		findId1.setBorderPainted(false);		//외곽선 제거
 		findId1.setOpaque(false);	//투명하게
 		
-		
 		panel.add(findId1);
 		
 		
-		JButton changePw = new JButton("회원정보 수정");
+		
+		//회원정보 수정 버튼
+		JButton changePw = new JButton(new ImageIcon("images/main/changePw1.png"));
 		changePw.setBounds(690,635, 150, 35);
-		changePw.setFont(new Font("DungGeunMo", Font.BOLD, 18));
+		changePw.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		changePw.setBorderPainted(false);
+		
+		ImageIcon changePw2 = new ImageIcon("images/main/changePw2.png");
+		changePw.setRolloverIcon(changePw2);
+		changePw.setBorderPainted(false);
+		changePw.setPreferredSize(new Dimension(220, 35));
+		
+		changePw.setContentAreaFilled(false);		//내용영역 채우기 없음
+		changePw.setBorderPainted(false);		//외곽선 제거
+		changePw.setOpaque(false);	//투명하게
+		
 		panel.add(changePw);
+		
 		
 		
 		//회원가입 버튼
@@ -264,9 +275,6 @@ public class A_LoginPanel extends JPanel {
 						System.out.println("아이디 존재");
 						//로그인창 아이디와 입력값이 같으면 비밀번호 체크
 						ArrayList<User> list = ud.readUserList();
-						
-						
-						
 						//일치하는 user 정보를 담을 레퍼런스 변수 초기화
 						User selectedUser = null;
 						//조회에 성공하면 유저 아이디와 일치하는 비밀번호를 리스트에서 탐색
@@ -280,9 +288,10 @@ public class A_LoginPanel extends JPanel {
 						}
 						
 						
-						
+						//아이디 존재 상태에서 비밀번호 비교
 						if(selectedUser.getPw().equals(passwordText.getText())) {
 							System.out.println("로그인 성공!");
+							User.playerId = selectedUser.getId();
 							//음악정지
 							stopMusic.intoBgmStop();
 							ChangePanel cp = new ChangePanel(mf, panel);
