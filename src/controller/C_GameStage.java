@@ -2,8 +2,6 @@ package controller;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -15,12 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import game.stage1.controller.D_Controller;
-import game.stage2.view.E_StartPanel;
-import game.stage3.views.F_Stage3Panel;
 import view.C_RandomAssign;
 import view.C_RankingPage;
 import view.ChangePanel;
@@ -139,11 +134,10 @@ public class C_GameStage extends JPanel{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			ChangePanel cp = new ChangePanel(mf, panel);
-			
-			C_RankingPage rp = new C_RankingPage(mf); 
-			
-			cp.replacePanel(rp);
+				
+			ChangePanel cp = new ChangePanel(mf, panel);			
+			D_Controller dc = new D_Controller(mf); 			
+			cp.replacePanel(dc);
 			}
 		});
 		
