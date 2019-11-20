@@ -402,7 +402,7 @@ public class F_Stage3Panel extends JPanel{
 
 						voldmort.setHp(voldmort.getHp() -10);
 						voldmort.setHplife(voldmort.getHplife() -1);
-						log.append("공격 성공!!\n 볼드모트의 체력이 10 감소합니다.\n");
+						log.append("공격 성공!!\n볼드모트의 체력이 10 감소합니다.\n");
 						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
 						log.setCaretPosition(log.getDocument().getLength());
 						Timer ts = new Timer();	//Timer 실행
@@ -526,7 +526,7 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(sksmash, 0);
 						voldmort.setHp(voldmort.getHp() -20);
 						voldmort.setHplife(voldmort.getHplife() -2);
-						log.append("공격 성공!!\n 볼드모트의 체력이 20 감소합니다.\n");
+						log.append("공격 성공!!\n볼드모트의 체력이 20 감소합니다.\n");
 						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
 						log.setCaretPosition(log.getDocument().getLength());
 						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
@@ -591,7 +591,7 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(vmsksmash, 0);
 						harry.setHp(harry.getHp() -30);
 						harry.setHplife(harry.getHplife() -3);
-						log.append("볼드모트의 카운터!\n 해리포터의 체력이 30 감소합니다.\n");
+						log.append("볼드모트의 카운터!\n해리포터의 체력이 30 감소합니다.\n");
 						log.append("해리의 체력 : " + harry.getHp()+"\n");
 						log.setCaretPosition(log.getDocument().getLength());
 						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
@@ -707,7 +707,7 @@ public class F_Stage3Panel extends JPanel{
 						panel.repaint();
 						harry.setHp(harry.getHp() -20);
 						harry.setHplife(harry.getHplife() -2);
-						log.append("볼드모트의 스매쉬!!\n 해리포터의 체력이 20 감소합니다.\n");
+						log.append("볼드모트의 스매쉬!!\n해리포터의 체력이 20 감소합니다.\n");
 						log.append("해리의 체력 : " + harry.getHp()+"\n");
 						log.setCaretPosition(log.getDocument().getLength());
 						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
@@ -764,7 +764,7 @@ public class F_Stage3Panel extends JPanel{
 						panel.repaint();
 						harry.setHp(harry.getHp() -10);
 						harry.setHplife(harry.getHplife() -1);
-						log.append("볼드모트의 공격!!\n 해리포터의 체력이 10 감소합니다.\n");
+						log.append("볼드모트의 공격!!\n해리포터의 체력이 10 감소합니다.\n");
 						log.append("해리의 체력 : " + harry.getHp()+"\n");
 						log.setCaretPosition(log.getDocument().getLength());
 						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
@@ -829,7 +829,7 @@ public class F_Stage3Panel extends JPanel{
 						panel.setComponentZOrder(vmskdf, 0);
 						panel.revalidate();
 						panel.repaint();
-						log.append("공격이 무효화되었습니다.\n");
+						log.append("공격이 무효화 되었습니다.\n");
 						log.setCaretPosition(log.getDocument().getLength());
 						//skct.updateUI();	//라벨 갱신해서 오류 삭제
 						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
@@ -891,7 +891,7 @@ public class F_Stage3Panel extends JPanel{
 
 						voldmort.setHp(voldmort.getHp() -30);
 						voldmort.setHplife(voldmort.getHplife() -3);
-						log.append("해리의 카운터!!\n 볼드모트의 체력이 30 감소합니다.\n");
+						log.append("해리의 카운터!!\n볼드모트의 체력이 30 감소합니다.\n");
 						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
 						log.setCaretPosition(log.getDocument().getLength());
 						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
