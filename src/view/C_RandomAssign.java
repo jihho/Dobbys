@@ -184,11 +184,12 @@ public class C_RandomAssign extends JPanel{
 		G_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new A_Music().intoBgmStopJ();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 	    		
-				new A_Music().intoBgmStop();
 				G_sd.dispose();
 			}
 		});

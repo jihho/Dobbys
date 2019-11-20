@@ -12,8 +12,10 @@ import javax.sound.sampled.FloatControl;
 public class A_Music {
 	public static Clip clip;
 	public static Clip effect;
+
 	public static Clip stage2;
-	
+	public static Clip j_clip;
+
 	public static void introBgm() {
 		File bgm;
 		AudioInputStream stream;
@@ -95,9 +97,18 @@ public class A_Music {
 		clip.stop();
 	}
 	
+
 	public static void intoBgmStop_stage2() {
 		stage2.stop();
 		stage2.close();
+
+	public static void intoBgmStopJ() {
+		j_clip.stop();
+		j_clip.close();
+	}
+	
+	public static void intoBgmStopJ2() {
+		j_clip.stop();
 	}
 	
 	public static void harrySkillSound() {
@@ -107,6 +118,29 @@ public class A_Music {
 		DataLine.Info info;
 		
 		bgm = new File("sounds/harrySkillSound.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void clearSound() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/clearSound.wav");
 		
 		try {
 			stream = AudioSystem.getAudioInputStream(bgm);
@@ -182,9 +216,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
@@ -206,9 +240,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
@@ -325,7 +359,7 @@ public class A_Music {
 	
 	
 	
-	
+	// 진규
 	public static void door() {
 		File bgm;
 		AudioInputStream stream;
@@ -411,10 +445,10 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
-			clip.loop(0);
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
+			j_clip.loop(0);
 			
 		} catch (Exception e) {
 			System.out.println("err : " + e);
@@ -434,9 +468,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {

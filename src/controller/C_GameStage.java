@@ -133,7 +133,7 @@ public class C_GameStage extends JPanel{
 			A_LoginPanel lp = new A_LoginPanel(mf); 
 			cp.replacePanel(lp);
 			
-			new A_Music().intoBgmStop2();
+			new A_Music().intoBgmStopJ2();
 			}
 		});
 
@@ -144,7 +144,7 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
-			new A_Music().intoBgmStop2();
+			new A_Music().intoBgmStopJ2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);			
 			D_Controller dc = new D_Controller(mf); 			
@@ -159,7 +159,7 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
-    		new A_Music().intoBgmStop2();
+    		new A_Music().intoBgmStopJ2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			E_StartPanel st2 = new E_StartPanel(mf); 
@@ -173,7 +173,7 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
-			new A_Music().intoBgmStop2();
+			new A_Music().intoBgmStopJ2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
@@ -187,7 +187,7 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
-			new A_Music().intoBgmStop2();
+			new A_Music().intoBgmStopJ2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			C_RankingPage rp = new C_RankingPage(mf); 
