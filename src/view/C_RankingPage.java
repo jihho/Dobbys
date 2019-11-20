@@ -29,12 +29,24 @@ public class C_RankingPage extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
+	private JTextArea rt;
+	private JTextArea b_rank;
+	private JTextArea b_score1;
+	private JTextArea b_score2;
+	private JTextArea b_score3;
+	private JTextArea b_total;
+	private JTextArea b_name;
+	private JTextArea b_dormitory;
+	
+	
 	public C_RankingPage(JFrame mf) {
 
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 		System.out.println("랭킹 페이지 패널 생성");
+		
+		new A_Music().onepiece();
 		
 				
 		// 라벨 생성 
@@ -72,12 +84,15 @@ public class C_RankingPage extends JPanel{
 		//test[5] 배정된 기숙사
 		
 		// 랭킹점수 출력하는 JTextArea 생성
-		JTextArea score1 = new JTextArea(test[0]);
-		JTextArea score2 = new JTextArea(test[1]);
-		JTextArea score3 = new JTextArea(test[2]);
-		JTextArea total = new JTextArea(test[3]);
-		JTextArea name = new JTextArea(test[4]);
-		JTextArea dormitory = new JTextArea(test[5]);
+		JTextArea rr = new JTextArea(
+				test[0] + "\t"+ test[1] + "\t"+ test[2] + "\t"+ 
+				test[3] + "\t"+ test[4] + "\n");
+		
+		rr.setBounds(240, 310, 1300, 300);
+		rr.setForeground(Color.YELLOW);	
+		rr.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		rr.setEditable(false);	
+		
 		
 		switch(test[5]) {
 		case "griyffindor" : System.out.println("그리핀도르"); break; 
@@ -87,11 +102,19 @@ public class C_RankingPage extends JPanel{
 		default : System.out.println("왜 안나와");
 		}
 		
+
+/*
+ 		JTextArea score1 = new JTextArea(test[0]);
+		JTextArea score2 = new JTextArea(test[1]);
+		JTextArea score3 = new JTextArea(test[2]);
+		JTextArea total = new JTextArea(test[3]);
+		JTextArea name = new JTextArea(test[4]);
+		JTextArea dormitory = new JTextArea(test[5]);
 		
-		score1.setBounds(260, 310, 500, 300);
-		score2.setBounds(440, 310, 500, 300);
+		score1.setBounds(240, 310, 500, 300);
+		score2.setBounds(420, 310, 500, 300);
 		score3.setBounds(610, 310, 500, 300);
-		total.setBounds(780, 310, 500, 300);
+		total.setBounds(770, 310, 500, 300);
 		name.setBounds(920, 310, 500, 300);
 		//dormitory.setBounds(980, 310, 500, 300);
 		
@@ -113,25 +136,108 @@ public class C_RankingPage extends JPanel{
 		dormitory.setForeground(Color.YELLOW);	
 		dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
 		dormitory.setEditable(false);
+*/
 		
-		
-		// 랭킹점수 출력하는 JTextArea 생성
-		JTextArea ta2 = new JTextArea();
-
+		// 누적 랭킹점수 출력하는 JTextArea 생성
 		String[][] test2 = um.sortList(new DescUserTotal());
-		
+
+		// 지호씨 케리
 		for(int i = 0; i < test2.length; i++) {
-			ta2 = new JTextArea((i + 1) + "위   " + test2[i][0] + "        " + test2[i][1] 
-					+ "        " + test2[i][2] + "        " + test2[i][3]
-					+ "    " + test2[i][4]/* + "     " + test2[i][5]*/);
+			for(int j = 0; j < test2[i].length; j++) {
+				System.out.print(test2[i][j] + "\t");
+			}
+			System.out.println();
 		}
+		um.printAll();
 		
-		ta2.setBounds(145, 360, 1100, 300); 	//JTeatArea 크기 및 위치 지정
-		ta2.setForeground(Color.WHITE);	
-		ta2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		ta2.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+
+/*		
+		for(int i = 0; i < test2.length; i++) {
+			for(int j = 0; j < test2[i].length; j++) {
+				rt = new JTextArea(test2[i][j]);
+			}
+		}
+		rt.repaint();
+*/
 		
 		
+		rt = new JTextArea( 
+				"1위  " + test2[0][0] + "\t" + test2[0][1] 
+				+ "\t" + test2[0][2] + "\t" + test2[0][3]
+				+ "\t" + test2[0][4] + "\n" +
+				
+				"2위  " + test2[1][0] + "\t" + test2[1][1] 
+				+ "\t" + test2[1][2] + "\t" + test2[1][3]
+				+ "\t" + test2[1][4] + "\n" +
+				
+				"3위  " + test2[2][0] + "\t" + test2[2][1] 
+				+ "\t" + test2[2][2] + "\t" + test2[2][3]
+				+ "\t" + test2[2][4] + "\n" +
+				
+				"4위  " + test2[3][0] + "\t" + test2[3][1] 
+				+ "\t" + test2[3][2] + "\t" + test2[3][3]
+				+ "\t" + test2[3][4] + "\n" +
+				
+				"5위  " + test2[4][0] + "\t" + test2[4][1] 
+				+ "\t" + test2[4][2] + "\t" + test2[4][3]
+				+ "\t" + test2[4][4] + "\n" +
+				
+				"6위  " + test2[5][0] + "\t" + test2[5][1] 
+				+ "\t" + test2[5][2] + "\t" + test2[5][3]
+				+ "\t" + test2[5][4] + "\n" +
+				
+				"7위  " + test2[6][0] + "\t" + test2[6][1] 
+				+ "\t" + test2[6][2] + "\t" + test2[6][3]
+				+ "\t" + test2[6][4] + "\n"
+				);
+		
+			
+		rt.setBounds(135, 360, 1300, 500);
+		rt.setForeground(Color.WHITE);	
+		rt.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		rt.setEditable(false); 	
+		
+		
+		
+/*		
+		b_rank = new JTextArea((i + 1) + "위");
+		b_score1 = new JTextArea(test2[i][j]);
+		b_score2 = new JTextArea(test2[i][j]);
+		b_score3 = new JTextArea(test2[i][j]);
+		b_total = new JTextArea(test2[i][j]);
+		b_name = new JTextArea(test2[i][j]);
+		b_dormitory = new JTextArea(test2[i][j]);
+		
+		b_rank.setBounds(135, 360, 500, 300);
+		b_score1.setBounds(240, 360, 500, 300);
+		b_score2.setBounds(420, 360, 500, 300);
+		b_score3.setBounds(610, 360, 500, 300);
+		b_total.setBounds(770, 360, 500, 300);
+		b_name.setBounds(920, 360, 500, 300);
+		b_dormitory.setBounds(145, 360, 500, 300);
+		
+		b_rank.setForeground(Color.WHITE);	
+		b_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b_rank.setEditable(false); 	
+		b_score1.setForeground(Color.WHITE);	
+		b_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b_score1.setEditable(false); 	
+		b_score2.setForeground(Color.WHITE);	
+		b_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b_score2.setEditable(false); 
+		b_score3.setForeground(Color.WHITE);	
+		b_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b_score3.setEditable(false); 
+		b_total.setForeground(Color.WHITE);	
+		b_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b_total.setEditable(false); 
+		b_name.setForeground(Color.WHITE);	
+		b_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b_name.setEditable(false); 
+		b_dormitory.setForeground(Color.WHITE);	
+		b_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b_dormitory.setEditable(false); 
+*/
 		
 		// 위치와 크기 설정 	
 		this.setBounds(0, 0, 1300, 770);
@@ -153,32 +259,22 @@ public class C_RankingPage extends JPanel{
 		ravaenclaw.setBounds(670, 167, 1000, 500);
 		slytherin.setBounds(670, 212, 1000, 500);
 
-
- 
-
-
-
 		// 폰트 및 글씨 크기
 		score_title.setForeground(Color.WHITE);			   			 
 		score_title.setFont(new Font("DungGeunMo", Font.PLAIN, 110)); 
-		
 		stage1_name.setForeground(Color.WHITE);			   			 
 		stage1_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		
 		stage2_name.setForeground(Color.WHITE);			   			 
 		stage2_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
-		
 		stage3_name.setForeground(Color.WHITE);			   			 
 		stage3_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
-		
 		total_name.setForeground(Color.WHITE);			   			 
 		total_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		
+		background.add(rr);
+		background.add(rt);
 		
-
-		
-
-
+/*
 		background.add(score1);
 		background.add(score2);
 		background.add(score3);
@@ -186,10 +282,15 @@ public class C_RankingPage extends JPanel{
 		background.add(name);
 		background.add(dormitory);
 		
-		background.add(ta2);
-		this.add(background);
-		
-		
+ 		background.add(b_rank);
+		background.add(b_score1);
+		background.add(b_score2);
+		background.add(b_score3);
+		background.add(b_total);
+		background.add(b_name);
+		background.add(b_dormitory);
+*/
+
 		// 되돌아가기 버튼 생성
 		return_btn.setBounds(1115, 660, 150, 50);
 		return_btn.setBackground(Color.GRAY);
@@ -207,14 +308,24 @@ public class C_RankingPage extends JPanel{
 		stage3_name.setOpaque(false);
 		total_name.setOpaque(false);
 
-		score1.setOpaque(false);
+		rr.setOpaque(false);
+		rt.setOpaque(false);
+
+/*		score1.setOpaque(false);
 		score2.setOpaque(false);
 		score3.setOpaque(false);
 		total.setOpaque(false);
 		name.setOpaque(false);
 		dormitory.setOpaque(false);		
 		
-		ta2.setOpaque(false);	
+		b_rank.setOpaque(false);
+		b_score1.setOpaque(false);
+		b_score2.setOpaque(false);
+		b_score3.setOpaque(false);
+		b_total.setOpaque(false);
+		b_name.setOpaque(false);
+		b_dormitory.setOpaque(false);	
+*/	
 		
 		// return_Btn 버튼 이벤트
 		return_btn.addMouseListener(new MouseAdapter() {
@@ -225,6 +336,8 @@ public class C_RankingPage extends JPanel{
 			C_GameStage gs = new C_GameStage(mf); 
 		
 			cp.replacePanel(gs);
+			
+    		new A_Music().intoBgmStop();
 			}
 		});
 		
