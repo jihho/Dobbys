@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -29,7 +31,9 @@ public class B_CheckPanel extends JPanel{
 
 		panel = this;
 
-		
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse.png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif").getImage().getScaledInstance(1300, 770, 0)));
 		label.setBounds(0, 0, 1300, 770);
@@ -69,6 +73,10 @@ public class B_CheckPanel extends JPanel{
 		
 		JTextArea textArea1 = new JTextArea(test1);
 		JTextArea textArea2 = new JTextArea(test2);
+		
+		//textArea 수정 불가능
+		textArea1.setEditable(false);
+		textArea2.setEditable(false);
 		
 		textArea1.setFont(new Font("DungGeunMo", Font.BOLD, 15));
 		JScrollPane scroll1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
