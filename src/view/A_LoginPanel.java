@@ -66,6 +66,12 @@ public class A_LoginPanel extends JPanel {
 		allImg.setBounds(1150 , 0, 150,150);
 		
 		
+		JLabel dobby = new JLabel(new ImageIcon(new ImageIcon("images/main/dobby1-long.gif")
+				.getImage().getScaledInstance(100, 200, 0)));
+		dobby.setBounds(450 , 50, 100,200);
+		
+		
+		
 		
 		//음악 on/off
 		JButton bgmOnOffBtn = new JButton();
@@ -495,6 +501,7 @@ public class A_LoginPanel extends JPanel {
 		
 		this.add(allImg);
 		this.add(loginLogo);
+		this.add(dobby);
 		this.add(loginBackground);
 
 		
