@@ -21,6 +21,7 @@ import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
 import model.vo.User;
 import view.A_IntroPage;
+import view.A_LoginPanel;
 import view.A_Music;
 
 import view.C_RandomAssign;
@@ -126,10 +127,12 @@ public class C_GameStage extends JPanel{
 		return_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
-			A_IntroPage ip = new A_IntroPage(mf); 
-			cp.replacePanel(ip);
+			A_LoginPanel lp = new A_LoginPanel(mf); 
+			cp.replacePanel(lp);
+			
+			new A_Music().introBgm();
 			}
 		});
 
@@ -138,7 +141,7 @@ public class C_GameStage extends JPanel{
 		stage1_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);			
