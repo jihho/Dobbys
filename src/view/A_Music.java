@@ -90,6 +90,9 @@ public class A_Music {
 		clip.close();
 	}
 	
+	public static void intoBgmStop2() {
+		clip.stop();
+	}
 	
 	public static void harrySkillSound() {
 		File bgm;
@@ -329,9 +332,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			effect = (Clip)AudioSystem.getLine(info);
+			effect.open(stream);
+			effect.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
@@ -412,6 +415,30 @@ public class A_Music {
 			}
 		
 	}
+	
+	public static void TalesWeaver() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/TalesWeaver.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(stream);
+			clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
 	
 //	public static void main(String[] args) {
 //		A_Music test = new A_Music();

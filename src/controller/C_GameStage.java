@@ -36,11 +36,12 @@ public class C_GameStage extends JPanel{
 	public C_GameStage(JFrame mf) {
 		this.mf = mf;
 		this.setLayout(null);
-		
 		panel = this;
 		this.setBounds(0, 0, 1300, 770);
 		System.out.println("게임 스테이지 패널 생성");
 		
+		new A_Music().TalesWeaver();
+
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		background.setBounds(0, 0, 1300, 770);
 		
@@ -132,7 +133,7 @@ public class C_GameStage extends JPanel{
 			A_LoginPanel lp = new A_LoginPanel(mf); 
 			cp.replacePanel(lp);
 			
-			new A_Music().introBgm();
+			new A_Music().intoBgmStop2();
 			}
 		});
 
@@ -143,10 +144,12 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
+			new A_Music().intoBgmStop2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);			
 			D_Controller dc = new D_Controller(mf); 			
 			cp.replacePanel(dc);
+			
 			}
 		});
 		
@@ -156,6 +159,7 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
+    		new A_Music().intoBgmStop2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			E_StartPanel st2 = new E_StartPanel(mf); 
@@ -169,6 +173,7 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
+			new A_Music().intoBgmStop2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
@@ -182,6 +187,8 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
+			new A_Music().intoBgmStop2();
+			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			C_RankingPage rp = new C_RankingPage(mf); 
 			cp.replacePanel(rp);
