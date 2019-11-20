@@ -64,12 +64,12 @@ public class F_FailPanel extends JPanel{
 		
 		
 		
-		fail.addMouseListener(new MouseAdapter() {
+		/*fail.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				popfail.setVisible(true);
 			}
-		});
+		});*/
 		
 		retry.addMouseListener(new MouseAdapter() {
 			@Override
