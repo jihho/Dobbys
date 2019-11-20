@@ -952,14 +952,15 @@ public class E_GamePanel extends JPanel {
 		home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				//음악종료
+				new A_Music().intoBgmStop_stage2();
+				
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				C_GameStage main = new C_GameStage(mf);
 				cp.replacePanel(main);
 				E_Quest qq = new E_Quest();
 				qq.setRandom(new Random().nextInt(3) + 1);
 				
-				//음악종료
-				new A_Music().intoBgmStop_stage2();
 			}
 		});
 		
