@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JFrame;
 
+
 public class MainFrame extends JFrame{
 
 	public MainFrame(){
@@ -15,7 +16,7 @@ public class MainFrame extends JFrame{
 
 		
 		this.add(new A_IntroPage(this));
-		//this.add(new B_IntroVideoPanel(this));
+		//this.add(new C_GamePanel(this));
 
 //		this.add(new B_CheckPanel(this));
 

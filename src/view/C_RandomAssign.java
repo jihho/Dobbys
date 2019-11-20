@@ -140,9 +140,9 @@ public class C_RandomAssign extends JPanel{
 
 				int ra_random = new Random().nextInt(4) + 1;
 				switch(ra_random) {
-				case 1 : um.updateDormitory(User.playerId, "slytherin"); S_sd.setVisible(true); break;
-				case 2 : um.updateDormitory(User.playerId, "huffepuff"); H_sd.setVisible(true); break;
-				case 3 : um.updateDormitory(User.playerId, "ravaenclaw"); R_sd.setVisible(true); break;
+				case 1 : um.updateDormitory(User.playerId, "slytherin"); S_sd.setVisible(true); new A_Music().slytherin(); break;
+				case 2 : um.updateDormitory(User.playerId, "huffepuff"); H_sd.setVisible(true); new A_Music().huffepuff(); break;
+				case 3 : um.updateDormitory(User.playerId, "ravaenclaw"); R_sd.setVisible(true); new A_Music().ravaenclaw(); break;
 				case 4 : um.updateDormitory(User.playerId, "gryffindor"); G_sd.setVisible(true); new A_Music().gryffindor(); break;	
 				}
 
@@ -153,20 +153,22 @@ public class C_RandomAssign extends JPanel{
 		S_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new A_Music().intoBgmStopJ();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
-				
 				S_sd.dispose();
 			}
 		});
 		H_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new A_Music().intoBgmStopJ();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
-				
 				H_sd.dispose();
 				
 			}
@@ -174,11 +176,12 @@ public class C_RandomAssign extends JPanel{
 		R_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new A_Music().intoBgmStopJ();
+				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 				
-				R_sd.dispose();
 			}
 		});
 		G_btn.addActionListener(new ActionListener() {

@@ -65,6 +65,8 @@ public class C_GameStage extends JPanel{
 		JButton stage1_btn = new JButton(new ImageIcon("images/main/stage1_icon2.png"));
 		JButton stage2_btn = new JButton(new ImageIcon("images/main/stage2_icon2.png"));
 		JButton stage3_btn = new JButton(new ImageIcon("images/main/stage3_icon2.png"));
+		JButton stage4_btn = new JButton(new ImageIcon("images/main/remove.png"));
+		JButton stage5_btn = new JButton(new ImageIcon("images/main/remove.png"));
 		JButton ranking_btn = new JButton(new ImageIcon("images/main/ranking_icon2.png"));
 		
 		JButton stage1_name = new JButton("Stage1");
@@ -78,16 +80,22 @@ public class C_GameStage extends JPanel{
 		stage1_btn.setRolloverIcon(key);
 		stage2_btn.setRolloverIcon(key);
 		stage3_btn.setRolloverIcon(key);
+		//stage4_btn.setRolloverIcon(key);
+		//stage5_btn.setRolloverIcon(key);
 		ranking_btn.setRolloverIcon(key);
 		stage1_btn.setBorderPainted(false);
 		stage2_btn.setBorderPainted(false);
 		stage3_btn.setBorderPainted(false);
+		//stage4_btn.setBorderPainted(false);
+		//stage5_btn.setBorderPainted(false);
 		ranking_btn.setBorderPainted(false);
 		
 		// 버튼 위치와 크기 설정 
 		stage1_btn.setBounds(1140, 510, 72, 70);
 		stage2_btn.setBounds(860, 160, 72, 70);
 		stage3_btn.setBounds(130, 160, 72, 70);
+		stage4_btn.setBounds(470, 150, 72, 70);
+		stage5_btn.setBounds(900, 340, 72, 70);
 		ranking_btn.setBounds(110, 480, 72, 70);
 		
 		stage1_name.setBounds(1105, 465, 150, 50);
@@ -181,6 +189,34 @@ public class C_GameStage extends JPanel{
 			}
 		});
 		
+		// stage4_btn 버튼 이벤트
+		stage4_btn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			new A_Music().door();
+			new A_Music().intoBgmStopJ2();
+			
+//			ChangePanel cp = new ChangePanel(mf, panel);
+//			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
+//			cp.replacePanel(str3);
+			}
+		});
+		
+		// stage5_btn 버튼 이벤트
+		stage5_btn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			new A_Music().door();
+			new A_Music().intoBgmStopJ2();
+			
+//			ChangePanel cp = new ChangePanel(mf, panel);
+//			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
+//			cp.replacePanel(str3);
+			}
+		});
+		
 		// ranking_btn 버튼 이벤트
 		ranking_btn.addMouseListener(new MouseAdapter() {
 			
@@ -211,6 +247,16 @@ public class C_GameStage extends JPanel{
 		//stage3_btn.setBorderPainted(false);		
 		//stage3_btn.setFocusPainted(false);		
 		stage3_btn.setOpaque(false);
+		
+		stage4_btn.setContentAreaFilled(false);	
+		stage4_btn.setBorderPainted(false);		
+		//stage4_btn.setFocusPainted(false);		
+		stage4_btn.setOpaque(false);
+		
+		stage5_btn.setContentAreaFilled(false);	
+		stage5_btn.setBorderPainted(false);		
+		//stage5_btn.setFocusPainted(false);		
+		stage5_btn.setOpaque(false);
 		
 		ranking_btn.setContentAreaFilled(false);	
 		//ranking_btn.setBorderPainted(false);		
@@ -246,6 +292,8 @@ public class C_GameStage extends JPanel{
 		this.add(stage1_btn);
 		this.add(stage2_btn);
 		this.add(stage3_btn);
+		this.add(stage4_btn);
+		this.add(stage5_btn);
 		this.add(ranking_btn);
 		
 		this.add(stage1_name);

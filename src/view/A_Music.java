@@ -252,6 +252,75 @@ public class A_Music {
 		
 	}
 	
+	public static void slytherin() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/s_tts.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void ravaenclaw() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/r_tts.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void huffepuff() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/h_tts.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
 	public static void stage2_BgSound() {
 		File bgm;
 		AudioInputStream stream;
