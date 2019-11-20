@@ -101,6 +101,7 @@ public class A_Music {
 	public static void intoBgmStop_stage2() {
 		stage2.stop();
 		stage2.close();
+	}
 
 	public static void intoBgmStopJ() {
 		j_clip.stop();
