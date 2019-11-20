@@ -126,11 +126,17 @@ public class B_JoinPanel extends JPanel{
 		joinlb.setForeground(Color.white);
 		
 		idbutton.setFont(new Font("DungGeunMo",Font.BOLD,16));
+		idbutton.setBackground(Color.lightGray);
 		joinbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		joinbutton.setBackground(Color.lightGray);
 		jeonsongbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		jeonsongbutton.setBackground(Color.lightGray);
 		checkbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		checkbutton.setBackground(Color.lightGray);
 		cancelbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		cancelbutton.setBackground(Color.lightGray);
 		pwcheckbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		pwcheckbutton.setBackground(Color.lightGray);
 		
 		//취소 이벤트 -> 이용약관페이지으로 이동
 		cancelbutton.addMouseListener(new MouseAdapter() {

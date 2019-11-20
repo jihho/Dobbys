@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
@@ -36,6 +37,9 @@ public class B_CheckPanel extends JPanel{
 		JLabel checkimg = new JLabel(new ImageIcon(new ImageIcon("images/main/check.png").getImage().getScaledInstance(300, 100, 0)));
 		checkimg.setBounds(380, 100, 600, 100);
 		checkimg.setOpaque(false);
+		
+		JLabel checkimg2 = new JLabel(new ImageIcon(new ImageIcon("images/main/checkImage.png").getImage().getScaledInstance(50, 50, 0)));
+		checkimg2.setBounds(490, 125, 50, 50);
 		String test1 = "제1조 (목적)\r\n" + 
 				"본 약관은 도비스 주식회사(이하 'Dobbys')가 \n"
 				+ "고도 사이트(이하 ‘사이트’)를 통하여 인터넷상에서 \n"
@@ -69,7 +73,8 @@ public class B_CheckPanel extends JPanel{
 		textArea1.setFont(new Font("DungGeunMo", Font.BOLD, 15));
 		JScrollPane scroll1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
+		scroll1.setBackground(Color.lightGray);
+		
 		textArea2.setFont(new Font("DungGeunMo", Font.BOLD, 15));
 		JScrollPane scroll2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -78,10 +83,12 @@ public class B_CheckPanel extends JPanel{
 		JCheckBox box2 = new JCheckBox();
 		
 		JButton btn = new JButton("동의 완료");
-		btn.setFont(new Font("", Font.BOLD, 16));
+		btn.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		btn.setBackground(Color.lightGray);
 		
 		JButton cancelbutton = new JButton("취소");
-		cancelbutton.setFont(new Font("", Font.BOLD, 16));
+		cancelbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		cancelbutton.setBackground(Color.lightGray);
 		
 		scroll1.setBounds(450, 200, 450, 150);
 		scroll2.setBounds(450, 400, 450, 150);
@@ -156,8 +163,9 @@ public class B_CheckPanel extends JPanel{
 		this.add(box1);
 		this.add(box2);
 		this.add(checkimg);
+		this.add(checkimg2);
 		this.add(cancelbutton);
-		this.setComponentZOrder(label, 7);
+		this.setComponentZOrder(label, 8);
 
 
 	}
