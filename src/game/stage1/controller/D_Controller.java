@@ -18,10 +18,9 @@ import game.stage1.model.vo.D_Dementor;
 import game.stage1.model.vo.D_Harry;
 import game.stage1.model.vo.D_Snitch;
 import game.stage1.view.D_BackgroundModify;
+import game.stage1.view.D_Clear;
 import model.vo.User;
 import view.A_Music;
-
-import controller.C_GameStage;
 
 
 public class D_Controller extends JPanel {
@@ -138,6 +137,8 @@ public class D_Controller extends JPanel {
 	//클리어 영상
 	private Image clear = new ImageIcon("images/stage1/stage1_video.gif").getImage().
 			getScaledInstance(1300 , 770, 0); 
+	
+	private boolean firstClear = false;
 	
 	//이미지 이중 버퍼
 	Image img;
@@ -290,14 +291,14 @@ public class D_Controller extends JPanel {
 			}else if(effectCount == 0){				
 				effectCount = EFFECT_TIME;
 				gameState = ST_CLEAR;
+				firstClear = true;
 			}
 			
-			if(clearCount > 0 && gameState == ST_CLEAR) {
-				clearCount--;
-			}else if(clearCount == 0) {
-				clearCount = CLEAR_TIME;
-				//gameState = ST_TITLE;
-				gameState = ST_SCORE;
+			if(firstClear == true) {
+				firstClear = false;
+				D_ChangePanel cp = new D_ChangePanel(mf, panel);					
+				D_Clear dc = new D_Clear(mf);						
+				cp.replacePanel(dc);
 			}
 			
 			
@@ -327,20 +328,6 @@ public class D_Controller extends JPanel {
 		if(gameState == ST_ENDING) {
 			img_g.drawImage(blackBack, 0, 0, this);
 			img_g.drawImage(endWord, 240, 100, this);
-		}
-		
-		if(gameState == ST_SCORE) {
-			img_g.drawImage(blackBack, 0, 0, this);
-			
-			//남은 hp 별로 점수 출력밑 넘겨줘야함
-			switch(harry.getLife()) {
-			case 1: img_g.drawImage(score200, 200, 100, this); break;
-			case 2: img_g.drawImage(score400, 200, 100, this); break;
-			case 3: img_g.drawImage(score600, 200, 100, this); break;
-			case 4: img_g.drawImage(score800, 200, 100, this); break;
-			case 5: img_g.drawImage(score1000, 200, 100, this); break;
-			}
-
 		}
 		
 		
@@ -387,9 +374,7 @@ public class D_Controller extends JPanel {
 			
 		}
 		
-		if(gameState == ST_CLEAR && clearCount > 0) {
-			img_g.drawImage(clear, 0, 0, this);
-		}
+
 		
 		if(harry.getState() == D_Harry.HARRY_ST_BLAST) {
 			for(int i = 1 ; i < harry.getCount() ; i++) {
@@ -455,8 +440,14 @@ public class D_Controller extends JPanel {
 					backSound.intoBgmStop();
 					backSound.harrySkillSound();
 					
-					score = harry.getLife() * 200;
-					System.out.println(score);
+					switch(harry.getLife()) {
+					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
+					case 2: new B_UserManager().updateScore1(User.playerId, 400); break;
+					case 3: new B_UserManager().updateScore1(User.playerId, 600); break;
+					case 4: new B_UserManager().updateScore1(User.playerId, 800); break;
+					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
+					}
+					new B_UserManager().printAll();
 				}
 				
 				
@@ -475,26 +466,27 @@ public class D_Controller extends JPanel {
 					C_GameStage gs = new C_GameStage(mf);			
 					cp.replacePanel(gs);
 				}				
-			}else if(gameState == ST_SCORE) {
-				if(code == KeyEvent.VK_Z) {
-					backSound.intoBgmStop();
-					t.stop();
-					mf.setFocusable(false);
-					//남은 hp 별로 점수 출력밑 넘겨줘야함
-					switch(harry.getLife()) {
-					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
-					case 2: new B_UserManager().updateScore1(User.playerId, 400); break;
-					case 3: new B_UserManager().updateScore1(User.playerId, 600); break;
-					case 4: new B_UserManager().updateScore1(User.playerId, 800); break;
-					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
-					}
-					new B_UserManager().printAll();
-					
-					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
-					C_GameStage gs = new C_GameStage(mf);						
-					cp.replacePanel(gs);
-				}
 			}
+//			else if(gameState == ST_CLEAR && firstClear == true) {
+//				if(code == KeyEvent.VK_Z) {
+//					backSound.intoBgmStop();
+//					t.stop();
+//					mf.setFocusable(false);
+//					//남은 hp 별로 점수 출력밑 넘겨줘야함
+//					switch(harry.getLife()) {
+//					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
+//					case 2: new B_UserManager().updateScore1(User.playerId, 400); break;
+//					case 3: new B_UserManager().updateScore1(User.playerId, 600); break;
+//					case 4: new B_UserManager().updateScore1(User.playerId, 800); break;
+//					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
+//					}
+//					new B_UserManager().printAll();
+//					firstClear = false;
+//					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
+//					D_Clear dc = new D_Clear(mf);						
+//					cp.replacePanel(dc);
+//				}
+//			}
 			
 			
 
