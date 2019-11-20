@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.Point;
@@ -89,14 +90,18 @@ public class B_CheckPanel extends JPanel{
 
 		JCheckBox box1 = new JCheckBox();
 		JCheckBox box2 = new JCheckBox();
+		box1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		box2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		JButton btn = new JButton("동의 완료");
 		btn.setFont(new Font("DungGeunMo", Font.BOLD, 16));
 		btn.setBackground(Color.lightGray);
+		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		JButton cancelbutton = new JButton("취소");
 		cancelbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
 		cancelbutton.setBackground(Color.lightGray);
+		cancelbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		scroll1.setBounds(450, 200, 450, 150);
 		scroll2.setBounds(450, 400, 450, 150);
@@ -113,10 +118,12 @@ public class B_CheckPanel extends JPanel{
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(box1.isSelected()) {
+					new A_Music().btnEffect();
 					ctn++;
 					System.out.println("box1 선택");
 					System.out.println(ctn);
 				}else {
+					new A_Music().btnEffect();
 					ctn--;
 					System.out.println("box1 해제");
 					System.out.println(ctn);
@@ -130,10 +137,12 @@ public class B_CheckPanel extends JPanel{
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(box2.isSelected()) {
+					new A_Music().btnEffect();
 					ctn++;
 					System.out.println("box2 선택");
 					System.out.println(ctn);
 				}else {
+					new A_Music().btnEffect();
 					ctn--;
 					System.out.println("box2 해제");
 					System.out.println(ctn);
@@ -144,10 +153,13 @@ public class B_CheckPanel extends JPanel{
 		btn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().btnEffect();
 				if(ctn != 2) {
+				
 					JOptionPane.showMessageDialog(null, "모든 약관에 동의해주시길 바랍니다.");
 				}
 				if(ctn == 2) {
+					
 					ChangePanel cp = new ChangePanel(mf, panel);
 					B_JoinPanel jp = new B_JoinPanel(mf);
 					cp.replacePanel(jp);
@@ -158,6 +170,7 @@ public class B_CheckPanel extends JPanel{
 		cancelbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				new A_Music().btnEffect();
 				ChangePanel cp = new ChangePanel(mf, panel);
 				A_LoginPanel lp = new A_LoginPanel(mf);
 				cp.replacePanel(lp);

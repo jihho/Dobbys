@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
@@ -99,6 +100,13 @@ public class B_JoinPanel extends JPanel{
 		cancelbutton.setBounds(550, 630, 100, 30);
 		pwcheckbutton.setBounds(800, 460, 100, 30);
 		
+		idbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		joinbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		jeonsongbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		checkbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		cancelbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		pwcheckbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		//폰트, 색상 설정
 		namelb.setFont(new Font("DungGeunMo", Font.BOLD, 20));
 		namelb.setForeground(Color.white);
@@ -146,6 +154,7 @@ public class B_JoinPanel extends JPanel{
 		cancelbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().btnEffect();
 				ChangePanel cp = new ChangePanel(mf, panel);
 				B_CheckPanel bcp = new B_CheckPanel(mf);
 				cp.replacePanel(bcp);
@@ -157,6 +166,7 @@ public class B_JoinPanel extends JPanel{
 		joinbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().btnEffect();
 				char[] ch = pwfield.getPassword();
 				String strPw = "";
 				for(int i = 0; i < ch.length; i++) {
@@ -182,6 +192,8 @@ public class B_JoinPanel extends JPanel{
 							if(isemailcheck == false) {	//이메일 인증번호를 하지 않았을 경우
 								JOptionPane.showMessageDialog(null, "이메일 인증번호 확인을 해주세요.");
 							}else {
+								
+								
 								user.setId(idfield.getText());
 								user.setPw(strPw);
 								user.setName(namefield.getText());
@@ -216,6 +228,7 @@ public class B_JoinPanel extends JPanel{
 		idbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().btnEffect();
 				System.out.println(idfield.getText());
 				if(idfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "아이디를 입력해 주십시오.");
@@ -236,6 +249,7 @@ public class B_JoinPanel extends JPanel{
 		jeonsongbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().btnEffect();
 				System.out.println(emailfield.getText());
 				if(emailfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "이메일을 입력해 주십시오.");
@@ -259,6 +273,7 @@ public class B_JoinPanel extends JPanel{
 		checkbutton.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().btnEffect();
 				System.out.println(certifield.getText());
 				if(certifield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "인증번호를 입력해 주세요.");
@@ -278,6 +293,7 @@ public class B_JoinPanel extends JPanel{
 		pwcheckbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().btnEffect();
 				char[] ch = pwfield.getPassword();
 				String str = "";
 				for(int i = 0; i < ch.length; i++) {
@@ -288,6 +304,7 @@ public class B_JoinPanel extends JPanel{
 				for(int i = 0; i < ch2.length; i++) {
 					str2 += ch2[i];
 				}
+	
 				if(str.equals(str2)) {
 					test1.setText("비밀번호가 맞습니다!");
 					test1.setForeground(Color.blue);
