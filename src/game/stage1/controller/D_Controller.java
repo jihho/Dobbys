@@ -63,7 +63,7 @@ public class D_Controller extends JPanel {
 	private D_Harry harry;
 	private D_BackgroundModify back;
 	private int harryHp;
-	private static int altimateGage = 0;
+	private int altimateGage = 0;
 	
 	//stage1 점수
 	private int score = 0;
