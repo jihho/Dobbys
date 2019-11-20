@@ -192,19 +192,23 @@ public class B_JoinPanel extends JPanel{
 							if(isemailcheck == false) {	//이메일 인증번호를 하지 않았을 경우
 								JOptionPane.showMessageDialog(null, "이메일 인증번호 확인을 해주세요.");
 							}else {
+								if(namefield.getText().length() > 5) {
+									JOptionPane.showMessageDialog(null, "이름을 5글자 내로 입력해 주세요.");
+								}else {
+									
+									user.setId(idfield.getText());
+									user.setPw(strPw);
+									user.setName(namefield.getText());
+									user.seteMail(emailfield.getText());
+									
+									B_UserManager um = new B_UserManager();
+									um.insertUser(user);
+									
+									ChangePanel cp = new ChangePanel(mf, panel);
+									A_LoginPanel lp = new A_LoginPanel(mf);
+									cp.replacePanel(lp);
+								}
 								
-								
-								user.setId(idfield.getText());
-								user.setPw(strPw);
-								user.setName(namefield.getText());
-								user.seteMail(emailfield.getText());
-								
-								B_UserManager um = new B_UserManager();
-								um.insertUser(user);
-								
-								ChangePanel cp = new ChangePanel(mf, panel);
-								A_LoginPanel lp = new A_LoginPanel(mf);
-								cp.replacePanel(lp);
 							}
 						}
 						
