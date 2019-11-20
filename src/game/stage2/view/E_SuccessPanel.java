@@ -74,6 +74,7 @@ public class E_SuccessPanel extends JPanel{
 		tomain.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop_stage2();
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
@@ -81,7 +82,6 @@ public class E_SuccessPanel extends JPanel{
 				E_Quest qq = new E_Quest();
 				qq.setRandom(new Random().nextInt(3) + 1);
 				
-				new A_Music().intoBgmStop_stage2();
 				
 
 			}
