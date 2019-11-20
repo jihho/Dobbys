@@ -73,70 +73,70 @@ public class D_Controller extends JPanel {
 	private int effectCount = EFFECT_TIME;
 	
 	// 배경 이미지
-	private static Image backImg1 = new ImageIcon("images/stage1/stage1_bg.png").getImage().
+	private Image backImg1 = new ImageIcon("images/stage1/stage1_bg.png").getImage().
 			getScaledInstance(1300, 770, 0);
-	private static Image backImg2 = new ImageIcon("images/stage1/stage1_bg.png").getImage().
+	private Image backImg2 = new ImageIcon("images/stage1/stage1_bg.png").getImage().
 			getScaledInstance(1300, 770, 0);
 	
 	// 클리어 점수 이미지
-	private static Image score200 = new ImageIcon("images/stage1/score200.png").getImage().
+	private Image score200 = new ImageIcon("images/stage1/score200.png").getImage().
 			getScaledInstance(900, 500, 0);
-	private static Image score400 = new ImageIcon("images/stage1/score400.png").getImage().
+	private Image score400 = new ImageIcon("images/stage1/score400.png").getImage().
 			getScaledInstance(900, 500, 0);
-	private static Image score600 = new ImageIcon("images/stage1/score600.png").getImage().
+	private Image score600 = new ImageIcon("images/stage1/score600.png").getImage().
 			getScaledInstance(900, 500, 0);
-	private static Image score800 = new ImageIcon("images/stage1/score800.png").getImage().
+	private Image score800 = new ImageIcon("images/stage1/score800.png").getImage().
 			getScaledInstance(900, 500, 0);
-	private static Image score1000 = new ImageIcon("images/stage1/score1000.png").getImage().
+	private Image score1000 = new ImageIcon("images/stage1/score1000.png").getImage().
 			getScaledInstance(900, 500, 0);
 	
 	// 스니치 이미지
-	private static Image snitImg = new ImageIcon("images/stage1/ssni.gif").getImage().
+	private Image snitImg = new ImageIcon("images/stage1/ssni.gif").getImage().
 	getScaledInstance(80, 150, 0);
 
 	// 디멘터 이미지
-	private static Image deImg = new ImageIcon("images/stage1/dementor2_Move.gif").getImage().
+	private Image deImg = new ImageIcon("images/stage1/dementor2_Move.gif").getImage().
 			getScaledInstance(100, 100,	0);
 
 	// 해리 이미지
-	private static Image harryImg = new ImageIcon("images/stage1/stage1_harry.gif").getImage().
+	private Image harryImg = new ImageIcon("images/stage1/stage1_harry.gif").getImage().
 			getScaledInstance(100, 100, 0);
 	
 	// 해리 체력 이미지
-	private static Image hpImg  = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
+	private Image hpImg  = new ImageIcon("images/stage1/hpmark.png").getImage().getScaledInstance(80, 80, 0);
 	
 	// 배경 이미지
-	private static Image spaceBar = new ImageIcon("images/stage1/spacebar_w.png").getImage().
+	private Image spaceBar = new ImageIcon("images/stage1/spacebar_w.png").getImage().
 			getScaledInstance(818, 64, 0);
 	
-	private static Image blackBack = new ImageIcon("images/stage2/bg1.png").getImage().
+	private Image blackBack = new ImageIcon("images/stage2/bg1.png").getImage().
 			getScaledInstance(1300, 770, 0);
 	
-	private static Image endWord = new ImageIcon("images/stage1/endWord.png").getImage().
+	private Image endWord = new ImageIcon("images/stage1/endWord.png").getImage().
 			getScaledInstance(818, 400, 0);
 	
 	//필살기 게이지
-	private static Image gageBar = new ImageIcon("images/stage1/gageBar_dot.png").getImage().
+	private Image gageBar = new ImageIcon("images/stage1/gageBar_dot.png").getImage().
 			getScaledInstance(850, 50, 0);
 	
 	//필살기 활성화 게이지
-	private static Image altimateBar = new ImageIcon("images/stage1/altimate_dot.png").getImage().
+	private Image altimateBar = new ImageIcon("images/stage1/altimate_dot.png").getImage().
 			getScaledInstance(10, 40, 0);
 	
 	//필살기 버튼
-	private static Image rButton = new ImageIcon("images/stage1/r_button_dot.png").getImage().
+	private Image rButton = new ImageIcon("images/stage1/r_button_dot.png").getImage().
 				getScaledInstance(60, 60, 0); 
 	
 	//필살기 활성화 된 버튼
-	private static Image rButtonAlti = new ImageIcon("images/stage1/altimate_R.gif").getImage().
+	private Image rButtonAlti = new ImageIcon("images/stage1/altimate_R.gif").getImage().
 			getScaledInstance(60 , 60, 0); 
 	
 	//필살기 이펙트 
-	private static Image altiEffect = new ImageIcon("images/stage1/harrySkill.gif").getImage().
+	private Image altiEffect = new ImageIcon("images/stage1/harrySkill.gif").getImage().
 			getScaledInstance(1300 , 500, 0); 
 	
 	//클리어 영상
-	private static Image clear = new ImageIcon("images/stage1/stage1_video.gif").getImage().
+	private Image clear = new ImageIcon("images/stage1/stage1_video.gif").getImage().
 			getScaledInstance(1300 , 770, 0); 
 	
 	//이미지 이중 버퍼
@@ -468,16 +468,18 @@ public class D_Controller extends JPanel {
 					
 				}
 				if(code == KeyEvent.VK_ESCAPE) {
+					t.stop();
+					mf.setFocusable(false);
 					backSound.intoBgmStop();
 					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
-					C_GameStage gs = new C_GameStage(mf);						
+					C_GameStage gs = new C_GameStage(mf);			
 					cp.replacePanel(gs);
 				}				
 			}else if(gameState == ST_SCORE) {
 				if(code == KeyEvent.VK_Z) {
 					backSound.intoBgmStop();
-					
-					
+					t.stop();
+					mf.setFocusable(false);
 					//남은 hp 별로 점수 출력밑 넘겨줘야함
 					switch(harry.getLife()) {
 					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
@@ -487,6 +489,7 @@ public class D_Controller extends JPanel {
 					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
 					}
 					new B_UserManager().printAll();
+					
 					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
 					C_GameStage gs = new C_GameStage(mf);						
 					cp.replacePanel(gs);

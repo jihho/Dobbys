@@ -120,7 +120,7 @@ public class C_RankingPage extends JPanel{
 
 		String[][] test2 = um.sortList(new DescUserTotal());
 		
-		for(int i = 0; i < 7; i++) {
+		for(int i = 0; i < test2.length; i++) {
 			ta2 = new JTextArea((i + 1) + "위   " + test2[i][0] + "        " + test2[i][1] 
 					+ "        " + test2[i][2] + "        " + test2[i][3]
 					+ "    " + test2[i][4]/* + "     " + test2[i][5]*/);
