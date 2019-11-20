@@ -12,6 +12,7 @@ import javax.sound.sampled.FloatControl;
 public class A_Music {
 	public static Clip clip;
 	public static Clip effect;
+	public static Clip stage2;
 	
 	public static void introBgm() {
 		File bgm;
@@ -92,6 +93,11 @@ public class A_Music {
 	
 	public static void intoBgmStop2() {
 		clip.stop();
+	}
+	
+	public static void intoBgmStop_stage2() {
+		stage2.stop();
+		stage2.close();
 	}
 	
 	public static void harrySkillSound() {
@@ -223,9 +229,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			stage2 = (Clip)AudioSystem.getLine(info);
+			stage2.open(stream);
+			stage2.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
