@@ -150,6 +150,7 @@ public class C_RankingPage extends JPanel{
 		}
 		um.printAll();
 		
+
 /*		
 		for(int i = 0; i < test2.length; i++) {
 			for(int j = 0; j < test2[i].length; j++) {

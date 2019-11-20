@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -26,6 +29,10 @@ public class B_IntroVideoPanel extends JPanel{
 		
 		JLabel start = new JLabel(new ImageIcon(new ImageIcon("images/main/skipButton.PNG").getImage().getScaledInstance(350, 250, 0)));
 		start.setBounds(1000, 550, 350, 250);
+		start.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse.png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		new A_Music().trainSound();
 
 		start.addMouseListener(new MouseAdapter() {

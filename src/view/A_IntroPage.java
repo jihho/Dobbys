@@ -56,7 +56,7 @@ public class A_IntroPage extends JPanel{
 		
 		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
 				.getImage().getScaledInstance(650, 50, 0)));
-		press.setBounds(320, 650, 650, 50);
+		press.setBounds(320, 615, 650, 50);
 		
 		
 		this.addMouseListener(new MouseAdapter() {
