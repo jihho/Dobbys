@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
@@ -46,6 +47,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 	private String temporaryPw = "";
 	
 	private B_UserDao ud = new B_UserDao();
+	B_UserManager um = new B_UserManager();
 	
 	//할일 리스트
 	//찾기 버튼 눌렀을때 label이 동시에 바뀌는 오류 수정하기
@@ -214,8 +216,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 		});
 		
 		
-		
-		
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
 				new Point(0,0),"images/main/mouse.png"));
@@ -239,9 +239,8 @@ public class A_FindPage extends JPanel implements ActionListener{
 		if (e.getSource() == findIdBtn1 && (name.getText().equals("") || (emailId.getText().equals("")))) {
 			findIdLabel.setText("이름,이메일 정보를 입력해주세요.");
 			findIdLabel.setForeground(new Color(230, 0, 0));
-		} else {
-
-			if (e.getSource() == findIdBtn1 && um.checkUserName(name.getText())) {
+			name.requestFocus();
+		} else if (e.getSource() == findIdBtn1 && um.checkUserName(name.getText())) {
 				System.out.println("이름 존재");
 				// 로그인창 아이디와 입력값이 같으면 비밀번호 체크
 				ArrayList<User> list = ud.readUserList();
@@ -261,25 +260,30 @@ public class A_FindPage extends JPanel implements ActionListener{
 				if (selectedUser.geteMail().equals(emailId.getText())) {
 					findIdLabel.setText(selectedUser.getName() + "님의 아이디는 '"+ selectedUser.getId() + "' 입니다.");
 					findIdLabel.setForeground(new Color(0, 200, 0));
+					name.setText("");
+					emailId.setText("");
 				} else {
 					findIdLabel.setText(selectedUser.getName() + "님의 이메일 정보와 일치하지 않습니다.");
 					findIdLabel.setForeground(new Color(230, 0, 0));
+					emailId.setText("");
+					emailId.requestFocus();
 				}
+				
 			} else if(name.getText().length() >= 1) {
 				findIdLabel.setText("일치하는 회원이 없습니다.");
 				findIdLabel.setForeground(new Color(230, 0, 0));
+				name.setText("");
+				emailId.setText("");
+				name.requestFocus();
 			}
-		}
-		
-		
+	
 		
 		//비밀번호 찾기 (임시비밀번호 발급)
 		if (e.getSource() == findPwBtn1 && (id.getText().equals("") || (emailPw.getText().equals("")))) {
 			findPwLabel.setText("아이디,이메일 정보를 입력해주세요.");
 			findPwLabel.setForeground(new Color(230, 0, 0));
-		} else {
-
-			if (e.getSource() == findPwBtn1 && um.checkUserId(id.getText())) {
+			id.requestFocus();
+		} else if (e.getSource() == findPwBtn1 && um.checkUserId(id.getText())) {
 				System.out.println("아이디 존재");
 				
 				// 로그인창 아이디와 입력값이 같으면 비밀번호 체크
@@ -312,32 +316,43 @@ public class A_FindPage extends JPanel implements ActionListener{
 //					
 //					//임시비밀번호 변경
 //					um.updatePw(id.getText(), temporaryPw);
+//					name.setText("");
+//					emailId.setText("");
+//					id.setText("");
+//					emailPw.setText("");
 					
 					
 					findPwLabel.setText("임시 비밀번호는 dobbyisfree 입니다.");
 					findPwLabel.setForeground(new Color(0, 200, 0));
-					
 					um.updatePw(id.getText(), "dobbyisfree");
+					id.setText("");
+					emailPw.setText("");
 					
 					
 				} else {
 					findPwLabel.setText(selectedUser.getId() + "님의 이메일 정보와 일치하지 않습니다.");
 					findPwLabel.setForeground(new Color(230, 0, 0));
+					emailPw.setText("");
+					emailPw.requestFocus();
 				}
 			} else if(id.getText().length() >= 1) {
 				findPwLabel.setText("일치하는 회원이 없습니다.");
 				findPwLabel.setForeground(new Color(230, 0, 0));
+				id.setText("");
+				emailPw.setText("");
+				id.requestFocus();
+				
 			}
 		}
 		
 	
 		//찾기 버튼 클릭 후 textfield 초기화
-		name.setText("");
-		emailId.setText("");
-		id.setText("");
-		emailPw.setText("");
+//		name.setText("");
+//		emailId.setText("");
+//		id.setText("");
+//		emailPw.setText("");
 		
-	}
+	
 	
 	
 	//임시 비밀번호 생성
