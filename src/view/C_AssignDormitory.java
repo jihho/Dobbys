@@ -81,7 +81,7 @@ public class C_AssignDormitory extends JPanel{
 	    		C_RandomAssign ra = new C_RandomAssign(mf);
 	    		
 	    		cp.replacePanel(ra);
-	    		new A_Music().intoBgmStop();
+	    		new A_Music().intoBgmStopJ();
 	    		
 	    	}
 	    });

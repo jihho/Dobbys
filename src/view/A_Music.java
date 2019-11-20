@@ -12,7 +12,7 @@ import javax.sound.sampled.FloatControl;
 public class A_Music {
 	public static Clip clip;
 	public static Clip effect;
-	
+	public static Clip j_clip;
 	public static void introBgm() {
 		File bgm;
 		AudioInputStream stream;
@@ -92,6 +92,15 @@ public class A_Music {
 	
 	public static void intoBgmStop2() {
 		clip.stop();
+	}
+	
+	public static void intoBgmStopJ() {
+		j_clip.stop();
+		j_clip.close();
+	}
+	
+	public static void intoBgmStopJ2() {
+		j_clip.stop();
 	}
 	
 	public static void harrySkillSound() {
@@ -176,9 +185,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
@@ -200,9 +209,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
@@ -319,7 +328,7 @@ public class A_Music {
 	
 	
 	
-	
+	// 진규
 	public static void door() {
 		File bgm;
 		AudioInputStream stream;
@@ -405,10 +414,10 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
-			clip.loop(0);
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
+			j_clip.loop(0);
 			
 		} catch (Exception e) {
 			System.out.println("err : " + e);
@@ -428,9 +437,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			clip = (Clip)AudioSystem.getLine(info);
-			clip.open(stream);
-			clip.start();
+			j_clip = (Clip)AudioSystem.getLine(info);
+			j_clip.open(stream);
+			j_clip.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
