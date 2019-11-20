@@ -76,6 +76,7 @@ public class D_Controller extends JPanel {
 	private Image backImg2 = new ImageIcon("images/stage1/stage1_bg.png").getImage().
 			getScaledInstance(1300, 770, 0);
 	
+	
 	// 클리어 점수 이미지
 	private Image score200 = new ImageIcon("images/stage1/score200.png").getImage().
 			getScaledInstance(900, 500, 0);
