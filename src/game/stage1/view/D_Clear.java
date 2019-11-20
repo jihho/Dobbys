@@ -35,7 +35,7 @@ public class D_Clear extends JPanel{
 		
 		JLabel clear = new JLabel(new ImageIcon(new ImageIcon("images/stage1/stage1_video.gif").getImage().getScaledInstance(1280, 720, 0)));
 		clear.setBounds(0, 0, 1280, 720);
-		
+		new A_Music().clearSound();
 		
 		Dialog succ = new Dialog(mf, "성공");
 		succ.setLayout(null);
@@ -69,6 +69,7 @@ public class D_Clear extends JPanel{
 		clearButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				new A_Music().intoBgmStop();
 				F_ChangePanel cp = new F_ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);

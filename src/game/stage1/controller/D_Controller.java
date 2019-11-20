@@ -296,6 +296,7 @@ public class D_Controller extends JPanel {
 			
 			if(firstClear == true) {
 				firstClear = false;
+				backSound.intoBgmStop();
 				D_ChangePanel cp = new D_ChangePanel(mf, panel);					
 				D_Clear dc = new D_Clear(mf);						
 				cp.replacePanel(dc);
