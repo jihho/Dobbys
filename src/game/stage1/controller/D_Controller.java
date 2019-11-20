@@ -67,7 +67,6 @@ public class D_Controller extends JPanel {
 	
 	//stage1 점수
 	private int score = 0;
-	
 	private int clearCount = CLEAR_TIME;
 	private int effectCount = EFFECT_TIME;
 	
