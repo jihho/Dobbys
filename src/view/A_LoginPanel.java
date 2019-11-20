@@ -182,8 +182,8 @@ public class A_LoginPanel extends JPanel {
 		loginBtn.setPreferredSize(new Dimension(150,140));
 		
 		loginBtn.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse3.png").getImage(),
-				new Point(0,0),"images/main/mouse3.png"));
+				new ImageIcon("images/main/mouse1-2.png").getImage(),
+				new Point(0,0),"images/main/mouse1-2.png"));
 		
 		loginBtn.setContentAreaFilled(false);		//내용영역 채우기 없음
 		loginBtn.setBorderPainted(false);		//외곽선 제거
@@ -251,10 +251,10 @@ public class A_LoginPanel extends JPanel {
 		
 		
 		//버튼 손가락 커
-		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		findId1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePw.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		joinBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//		findId1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//		changePw.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//		joinBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		
 		

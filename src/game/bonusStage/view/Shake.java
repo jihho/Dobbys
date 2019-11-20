@@ -1,6 +1,7 @@
 package game.bonusStage.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
@@ -35,9 +36,10 @@ public class Shake extends JPanel implements Runnable {
     });
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.add(button, BorderLayout.NORTH);
+    frame.add(button);
 
     frame.setSize(1300, 770);
+    frame.setBackground(Color.BLACK);
     frame.setVisible(true);
     frame.setLayout(null);
   }
