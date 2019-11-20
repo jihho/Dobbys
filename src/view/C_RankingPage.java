@@ -567,12 +567,12 @@ public class C_RankingPage extends JPanel{
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
+			new A_Music().intoBgmStopJ();
 			ChangePanel cp = new ChangePanel(mf, panel);
 			C_GameStage gs = new C_GameStage(mf); 
 		
 			cp.replacePanel(gs);
 			
-    		new A_Music().intoBgmStop();
 			}
 		});
 		
