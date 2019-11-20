@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.stage2.model.vo.E_EffectMusic;
 import view.A_Music;
 
 //게임 시작 화면
@@ -170,6 +171,8 @@ public class E_StartPanel extends JPanel {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				
+				new E_EffectMusic().stage2_clickStart();
 				
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				E_QuestPanel qp = new E_QuestPanel(mf);

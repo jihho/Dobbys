@@ -54,6 +54,9 @@ public class E_GamePanel extends JPanel {
 	private int[] userChoice;
 	private static int MAX_HP = 3;
 	private int hp = MAX_HP;
+	private int hintCtn = 0;
+
+	
 	
 	//hp 라벨변수
 	private JLabel hp1;
@@ -61,7 +64,6 @@ public class E_GamePanel extends JPanel {
 	private JLabel hp3;
 	
 	//10초 지난뒤 게임 시작 페이지
-
 	
 	public E_GamePanel(JFrame mf) {
 		this.mf = mf;
@@ -107,10 +109,22 @@ public class E_GamePanel extends JPanel {
 		panel.add(hint1);
 		panel.setComponentZOrder(hint1, 0);
 		
-		//힌트이펙트 2 (처음 틀렸을때)
-		JLabel hint2 = new JLabel(new ImageIcon(new ImageIcon("image/stage2/hint2.png").
-				getImage().getScaledInstance(521, 332, 0)));
+		//힌트이펙트 (틀렸을때 나오는 말풍선)
+		JLabel hint2 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hint2.PNG").
+				getImage().getScaledInstance(246, 156, 0)));
+		hint2.setBounds(150, 260, 246, 156);
 		
+		JLabel hint3 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hint3.png").
+				getImage().getScaledInstance(246, 156, 0)));
+		hint3.setBounds(150, 260, 246, 156);
+		
+		JLabel hint4 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hint4.png").
+				getImage().getScaledInstance(246, 156, 0)));
+		hint4.setBounds(150, 260, 246, 156);
+		
+		JLabel hint5 = new JLabel(new ImageIcon(new ImageIcon("images/stage2/hint5.png").
+				getImage().getScaledInstance(246, 156, 0)));
+		hint5.setBounds(150, 260, 246, 156);
 		
 		
 		
@@ -126,6 +140,8 @@ public class E_GamePanel extends JPanel {
 		JButton item9;
 		JButton home;
 		JButton pot;
+		JButton hint;
+		
 		
 		
 		//item 이미지 삽입
@@ -150,9 +166,11 @@ public class E_GamePanel extends JPanel {
 				getImage().getScaledInstance(60, 80, 0) ));
 		
 		
-		//home, pot 이미지 삽입
+		//home, pot, hint 버튼 이미지 삽입
 		home = new JButton(new ImageIcon("images/stage2/home.png"));
 		pot = new JButton("  ");
+		hint = new JButton(" ");
+		
 		
 		//버튼위에 올라가면 손가락 커서로 변경
 		item1.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -166,7 +184,13 @@ public class E_GamePanel extends JPanel {
 		item9.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		pot.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		potEffect.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		hint.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		hint1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		hint2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		hint3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		hint4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		hint5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 
 		
 		//item 위치 설정 (사이 간격 125)
@@ -189,6 +213,8 @@ public class E_GamePanel extends JPanel {
 		//home, pot 위치 설정
 		home.setBounds(5, 15, 50, 56);
 		pot.setBounds(375, 370, 150, 150);
+		hint.setBounds(150, 260, 246, 156);
+		
 		
 
 		//버튼 투명화
@@ -245,6 +271,14 @@ public class E_GamePanel extends JPanel {
 		pot.setContentAreaFilled(false);
 		pot.setFocusPainted(false);
 		pot.setOpaque(false);
+		
+//		hint.setBorderPainted(false);
+		hint.setContentAreaFilled(false);
+		hint.setFocusPainted(false);
+		hint.setOpaque(false);
+		
+
+		
 		
 		
 		
@@ -578,6 +612,9 @@ public class E_GamePanel extends JPanel {
 		E_Quest qq = new E_Quest();
 		int[] q1 = qq.getQuest();
 		
+		E_QuestPanel qp = new E_QuestPanel(mf);
+		JLabel questImage = qp.getQuest();
+		
 		User user = new User();
 		B_UserManager um = new B_UserManager();
 		//um.updateScore1("test1", 700);
@@ -626,6 +663,10 @@ public class E_GamePanel extends JPanel {
 							};
 							timer.schedule(task, 500);
 							
+							panel.remove(hint1);
+							
+							
+							
 							//재료 위치 리셋
 							ctn = 0;
 							item1.setBounds(75, 580, 100, 100);
@@ -638,22 +679,67 @@ public class E_GamePanel extends JPanel {
 							item8.setBounds(950, 580, 100, 100);
 							item9.setBounds(1075, 580, 100, 100);
 							
-							panel.remove(hint1);
+							panel.add(hint2);
+							panel.setComponentZOrder(hint2, 0);
+							panel.repaint();
+							System.out.println("힌트보실?");
 							
-							//panel.add(hint2);
-							//panel.setComponentZOrder(hint2, 0);
 							
-							/*Timer timer2 = new Timer();
-							TimerTask task2 = new TimerTask() {
+							panel.add(hint);
+							panel.setComponentZOrder(hint2, 1);
+							panel.repaint();
+							
+							
+							hint.addMouseListener(new MouseAdapter() {
+								
 								@Override
-								public void run() {
-									panel.remove(hint2);
-									panel.revalidate();
-									panel.repaint();
+								public void mouseReleased(MouseEvent e) {
+									
+									new E_EffectMusic().stage2_click();
+									
+									hintCtn++;
+									if(hintCtn == 1) {
+										System.out.println("힌트카운트:" + hintCtn);
+										panel.remove(hint2);
+										
+										panel.add(hint3);
+										panel.setComponentZOrder(hint3, 0);
+										panel.repaint();
+										System.out.println("스승님");
+									}
+									if(hintCtn == 2) {
+										System.out.println("힌트카운트2:" + hintCtn);
+										panel.add(questImage);
+										panel.setComponentZOrder(questImage, 0);
+										panel.revalidate();
+										panel.repaint();
+										System.out.println("힌트클릭:"+ q1 );
+										
+										Timer timer2 = new Timer();
+										TimerTask task2 = new TimerTask() {
+											@Override
+											public void run() {
+												panel.remove(questImage);
+												panel.revalidate();
+												panel.repaint();
+											}
+										};
+										timer2.schedule(task2, 1000);
+										repaint();
+									}
+										if(hintCtn == 3) {
+										panel.remove(hint3);
+										panel.repaint();
+										
+										panel.add(hint4);
+										panel.setComponentZOrder(hint4, 0);
+										panel.repaint();
+									}
 								}
-							};
-							timer2.schedule(task2, 1000);*/
+								
+							});
 							
+
 							
 							repaint();
 							return;
@@ -677,6 +763,8 @@ public class E_GamePanel extends JPanel {
 					
 
 				}
+				
+				
 				if(hp == 2) {
 					
 					for(int i = 0; i < 9; i++) {
@@ -722,6 +810,26 @@ public class E_GamePanel extends JPanel {
 							item7.setBounds(825, 580, 100, 100);
 							item8.setBounds(950, 580, 100, 100);
 							item9.setBounds(1075, 580, 100, 100);
+							
+							
+							
+							//if(hintCtn2 == 0) {
+								
+								hint.addMouseListener(new MouseAdapter() {
+									@Override
+									public void mouseReleased(MouseEvent e) {
+										
+										new E_EffectMusic().stage2_click();
+										
+										panel.add(hint5);
+										panel.setComponentZOrder(hint5, 0);
+										panel.repaint();
+									}
+								});
+								
+							//}
+							
+							
 							
 							
 							repaint();
@@ -773,23 +881,25 @@ public class E_GamePanel extends JPanel {
 							item8.setBounds(950, 580, 100, 100);
 							item9.setBounds(1075, 580, 100, 100);
 							
-							/*//실패 이펙트 타이머
-							Timer timer = new Timer();
-							TimerTask task = new TimerTask() {
-								@Override
-								public void run() {
-									panel.remove(failEffect);
-									panel.revalidate();
-									panel.repaint();
-								}
-							};
-							timer.schedule(task, 1000);*/
+							
 							
 							//새로고침
 							repaint();
 							
 							//hp 0되면 실패 이미지 패널로 이동
 							if(hp == 0) {
+								
+								hint.addMouseListener(new MouseAdapter() {
+									@Override
+									public void mouseReleased(MouseEvent e) {
+										
+										new E_EffectMusic().stage2_click();
+										
+										panel.remove(hint5);
+										panel.repaint();
+									}
+								});
+								
 								um.updateScore2(user.playerId, 0);
 
 								E_ChangePanel cp = new E_ChangePanel(mf, panel);
@@ -856,6 +966,7 @@ public class E_GamePanel extends JPanel {
 		
 		this.add(home);
 		this.add(pot);
+		//this.add(hint);
 		
 		this.add(label);
 		
