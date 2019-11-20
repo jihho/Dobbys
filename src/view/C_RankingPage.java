@@ -29,14 +29,6 @@ public class C_RankingPage extends JPanel{
 	private ImageIcon icon;
 	private JFrame mf;
 	private JPanel panel;
-	private JTextArea rt;
-	private JTextArea b_rank;
-	private JTextArea b_score1;
-	private JTextArea b_score2;
-	private JTextArea b_score3;
-	private JTextArea b_total;
-	private JTextArea b_name;
-	private JTextArea b_dormitory;
 	
 	
 	public C_RankingPage(JFrame mf) {
@@ -84,15 +76,16 @@ public class C_RankingPage extends JPanel{
 		//test[5] 배정된 기숙사
 		
 		// 랭킹점수 출력하는 JTextArea 생성
-		JTextArea rr = new JTextArea(
-				test[0] + "\t"+ test[1] + "\t"+ test[2] + "\t"+ 
-				test[3] + "\t"+ test[4] + "\n");
 		
-		rr.setBounds(240, 310, 1300, 300);
-		rr.setForeground(Color.YELLOW);	
-		rr.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		rr.setEditable(false);	
 		
+
+
+ 		JTextArea score1 = new JTextArea(test[0]);
+		JTextArea score2 = new JTextArea(test[1]);
+		JTextArea score3 = new JTextArea(test[2]);
+		JTextArea total = new JTextArea(test[3]);
+		JTextArea name = new JTextArea(test[4]);
+		JTextArea dormitory = new JTextArea(test[5]);
 		
 		switch(test[5]) {
 		case "griyffindor" : System.out.println("그리핀도르"); break; 
@@ -101,16 +94,6 @@ public class C_RankingPage extends JPanel{
 		case "slytherin" : System.out.println("슬리데린"); break;
 		default : System.out.println("왜 안나와");
 		}
-		
-
-/*
- 		JTextArea score1 = new JTextArea(test[0]);
-		JTextArea score2 = new JTextArea(test[1]);
-		JTextArea score3 = new JTextArea(test[2]);
-		JTextArea total = new JTextArea(test[3]);
-		JTextArea name = new JTextArea(test[4]);
-		JTextArea dormitory = new JTextArea(test[5]);
-		
 		score1.setBounds(240, 310, 500, 300);
 		score2.setBounds(420, 310, 500, 300);
 		score3.setBounds(610, 310, 500, 300);
@@ -136,7 +119,7 @@ public class C_RankingPage extends JPanel{
 		dormitory.setForeground(Color.YELLOW);	
 		dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
 		dormitory.setEditable(false);
-*/
+
 		
 		// 누적 랭킹점수 출력하는 JTextArea 생성
 		String[][] test2 = um.sortList(new DescUserTotal());
@@ -151,93 +134,269 @@ public class C_RankingPage extends JPanel{
 		um.printAll();
 		
 
-/*		
-		for(int i = 0; i < test2.length; i++) {
-			for(int j = 0; j < test2[i].length; j++) {
-				rt = new JTextArea(test2[i][j]);
-			}
-		}
-		rt.repaint();
-*/
+		
+//		for(int i = 0; i < test2.length; i++) {
+//			for(int j = 0; j < test2[i].length; j++) {
+//				test2[i][j] = "";
+//			}
+//		}
+
+
+		
+	
+		
+		JTextArea b1_rank = new JTextArea("1위");
+		JTextArea b1_score1 = new JTextArea(test2[0][0]);
+		JTextArea b1_score2 = new JTextArea(test2[0][1]);
+		JTextArea b1_score3 = new JTextArea(test2[0][2]);
+		JTextArea b1_total = new JTextArea(test2[0][3]);
+		JTextArea b1_name = new JTextArea(test2[0][4]);
+		//JTextArea b1_dormitory = new JTextArea(test2[0][5]);
+		JTextArea b2_rank = new JTextArea("2위");
+		JTextArea b2_score1 = new JTextArea(test2[1][0]);
+		JTextArea b2_score2 = new JTextArea(test2[1][1]);
+		JTextArea b2_score3 = new JTextArea(test2[1][2]);
+		JTextArea b2_total = new JTextArea(test2[1][3]);
+		JTextArea b2_name = new JTextArea(test2[1][4]);
+		//JTextArea b2_dormitory = new JTextArea(test2[0][5]);
+		JTextArea b3_rank = new JTextArea("3위");
+		JTextArea b3_score1 = new JTextArea(test2[2][0]);
+		JTextArea b3_score2 = new JTextArea(test2[2][1]);
+		JTextArea b3_score3 = new JTextArea(test2[2][2]);
+		JTextArea b3_total = new JTextArea(test2[2][3]);
+		JTextArea b3_name = new JTextArea(test2[2][4]);
+		//JTextArea b3_dormitory = new JTextArea(test2[0][5]);
+		JTextArea b4_rank = new JTextArea("4위");
+		JTextArea b4_score1 = new JTextArea(test2[3][0]);
+		JTextArea b4_score2 = new JTextArea(test2[3][1]);
+		JTextArea b4_score3 = new JTextArea(test2[3][2]);
+		JTextArea b4_total = new JTextArea(test2[3][3]);
+		JTextArea b4_name = new JTextArea(test2[3][4]);
+		//JTextArea b4_dormitory = new JTextArea(test2[0][5]);
+		JTextArea b5_rank = new JTextArea("5위");
+		JTextArea b5_score1 = new JTextArea(test2[4][0]);
+		JTextArea b5_score2 = new JTextArea(test2[4][1]);
+		JTextArea b5_score3 = new JTextArea(test2[4][2]);
+		JTextArea b5_total = new JTextArea(test2[4][3]);
+		JTextArea b5_name = new JTextArea(test2[4][4]);
+		//JTextArea b5_dormitory = new JTextArea(test2[0][5]);
+		JTextArea b6_rank = new JTextArea("6위");
+		JTextArea b6_score1 = new JTextArea(test2[5][0]);
+		JTextArea b6_score2 = new JTextArea(test2[5][1]);
+		JTextArea b6_score3 = new JTextArea(test2[5][2]);
+		JTextArea b6_total = new JTextArea(test2[5][3]);
+		JTextArea b6_name = new JTextArea(test2[5][4]);
+		//JTextArea b6_dormitory = new JTextArea(test2[0][5]);
+		JTextArea b7_rank = new JTextArea("7위");
+		JTextArea b7_score1 = new JTextArea(test2[6][0]);
+		JTextArea b7_score2 = new JTextArea(test2[6][1]);
+		JTextArea b7_score3 = new JTextArea(test2[6][2]);
+		JTextArea b7_total = new JTextArea(test2[6][3]);
+		JTextArea b7_name = new JTextArea(test2[6][4]);
+		//JTextArea b6_dormitory = new JTextArea(test2[0][5]);
 		
 		
-		rt = new JTextArea( 
-				"1위  " + test2[0][0] + "\t" + test2[0][1] 
-				+ "\t" + test2[0][2] + "\t" + test2[0][3]
-				+ "\t" + test2[0][4] + "\n" +
-				
-				"2위  " + test2[1][0] + "\t" + test2[1][1] 
-				+ "\t" + test2[1][2] + "\t" + test2[1][3]
-				+ "\t" + test2[1][4] + "\n" +
-				
-				"3위  " + test2[2][0] + "\t" + test2[2][1] 
-				+ "\t" + test2[2][2] + "\t" + test2[2][3]
-				+ "\t" + test2[2][4] + "\n" +
-				
-				"4위  " + test2[3][0] + "\t" + test2[3][1] 
-				+ "\t" + test2[3][2] + "\t" + test2[3][3]
-				+ "\t" + test2[3][4] + "\n" +
-				
-				"5위  " + test2[4][0] + "\t" + test2[4][1] 
-				+ "\t" + test2[4][2] + "\t" + test2[4][3]
-				+ "\t" + test2[4][4] + "\n" +
-				
-				"6위  " + test2[5][0] + "\t" + test2[5][1] 
-				+ "\t" + test2[5][2] + "\t" + test2[5][3]
-				+ "\t" + test2[5][4] + "\n" +
-				
-				"7위  " + test2[6][0] + "\t" + test2[6][1] 
-				+ "\t" + test2[6][2] + "\t" + test2[6][3]
-				+ "\t" + test2[6][4] + "\n"
-				);
 		
-			
-		rt.setBounds(135, 360, 1300, 500);
-		rt.setForeground(Color.WHITE);	
-		rt.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		rt.setEditable(false); 	
+		b1_rank.setBounds(135, 360, 500, 300);
+		b1_score1.setBounds(240, 360, 500, 300);
+		b1_score2.setBounds(420, 360, 500, 300);
+		b1_score3.setBounds(610, 360, 500, 300);
+		b1_total.setBounds(770, 360, 500, 300);
+		b1_name.setBounds(920, 360, 500, 300);
+		//b1_dormitory.setBounds(145, 360, 500, 300);
+		b2_rank.setBounds(135, 400, 500, 300);
+		b2_score1.setBounds(240, 400, 500, 300);
+		b2_score2.setBounds(420, 400, 500, 300);
+		b2_score3.setBounds(610, 400, 500, 300);
+		b2_total.setBounds(770, 400, 500, 300);
+		b2_name.setBounds(920, 400, 500, 300);
+		//b2_dormitory.setBounds(145, 360, 500, 300);
+		b3_rank.setBounds(135, 440, 500, 300);
+		b3_score1.setBounds(240, 440, 500, 300);
+		b3_score2.setBounds(420, 440, 500, 300);
+		b3_score3.setBounds(610, 440, 500, 300);
+		b3_total.setBounds(770, 440, 500, 300);
+		b3_name.setBounds(920, 440, 500, 300);
+		//b3_dormitory.setBounds(145, 360, 500, 300);
+		b4_rank.setBounds(135, 480, 500, 300);
+		b4_score1.setBounds(240, 480, 500, 300);
+		b4_score2.setBounds(420, 480, 500, 300);
+		b4_score3.setBounds(610, 480, 500, 300);
+		b4_total.setBounds(770, 480, 500, 300);
+		b4_name.setBounds(920, 480, 500, 300);
+		//b4_dormitory.setBounds(145, 360, 500, 300);
+		b5_rank.setBounds(135, 520, 500, 300);
+		b5_score1.setBounds(240, 520, 500, 300);
+		b5_score2.setBounds(420, 520, 500, 300);
+		b5_score3.setBounds(610, 520, 500, 300);
+		b5_total.setBounds(770, 520, 500, 300);
+		b5_name.setBounds(920, 520, 500, 300);
+		//b5_dormitory.setBounds(145, 360, 500, 300);
+		b6_rank.setBounds(135, 560, 500, 300);
+		b6_score1.setBounds(240, 560, 500, 300);
+		b6_score2.setBounds(420, 560, 500, 300);
+		b6_score3.setBounds(610, 560, 500, 300);
+		b6_total.setBounds(770, 560, 500, 300);
+		b6_name.setBounds(920, 560, 500, 300);
+		//b6_dormitory.setBounds(145, 360, 500, 300);
+		b7_rank.setBounds(135, 600, 500, 300);
+		b7_score1.setBounds(240, 600, 500, 300);
+		b7_score2.setBounds(420, 600, 500, 300);
+		b7_score3.setBounds(610, 600, 500, 300);
+		b7_total.setBounds(770, 600, 500, 300);
+		b7_name.setBounds(920, 600, 500, 300);
+		//b7_dormitory.setBounds(145, 360, 500, 300);
 		
 		
+		b1_rank.setForeground(Color.WHITE);	
+		b1_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b1_rank.setEditable(false); 	
+		b1_score1.setForeground(Color.WHITE);	
+		b1_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b1_score1.setEditable(false); 	
+		b1_score2.setForeground(Color.WHITE);	
+		b1_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b1_score2.setEditable(false); 
+		b1_score3.setForeground(Color.WHITE);	
+		b1_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b1_score3.setEditable(false); 
+		b1_total.setForeground(Color.WHITE);	
+		b1_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b1_total.setEditable(false); 
+		b1_name.setForeground(Color.WHITE);	
+		b1_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b1_name.setEditable(false); 
+		//b1_dormitory.setForeground(Color.WHITE);	
+		//b1_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		//b1_dormitory.setEditable(false); 
+		b2_rank.setForeground(Color.WHITE);	
+		b2_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b2_rank.setEditable(false);
+		b2_score1.setForeground(Color.WHITE);	
+		b2_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b2_score1.setEditable(false); 	
+		b2_score2.setForeground(Color.WHITE);	
+		b2_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b2_score2.setEditable(false); 
+		b2_score3.setForeground(Color.WHITE);	
+		b2_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b2_score3.setEditable(false); 
+		b2_total.setForeground(Color.WHITE);	
+		b2_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b2_total.setEditable(false); 
+		b2_name.setForeground(Color.WHITE);	
+		b2_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b2_name.setEditable(false); 
+		//b1_dormitory.setForeground(Color.WHITE);	
+		//b1_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		//b1_dormitory.setEditable(false); 
+		b3_rank.setForeground(Color.WHITE);	
+		b3_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b3_rank.setEditable(false);
+		b3_score1.setForeground(Color.WHITE);	
+		b3_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b3_score1.setEditable(false); 	
+		b3_score2.setForeground(Color.WHITE);	
+		b3_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b3_score2.setEditable(false); 
+		b3_score3.setForeground(Color.WHITE);	
+		b3_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b3_score3.setEditable(false); 
+		b3_total.setForeground(Color.WHITE);	
+		b3_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b3_total.setEditable(false); 
+		b3_name.setForeground(Color.WHITE);	
+		b3_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b3_name.setEditable(false); 
+		//b1_dormitory.setForeground(Color.WHITE);	
+		//b1_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		//b1_dormitory.setEditable(false); 
+		b4_rank.setForeground(Color.WHITE);	
+		b4_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b4_rank.setEditable(false);
+		b4_score1.setForeground(Color.WHITE);	
+		b4_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b4_score1.setEditable(false); 	
+		b4_score2.setForeground(Color.WHITE);	
+		b4_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b4_score2.setEditable(false); 
+		b4_score3.setForeground(Color.WHITE);	
+		b4_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b4_score3.setEditable(false); 
+		b4_total.setForeground(Color.WHITE);	
+		b4_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b4_total.setEditable(false); 
+		b4_name.setForeground(Color.WHITE);	
+		b4_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b4_name.setEditable(false); 
+		//b1_dormitory.setForeground(Color.WHITE);	
+		//b1_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		//b1_dormitory.setEditable(false); 
+		b5_rank.setForeground(Color.WHITE);	
+		b5_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b5_rank.setEditable(false);
+		b5_score1.setForeground(Color.WHITE);	
+		b5_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b5_score1.setEditable(false); 	
+		b5_score2.setForeground(Color.WHITE);	
+		b5_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b5_score2.setEditable(false); 
+		b5_score3.setForeground(Color.WHITE);	
+		b5_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b5_score3.setEditable(false); 
+		b5_total.setForeground(Color.WHITE);	
+		b5_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b5_total.setEditable(false); 
+		b5_name.setForeground(Color.WHITE);	
+		b5_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b5_name.setEditable(false); 
+		//b1_dormitory.setForeground(Color.WHITE);	
+		//b1_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		//b1_dormitory.setEditable(false); 
+		b6_rank.setForeground(Color.WHITE);	
+		b6_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b6_rank.setEditable(false);
+		b6_score1.setForeground(Color.WHITE);	
+		b6_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b6_score1.setEditable(false); 	
+		b6_score2.setForeground(Color.WHITE);	
+		b6_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b6_score2.setEditable(false); 
+		b6_score3.setForeground(Color.WHITE);	
+		b6_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b6_score3.setEditable(false); 
+		b6_total.setForeground(Color.WHITE);	
+		b6_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b6_total.setEditable(false); 
+		b6_name.setForeground(Color.WHITE);	
+		b6_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b6_name.setEditable(false); 
+		//b1_dormitory.setForeground(Color.WHITE);	
+		//b1_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		//b1_dormitory.setEditable(false); 
+		b7_rank.setForeground(Color.WHITE);	
+		b7_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b7_rank.setEditable(false);
+		b7_score1.setForeground(Color.WHITE);	
+		b7_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b7_score1.setEditable(false); 	
+		b7_score2.setForeground(Color.WHITE);	
+		b7_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b7_score2.setEditable(false); 
+		b7_score3.setForeground(Color.WHITE);	
+		b7_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b7_score3.setEditable(false); 
+		b7_total.setForeground(Color.WHITE);	
+		b7_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b7_total.setEditable(false); 
+		b7_name.setForeground(Color.WHITE);	
+		b7_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		b7_name.setEditable(false); 
+		//b1_dormitory.setForeground(Color.WHITE);	
+		//b1_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		//b1_dormitory.setEditable(false); 
 		
-/*		
-		b_rank = new JTextArea((i + 1) + "위");
-		b_score1 = new JTextArea(test2[i][j]);
-		b_score2 = new JTextArea(test2[i][j]);
-		b_score3 = new JTextArea(test2[i][j]);
-		b_total = new JTextArea(test2[i][j]);
-		b_name = new JTextArea(test2[i][j]);
-		b_dormitory = new JTextArea(test2[i][j]);
 		
-		b_rank.setBounds(135, 360, 500, 300);
-		b_score1.setBounds(240, 360, 500, 300);
-		b_score2.setBounds(420, 360, 500, 300);
-		b_score3.setBounds(610, 360, 500, 300);
-		b_total.setBounds(770, 360, 500, 300);
-		b_name.setBounds(920, 360, 500, 300);
-		b_dormitory.setBounds(145, 360, 500, 300);
-		
-		b_rank.setForeground(Color.WHITE);	
-		b_rank.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		b_rank.setEditable(false); 	
-		b_score1.setForeground(Color.WHITE);	
-		b_score1.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		b_score1.setEditable(false); 	
-		b_score2.setForeground(Color.WHITE);	
-		b_score2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		b_score2.setEditable(false); 
-		b_score3.setForeground(Color.WHITE);	
-		b_score3.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		b_score3.setEditable(false); 
-		b_total.setForeground(Color.WHITE);	
-		b_total.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		b_total.setEditable(false); 
-		b_name.setForeground(Color.WHITE);	
-		b_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		b_name.setEditable(false); 
-		b_dormitory.setForeground(Color.WHITE);	
-		b_dormitory.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-		b_dormitory.setEditable(false); 
-*/
 		
 		// 위치와 크기 설정 	
 		this.setBounds(0, 0, 1300, 770);
@@ -271,25 +430,63 @@ public class C_RankingPage extends JPanel{
 		total_name.setForeground(Color.WHITE);			   			 
 		total_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		
-		background.add(rr);
-		background.add(rt);
-		
-/*
+
 		background.add(score1);
 		background.add(score2);
 		background.add(score3);
 		background.add(total);
 		background.add(name);
-		background.add(dormitory);
+		//background.add(dormitory);
 		
- 		background.add(b_rank);
-		background.add(b_score1);
-		background.add(b_score2);
-		background.add(b_score3);
-		background.add(b_total);
-		background.add(b_name);
-		background.add(b_dormitory);
-*/
+ 		background.add(b1_rank);
+		background.add(b1_score1);
+		background.add(b1_score2);
+		background.add(b1_score3);
+		background.add(b1_total);
+		background.add(b1_name);
+		//background.add(b_dormitory);
+ 		background.add(b2_rank);
+		background.add(b2_score1);
+		background.add(b2_score2);
+		background.add(b2_score3);
+		background.add(b2_total);
+		background.add(b2_name);
+		//background.add(b_dormitory);
+ 		background.add(b3_rank);
+		background.add(b3_score1);
+		background.add(b3_score2);
+		background.add(b3_score3);
+		background.add(b3_total);
+		background.add(b3_name);
+		//background.add(b_dormitory);
+ 		background.add(b4_rank);
+		background.add(b4_score1);
+		background.add(b4_score2);
+		background.add(b4_score3);
+		background.add(b4_total);
+		background.add(b4_name);
+		//background.add(b_dormitory);
+ 		background.add(b5_rank);
+		background.add(b5_score1);
+		background.add(b5_score2);
+		background.add(b5_score3);
+		background.add(b5_total);
+		background.add(b5_name);
+		//background.add(b_dormitory);
+ 		background.add(b6_rank);
+		background.add(b6_score1);
+		background.add(b6_score2);
+		background.add(b6_score3);
+		background.add(b6_total);
+		background.add(b6_name);
+		//background.add(b_dormitory);
+ 		background.add(b7_rank);
+		background.add(b7_score1);
+		background.add(b7_score2);
+		background.add(b7_score3);
+		background.add(b7_total);
+		background.add(b7_name);
+		//background.add(b_dormitory);
 
 		// 되돌아가기 버튼 생성
 		return_btn.setBounds(1115, 660, 150, 50);
@@ -308,24 +505,62 @@ public class C_RankingPage extends JPanel{
 		stage3_name.setOpaque(false);
 		total_name.setOpaque(false);
 
-		rr.setOpaque(false);
-		rt.setOpaque(false);
-
-/*		score1.setOpaque(false);
+		score1.setOpaque(false);
 		score2.setOpaque(false);
 		score3.setOpaque(false);
 		total.setOpaque(false);
 		name.setOpaque(false);
-		dormitory.setOpaque(false);		
+		//dormitory.setOpaque(false);		
 		
-		b_rank.setOpaque(false);
-		b_score1.setOpaque(false);
-		b_score2.setOpaque(false);
-		b_score3.setOpaque(false);
-		b_total.setOpaque(false);
-		b_name.setOpaque(false);
-		b_dormitory.setOpaque(false);	
-*/	
+		b1_rank.setOpaque(false);
+		b1_score1.setOpaque(false);
+		b1_score2.setOpaque(false);
+		b1_score3.setOpaque(false);
+		b1_total.setOpaque(false);
+		b1_name.setOpaque(false);
+		//b_dormitory.setOpaque(false);	
+		b2_rank.setOpaque(false);
+		b2_score1.setOpaque(false);
+		b2_score2.setOpaque(false);
+		b2_score3.setOpaque(false);
+		b2_total.setOpaque(false);
+		b2_name.setOpaque(false);
+		//b_dormitory.setOpaque(false);
+		b3_rank.setOpaque(false);
+		b3_score1.setOpaque(false);
+		b3_score2.setOpaque(false);
+		b3_score3.setOpaque(false);
+		b3_total.setOpaque(false);
+		b3_name.setOpaque(false);
+		//b_dormitory.setOpaque(false);
+		b4_rank.setOpaque(false);
+		b4_score1.setOpaque(false);
+		b4_score2.setOpaque(false);
+		b4_score3.setOpaque(false);
+		b4_total.setOpaque(false);
+		b4_name.setOpaque(false);
+		//b_dormitory.setOpaque(false);
+		b5_rank.setOpaque(false);
+		b5_score1.setOpaque(false);
+		b5_score2.setOpaque(false);
+		b5_score3.setOpaque(false);
+		b5_total.setOpaque(false);
+		b5_name.setOpaque(false);
+		//b_dormitory.setOpaque(false);	
+		b6_rank.setOpaque(false);
+		b6_score1.setOpaque(false);
+		b6_score2.setOpaque(false);
+		b6_score3.setOpaque(false);
+		b6_total.setOpaque(false);
+		b6_name.setOpaque(false);
+		//b_dormitory.setOpaque(false);	
+		b7_rank.setOpaque(false);
+		b7_score1.setOpaque(false);
+		b7_score2.setOpaque(false);
+		b7_score3.setOpaque(false);
+		b7_total.setOpaque(false);
+		b7_name.setOpaque(false);
+		//b_dormitory.setOpaque(false);	
 		
 		// return_Btn 버튼 이벤트
 		return_btn.addMouseListener(new MouseAdapter() {
