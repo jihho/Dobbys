@@ -832,7 +832,7 @@ public class E_GamePanel extends JPanel {
 										public void mouseReleased(MouseEvent e) {
 
 											new E_EffectMusic().stage2_click();
-
+											System.out.println("왜?????????");
 											panel.add(hint5);
 											panel.setComponentZOrder(hint5, 0);
 											panel.repaint();
