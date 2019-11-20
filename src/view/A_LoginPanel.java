@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import controller.B_UserManager;
 import model.dao.B_UserDao;
@@ -35,6 +36,7 @@ public class A_LoginPanel extends JPanel {
 	private JTextField text;
 	private JPasswordField passwordText;
 	private B_UserDao ud = new B_UserDao();
+	int bgmOnOff = 0;
 	
 	User user = new User();
 	public A_LoginPanel(JFrame mf) {
@@ -350,6 +352,7 @@ public class A_LoginPanel extends JPanel {
 		this.add(loginLogo);
 		this.add(loginBackground);
 
+		
 	}
 	
 }

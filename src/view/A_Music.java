@@ -50,6 +50,11 @@ public class A_Music {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
+			//볼륨조절
+			FloatControl gainControl = 
+				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-9.0f); // Reduce volume by 10 decibels.
+			
 			clip.start();
 			clip.loop(0);
 			
@@ -323,6 +328,12 @@ public class A_Music {
 			info = new DataLine.Info(Clip.class, format);
 			effect = (Clip)AudioSystem.getLine(info);
 			effect.open(stream);
+			
+			//볼륨 조절 ( 증가 최대 6 , 감소 최대 9 )
+			FloatControl gainControl = 
+				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(6.0f); // Reduce volume by 10 decibels.
+			
 			effect.start();
 			effect.loop(0);
 			
