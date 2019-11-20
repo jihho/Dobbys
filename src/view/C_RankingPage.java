@@ -49,7 +49,7 @@ public class C_RankingPage extends JPanel{
 		JLabel stage1_name = new JLabel("Stage1");
 		JLabel stage2_name = new JLabel("Stage2");
 		JLabel stage3_name = new JLabel("Stage3");
-		JLabel ranking_name = new JLabel("Ranking");
+		JLabel total_name = new JLabel("Total");
 		
 		JLabel gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
 		JLabel huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
@@ -116,18 +116,22 @@ public class C_RankingPage extends JPanel{
 		
 		
 		// 랭킹점수 출력하는 JTextArea 생성
-//		JTextArea ta2 = new JTextArea();
-//	
-//		String[][] test2 = um.sortList(DescUserTotal.compare(aaTextInfo, aaTextInfo));
-//		
-//		for(int i = 0; i < 7; i++) {
-//			ta2 = new JTextArea(test2[i][0] + "     " + test2[i][1] + "     " + test2[i][2] 
-//			+ "     " + test2[i][3] + "     " + test2[i][4] + "     " + test2[i][5]);
-//		
-//		ta2.setBounds(150, 360, 1100, 300); 	//JTeatArea 크기 및 위치 지정		
-//		ta2.setForeground(Color.WHITE);	
-//		ta2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
-//		ta2.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+		JTextArea ta2 = new JTextArea();
+
+		String[][] test2 = um.sortList(new DescUserTotal());
+		
+		for(int i = 0; i < 7; i++) {
+			ta2 = new JTextArea((i + 1) + "위   " + test2[i][0] + "        " + test2[i][1] 
+					+ "        " + test2[i][2] + "        " + test2[i][3]
+					+ "    " + test2[i][4]/* + "     " + test2[i][5]*/);
+		}
+		
+		ta2.setBounds(145, 360, 1100, 300); 	//JTeatArea 크기 및 위치 지정
+		ta2.setForeground(Color.WHITE);	
+		ta2.setFont(new Font("DungGeunMo", Font.PLAIN, 40)); 
+		ta2.setEditable(false); 	//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+		
+		
 		
 		// 위치와 크기 설정 	
 		this.setBounds(0, 0, 1300, 770);
@@ -142,7 +146,7 @@ public class C_RankingPage extends JPanel{
 		stage1_name.setBounds(215, 245, 170, 50);
 		stage2_name.setBounds(395, 245, 170, 50);
 		stage3_name.setBounds(580, 245, 170, 50);
-		ranking_name.setBounds(750, 245, 200, 50);
+		total_name.setBounds(761, 245, 200, 50);
 		
 		gryffindor.setBounds(670, 82, 1000, 500);
 		huffepuff.setBounds(670, 132, 1000, 500);
@@ -167,8 +171,8 @@ public class C_RankingPage extends JPanel{
 		stage3_name.setForeground(Color.WHITE);			   			 
 		stage3_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		
-		ranking_name.setForeground(Color.WHITE);			   			 
-		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
+		total_name.setForeground(Color.WHITE);			   			 
+		total_name.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		
 		
 
@@ -182,12 +186,11 @@ public class C_RankingPage extends JPanel{
 		background.add(name);
 		background.add(dormitory);
 		
-//		background.add(ta2);
+		background.add(ta2);
 		this.add(background);
 		
 		
 		// 되돌아가기 버튼 생성
-
 		return_btn.setBounds(1115, 660, 150, 50);
 		return_btn.setBackground(Color.GRAY);
 		return_btn.setForeground(Color.WHITE);			   			   // 버튼 글자 색깔 변경
@@ -202,7 +205,7 @@ public class C_RankingPage extends JPanel{
 		stage1_name.setOpaque(false);
 		stage2_name.setOpaque(false);
 		stage3_name.setOpaque(false);
-		ranking_name.setOpaque(false);
+		total_name.setOpaque(false);
 
 		score1.setOpaque(false);
 		score2.setOpaque(false);
@@ -211,7 +214,7 @@ public class C_RankingPage extends JPanel{
 		name.setOpaque(false);
 		dormitory.setOpaque(false);		
 		
-		
+		ta2.setOpaque(false);	
 		
 		// return_Btn 버튼 이벤트
 		return_btn.addMouseListener(new MouseAdapter() {
@@ -219,7 +222,6 @@ public class C_RankingPage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			ChangePanel cp = new ChangePanel(mf, panel);
-			
 			C_GameStage gs = new C_GameStage(mf); 
 		
 			cp.replacePanel(gs);
@@ -238,7 +240,7 @@ public class C_RankingPage extends JPanel{
 		this.add(stage1_name);
 		this.add(stage2_name);
 		this.add(stage3_name);
-		this.add(ranking_name);
+		this.add(total_name);
 
 		this.add(slytherin);
 		this.add(ravaenclaw);
