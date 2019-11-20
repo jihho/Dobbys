@@ -2,8 +2,9 @@ package game.stage3.views;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
@@ -65,8 +66,7 @@ public class F_Stage3Panel extends JPanel{
 	private JLabel[] vmhp = new JLabel[10];
 	
 	int harryChoice = 0;
-	Image img;
-	Graphics img_g;
+	
 	
 	public F_Stage3Panel(JFrame mf){
 		this.mf = mf;
@@ -185,10 +185,18 @@ public class F_Stage3Panel extends JPanel{
 		JLabel bmhp9 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		bmhp9.setBounds(920, 180, 23, 70);*/
 
+		ActionClass actionEvent = new ActionClass();
+		atk.addActionListener(actionEvent);
+		df.addActionListener(actionEvent);
+		smash.addActionListener(actionEvent);
+		counter.addActionListener(actionEvent);
 
+		atk.setActionCommand("1");
+		df.setActionCommand("2");
+		smash.setActionCommand("3");
+		counter.setActionCommand("4");
 		//공격 버튼
 		atk.setBounds(40, 530, 186, 81);
-
 
 		//디펜스 버튼
 		df.setBounds(270, 530, 186, 81);
@@ -261,12 +269,12 @@ public class F_Stage3Panel extends JPanel{
 		//ef.setBounds(400, 277, 700, 200);
 		skill.setBounds(440, 277, 650, 200);
 		sksmash.setBounds(440, 277, 650, 200);
-		skdf.setBounds(440, 277, 150, 250);
+		skdf.setBounds(440, 237, 150, 250);
 		skct.setBounds(400, 277, 250, 200);
 
 		vmskill.setBounds(440, 277, 650, 200);
 		vmsksmash.setBounds(440, 277, 650, 200);
-		vmskdf.setBounds(800, 277, 150, 250);
+		vmskdf.setBounds(800, 237, 150, 250);
 		vmskct.setBounds(400, 277, 250, 200);
 		/*atk.setBorderPainted(false);
 				atk.setContentAreaFilled(false);
@@ -323,9 +331,10 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(smash);
 		panel.add(counter);
 
-		
 		//라벨을 가장 마지막에 추가함으로서 자동적으로 우선순위를 최 하위로 변경
 		//setComponentZOrder를 여기서 사용할 필요 없게 됨
+		
+	
 
 
 		//배경 라벨의 우선 순위를 가장 아래로 내림으로서 나머지 라벨 등장 
@@ -334,633 +343,7 @@ public class F_Stage3Panel extends JPanel{
 		log.append("버튼을 선택해주세요\n");
 		//볼드모트의 선택이 될 랜덤 수
 		this.add(label);
-		//마우스 이펙트 사용
-		panel.revalidate();
-		panel.repaint();
-		atk.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == atk){	//getSource를 atk버튼을 받게 함
-					int vmchoice = (int)(Math.random()*4);
-					
-					if(vmchoice == 0 || vmchoice == 1 || vmchoice == 2) {
-						new F_EffectMusic().stage3_atk();
-						new F_EffectMusic().stage3_vmdf();
-						
-						panel.add(skill);
-						panel.add(vmskdf);
-						
-						panel.setComponentZOrder(skill, 0);
-						panel.setComponentZOrder(vmskdf, 0);
-						//panel.revalidate();
-						panel.repaint();
-						log.append("공격이 무효화 되었습니다.\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(skill);	//skill 라벨 제거 
-								panel.remove(vmskdf);
-								//panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
-								F_RoundPanel rp = new F_RoundPanel(mf);
-								ap.replacePanel(rp);*/
-								if(voldmort.getHp()<=0) {
-									log.append("!!볼드모트를 물리쳤습니다.\n");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-							}
-						};
-						ts.schedule(tsm, 1400);
-					}else if(vmchoice == 3) {
-						new F_EffectMusic().stage3_vmatk();
-						panel.add(skill);
-						panel.setComponentZOrder(skill, 0);
-						//panel.revalidate();
-						panel.repaint();
-
-						voldmort.setHp(voldmort.getHp() -10);
-						voldmort.setHplife(voldmort.getHplife() -1);
-						log.append("공격 성공!!\n볼드모트의 체력이 10 감소합니다.\n");
-						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(skill);	//skill 라벨 제거 
-								for(int i = 9; i>=0; i--) {
-									if(i >= voldmort.getHplife()) {
-										panel.remove(vmhp[i]);
-									}
-								}
-								//panel.revalidate();
-								panel.repaint();
-								/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
-								F_RoundPanel rp = new F_RoundPanel(mf);
-								ap.replacePanel(rp);*/
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(voldmort.getHp()<=0) {
-									log.append("!!!!!볼드모트를 물리쳤습니다.\n");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-							}
-
-
-						};
-						ts.schedule(tsm, 1400);
-					}
-					
-				}
-			}
-		});
-		
-		smash.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == smash){	//getSource를 atk버튼을 받게 함
-					int vmchoice = (int)(Math.random()*4);
-					if(vmchoice == 0 || vmchoice == 2) {
-						new F_EffectMusic().stage3_vmsmash();
-						panel.add(sksmash);
-						panel.add(vmskdf);
-						panel.setComponentZOrder(sksmash, 0);
-						panel.setComponentZOrder(vmskdf, 0);
-						panel.revalidate();
-						panel.repaint();
-						log.append("공격이 무효화 되었습니다.\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(sksmash);	//skill 라벨 제거 
-								panel.remove(vmskdf);
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(voldmort.getHp()<=0) {
-									log.append("!!!!볼드모트를 물리쳤습니다.");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-						};
-						ts.schedule(tsm, 1400);
-					}else if(vmchoice == 1) {
-						new F_EffectMusic().stage3_smash();
-						panel.add(sksmash);	//skill 라벨 추가
-						panel.revalidate();
-						panel.repaint();
-						panel.setComponentZOrder(sksmash, 0);
-						voldmort.setHp(voldmort.getHp() -20);
-						voldmort.setHplife(voldmort.getHplife() -2);
-						log.append("공격 성공!!\n볼드모트의 체력이 20 감소합니다.\n");
-						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(sksmash);	//skill 라벨 제거 
-
-								for(int i = 9; i>=0; i--) {
-									if(i >= voldmort.getHplife()) {
-										panel.remove(vmhp[i]);
-									}
-								}
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(voldmort.getHp()<=0) {
-									log.append("!!!!볼드모트를 물리쳤습니다.");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-
-						};
-						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-					}else if(vmchoice == 3) {
-						new F_EffectMusic().stage3_vmct();
-						panel.add(vmsksmash);	//skill 라벨 추가
-						panel.revalidate();
-						panel.repaint();
-						panel.setComponentZOrder(vmsksmash, 0);
-						harry.setHp(harry.getHp() -30);
-						harry.setHplife(harry.getHplife() -3);
-						log.append("볼드모트의 카운터!\n해리포터의 체력이 30 감소합니다.\n");
-						log.append("해리의 체력 : " + harry.getHp()+"\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(vmsksmash);	//skill 라벨 제거 
-								panel.revalidate();
-								panel.repaint();
-								for(int i = 9; i>=0; i--) {
-									if(i >= harry.getHplife()) {
-										panel.remove(hp[i]);
-									}
-								}
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(voldmort.getHp()<=0) {
-									log.append("!!!!볼드모트를 물리쳤습니다.");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-
-						};
-						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-					}
-					
-				}
-			}
-		});
-
-		df.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == df){	//getSource를 atk버튼을 받게 함
-					new F_EffectMusic().stage3_df();
-					int vmchoice = (int)(Math.random()*4);
-					if(vmchoice == 0 || vmchoice == 1 || vmchoice == 3) {
-						panel.add(skdf);	//skill 라벨 추가
-						panel.add(vmskill);
-						panel.revalidate();
-						panel.repaint();
-						panel.setComponentZOrder(skdf, 0);
-						panel.setComponentZOrder(vmskill, 0);
-						log.append("공격이 무효화 되었습니다.\n");
-						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(skdf);	//skill 라벨 제거 
-								panel.add(vmskill);
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-
-						};
-						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-					}else if(vmchoice == 2){
-						panel.add(skdf);	//skill 라벨 추가
-						panel.add(vmsksmash);
-						panel.setComponentZOrder(skdf, 0);
-						panel.setComponentZOrder(vmsksmash, 0);
-						panel.revalidate();
-						panel.repaint();
-						harry.setHp(harry.getHp() -20);
-						harry.setHplife(harry.getHplife() -2);
-						log.append("볼드모트의 스매쉬!!\n해리포터의 체력이 20 감소합니다.\n");
-						log.append("해리의 체력 : " + harry.getHp()+"\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(skdf);	//skill 라벨 제거 
-								panel.remove(vmsksmash);
-								for(int i = 9; i>=0; i--) {
-									if(i >= harry.getHplife()) {
-										panel.remove(hp[i]);
-									}
-								}
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-
-						};
-						ts.schedule(tsm, 1400);
-					}
-					
-				}
-			}
-		});
-
-		counter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {	//클릭은 동일한 위치라 인식이 안되는 경우가 종종 생기므로 Released 사용
-				if(e.getSource() == counter){	//getSource를 atk버튼을 받게 함
-					new F_EffectMusic().stage3_ct();
-					int vmchoice = (int)(Math.random()*4);
-					if(vmchoice == 0) {
-						panel.add(skct);	//skill 라벨 추가
-						panel.add(vmskill);
-						panel.setComponentZOrder(skct, 0);
-						panel.setComponentZOrder(vmskill, 0);
-						panel.revalidate();
-						panel.repaint();
-						harry.setHp(harry.getHp() -10);
-						harry.setHplife(harry.getHplife() -1);
-						log.append("볼드모트의 공격!!\n해리포터의 체력이 10 감소합니다.\n");
-						log.append("해리의 체력 : " + harry.getHp()+"\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						//skdf.updateUI();	//라벨 갱신해서 오류 삭제
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(skct);	//skill 라벨 제거 
-								panel.remove(vmskill);
-								for(int i = 9; i>=0; i--) {
-									if(i >= harry.getHplife()) {
-										panel.remove(hp[i]);
-									}
-								}
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(voldmort.getHp()<=0) {
-									log.append("!!!!볼드모트를 물리쳤습니다.");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-
-						};
-						ts.schedule(tsm, 1400);
-					}else if(vmchoice == 1 || vmchoice ==3) {
-						panel.add(skct);	//skill 라벨 추가
-						panel.add(vmskdf);
-						panel.setComponentZOrder(skct, 0);
-						panel.setComponentZOrder(vmskdf, 0);
-						panel.revalidate();
-						panel.repaint();
-						log.append("공격이 무효화 되었습니다.\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						//skct.updateUI();	//라벨 갱신해서 오류 삭제
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(skct);	//skill 라벨 제거 
-								panel.remove(vmskdf);
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(voldmort.getHp()<=0) {
-									log.append("!!!!볼드모트를 물리쳤습니다.");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-
-						};
-						ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
-					}else if(vmchoice == 2) {
-						panel.add(vmsksmash);	//skill 라벨 추가
-						panel.add(skct);
-						panel.setComponentZOrder(vmsksmash, 0);
-						panel.setComponentZOrder(skct, 0);
-						panel.revalidate();
-						panel.repaint();
-
-						voldmort.setHp(voldmort.getHp() -30);
-						voldmort.setHplife(voldmort.getHplife() -3);
-						log.append("해리의 카운터!!\n볼드모트의 체력이 30 감소합니다.\n");
-						log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
-						log.setCaretPosition(log.getDocument().getLength());
-						//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
-						//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
-
-						Timer ts = new Timer();	//Timer 실행
-						TimerTask tsm = new TimerTask() {	//TimerTask 실행
-
-							//TimerTask로 실행할 작업 내용 Override
-							@Override
-							public void run() {
-								panel.remove(vmsksmash);	//skill 라벨 제거 
-								panel.remove(skct);
-								panel.revalidate();
-								panel.repaint();
-								for(int i = 9; i>=0; i--) {
-									if(i >= voldmort.getHplife()) {
-										panel.remove(vmhp[i]);
-									}
-								}
-								panel.revalidate();
-								panel.repaint();
-								//panel.add(ef);			//ef 라벨 추가
-								//ef.updateUI();			//라벨 갱신 
-								//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-								if(voldmort.getHp()<=0) {
-									log.append("!!!!볼드모트를 물리쳤습니다.");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									
-									switch(harry.getHplife()) {
-									case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-									case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-									case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-									case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-									case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-									case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-									case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-									case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-									case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-									case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-									}
-									
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_SuccessPanel sp = new F_SuccessPanel(mf);
-									cp.replacePanel(sp);
-								}
-								if(harry.getHp()<=0){
-									log.append("재도전하시겠습니까?");
-									new A_Music().intoBgmStop();
-									new F_EffectMusic().intoBgmStop();
-									F_ChangePanel cp = new F_ChangePanel(mf, panel);
-									F_FailPanel fp = new F_FailPanel(mf);
-									cp.replacePanel(fp);
-								}
-							}
-						};
-						ts.schedule(tsm, 1400);
-					}
-					
-				}
-			}
-		});
 		success.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -995,5 +378,674 @@ public class F_Stage3Panel extends JPanel{
 			}
 		});
 
+	}
+	
+	class ActionClass implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int action = Integer.parseInt(e.getActionCommand());
+			int vmchoice = (int)(Math.random()*4);
+			
+			switch(action) {
+			
+			case 1: 
+				atk.setEnabled(false);
+				df.setEnabled(false);
+				smash.setEnabled(false);
+				counter.setEnabled(false);
+				
+				if(vmchoice == 0 || vmchoice == 1 || vmchoice == 2) {
+					new F_EffectMusic().stage3_atk();
+					new F_EffectMusic().stage3_vmdf();
+					
+					panel.add(skill);
+					panel.add(vmskdf);
+					
+					panel.setComponentZOrder(skill, 0);
+					panel.setComponentZOrder(vmskdf, 0);
+					//panel.revalidate();
+					panel.repaint();
+					log.append("공격이 무효화 되었습니다.\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(skill);	//skill 라벨 제거 
+							panel.remove(vmskdf);
+							//panel.revalidate();
+							panel.repaint();
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
+							F_RoundPanel rp = new F_RoundPanel(mf);
+							ap.replacePanel(rp);*/
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							if(voldmort.getHp()<=0) {
+								log.append("!!볼드모트를 물리쳤습니다.\n");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+						}
+					};
+					ts.schedule(tsm, 1400);
+				}else if(vmchoice == 3) {
+					new F_EffectMusic().stage3_vmatk();
+					panel.add(skill);
+					panel.setComponentZOrder(skill, 0);
+					//panel.revalidate();
+					panel.repaint();
+
+					voldmort.setHp(voldmort.getHp() -10);
+					voldmort.setHplife(voldmort.getHplife() -1);
+					log.append("공격 성공!!\n볼드모트의 체력이 10 감소합니다.\n");
+					log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(skill);	//skill 라벨 제거 
+							for(int i = 9; i>=0; i--) {
+								if(i >= voldmort.getHplife()) {
+									panel.remove(vmhp[i]);
+								}
+							}
+							//panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
+							F_RoundPanel rp = new F_RoundPanel(mf);
+							ap.replacePanel(rp);*/
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(voldmort.getHp()<=0) {
+								log.append("!!!!!볼드모트를 물리쳤습니다.\n");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+						}
+
+
+					};
+					ts.schedule(tsm, 1400);
+				}
+				break;
+				
+			case 2 : 
+				atk.setEnabled(false);
+				df.setEnabled(false);
+				smash.setEnabled(false);
+				counter.setEnabled(false);
+				
+				new F_EffectMusic().stage3_df();
+				if(vmchoice == 0 || vmchoice == 1 || vmchoice == 3) {
+					panel.add(skdf);	//skill 라벨 추가
+					panel.add(vmskill);
+					panel.revalidate();
+					panel.repaint();
+					panel.setComponentZOrder(skdf, 0);
+					panel.setComponentZOrder(vmskill, 0);
+					log.append("공격이 무효화 되었습니다.\n");
+					//skdf.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(skdf);	//skill 라벨 제거 
+							panel.add(vmskill);
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+
+					};
+					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+				}else if(vmchoice == 2){
+					panel.add(skdf);	//skill 라벨 추가
+					panel.add(vmsksmash);
+					panel.setComponentZOrder(skdf, 0);
+					panel.setComponentZOrder(vmsksmash, 0);
+					panel.revalidate();
+					panel.repaint();
+					harry.setHp(harry.getHp() -20);
+					harry.setHplife(harry.getHplife() -2);
+					log.append("볼드모트의 스매쉬!!\n해리포터의 체력이 20 감소합니다.\n");
+					log.append("해리의 체력 : " + harry.getHp()+"\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					//skdf.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(skdf);	//skill 라벨 제거 
+							panel.remove(vmsksmash);
+							for(int i = 9; i>=0; i--) {
+								if(i >= harry.getHplife()) {
+									panel.remove(hp[i]);
+								}
+							}
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+
+					};
+					ts.schedule(tsm, 1400);
+				}
+				break;
+				
+			case 3 : 
+				atk.setEnabled(false);
+				df.setEnabled(false);
+				smash.setEnabled(false);
+				counter.setEnabled(false);
+				if(vmchoice == 0 || vmchoice == 2) {
+					new F_EffectMusic().stage3_vmsmash();
+					panel.add(sksmash);
+					panel.add(vmskdf);
+					panel.setComponentZOrder(sksmash, 0);
+					panel.setComponentZOrder(vmskdf, 0);
+					panel.revalidate();
+					panel.repaint();
+					log.append("공격이 무효화 되었습니다.\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(sksmash);	//skill 라벨 제거 
+							panel.remove(vmskdf);
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(voldmort.getHp()<=0) {
+								log.append("!!!!볼드모트를 물리쳤습니다.");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+					};
+					ts.schedule(tsm, 1400);
+				}else if(vmchoice == 1) {
+					new F_EffectMusic().stage3_smash();
+					panel.add(sksmash);	//skill 라벨 추가
+					panel.revalidate();
+					panel.repaint();
+					panel.setComponentZOrder(sksmash, 0);
+					voldmort.setHp(voldmort.getHp() -20);
+					voldmort.setHplife(voldmort.getHplife() -2);
+					log.append("공격 성공!!\n볼드모트의 체력이 20 감소합니다.\n");
+					log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(sksmash);	//skill 라벨 제거 
+
+							for(int i = 9; i>=0; i--) {
+								if(i >= voldmort.getHplife()) {
+									panel.remove(vmhp[i]);
+								}
+							}
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(voldmort.getHp()<=0) {
+								log.append("!!!!볼드모트를 물리쳤습니다.");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+
+					};
+					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+				}else if(vmchoice == 3) {
+					new F_EffectMusic().stage3_vmct();
+					panel.add(vmsksmash);	//skill 라벨 추가
+					panel.revalidate();
+					panel.repaint();
+					panel.setComponentZOrder(vmsksmash, 0);
+					harry.setHp(harry.getHp() -30);
+					harry.setHplife(harry.getHplife() -3);
+					log.append("볼드모트의 카운터!\n해리포터의 체력이 30 감소합니다.\n");
+					log.append("해리의 체력 : " + harry.getHp()+"\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(vmsksmash);	//skill 라벨 제거 
+							panel.revalidate();
+							panel.repaint();
+							for(int i = 9; i>=0; i--) {
+								if(i >= harry.getHplife()) {
+									panel.remove(hp[i]);
+								}
+							}
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(voldmort.getHp()<=0) {
+								log.append("!!!!볼드모트를 물리쳤습니다.");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+
+					};
+					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+				}
+				
+				break;
+				
+			case 4 : 
+				atk.setEnabled(false);
+				df.setEnabled(false);
+				smash.setEnabled(false);
+				counter.setEnabled(false);
+				new F_EffectMusic().stage3_ct();
+				if(vmchoice == 0) {
+					panel.add(skct);	//skill 라벨 추가
+					panel.add(vmskill);
+					panel.setComponentZOrder(skct, 0);
+					panel.setComponentZOrder(vmskill, 0);
+					panel.revalidate();
+					panel.repaint();
+					harry.setHp(harry.getHp() -10);
+					harry.setHplife(harry.getHplife() -1);
+					log.append("볼드모트의 공격!!\n해리포터의 체력이 10 감소합니다.\n");
+					log.append("해리의 체력 : " + harry.getHp()+"\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					//skdf.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(skct);	//skill 라벨 제거 
+							panel.remove(vmskill);
+							for(int i = 9; i>=0; i--) {
+								if(i >= harry.getHplife()) {
+									panel.remove(hp[i]);
+								}
+							}
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(voldmort.getHp()<=0) {
+								log.append("!!!!볼드모트를 물리쳤습니다.");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+
+					};
+					ts.schedule(tsm, 1400);
+				}else if(vmchoice == 1 || vmchoice ==3) {
+					panel.add(skct);	//skill 라벨 추가
+					panel.add(vmskdf);
+					panel.setComponentZOrder(skct, 0);
+					panel.setComponentZOrder(vmskdf, 0);
+					panel.revalidate();
+					panel.repaint();
+					log.append("공격이 무효화 되었습니다.\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					//skct.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(skct);	//skill 라벨 제거 
+							panel.remove(vmskdf);
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(voldmort.getHp()<=0) {
+								log.append("!!!!볼드모트를 물리쳤습니다.");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+
+					};
+					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+				}else if(vmchoice == 2) {
+					panel.add(vmsksmash);	//skill 라벨 추가
+					panel.add(skct);
+					panel.setComponentZOrder(vmsksmash, 0);
+					panel.setComponentZOrder(skct, 0);
+					panel.revalidate();
+					panel.repaint();
+
+					voldmort.setHp(voldmort.getHp() -30);
+					voldmort.setHplife(voldmort.getHplife() -3);
+					log.append("해리의 카운터!!\n볼드모트의 체력이 30 감소합니다.\n");
+					log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
+					log.setCaretPosition(log.getDocument().getLength());
+					//sksmash.updateUI();	//라벨 갱신해서 오류 삭제
+					//panel.setComponentZOrder(label, 30);	//skill라벨이 보여지기 위해 배경 라벨의 우선순위 조정
+
+					Timer ts = new Timer();	//Timer 실행
+					TimerTask tsm = new TimerTask() {	//TimerTask 실행
+
+						//TimerTask로 실행할 작업 내용 Override
+						@Override
+						public void run() {
+							panel.remove(vmsksmash);	//skill 라벨 제거 
+							panel.remove(skct);
+							panel.revalidate();
+							panel.repaint();
+							for(int i = 9; i>=0; i--) {
+								if(i >= voldmort.getHplife()) {
+									panel.remove(vmhp[i]);
+								}
+							}
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+							//panel.add(ef);			//ef 라벨 추가
+							//ef.updateUI();			//라벨 갱신 
+							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							if(voldmort.getHp()<=0) {
+								log.append("!!!!볼드모트를 물리쳤습니다.");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								
+								switch(harry.getHplife()) {
+								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
+								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
+								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
+								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
+								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
+								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
+								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
+								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
+								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
+								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
+								}
+								
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_SuccessPanel sp = new F_SuccessPanel(mf);
+								cp.replacePanel(sp);
+							}
+							if(harry.getHp()<=0){
+								log.append("재도전하시겠습니까?");
+								new A_Music().intoBgmStop();
+								new F_EffectMusic().intoBgmStop();
+								F_ChangePanel cp = new F_ChangePanel(mf, panel);
+								F_FailPanel fp = new F_FailPanel(mf);
+								cp.replacePanel(fp);
+							}
+						}
+					};
+					ts.schedule(tsm, 1400);
+				}
+				break;
+				
+			}
+		}
+		
 	}
 }
