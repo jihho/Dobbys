@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -109,13 +112,10 @@ public class A_LoginPanel extends JPanel {
 			}
 		});
 		
-		
-		
 		//마우스커서
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
 				new Point(0,0),"DobbyCursor"));
-		
 		
 		//아이디
 		label = new JLabel("User ID");
@@ -129,6 +129,8 @@ public class A_LoginPanel extends JPanel {
 		text.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(text);
 		text.setColumns(15);
+		
+		text.requestFocus();
 //		text.setOpaque(false);
 		
 		
@@ -171,7 +173,7 @@ public class A_LoginPanel extends JPanel {
 		ImageIcon loginBtnImg2 = new ImageIcon("images/main/loginBtn2-1.png");
 		loginBtn.setRolloverIcon(loginBtnImg2);
 		loginBtn.setBorderPainted(false);
-		loginBtn.setPreferredSize(new Dimension(130,120));
+		loginBtn.setPreferredSize(new Dimension(150,140));
 		
 		loginBtn.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse3.png").getImage(),
@@ -241,6 +243,18 @@ public class A_LoginPanel extends JPanel {
 		
 		panel.add(joinBtn1);
 		
+		
+		//버튼 손가락 커
+		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		findId1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		changePw.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		joinBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		
+		
+		
+			
+		
 		joinBtn1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -270,6 +284,134 @@ public class A_LoginPanel extends JPanel {
 		});
 		
 		
+		//아이디 창에서 tab키 입력시 비밀번호 창으로 커서이동
+		text.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {
+					loginBtn.doClick();
+					// 로그인 성공시 음악정지 (변수)
+					A_Music stopMusic = new A_Music();
+
+					B_UserManager um = new B_UserManager();
+					// 로그인창 아이디창 공백일시
+					if (text.getText().equals("")) {
+						loginInfo.setText("아이디를 입력해 주세요.");
+						loginInfo.setForeground(new Color(230, 0, 0));
+						text.requestFocus();
+					} else {
+
+						if (um.checkUserId(text.getText())) {
+							System.out.println("아이디 존재");
+							// 로그인창 아이디와 입력값이 같으면 비밀번호 체크
+							ArrayList<User> list = ud.readUserList();
+							// 일치하는 user 정보를 담을 레퍼런스 변수 초기화
+							User selectedUser = null;
+							// 조회에 성공하면 유저 아이디와 일치하는 비밀번호를 리스트에서 탐색
+							if (list != null) {
+								for (int i = 0; i < list.size(); i++) {
+									if (list.get(i).getId().equals(text.getText())) {
+										selectedUser = list.get(i);
+										break;
+									}
+								}
+							}
+
+							// 아이디 존재 상태에서 비밀번호 비교
+							if (selectedUser.getPw().equals(passwordText.getText())) {
+								System.out.println("로그인 성공!");
+								User.playerId = selectedUser.getId();
+								// 음악정지
+								stopMusic.intoBgmStop();
+								ChangePanel cp = new ChangePanel(mf, panel);
+								B_IntroVideoPanel iv = new B_IntroVideoPanel(mf);
+								cp.replacePanel(iv);
+							} else {
+								loginInfo.setText("비밀번호가 틀렸습니다.");
+								loginInfo.setForeground(new Color(230, 0, 0));
+								passwordText.setText("");
+								passwordText.requestFocus();
+							}
+
+						} else {
+							loginInfo.setText("아이디가 존재하지 않습니다.");
+							loginInfo.setForeground(new Color(230, 0, 0));
+							text.setText("");
+							passwordText.setText("");
+							text.requestFocus();
+
+						}
+					}
+				}
+			}
+		});
+		
+		
+		
+		//패스워드 창에서 엔터키 입력시 로그인 버튼 클릭.
+		passwordText.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {
+					loginBtn.doClick();
+					// 로그인 성공시 음악정지 (변수)
+					A_Music stopMusic = new A_Music();
+
+					B_UserManager um = new B_UserManager();
+					// 로그인창 아이디창 공백일시
+					if (text.getText().equals("")) {
+						loginInfo.setText("아이디를 입력해 주세요.");
+						loginInfo.setForeground(new Color(230, 0, 0));
+						text.requestFocus();
+					} else {
+
+						if (um.checkUserId(text.getText())) {
+							System.out.println("아이디 존재");
+							// 로그인창 아이디와 입력값이 같으면 비밀번호 체크
+							ArrayList<User> list = ud.readUserList();
+							// 일치하는 user 정보를 담을 레퍼런스 변수 초기화
+							User selectedUser = null;
+							// 조회에 성공하면 유저 아이디와 일치하는 비밀번호를 리스트에서 탐색
+							if (list != null) {
+								for (int i = 0; i < list.size(); i++) {
+									if (list.get(i).getId().equals(text.getText())) {
+										selectedUser = list.get(i);
+										break;
+									}
+								}
+							}
+
+							// 아이디 존재 상태에서 비밀번호 비교
+							if (selectedUser.getPw().equals(passwordText.getText())) {
+								System.out.println("로그인 성공!");
+								User.playerId = selectedUser.getId();
+								// 음악정지
+								stopMusic.intoBgmStop();
+								ChangePanel cp = new ChangePanel(mf, panel);
+								B_IntroVideoPanel iv = new B_IntroVideoPanel(mf);
+								cp.replacePanel(iv);
+							} else {
+								loginInfo.setText("비밀번호가 틀렸습니다.");
+								loginInfo.setForeground(new Color(230, 0, 0));
+								passwordText.setText("");
+								passwordText.requestFocus();
+							}
+
+						} else {
+							loginInfo.setText("아이디가 존재하지 않습니다.");
+							loginInfo.setForeground(new Color(230, 0, 0));
+							text.setText("");
+							passwordText.setText("");
+							text.requestFocus();
+
+						}
+					}
+				}
+			}
+		});
+		
+				
+		//마우스로 로그인 버튼 클릭시
 		loginBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -287,6 +429,7 @@ public class A_LoginPanel extends JPanel {
 				if(text.getText().equals("")) {
 					loginInfo.setText("아이디를 입력해 주세요.");
 					loginInfo.setForeground(new Color(230, 0, 0));
+					text.requestFocus();
 				}else {
 					
 					if(um.checkUserId(text.getText())) {
@@ -319,6 +462,7 @@ public class A_LoginPanel extends JPanel {
 							loginInfo.setText("비밀번호가 틀렸습니다.");
 							loginInfo.setForeground(new Color(230, 0, 0));
 							passwordText.setText("");
+							passwordText.requestFocus();
 						}
 						
 					}else {
@@ -326,6 +470,7 @@ public class A_LoginPanel extends JPanel {
 						loginInfo.setForeground(new Color(230, 0, 0));
 						text.setText("");
 						passwordText.setText("");
+						text.requestFocus();
 						
 					}
 				}
