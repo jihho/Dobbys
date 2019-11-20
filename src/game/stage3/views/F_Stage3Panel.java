@@ -29,35 +29,23 @@ public class F_Stage3Panel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 	//JLabel ef;	//스킬 이펙트 없앨때 사용할 라벨
-	private static JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
-	private static JLabel hr = new JLabel(new ImageIcon(new ImageIcon("images/stage3/harry.png").getImage().getScaledInstance(225, 225, 0)));
-	private static JLabel bm = new JLabel(new ImageIcon(new ImageIcon("images/stage3/boldemote.png").getImage().getScaledInstance(225, 225, 0)));
-	private static JLabel hpbar = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
-	private static Image hpimg = new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0);
-	private static Image hpimg1 = new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0);
-	private static Image vmimg = new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0);
-	private static JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 	
-	
-	//스킬 이펙트 용 라벨
-	private static JLabel skill  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk2.gif").getImage().getScaledInstance(650, 200, 0)));
-	private static JLabel sksmash  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash1.gif").getImage().getScaledInstance(650, 200, 0)));
-	private static JLabel skdf  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/df22.gif").getImage().getScaledInstance(150, 200, 0)));
-	private static JLabel skct  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/ct2.gif").getImage().getScaledInstance(250, 200, 0)));
-	
-	private static JLabel vmskill = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk1.gif").getImage().getScaledInstance(650, 200, 0)));
-	private static JLabel vmsksmash = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash2.gif").getImage().getScaledInstance(650, 200, 0)));
-	private static JLabel vmskdf = new JLabel(new ImageIcon(new ImageIcon("images/stage3/df2.gif").getImage().getScaledInstance(150, 200, 0)));
-	private static JLabel vmskct = new JLabel(new ImageIcon(new ImageIcon("images/stage3/ct1.gif").getImage().getScaledInstance(250, 200, 0)));
+	private JLabel skill;	//스킬 이펙트 용 라벨
+	private JLabel sksmash;
+	private JLabel skdf;
+	private JLabel skct;
+	private JLabel vmskill;	//볼드모트 스킬 이펙트 용 라벨
+	private JLabel vmsksmash;
+	private JLabel vmskdf;
+	private JLabel vmskct;	
 
-	private static JTextArea log;
-	private static JScrollPane sc;
+	private JTextArea log;
+	private JScrollPane sc;
 	
-	private static JButton atk = new JButton(new ImageIcon("images/stage3/atk.png"));
-	private static JButton df = new JButton(new ImageIcon("images/stage3/df.png"));
-	private static JButton smash = new JButton(new ImageIcon("images/stage3/smash.png"));
-	private static JButton counter = new JButton(new ImageIcon("images/stage3/counter.png"));
-
+	JButton atk;
+	JButton df;
+	JButton smash;
+	JButton counter;
 
 	private F_General harry = new F_Harry(100, 10, 20, 30, 10);	//체력, 공격, 스매쉬, 카운터, 체력 칸
 	private F_General voldmort = new F_Voldmort(100, 10, 20, 30, 10);
@@ -67,144 +55,90 @@ public class F_Stage3Panel extends JPanel{
 	
 	int harryChoice = 0;
 	
-	
 	public F_Stage3Panel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 		this.setBounds(0, 0, 1280, 720);
+		
 		new A_Music().stage3_backgroundSound();
 		//스테이지 배경 라벨로 올림
-		//JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
 
 		//해리포터 캐릭터 라벨
-		//JLabel hr = new JLabel(new ImageIcon(new ImageIcon("images/stage3/harry.png").getImage().getScaledInstance(225, 225, 0)));
+		JLabel hr = new JLabel(new ImageIcon(new ImageIcon("images/stage3/harrymove.gif").getImage().getScaledInstance(225, 225, 0)));
 		hr.setBounds(191, 277, 225, 225);
 
 		//볼드모트 캐릭터 라벨
-		//JLabel bm = new JLabel(new ImageIcon(new ImageIcon("images/stage3/boldemote.png").getImage().getScaledInstance(225, 225, 0)));
+		JLabel bm = new JLabel(new ImageIcon(new ImageIcon("images/stage3/voldmote.gif").getImage().getScaledInstance(225, 225, 0)));
 		bm.setBounds(921, 277, 225, 225);
 
 		//해리포터 체력 바
-		//JLabel hpbar = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
+		JLabel hpbar = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		hpbar.setBounds(190, 200, 34, 35);
-		//img_g.drawImage(deImg, d.getX(), d.getY(), this);
-		hp[0] = new JLabel(new ImageIcon(hpimg));
+
+		hp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[0].setBounds(230, 180, 23, 70);
-		hp[1] = new JLabel(new ImageIcon(hpimg1));
+		hp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[1].setBounds(250, 180, 23, 70);
-		hp[2] = new JLabel(new ImageIcon(hpimg1));
+		hp[2] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[2].setBounds(270, 180, 23, 70);
-		hp[3] = new JLabel(new ImageIcon(hpimg1));
+		hp[3] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[3].setBounds(290, 180, 23, 70);
-		hp[4] = new JLabel(new ImageIcon(hpimg1));
+		hp[4] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[4].setBounds(310, 180, 23, 70);
-		hp[5] = new JLabel(new ImageIcon(hpimg1));
+		hp[5] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[5].setBounds(330, 180, 23, 70);
-		hp[6] = new JLabel(new ImageIcon(hpimg1));
+		hp[6] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[6].setBounds(350, 180, 23, 70);
-		hp[7] = new JLabel(new ImageIcon(hpimg1));
+		hp[7] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[7].setBounds(370, 180, 23, 70);
-		hp[8] = new JLabel(new ImageIcon(hpimg1));
+		hp[8] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[8].setBounds(390, 180, 23, 70);
-		hp[9] = new JLabel(new ImageIcon(hpimg1));
+		hp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[9].setBounds(410, 180, 23, 70);
 
-		/*
-		JLabel hp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
-		hp0.setBounds(230, 180, 23, 70);
-		JLabel hp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp1.setBounds(250, 180, 23, 70);
-		JLabel hp2 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp2.setBounds(270, 180, 23, 70);
-		JLabel hp3 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp3.setBounds(290, 180, 23, 70);
-		JLabel hp4 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp4.setBounds(310, 180, 23, 70);
-		JLabel hp5 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp5.setBounds(330, 180, 23, 70);
-		JLabel hp6 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp6.setBounds(350, 180, 23, 70);
-		JLabel hp7 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp7.setBounds(370, 180, 23, 70);
-		JLabel hp8 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp8.setBounds(390, 180, 23, 70);
-		JLabel hp9 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp9.setBounds(410, 180, 23, 70);*/
-
-
 		//볼드모트 체력 바
-		//JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
+		JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		bmhp.setBounds(1120, 200, 34, 35);
 
-		vmhp[0] = new JLabel(new ImageIcon(vmimg));
+		vmhp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[0].setBounds(1100, 180, 23, 70);
-		vmhp[1] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[1].setBounds(1080, 180, 23, 70);
-		vmhp[2] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[2] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[2].setBounds(1060, 180, 23, 70);
-		vmhp[3] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[3] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[3].setBounds(1040, 180, 23, 70);
-		vmhp[4] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[4] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[4].setBounds(1020, 180, 23, 70);
-		vmhp[5] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[5] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[5].setBounds(1000, 180, 23, 70);
-		vmhp[6] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[6] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[6].setBounds(980, 180, 23, 70);
-		vmhp[7] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[7] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[7].setBounds(960, 180, 23, 70);
-		vmhp[8] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[8] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[8].setBounds(940, 180, 23, 70);
-		vmhp[9] = new JLabel(new ImageIcon(hpimg1));
+		vmhp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[9].setBounds(920, 180, 23, 70);
 
-
-
-
-
-
-		/*JLabel bmhp0 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp0.setBounds(1100, 180, 23, 70);
-		JLabel bmhp1 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp1.setBounds(1080, 180, 23, 70);
-		JLabel bmhp2 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp2.setBounds(1060, 180, 23, 70);
-		JLabel bmhp3 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp3.setBounds(1040, 180, 23, 70);
-		JLabel bmhp4 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp4.setBounds(1020, 180, 23, 70);
-		JLabel bmhp5 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp5.setBounds(1000, 180, 23, 70);
-		JLabel bmhp6 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp6.setBounds(980, 180, 23, 70);
-		JLabel bmhp7 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp7.setBounds(960, 180, 23, 70);
-		JLabel bmhp8 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp8.setBounds(940, 180, 23, 70);
-		JLabel bmhp9 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		bmhp9.setBounds(920, 180, 23, 70);*/
-
-		ActionClass actionEvent = new ActionClass();
-		atk.addActionListener(actionEvent);
-		df.addActionListener(actionEvent);
-		smash.addActionListener(actionEvent);
-		counter.addActionListener(actionEvent);
-
-		atk.setActionCommand("1");
-		df.setActionCommand("2");
-		smash.setActionCommand("3");
-		counter.setActionCommand("4");
 		//공격 버튼
+		atk = new JButton(new ImageIcon("images/stage3/atk.png"));
 		atk.setBounds(40, 530, 186, 81);
 
+
 		//디펜스 버튼
+		df = new JButton(new ImageIcon("images/stage3/df.png"));
 		df.setBounds(270, 530, 186, 81);
 
 		//스매쉬 버튼
+		smash = new JButton(new ImageIcon("images/stage3/smash.png"));
 		smash.setBounds(40, 620, 186, 81);
 
 		//카운터 버튼
+		counter = new JButton(new ImageIcon("images/stage3/counter.png"));
 		counter.setBounds(270, 620, 186, 81);
 
 		//로그 텍스트에어리어
@@ -215,9 +149,11 @@ public class F_Stage3Panel extends JPanel{
 		log.setLineWrap(true);
 		sc.setBounds(610, 520, 620, 190);
 		sc.setVisible(true);
+		
 		//log.setBounds(610, 520, 620, 180);
 		log.setFont(new Font("DungGeunMo", Font.PLAIN, 34));
 		sc.getViewport().getView().setBackground(new Color(135, 125, 106));
+		
 		//log.setBackground(new Color(135, 125, 106));
 		log.setOpaque(true);
 		//log.selectAll();
@@ -240,69 +176,37 @@ public class F_Stage3Panel extends JPanel{
 		fail.setFocusPainted(false);
 		fail.setOpaque(false);
 		
-		//textArea.setText(textArea.getText() + String.valueOf((char)paramInt));
-		
-		/*JTextArea textArea = new JTextArea(50, 10);
-		PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
-		System.setOut(printStream);
-		System.setErr(printStream);*/
-		/*String str = "어렵군, 아주 어려워...\n용기가 충만하고, 총명하며,\n재능을 타고 났어!\n의욕이 하늘을 찌르는 군!\n근데 어디가 좋을까...\n그리핀도르? 래번클로? \n슬리데린? 후플푸프?\n흐음...어디보자...\n";
-
-		// JTextArea(대화 상자) 생성  
-		ta = new JTextArea("");   	//JTextArea 생성
-		ta.setBounds(635, 50, 510, 500); 	    //JTeatArea 크기 및 위치 지정
-	    ta.setEditable(false); 				    //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
-		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 37)); 
-		ta.setBackground(new Color(0, 60, 30));
-		ta.setForeground(Color.WHITE);			
-		ta.setMargin(new Insets(20, 20, 5, 10));
-		ta.setOpaque(false);*/
-		//이펙트 가림용 라벨
-		//ef = new JLabel();
-
 		//스킬 이펙트 라벨
+		skill  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk2.gif").getImage().getScaledInstance(650, 200, 0)));
+		sksmash  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash1.gif").getImage().getScaledInstance(650, 200, 0)));
+		skdf  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/df22.gif").getImage().getScaledInstance(150, 200, 0)));
+		skct  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/ct2.gif").getImage().getScaledInstance(250, 200, 0)));
 
 		//볼드모트 스킬 이펙트 라벨
-		
+		vmskill = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk1.gif").getImage().getScaledInstance(650, 200, 0)));
+		vmsksmash = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash2.gif").getImage().getScaledInstance(650, 200, 0)));
+		vmskdf = new JLabel(new ImageIcon(new ImageIcon("images/stage3/df2.gif").getImage().getScaledInstance(150, 200, 0)));
+		vmskct = new JLabel(new ImageIcon(new ImageIcon("images/stage3/ct1.gif").getImage().getScaledInstance(250, 200, 0)));
 
 		//스킬이 가려질 수 있게 ef의 사이즈를 스킬보다 살짝 크게 
 		//ef.setBounds(400, 277, 700, 200);
 		skill.setBounds(440, 277, 650, 200);
 		sksmash.setBounds(440, 277, 650, 200);
-		skdf.setBounds(440, 237, 150, 250);
+		skdf.setBounds(440, 247, 150, 250);
 		skct.setBounds(400, 277, 250, 200);
 
 		vmskill.setBounds(440, 277, 650, 200);
 		vmsksmash.setBounds(440, 277, 650, 200);
-		vmskdf.setBounds(800, 237, 150, 250);
+		vmskdf.setBounds(800, 247, 150, 250);
 		vmskct.setBounds(400, 277, 250, 200);
-		/*atk.setBorderPainted(false);
-				atk.setContentAreaFilled(false);
-				atk.setFocusPainted(false);
-				atk.setOpaque(false);
-
-				df.setBorderPainted(false);
-				df.setContentAreaFilled(false);
-				df.setFocusPainted(false);
-				df.setOpaque(false);
-
-				smash.setBorderPainted(false);
-				smash.setContentAreaFilled(false);
-				smash.setFocusPainted(false);
-				smash.setOpaque(false);
-
-				counter.setBorderPainted(false);
-				counter.setContentAreaFilled(false);
-				counter.setFocusPainted(false);
-				counter.setOpaque(false);*/
 
 		//항상 필요한 것들 추가
 
-		panel.add(hr);
-		panel.add(bm);
-		panel.add(success);
-		panel.add(fail);
-		panel.add(hpbar);
+		this.add(hr);
+		this.add(bm);
+		this.add(success);
+		this.add(fail);
+		this.add(hpbar);
 		panel.add(hp[0]);
 		panel.add(hp[1]);
 		panel.add(hp[2]);
@@ -314,7 +218,7 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(hp[8]);
 		panel.add(hp[9]);
 
-		panel.add(bmhp);
+		this.add(bmhp);
 		panel.add(vmhp[0]);
 		panel.add(vmhp[1]);
 		panel.add(vmhp[2]);
@@ -330,11 +234,21 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(df);
 		panel.add(smash);
 		panel.add(counter);
+		
+		ActionClass actionEvent = new ActionClass();
+		atk.addActionListener(actionEvent);
+		df.addActionListener(actionEvent);
+		smash.addActionListener(actionEvent);
+		counter.addActionListener(actionEvent);
 
+		atk.setActionCommand("1");
+		df.setActionCommand("2");
+		smash.setActionCommand("3");
+		counter.setActionCommand("4");
+		
+		
 		//라벨을 가장 마지막에 추가함으로서 자동적으로 우선순위를 최 하위로 변경
 		//setComponentZOrder를 여기서 사용할 필요 없게 됨
-		
-	
 
 
 		//배경 라벨의 우선 순위를 가장 아래로 내림으로서 나머지 라벨 등장 
@@ -343,7 +257,6 @@ public class F_Stage3Panel extends JPanel{
 		log.append("버튼을 선택해주세요\n");
 		//볼드모트의 선택이 될 랜덤 수
 		this.add(label);
-
 		success.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -404,7 +317,7 @@ public class F_Stage3Panel extends JPanel{
 					
 					panel.setComponentZOrder(skill, 0);
 					panel.setComponentZOrder(vmskdf, 0);
-					//panel.revalidate();
+					panel.revalidate();
 					panel.repaint();
 					log.append("공격이 무효화 되었습니다.\n");
 					log.setCaretPosition(log.getDocument().getLength());
@@ -416,43 +329,15 @@ public class F_Stage3Panel extends JPanel{
 						public void run() {
 							panel.remove(skill);	//skill 라벨 제거 
 							panel.remove(vmskdf);
-							//panel.revalidate();
+							panel.revalidate();
 							panel.repaint();
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-							/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
-							F_RoundPanel rp = new F_RoundPanel(mf);
-							ap.replacePanel(rp);*/
 							atk.setEnabled(true);
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-							if(voldmort.getHp()<=0) {
-								log.append("!!볼드모트를 물리쳤습니다.\n");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								
-								switch(harry.getHplife()) {
-								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-								}
-								
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_SuccessPanel sp = new F_SuccessPanel(mf);
-								cp.replacePanel(sp);
-							}
 						}
 					};
-					ts.schedule(tsm, 1400);
+					ts.schedule(tsm, 1400); break;
 				}else if(vmchoice == 3) {
 					new F_EffectMusic().stage3_vmatk();
 					panel.add(skill);
@@ -483,14 +368,9 @@ public class F_Stage3Panel extends JPanel{
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-							/*F_ChangePanel ap = new F_ChangePanel(mf, panel);
-							F_RoundPanel rp = new F_RoundPanel(mf);
-							ap.replacePanel(rp);*/
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
+							
 							if(voldmort.getHp()<=0) {
-								log.append("!!!!!볼드모트를 물리쳤습니다.\n");
+								log.append("!!볼드모트를 물리쳤습니다.\n");
 								new A_Music().intoBgmStop();
 								new F_EffectMusic().intoBgmStop();
 								
@@ -513,11 +393,9 @@ public class F_Stage3Panel extends JPanel{
 							}
 						}
 
-
 					};
-					ts.schedule(tsm, 1400);
+					ts.schedule(tsm, 1400); break;
 				}
-				break;
 				
 			case 2 : 
 				atk.setEnabled(false);
@@ -525,8 +403,8 @@ public class F_Stage3Panel extends JPanel{
 				smash.setEnabled(false);
 				counter.setEnabled(false);
 				
-				new F_EffectMusic().stage3_df();
 				if(vmchoice == 0 || vmchoice == 1 || vmchoice == 3) {
+					new F_EffectMusic().stage3_df();
 					panel.add(skdf);	//skill 라벨 추가
 					panel.add(vmskill);
 					panel.revalidate();
@@ -551,21 +429,10 @@ public class F_Stage3Panel extends JPanel{
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-							if(harry.getHp()<=0){
-								log.append("재도전하시겠습니까?");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_FailPanel fp = new F_FailPanel(mf);
-								cp.replacePanel(fp);
-							}
 						}
 
 					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					ts.schedule(tsm, 1400);	break;//Override에 있는 작업 시작 시간 설정 
 				}else if(vmchoice == 2){
 					panel.add(skdf);	//skill 라벨 추가
 					panel.add(vmsksmash);
@@ -600,9 +467,6 @@ public class F_Stage3Panel extends JPanel{
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 							if(harry.getHp()<=0){
 								log.append("재도전하시겠습니까?");
 								new A_Music().intoBgmStop();
@@ -610,19 +474,21 @@ public class F_Stage3Panel extends JPanel{
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_FailPanel fp = new F_FailPanel(mf);
 								cp.replacePanel(fp);
+								return;
 							}
+							
 						}
 
 					};
-					ts.schedule(tsm, 1400);
+					ts.schedule(tsm, 1400); break;
 				}
-				break;
 				
 			case 3 : 
 				atk.setEnabled(false);
 				df.setEnabled(false);
 				smash.setEnabled(false);
 				counter.setEnabled(false);
+				
 				if(vmchoice == 0 || vmchoice == 2) {
 					new F_EffectMusic().stage3_vmsmash();
 					panel.add(sksmash);
@@ -650,39 +516,10 @@ public class F_Stage3Panel extends JPanel{
 							//panel.add(ef);			//ef 라벨 추가
 							//ef.updateUI();			//라벨 갱신 
 							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-							if(voldmort.getHp()<=0) {
-								log.append("!!!!볼드모트를 물리쳤습니다.");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								
-								switch(harry.getHplife()) {
-								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-								}
-								
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_SuccessPanel sp = new F_SuccessPanel(mf);
-								cp.replacePanel(sp);
-							}
-							if(harry.getHp()<=0){
-								log.append("재도전하시겠습니까?");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_FailPanel fp = new F_FailPanel(mf);
-								cp.replacePanel(fp);
-							}
+							
 						}
 					};
-					ts.schedule(tsm, 1400);
+					ts.schedule(tsm, 1400); break;
 				}else if(vmchoice == 1) {
 					new F_EffectMusic().stage3_smash();
 					panel.add(sksmash);	//skill 라벨 추가
@@ -716,11 +553,8 @@ public class F_Stage3Panel extends JPanel{
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 							if(voldmort.getHp()<=0) {
-								log.append("!!!!볼드모트를 물리쳤습니다.");
+								log.append("!!볼드모트를 물리쳤습니다.\n");
 								new A_Music().intoBgmStop();
 								new F_EffectMusic().intoBgmStop();
 								
@@ -741,18 +575,10 @@ public class F_Stage3Panel extends JPanel{
 								F_SuccessPanel sp = new F_SuccessPanel(mf);
 								cp.replacePanel(sp);
 							}
-							if(harry.getHp()<=0){
-								log.append("재도전하시겠습니까?");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_FailPanel fp = new F_FailPanel(mf);
-								cp.replacePanel(fp);
-							}
 						}
 
 					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					ts.schedule(tsm, 1400);	break;//Override에 있는 작업 시작 시간 설정 
 				}else if(vmchoice == 3) {
 					new F_EffectMusic().stage3_vmct();
 					panel.add(vmsksmash);	//skill 라벨 추가
@@ -787,31 +613,6 @@ public class F_Stage3Panel extends JPanel{
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-							if(voldmort.getHp()<=0) {
-								log.append("!!!!볼드모트를 물리쳤습니다.");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								
-								switch(harry.getHplife()) {
-								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-								}
-								
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_SuccessPanel sp = new F_SuccessPanel(mf);
-								cp.replacePanel(sp);
-							}
 							if(harry.getHp()<=0){
 								log.append("재도전하시겠습니까?");
 								new A_Music().intoBgmStop();
@@ -819,22 +620,22 @@ public class F_Stage3Panel extends JPanel{
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_FailPanel fp = new F_FailPanel(mf);
 								cp.replacePanel(fp);
+								return;
 							}
 						}
 
 					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					ts.schedule(tsm, 1400); break;	//Override에 있는 작업 시작 시간 설정 
 				}
-				
-				break;
 				
 			case 4 : 
 				atk.setEnabled(false);
 				df.setEnabled(false);
 				smash.setEnabled(false);
 				counter.setEnabled(false);
-				new F_EffectMusic().stage3_ct();
+				
 				if(vmchoice == 0) {
+					new F_EffectMusic().stage3_ct();
 					panel.add(skct);	//skill 라벨 추가
 					panel.add(vmskill);
 					panel.setComponentZOrder(skct, 0);
@@ -871,28 +672,6 @@ public class F_Stage3Panel extends JPanel{
 							//panel.add(ef);			//ef 라벨 추가
 							//ef.updateUI();			//라벨 갱신 
 							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-							if(voldmort.getHp()<=0) {
-								log.append("!!!!볼드모트를 물리쳤습니다.");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								
-								switch(harry.getHplife()) {
-								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-								}
-								
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_SuccessPanel sp = new F_SuccessPanel(mf);
-								cp.replacePanel(sp);
-							}
 							if(harry.getHp()<=0){
 								log.append("재도전하시겠습니까?");
 								new A_Music().intoBgmStop();
@@ -900,11 +679,11 @@ public class F_Stage3Panel extends JPanel{
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_FailPanel fp = new F_FailPanel(mf);
 								cp.replacePanel(fp);
+								return;
 							}
 						}
-
 					};
-					ts.schedule(tsm, 1400);
+					ts.schedule(tsm, 1400); break;
 				}else if(vmchoice == 1 || vmchoice ==3) {
 					panel.add(skct);	//skill 라벨 추가
 					panel.add(vmskdf);
@@ -934,40 +713,10 @@ public class F_Stage3Panel extends JPanel{
 							//panel.add(ef);			//ef 라벨 추가
 							//ef.updateUI();			//라벨 갱신 
 							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
-							if(voldmort.getHp()<=0) {
-								log.append("!!!!볼드모트를 물리쳤습니다.");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								
-								switch(harry.getHplife()) {
-								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
-								case 2: new B_UserManager().updateScore3(User.playerId, 200); break;
-								case 3: new B_UserManager().updateScore3(User.playerId, 300); break;
-								case 4: new B_UserManager().updateScore3(User.playerId, 400); break;
-								case 5: new B_UserManager().updateScore3(User.playerId, 500); break;
-								case 6: new B_UserManager().updateScore3(User.playerId, 600); break;
-								case 7: new B_UserManager().updateScore3(User.playerId, 700); break;
-								case 8: new B_UserManager().updateScore3(User.playerId, 800); break;
-								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
-								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
-								}
-								
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_SuccessPanel sp = new F_SuccessPanel(mf);
-								cp.replacePanel(sp);
-							}
-							if(harry.getHp()<=0){
-								log.append("재도전하시겠습니까?");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_FailPanel fp = new F_FailPanel(mf);
-								cp.replacePanel(fp);
-							}
 						}
 
 					};
-					ts.schedule(tsm, 1400);	//Override에 있는 작업 시작 시간 설정 
+					ts.schedule(tsm, 1400);	break;//Override에 있는 작업 시작 시간 설정 
 				}else if(vmchoice == 2) {
 					panel.add(vmsksmash);	//skill 라벨 추가
 					panel.add(skct);
@@ -1005,11 +754,8 @@ public class F_Stage3Panel extends JPanel{
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-							//panel.add(ef);			//ef 라벨 추가
-							//ef.updateUI();			//라벨 갱신 
-							//panel.setComponentZOrder(label, 29);	//배경 라벨 우선순위 조정
 							if(voldmort.getHp()<=0) {
-								log.append("!!!!볼드모트를 물리쳤습니다.");
+								log.append("!!볼드모트를 물리쳤습니다.\n");
 								new A_Music().intoBgmStop();
 								new F_EffectMusic().intoBgmStop();
 								
@@ -1030,21 +776,13 @@ public class F_Stage3Panel extends JPanel{
 								F_SuccessPanel sp = new F_SuccessPanel(mf);
 								cp.replacePanel(sp);
 							}
-							if(harry.getHp()<=0){
-								log.append("재도전하시겠습니까?");
-								new A_Music().intoBgmStop();
-								new F_EffectMusic().intoBgmStop();
-								F_ChangePanel cp = new F_ChangePanel(mf, panel);
-								F_FailPanel fp = new F_FailPanel(mf);
-								cp.replacePanel(fp);
-							}
 						}
 					};
-					ts.schedule(tsm, 1400);
+					ts.schedule(tsm, 1400); break;
 				}
-				break;
 				
 			}
+			
 		}
 		
 	}
