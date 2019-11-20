@@ -154,7 +154,7 @@ public class E_StartPanel extends JPanel {
 		
 		
 		//게임 방법 설명 이미지
-		JButton rule = new JButton(new ImageIcon("images/stage2/rule3.PNG"));
+		JButton rule = new JButton(new ImageIcon("images/stage2/rule3.gif"));
 		rule.setBounds(300, 140, 640, 401);
 		rule.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
