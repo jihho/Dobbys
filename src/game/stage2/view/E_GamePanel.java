@@ -55,6 +55,7 @@ public class E_GamePanel extends JPanel {
 	private static int MAX_HP = 3;
 	private int hp = MAX_HP;
 	private int hintCtn = 0;
+	private int pCtn = 0; //항아리 카운트
 
 	
 	
@@ -301,18 +302,20 @@ public class E_GamePanel extends JPanel {
 				System.out.println(userChoice[ctn]);
 				ctn++;
 				
+				
 				//재료 9개 모두 선택되면 항아리 이펙트 나오기
 				if(ctn == 9) {
-					
+
 					panel.add(potEffect);
 					panel.setComponentZOrder(potEffect, 0);
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-					
+
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				}
-				
+					new E_EffectMusic().stage2_boiling();				
+				}
+
 
 				
 				
@@ -381,9 +384,10 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-					
+
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				}
+					new E_EffectMusic().stage2_boiling();				
+				}
 
 			}
 		});
@@ -409,16 +413,17 @@ public class E_GamePanel extends JPanel {
 				ctn++;
 				
 				if(ctn == 9) {
-					
+
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
 					panel.setComponentZOrder(potEffect, 0);
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-					
+
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				}
+					new E_EffectMusic().stage2_boiling();				
+				}
 
 				
 			}
@@ -451,9 +456,10 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-					
+
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				}
+					new E_EffectMusic().stage2_boiling();				
+				}
 
 				
 			}
@@ -487,9 +493,10 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-					
+
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				}
+					new E_EffectMusic().stage2_boiling();				
+				}
 
 			}
 		});
@@ -513,7 +520,7 @@ public class E_GamePanel extends JPanel {
 				System.out.println(userChoice[ctn]);
 
 				ctn++;
-				
+
 				if(ctn == 9) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
@@ -522,9 +529,10 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-					
+
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				}
+					new E_EffectMusic().stage2_boiling();				
+				}
 
 			}
 		});
@@ -557,9 +565,10 @@ public class E_GamePanel extends JPanel {
 					panel.revalidate();
 					panel.repaint();
 					System.out.println("항아리이펙트");
-					
+
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				}
+					new E_EffectMusic().stage2_boiling();				
+				}
 
 				
 			}
@@ -620,313 +629,321 @@ public class E_GamePanel extends JPanel {
 		//um.updateScore1("test1", 700);
 		
 		
-		//pot이벤트 -> 성공, 실패 여부 판단
-		pot.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-					panel.remove(potEffect);
-					panel.repaint();
-					new E_EffectMusic().intoBgmStop();
-					
-				if(hp == MAX_HP) {
-					
-					for(int i = 0; i < 9; i++) {
-						if(userChoice[i] == q1[i]) {
-							//System.out.println("일치");
-							
-						}else {
-							
-							System.out.println("불일치");
-							
-							//틀리면 실패이팩트 출력
-							panel.add(failEffect);
-							panel.setComponentZOrder(failEffect, 0);
-							panel.repaint();
-							new E_EffectMusic().stage2_fire();
+			System.out.println("항아리:"+ctn);
 
-							
-							//hp이미지 삭제, hp감소
-							panel.remove(hp3);
-							hp--;
-							System.out.println("hp:" + hp);
-							repaint();
-							
-							//실패이펙트 타이머
-							Timer timer = new Timer();
-							TimerTask task = new TimerTask() {
-								@Override
-								public void run() {
-									panel.remove(failEffect);
-									panel.revalidate();
+			//pot이벤트 -> 성공, 실패 여부 판단
+			pot.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					if(ctn == 9) {
+						panel.remove(potEffect);
+						panel.repaint();
+						new E_EffectMusic().intoBgmStop();
+
+						if(hp == MAX_HP) {
+
+							for(int i = 0; i < 9; i++) {
+								if(userChoice[i] == q1[i]) {
+									//System.out.println("일치");
+
+								}else {
+
+									System.out.println("불일치");
+
+									//틀리면 실패이팩트 출력
+									panel.add(failEffect);
+									panel.setComponentZOrder(failEffect, 0);
 									panel.repaint();
-								}
-							};
-							timer.schedule(task, 500);
-							
-							panel.remove(hint1);
-							
-							
-							
-							//재료 위치 리셋
-							ctn = 0;
-							item1.setBounds(75, 580, 100, 100);
-							item2.setBounds(200, 580, 100, 100);
-							item3.setBounds(325, 580, 100, 100);
-							item4.setBounds(450, 580, 100, 100);
-							item5.setBounds(575, 580, 100, 100);
-							item6.setBounds(700, 580, 100, 100);
-							item7.setBounds(825, 580, 100, 100);
-							item8.setBounds(950, 580, 100, 100);
-							item9.setBounds(1075, 580, 100, 100);
-							
-							panel.add(hint2);
-							panel.setComponentZOrder(hint2, 0);
-							panel.repaint();
-							System.out.println("힌트보실?");
-							
-							
-							panel.add(hint);
-							panel.setComponentZOrder(hint2, 1);
-							panel.repaint();
-							
-							
-							hint.addMouseListener(new MouseAdapter() {
-								
-								@Override
-								public void mouseReleased(MouseEvent e) {
-									
-									new E_EffectMusic().stage2_click();
-									
-									hintCtn++;
-									if(hintCtn == 1) {
-										System.out.println("힌트카운트:" + hintCtn);
-										panel.remove(hint2);
-										
-										panel.add(hint3);
-										panel.setComponentZOrder(hint3, 0);
-										panel.repaint();
-										System.out.println("스승님");
-									}
-									if(hintCtn == 2) {
-										System.out.println("힌트카운트2:" + hintCtn);
-										panel.add(questImage);
-										panel.setComponentZOrder(questImage, 0);
-										panel.revalidate();
-										panel.repaint();
-										System.out.println("힌트클릭:"+ q1 );
-										
-										Timer timer2 = new Timer();
-										TimerTask task2 = new TimerTask() {
-											@Override
-											public void run() {
-												panel.remove(questImage);
+									new E_EffectMusic().stage2_fire();
+
+
+									//hp이미지 삭제, hp감소
+									panel.remove(hp3);
+									hp--;
+									System.out.println("hp:" + hp);
+									repaint();
+
+									//실패이펙트 타이머
+									Timer timer = new Timer();
+									TimerTask task = new TimerTask() {
+										@Override
+										public void run() {
+											panel.remove(failEffect);
+											panel.revalidate();
+											panel.repaint();
+										}
+									};
+									timer.schedule(task, 500);
+
+									panel.remove(hint1);
+
+
+
+									//재료 위치 리셋
+									ctn = 0;
+									item1.setBounds(75, 580, 100, 100);
+									item2.setBounds(200, 580, 100, 100);
+									item3.setBounds(325, 580, 100, 100);
+									item4.setBounds(450, 580, 100, 100);
+									item5.setBounds(575, 580, 100, 100);
+									item6.setBounds(700, 580, 100, 100);
+									item7.setBounds(825, 580, 100, 100);
+									item8.setBounds(950, 580, 100, 100);
+									item9.setBounds(1075, 580, 100, 100);
+
+									panel.add(hint2);
+									panel.setComponentZOrder(hint2, 0);
+									panel.repaint();
+									System.out.println("힌트보실?");
+
+
+									panel.add(hint);
+									panel.setComponentZOrder(hint2, 1);
+									panel.repaint();
+
+
+									hint.addMouseListener(new MouseAdapter() {
+
+										@Override
+										public void mouseReleased(MouseEvent e) {
+
+											new E_EffectMusic().stage2_click();
+
+											hintCtn++;
+											if(hintCtn == 1) {
+												System.out.println("힌트카운트:" + hintCtn);
+												panel.remove(hint2);
+
+												panel.add(hint3);
+												panel.setComponentZOrder(hint3, 0);
+												panel.repaint();
+												System.out.println("스승님");
+											}
+											if(hintCtn == 2) {
+												System.out.println("힌트카운트2:" + hintCtn);
+												panel.add(questImage);
+												panel.setComponentZOrder(questImage, 0);
 												panel.revalidate();
 												panel.repaint();
+												System.out.println("힌트클릭:"+ q1 );
+
+												Timer timer2 = new Timer();
+												TimerTask task2 = new TimerTask() {
+													@Override
+													public void run() {
+														panel.remove(questImage);
+														panel.revalidate();
+														panel.repaint();
+													}
+												};
+												timer2.schedule(task2, 1000);
+												repaint();
 											}
-										};
-										timer2.schedule(task2, 1000);
-										repaint();
-									}
-										if(hintCtn == 3) {
-										panel.remove(hint3);
-										panel.repaint();
-										
-										panel.add(hint4);
-										panel.setComponentZOrder(hint4, 0);
-										panel.repaint();
-									}
+											if(hintCtn == 3) {
+												panel.remove(hint3);
+												panel.repaint();
+
+												panel.add(hint4);
+												panel.setComponentZOrder(hint4, 0);
+												panel.repaint();
+											}
+										}
+
+									});
+
+
+
+									repaint();
+									return;
 								}
-								
-							});
-							
 
-							
-							repaint();
-							return;
+								//System.out.println("일치할때만나오기:" + userChoice[i]);
+
+
+							}
+							System.out.println("다맞아요");
+
+							um.updateScore2(user.playerId, 1000);
+
+							//문제 값과 유저값 일치하면 성공이미지 패널로 이동
+							E_ChangePanel cp = new E_ChangePanel(mf, panel);
+
+							E_SuccessPanel sp = new E_SuccessPanel(mf);
+
+							cp.replacePanel(sp);
+							//new A_Music().intoBgmStop();
+
+
 						}
-						
-						//System.out.println("일치할때만나오기:" + userChoice[i]);
 
-						
-					}
-					System.out.println("다맞아요");
-					
-					um.updateScore2(user.playerId, 1000);
 
-					//문제 값과 유저값 일치하면 성공이미지 패널로 이동
-					E_ChangePanel cp = new E_ChangePanel(mf, panel);
+						if(hp == 2) {
 
-					E_SuccessPanel sp = new E_SuccessPanel(mf);
-					
-					cp.replacePanel(sp);
-					//new A_Music().intoBgmStop();
-					
+							for(int i = 0; i < 9; i++) {
+								if(userChoice[i] == q1[i]) {
+									System.out.println("일치2");
+								}else {
+									System.out.println("불일치2");
 
-				}
-				
-				
-				if(hp == 2) {
-					
-					for(int i = 0; i < 9; i++) {
-						if(userChoice[i] == q1[i]) {
-							System.out.println("일치2");
-						}else {
-							System.out.println("불일치2");
-							
-							//틀리면 실패 이펙트 출력
-							panel.add(failEffect);
-							panel.setComponentZOrder(failEffect, 0);
-							panel.revalidate();
-							panel.repaint();
-							new E_EffectMusic().stage2_fire();
-
-							
-							//hp이미지 삭제, hp감소
-							panel.remove(hp2);
-							hp--;
-							System.out.println("2hp:" + hp);
-							repaint();
-							
-							//실패이펙트 타이머
-							Timer timer = new Timer();
-							TimerTask task = new TimerTask() {
-								@Override
-								public void run() {
-									panel.remove(failEffect);
+									//틀리면 실패 이펙트 출력
+									panel.add(failEffect);
+									panel.setComponentZOrder(failEffect, 0);
 									panel.revalidate();
 									panel.repaint();
-								}
-							};
-							timer.schedule(task, 1000);
-							
-							//재료 위치 리셋
-							ctn = 0;
-							item1.setBounds(75, 580, 100, 100);
-							item2.setBounds(200, 580, 100, 100);
-							item3.setBounds(325, 580, 100, 100);
-							item4.setBounds(450, 580, 100, 100);
-							item5.setBounds(575, 580, 100, 100);
-							item6.setBounds(700, 580, 100, 100);
-							item7.setBounds(825, 580, 100, 100);
-							item8.setBounds(950, 580, 100, 100);
-							item9.setBounds(1075, 580, 100, 100);
-							
-							
-							
-							//if(hintCtn2 == 0) {
-								
-								hint.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseReleased(MouseEvent e) {
-										
-										new E_EffectMusic().stage2_click();
-										
-										panel.add(hint5);
-										panel.setComponentZOrder(hint5, 0);
-										panel.repaint();
-									}
-								});
-								
-							//}
-							
-							
-							
-							
-							repaint();
-							return;
-							
-						}
-					}
-					System.out.println("2번째에맞춤");
-					
-					um.updateScore2(user.playerId, 700);
+									new E_EffectMusic().stage2_fire();
 
-					//퀘스트 값과 유저선택 값이 같으면 성공패널로 이동
-					E_ChangePanel cp = new E_ChangePanel(mf, panel);
-					E_SuccessPanel sp = new E_SuccessPanel(mf);
-					cp.replacePanel(sp);
-					//new A_Music().intoBgmStop();
-				}
-				
-				if(hp == 1) {
-					
-					for(int i = 0; i < 9; i++) {
-						if(userChoice[i] == q1[i]) {
-							System.out.println("일치3");
-							
-						}else {
-							System.out.println("불일치3");
-							
-							/*//틀리면 실패 이펙트 출력
+
+									//hp이미지 삭제, hp감소
+									panel.remove(hp2);
+									hp--;
+									System.out.println("2hp:" + hp);
+									repaint();
+
+									//실패이펙트 타이머
+									Timer timer = new Timer();
+									TimerTask task = new TimerTask() {
+										@Override
+										public void run() {
+											panel.remove(failEffect);
+											panel.revalidate();
+											panel.repaint();
+										}
+									};
+									timer.schedule(task, 1000);
+
+									//재료 위치 리셋
+									ctn = 0;
+									item1.setBounds(75, 580, 100, 100);
+									item2.setBounds(200, 580, 100, 100);
+									item3.setBounds(325, 580, 100, 100);
+									item4.setBounds(450, 580, 100, 100);
+									item5.setBounds(575, 580, 100, 100);
+									item6.setBounds(700, 580, 100, 100);
+									item7.setBounds(825, 580, 100, 100);
+									item8.setBounds(950, 580, 100, 100);
+									item9.setBounds(1075, 580, 100, 100);
+
+
+
+									//if(hintCtn2 == 0) {
+
+									hint.addMouseListener(new MouseAdapter() {
+										@Override
+										public void mouseReleased(MouseEvent e) {
+
+											new E_EffectMusic().stage2_click();
+
+											panel.add(hint5);
+											panel.setComponentZOrder(hint5, 0);
+											panel.repaint();
+										}
+									});
+
+									//}
+
+
+
+
+									repaint();
+									return;
+
+								}
+							}
+							System.out.println("2번째에맞춤");
+
+							um.updateScore2(user.playerId, 700);
+
+							//퀘스트 값과 유저선택 값이 같으면 성공패널로 이동
+							E_ChangePanel cp = new E_ChangePanel(mf, panel);
+							E_SuccessPanel sp = new E_SuccessPanel(mf);
+							cp.replacePanel(sp);
+							//new A_Music().intoBgmStop();
+						}
+
+						if(hp == 1) {
+
+							for(int i = 0; i < 9; i++) {
+								if(userChoice[i] == q1[i]) {
+									System.out.println("일치3");
+
+								}else {
+									System.out.println("불일치3");
+
+									/*//틀리면 실패 이펙트 출력
 							panel.add(failEffect);
 							panel.setComponentZOrder(failEffect, 0);
 							panel.repaint();*/
-							//new E_EffectMusic().stage2_fire();
+									//new E_EffectMusic().stage2_fire();
 
-							//hp이미지 삭제, hp감소
-							panel.remove(hp1);
-							hp--;
-							System.out.println("3hp:"+ hp);
-							repaint();
-							
-							//재료 위치 리셋
-							ctn = 0;
-							item1.setBounds(75, 580, 100, 100);
-							item2.setBounds(200, 580, 100, 100);
-							item3.setBounds(325, 580, 100, 100);
-							item4.setBounds(450, 580, 100, 100);
-							item5.setBounds(575, 580, 100, 100);
-							item6.setBounds(700, 580, 100, 100);
-							item7.setBounds(825, 580, 100, 100);
-							item8.setBounds(950, 580, 100, 100);
-							item9.setBounds(1075, 580, 100, 100);
-							
-							
-							
-							//새로고침
-							repaint();
-							
-							//hp 0되면 실패 이미지 패널로 이동
-							if(hp == 0) {
-								
-								hint.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseReleased(MouseEvent e) {
-										
-										new E_EffectMusic().stage2_click();
-										
-										panel.remove(hint5);
-										panel.repaint();
+									//hp이미지 삭제, hp감소
+									panel.remove(hp1);
+									hp--;
+									System.out.println("3hp:"+ hp);
+									repaint();
+
+									//재료 위치 리셋
+									ctn = 0;
+									item1.setBounds(75, 580, 100, 100);
+									item2.setBounds(200, 580, 100, 100);
+									item3.setBounds(325, 580, 100, 100);
+									item4.setBounds(450, 580, 100, 100);
+									item5.setBounds(575, 580, 100, 100);
+									item6.setBounds(700, 580, 100, 100);
+									item7.setBounds(825, 580, 100, 100);
+									item8.setBounds(950, 580, 100, 100);
+									item9.setBounds(1075, 580, 100, 100);
+
+
+
+									//새로고침
+									repaint();
+
+									//hp 0되면 실패 이미지 패널로 이동
+									if(hp == 0) {
+
+										hint.addMouseListener(new MouseAdapter() {
+											@Override
+											public void mouseReleased(MouseEvent e) {
+
+												new E_EffectMusic().stage2_click();
+
+												panel.remove(hint5);
+												panel.repaint();
+											}
+										});
+
+										um.updateScore2(user.playerId, 0);
+
+										E_ChangePanel cp = new E_ChangePanel(mf, panel);
+										E_FailPanel fp = new E_FailPanel(mf);
+										cp.replacePanel(fp);
+										//new A_Music().intoBgmStop();
 									}
-								});
-								
-								um.updateScore2(user.playerId, 0);
-
-								E_ChangePanel cp = new E_ChangePanel(mf, panel);
-								E_FailPanel fp = new E_FailPanel(mf);
-								cp.replacePanel(fp);
-								//new A_Music().intoBgmStop();
+									return;
+								}
 							}
-							return;
+							System.out.println("3번째에 맞춤");
+							um.updateScore2(user.playerId, 400);
+
+							//퀘스트값과 유저값 일치하면 성공이미지 패널로 이동
+							E_ChangePanel cp = new E_ChangePanel(mf, panel);
+							E_SuccessPanel sp = new E_SuccessPanel(mf);
+							cp.replacePanel(sp);
+							//new A_Music().intoBgmStop();
 						}
+
+						um.printAll();	
+
+
+
+
 					}
-					System.out.println("3번째에 맞춤");
-					um.updateScore2(user.playerId, 400);
 
-					//퀘스트값과 유저값 일치하면 성공이미지 패널로 이동
-					E_ChangePanel cp = new E_ChangePanel(mf, panel);
-					E_SuccessPanel sp = new E_SuccessPanel(mf);
-					cp.replacePanel(sp);
-					//new A_Music().intoBgmStop();
+
+
 				}
-				
-				um.printAll();	
+			});
 
-				
-				
-						
-			}
-		});
 		
 
 		
