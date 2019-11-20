@@ -81,7 +81,7 @@ public class E_SuccessPanel extends JPanel{
 				E_Quest qq = new E_Quest();
 				qq.setRandom(new Random().nextInt(3) + 1);
 				
-				new A_Music().intoBgmStop();
+				new A_Music().intoBgmStop_stage2();
 				
 
 			}

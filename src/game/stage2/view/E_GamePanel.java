@@ -959,7 +959,7 @@ public class E_GamePanel extends JPanel {
 				qq.setRandom(new Random().nextInt(3) + 1);
 				
 				//음악종료
-				new A_Music().intoBgmStop();
+				new A_Music().intoBgmStop_stage2();
 			}
 		});
 		

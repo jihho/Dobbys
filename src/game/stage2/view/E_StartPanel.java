@@ -17,7 +17,7 @@ import view.A_Music;
 public class E_StartPanel extends JPanel {
 	private JFrame mf;
 	private JPanel panel;
-
+	
 	
 
 	public E_StartPanel(JFrame mf) {
@@ -29,6 +29,11 @@ public class E_StartPanel extends JPanel {
 		panel = this;
 		
 		new A_Music().stage2_BgSound();
+		
+/*		//마우스커서
+				setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+						new ImageIcon("images/main/mouse.png").getImage(),
+						new Point(0,0),"DobbyCursor"));*/
 		
 		//백그라운드화면
     	JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_bg2.PNG").
