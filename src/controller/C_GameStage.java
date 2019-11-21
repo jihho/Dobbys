@@ -19,6 +19,7 @@ import javax.swing.JTextArea;
 import game.stage1.controller.D_Controller;
 import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
+import game.stage5.view.C_DobbyPanel;
 import model.vo.User;
 import view.A_IntroPage;
 import view.A_LoginPanel;
@@ -212,6 +213,10 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
+			
+			ChangePanel cp = new ChangePanel(mf, panel);
+			C_DobbyPanel str5 = new C_DobbyPanel(mf); 
+			cp.replacePanel(str5);
 			
 //			ChangePanel cp = new ChangePanel(mf, panel);
 //			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
