@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.C_GameStage;
 import model.vo.User;
 import view.A_Music;
 import view.C_RankingPage;
@@ -71,6 +72,15 @@ public class C_DobbyPanel extends JPanel{
 		espresso.setLocationRelativeTo(mf);
 		espresso.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		espresso.add(new JLabel((new ImageIcon("images/stage5/espresso.png"))));
+		
+		JButton return_btn = new JButton("RETURN");
+		return_btn.setBounds(1115, 660, 150, 50);
+		return_btn.setBackground(Color.GRAY);
+		return_btn.setForeground(Color.WHITE);	
+		return_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 30));     
+		return_btn.setFocusPainted(false);
+		return_btn.setBorderPainted(false);		
+		return_btn.setFocusPainted(false);
 		
 		mf.addKeyListener(new KeyAdapter() {
 			@Override
@@ -126,7 +136,21 @@ public class C_DobbyPanel extends JPanel{
 			}
 		});
 			
-				
+		return_btn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			new A_Music().intoBgmStopJ();
+			ChangePanel cp = new ChangePanel(mf, panel);
+			C_GameStage gs = new C_GameStage(mf); 
+		
+			cp.replacePanel(gs);
+			
+			}
+		});
+		
+		
+		this.add(return_btn);
 		this.add(dobby);
 		this.add(book1);
 		this.add(coffee);
