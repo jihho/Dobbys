@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import game.stage2.controller.E_ChangePanel;
+import game.stage2.controller.E_GamePanel;
+
 public class E_Timer extends Thread{
 	private JFrame mf;
 	private JPanel panel;

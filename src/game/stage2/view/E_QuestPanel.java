@@ -154,12 +154,12 @@ public class E_QuestPanel extends JPanel{
 		
 		
 		//퀘스트 랜덤 출력
-		
+		//퀘스트 랜덤 값 불러오기
 		E_Quest qq = new E_Quest();
-		
 		int random = qq.getRandom();
 
 		System.out.println("questpanel random:"+random);
+		//퀘스트 이미지 랜덤 출력
 		String rQuest = "quest" + random + ".png";
 
 		quest = new JLabel(new ImageIcon(new ImageIcon("images/stage2/"+rQuest).

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import game.stage2.controller.E_ChangePanel;
 import game.stage2.model.vo.E_EffectMusic;
 import game.stage2.model.vo.E_Quest;
 import view.A_Music;

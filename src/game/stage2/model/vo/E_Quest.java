@@ -10,6 +10,7 @@ import game.stage2.view.E_QuestPanel;
 public class E_Quest extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
+	//퀘스트 문제 랜덤출력 변수 선언및 초기화
 	public static int random = new Random().nextInt(3) + 1;
 	
 	public static int getRandom() {
@@ -20,11 +21,10 @@ public class E_Quest extends JPanel{
 		E_Quest.random = random;
 	}
 
+	
 	public int[] getQuest() {
-		//퀘스트 문제 
 		
-		 
-		
+		//퀘스트 문제 배열선언 및 초기화
 		int[] q = new int[9];
 		
 		System.out.println("q1 랜덤:" + random);

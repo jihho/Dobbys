@@ -1,4 +1,4 @@
-package game.stage2.view;
+package game.stage2.controller;
 
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
@@ -17,10 +17,14 @@ import controller.B_UserManager;
 import controller.C_GameStage;
 import game.stage2.model.vo.E_EffectMusic;
 import game.stage2.model.vo.E_Quest;
+import game.stage2.view.E_FailPanel;
+import game.stage2.view.E_QuestPanel;
+import game.stage2.view.E_SuccessPanel;
 import model.vo.User;
 import view.A_Music;
 
 class test{
+	
 	//유저로그창 아이템 좌표
 	private int x;
 	private int y;
@@ -50,28 +54,29 @@ public class E_GamePanel extends JPanel {
 	
 	private JFrame mf;
 	private JPanel panel;
-	private int ctn = 0;	//유저아이템 카운트
-	private int[] userChoice;
-	private static int MAX_HP = 3;
-	private int hp = MAX_HP;
-	private int hintCtn = 0;
-	private int pCtn = 0; //항아리 카운트
+	
+	private int ctn = 0;		//유저아이템 카운트
+	private int pCtn = 0; 		//항아리 카운트
+	private int[] userChoice;	//유저 선택값 담는 배열
+	private static int MAX_HP = 3;	//유저 최대 체력
+	private int hp = MAX_HP;		//유저 체력
+	private int hintCtn = 0;		//힌트 카운트
 
 	
 	
-	//hp 라벨변수
+	//hp 라벨변수 
 	private JLabel hp1;
 	private JLabel hp2;
 	private JLabel hp3;
 	
 	//10초 지난뒤 게임 시작 페이지
-	
 	public E_GamePanel(JFrame mf) {
+		
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 		
-		//선택아이템 좌표
+		//유저선택 아이템 좌표
 		test[] insert = new test[9];
 		insert[0] = new test(910, 115);
 		insert[1] = new test(1000, 115);
@@ -87,7 +92,7 @@ public class E_GamePanel extends JPanel {
 		userChoice = new int[9];
 		
 		
-		//배경
+		//배경 
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_bg2.PNG").
 				getImage().getScaledInstance(1280, 720, 0)));
 		label.setBounds(0, 0, 1280, 720);
@@ -97,7 +102,7 @@ public class E_GamePanel extends JPanel {
 				getImage().getScaledInstance(102, 29, 0)));
 		potEffect.setBounds(401, 409, 102, 29);
 		
-		//실패시 이펙트
+		//실패시 이펙트 
 		JLabel failEffect = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_effect2.gif").
 				getImage().getScaledInstance(417, 399, 0)));
 		failEffect.setBounds(220, 150, 417, 399);
@@ -173,7 +178,7 @@ public class E_GamePanel extends JPanel {
 		hint = new JButton(" ");
 		
 		
-		//버튼위에 올라가면 손가락 커서로 변경
+		//이미지 위에 올라가면 손가락 커서로 변경
 		item1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		item2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		item3.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -192,7 +197,6 @@ public class E_GamePanel extends JPanel {
 		hint4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		hint5.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-
 		
 		//item 위치 설정 (사이 간격 125)
 		item1.setBounds(75, 580, 100, 100);
@@ -211,11 +215,10 @@ public class E_GamePanel extends JPanel {
 		hp3.setBounds(250, 25, 120, 80);
 		
 		
-		//home, pot 위치 설정
+		//home, pot, hint 위치 설정
 		home.setBounds(5, 15, 50, 56);
 		pot.setBounds(375, 370, 150, 150);
 		hint.setBounds(150, 260, 246, 156);
-		
 		
 
 		//버튼 투명화
@@ -278,18 +281,15 @@ public class E_GamePanel extends JPanel {
 		hint.setFocusPainted(false);
 		hint.setOpaque(false);
 		
-
-		
-		
-		
 		
 			
-		//아이템 이벤트
+		//아이템 마우스 이벤트
 		item1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				//item1.setBounds(910, 115, 100, 100);
 				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
@@ -312,7 +312,7 @@ public class E_GamePanel extends JPanel {
 					panel.repaint();
 					System.out.println("항아리이펙트");
 
-					//재료9개되면 끓는소리출력
+					//재료9개되면 끓는 소리 출력
 					new E_EffectMusic().stage2_boiling();				
 				}
 
@@ -327,8 +327,8 @@ public class E_GamePanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				//item2.setBounds(1000, 115, 100, 100);
-				//사이간격 90
 				
+				//아이템 클릭 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
@@ -336,6 +336,7 @@ public class E_GamePanel extends JPanel {
 				int y = insert[ctn].getY();
 				item2.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 2;
 				System.out.println(userChoice[ctn]);
 
@@ -364,6 +365,7 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item3.setBounds(1090, 115, 100, 100);
 				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
@@ -371,6 +373,7 @@ public class E_GamePanel extends JPanel {
 				int y = insert[ctn].getY();
 				item3.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 3;
 				System.out.println(userChoice[ctn]);
 
@@ -399,14 +402,15 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item4.setBounds(910, 215, 100, 100);
 				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
 				int x = insert[ctn].getX();
 				int y = insert[ctn].getY();
-				
 				item4.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 4;
 				System.out.println(userChoice[ctn]);
 
@@ -436,6 +440,7 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item5.setBounds(1000, 215, 100, 100);
 				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
@@ -443,6 +448,7 @@ public class E_GamePanel extends JPanel {
 				int y = insert[ctn].getY();
 				item5.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 5;
 				System.out.println(userChoice[ctn]);
 
@@ -471,15 +477,16 @@ public class E_GamePanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				//item6.setBounds(1090, 215, 100, 100);
-
+				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
 				int x = insert[ctn].getX();
 				int y = insert[ctn].getY();
-				
 				item6.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 6;
 				System.out.println(userChoice[ctn]);
 
@@ -508,14 +515,15 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item7.setBounds(910, 305, 100, 100);
 				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
 				int x = insert[ctn].getX();
 				int y = insert[ctn].getY();
-				
 				item7.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 7;
 				System.out.println(userChoice[ctn]);
 
@@ -544,14 +552,15 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item8.setBounds(1000, 305, 100, 100);
 				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
 				int x = insert[ctn].getX();
 				int y = insert[ctn].getY();
-				
 				item8.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 8;
 				System.out.println(userChoice[ctn]);
 
@@ -581,17 +590,17 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item9.setBounds(1090, 305, 100, 100);
 				
+				//아이템 클릭시 효과음
 				new E_EffectMusic().stage2_click();
 				
 				//로그창에 선택한 아이템 출력
 				int x = insert[ctn].getX();
 				int y = insert[ctn].getY();
-										
 				item9.setBounds(x, y, 100, 100);
 				
+				//퀘스트와 비교용 값 담기
 				userChoice[ctn] = 9;
 				System.out.println(userChoice[ctn]);
-				
 				
 				ctn++;
 				
@@ -613,35 +622,37 @@ public class E_GamePanel extends JPanel {
 		});
 
 
-		
-		
-		
-
 		//퀘스트 문제 불러오기
 		E_Quest qq = new E_Quest();
 		int[] q1 = qq.getQuest();
 		
+		//퀘스트 이미지 불러오기
 		E_QuestPanel qp = new E_QuestPanel(mf);
 		JLabel questImage = qp.getQuest();
 		
+		//스코어 저장용 유저 불러오기
 		User user = new User();
 		B_UserManager um = new B_UserManager();
 		//um.updateScore1("test1", 700);
 		
-		
-			System.out.println("항아리:"+ctn);
 
 			//pot이벤트 -> 성공, 실패 여부 판단
 			pot.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
+					
+					//아이템 9개 다 선택 되어야 항아리 눌리게 설정
 					if(ctn == 9) {
+						
+						//항아리 이펙트 제거
 						panel.remove(potEffect);
 						panel.repaint();
+						//끓는소리 효과음 제거
 						new E_EffectMusic().intoBgmStop();
 
 						if(hp == MAX_HP) {
-
+							
+							//체력 최대치일때(3) 성공시, 실패시
 							for(int i = 0; i < 9; i++) {
 								if(userChoice[i] == q1[i]) {
 									//System.out.println("일치");
@@ -654,8 +665,8 @@ public class E_GamePanel extends JPanel {
 									panel.add(failEffect);
 									panel.setComponentZOrder(failEffect, 0);
 									panel.repaint();
+									//실패시 폭발 효과음 
 									new E_EffectMusic().stage2_fire();
-
 
 									//hp이미지 삭제, hp감소
 									panel.remove(hp3);
@@ -674,10 +685,9 @@ public class E_GamePanel extends JPanel {
 										}
 									};
 									timer.schedule(task, 500);
-
+									
+									//힌트 대기 이미지 삭제
 									panel.remove(hint1);
-
-
 
 									//재료 위치 리셋
 									ctn = 0;
@@ -690,25 +700,28 @@ public class E_GamePanel extends JPanel {
 									item7.setBounds(825, 580, 100, 100);
 									item8.setBounds(950, 580, 100, 100);
 									item9.setBounds(1075, 580, 100, 100);
-
+									
+									//힌트를 보고싶으시면 클릭하세요 이미지 출력
 									panel.add(hint2);
 									panel.setComponentZOrder(hint2, 0);
 									panel.repaint();
 									System.out.println("힌트보실?");
 
-
+									//힌트 버튼 출력
 									panel.add(hint);
 									panel.setComponentZOrder(hint2, 1);
 									panel.repaint();
 
-
+									//힌트 마우스 이벤트
 									hint.addMouseListener(new MouseAdapter() {
 
 										@Override
 										public void mouseReleased(MouseEvent e) {
-
+											
+											//힌트버튼 클릭 효과음
 											new E_EffectMusic().stage2_click();
-
+											
+											//힌트 버튼 클릭 횟수에 따른 이미지 교체
 											hintCtn++;
 											if(hintCtn == 1) {
 												System.out.println("힌트카운트:" + hintCtn);
@@ -719,6 +732,7 @@ public class E_GamePanel extends JPanel {
 												panel.repaint();
 												System.out.println("스승님");
 											}
+											//힌트버튼 2번 눌렀을때 로그창에 퀘스트 문제 1초 보여주기
 											if(hintCtn == 2) {
 												System.out.println("힌트카운트2:" + hintCtn);
 												panel.add(questImage);
@@ -739,6 +753,7 @@ public class E_GamePanel extends JPanel {
 												timer2.schedule(task2, 1000);
 												repaint();
 											}
+											//힌트버튼 3번째 클릭 했을 때 이미지 변경
 											if(hintCtn == 3) {
 												panel.remove(hint3);
 												panel.repaint();
@@ -750,19 +765,21 @@ public class E_GamePanel extends JPanel {
 										}
 
 									});
-
-
-
+									
+									//새로고침
 									repaint();
-									return;
+									//실행 후 반복하지않게 리턴하기
+									return; 
 								}
 
 								//System.out.println("일치할때만나오기:" + userChoice[i]);
 
 
 							}
+							
 							System.out.println("다맞아요");
-
+							
+							//현재 플레이하고 있는 유저에 스코어 등록하기
 							um.updateScore2(user.playerId, 1000);
 
 							//문제 값과 유저값 일치하면 성공이미지 패널로 이동
@@ -779,9 +796,11 @@ public class E_GamePanel extends JPanel {
 
 						if(hp == 2) {
 
+							//체력 2개 남았을때 성공, 실패
 							for(int i = 0; i < 9; i++) {
 								if(userChoice[i] == q1[i]) {
 									System.out.println("일치2");
+									
 								}else {
 									System.out.println("불일치2");
 
@@ -790,6 +809,7 @@ public class E_GamePanel extends JPanel {
 									panel.setComponentZOrder(failEffect, 0);
 									panel.revalidate();
 									panel.repaint();
+									//실패시 폭발 효과음
 									new E_EffectMusic().stage2_fire();
 
 
@@ -823,27 +843,19 @@ public class E_GamePanel extends JPanel {
 									item8.setBounds(950, 580, 100, 100);
 									item9.setBounds(1075, 580, 100, 100);
 
-
-
-									//if(hintCtn2 == 0) {
-
+									//힌트버튼 마우스 이벤트
 									hint.addMouseListener(new MouseAdapter() {
 										@Override
 										public void mouseReleased(MouseEvent e) {
-
+											
+											//힌트 버튼 효과음
 											new E_EffectMusic().stage2_click();
-											System.out.println("왜?????????");
 											panel.add(hint5);
 											panel.setComponentZOrder(hint5, 0);
 											panel.repaint();
 										}
 									});
-
-									//}
-
-
-
-
+									
 									repaint();
 									return;
 
@@ -851,6 +863,7 @@ public class E_GamePanel extends JPanel {
 							}
 							System.out.println("2번째에맞춤");
 
+							//성공 시 현재 플레이 하고있는 유저에게 스코어 등록
 							um.updateScore2(user.playerId, 700);
 
 							//퀘스트 값과 유저선택 값이 같으면 성공패널로 이동
@@ -861,19 +874,14 @@ public class E_GamePanel extends JPanel {
 						}
 
 						if(hp == 1) {
-
+							
+							//체력 1개 남았을때 성공, 실패
 							for(int i = 0; i < 9; i++) {
 								if(userChoice[i] == q1[i]) {
 									System.out.println("일치3");
 
 								}else {
 									System.out.println("불일치3");
-
-									/*//틀리면 실패 이펙트 출력
-							panel.add(failEffect);
-							panel.setComponentZOrder(failEffect, 0);
-							panel.repaint();*/
-									//new E_EffectMusic().stage2_fire();
 
 									//hp이미지 삭제, hp감소
 									panel.remove(hp1);
@@ -893,27 +901,34 @@ public class E_GamePanel extends JPanel {
 									item8.setBounds(950, 580, 100, 100);
 									item9.setBounds(1075, 580, 100, 100);
 
-
-
 									//새로고침
 									repaint();
 
 									//hp 0되면 실패 이미지 패널로 이동
 									if(hp == 0) {
-
+										
+										//힌트버튼 마우스 이벤트
 										hint.addMouseListener(new MouseAdapter() {
 											@Override
 											public void mouseReleased(MouseEvent e) {
-
+												
+												//힌트 클릭시 효과음
 												new E_EffectMusic().stage2_click();
-
+												
+												//힌트 이미지 제거
 												panel.remove(hint5);
 												panel.repaint();
 											}
 										});
-
+										
+										//힌트 버튼 제거
+										panel.remove(hint);
+										panel.repaint();
+										
+										//유저체력0으로 실패시 현재 플레이 유저에게 스코어 등록
 										um.updateScore2(user.playerId, 0);
-
+										
+										//유저체력 0으로 실패 시 실패패널로 이동
 										E_ChangePanel cp = new E_ChangePanel(mf, panel);
 										E_FailPanel fp = new E_FailPanel(mf);
 										cp.replacePanel(fp);
@@ -923,6 +938,7 @@ public class E_GamePanel extends JPanel {
 								}
 							}
 							System.out.println("3번째에 맞춤");
+							//성공시 현재 플레이 유저에게 스코어 등록
 							um.updateScore2(user.playerId, 400);
 
 							//퀘스트값과 유저값 일치하면 성공이미지 패널로 이동
@@ -931,33 +947,27 @@ public class E_GamePanel extends JPanel {
 							cp.replacePanel(sp);
 							//new A_Music().intoBgmStop();
 						}
-
+						
+						//스코어 등록 확인용 콘솔출력
 						um.printAll();	
-
-
-
-
 					}
-
-
 
 				}
 			});
 
 		
-
-		
-		
 		//home 이벤트 -> 메인페이지로 이동
 		home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				//음악종료
+				//음악종료(패널 전환 전 음악을 먼저 종료해야함)
 				new A_Music().intoBgmStop_stage2();
 				
+				//home 버튼 누르면 패널 전환
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				C_GameStage main = new C_GameStage(mf);
 				cp.replacePanel(main);
+				//패널 전환시 랜덤값 초기화
 				E_Quest qq = new E_Quest();
 				qq.setRandom(new Random().nextInt(3) + 1);
 				
@@ -966,7 +976,6 @@ public class E_GamePanel extends JPanel {
 		
 		
 		//패널에 추가하기
-		
 
 		this.add(item1);
 		this.add(item2);
@@ -989,10 +998,6 @@ public class E_GamePanel extends JPanel {
 		this.add(label);
 		
 		//this.setComponentZOrder(label, 14);
-		
-		
-		
-		
 		
 	}
 }
