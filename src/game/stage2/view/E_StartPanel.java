@@ -23,7 +23,7 @@ public class E_StartPanel extends JPanel {
 
 	public E_StartPanel(JFrame mf) {
 
-		mf.setTitle("HarryPotter ~Stage2~ ");
+		//mf.setTitle("HarryPotter ~Stage2~ ");
 		this.mf = mf;
 		this.setLayout(null);
 		
