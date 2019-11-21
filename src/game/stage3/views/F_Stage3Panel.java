@@ -50,6 +50,7 @@ public class F_Stage3Panel extends JPanel{
 	private JTextArea log;
 	private JScrollPane sc;
 	private JLabel round;
+	
 	//공격, 방어, 스매쉬, 카운터 실행 버튼
 	JButton atk;
 	JButton df;
@@ -63,7 +64,7 @@ public class F_Stage3Panel extends JPanel{
 	//hp 감소 라벨 객체 선언
 	private JLabel[] hp = new JLabel[10];
 	private JLabel[] vmhp = new JLabel[10];
-	private JLabel[] rd = new JLabel[30];
+	private JLabel[] rd = new JLabel[70];
 
 	private static int ctn = 0;
 	public F_Stage3Panel(JFrame mf){
@@ -175,7 +176,7 @@ public class F_Stage3Panel extends JPanel{
 		/*round = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round01.png").getImage()));
 		round.setBounds(0, 0, 1280, 720);*/
 
-		for(int i = 0; i < 30; i++) {
+		for(int i = 0; i < 70; i++) {
 		rd[i] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round" + (i+1) +".png").getImage()));
 		rd[i].setBounds(0, 0, 1280, 720);
 		}
@@ -209,32 +210,12 @@ public class F_Stage3Panel extends JPanel{
 		for(int i = 0; i < 10; i++) {
 			panel.add(hp[i]);
 		}
-		/*panel.add(hp[0]);
-		panel.add(hp[1]);
-		panel.add(hp[2]);
-		panel.add(hp[3]);
-		panel.add(hp[4]);
-		panel.add(hp[5]);
-		panel.add(hp[6]);
-		panel.add(hp[7]);
-		panel.add(hp[8]);
-		panel.add(hp[9]);*/
 
 		this.add(bmhp);
 		for(int i = 0; i < 10; i++) {
 			panel.add(vmhp[i]);
 		}
-		/*panel.add(vmhp[0]);
-		panel.add(vmhp[1]);
-		panel.add(vmhp[2]);
-		panel.add(vmhp[3]);
-		panel.add(vmhp[4]);
-		panel.add(vmhp[5]);
-		panel.add(vmhp[6]);
-		panel.add(vmhp[7]);
-		panel.add(vmhp[8]);
-		panel.add(vmhp[9]);
-*/
+		
 		panel.add(atk);
 		panel.add(df);
 		panel.add(smash);
@@ -254,10 +235,10 @@ public class F_Stage3Panel extends JPanel{
 		counter.setActionCommand("4");
 
 		log.append("버튼을 선택해주세요\n");
-
-
-
+		
+		//라운드 1 라벨 
 		panel.add(rd[0]);
+		
 		//마지막에 배경 라벨 추가해서 라벨의 setComponentZOrder 상관 X
 		this.add(label);
 
@@ -596,6 +577,7 @@ public class F_Stage3Panel extends JPanel{
 							panel.setComponentZOrder(rd[ctn], 0);
 							panel.revalidate();
 							panel.repaint();
+							
 							if(harry.getHp()<=0){
 								log.append("재도전하시겠습니까?");
 								new A_Music().intoBgmStop();
