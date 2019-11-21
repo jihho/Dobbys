@@ -37,7 +37,7 @@ public class F_Stage3Panel extends JPanel{
 	private JLabel sksmashmiss;
 	private JLabel skdf;
 	private JLabel skct;
-	
+
 	//볼드모트 스킬 이펙트 용 라벨
 	private JLabel vmskill;	
 	private JLabel vmsksmash;
@@ -63,18 +63,18 @@ public class F_Stage3Panel extends JPanel{
 	//hp 감소 라벨 객체 선언
 	private JLabel[] hp = new JLabel[10];
 	private JLabel[] vmhp = new JLabel[10];
-	private JLabel[] rd = new JLabel[20];
-	
+	private JLabel[] rd = new JLabel[30];
+
 	private static int ctn = 0;
 	public F_Stage3Panel(JFrame mf){
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
-		
+
 		this.setBounds(0, 0, 1280, 720);
 		//배경음악 실행
 		new A_Music().stage3_backgroundSound();
-		
+
 		//스테이지 배경 라벨로 올림
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
@@ -94,24 +94,11 @@ public class F_Stage3Panel extends JPanel{
 		//실제 데미지 표시될 체력
 		hp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[0].setBounds(230, 180, 23, 70);
-		hp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[1].setBounds(250, 180, 23, 70);
-		hp[2] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[2].setBounds(270, 180, 23, 70);
-		hp[3] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[3].setBounds(290, 180, 23, 70);
-		hp[4] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[4].setBounds(310, 180, 23, 70);
-		hp[5] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[5].setBounds(330, 180, 23, 70);
-		hp[6] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[6].setBounds(350, 180, 23, 70);
-		hp[7] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[7].setBounds(370, 180, 23, 70);
-		hp[8] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[8].setBounds(390, 180, 23, 70);
-		hp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		hp[9].setBounds(410, 180, 23, 70);
+		
+		for(int i = 1; i<10; i++) {
+			hp[i] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+			hp[i].setBounds(230 + (i * 20), 180, 23, 70);
+		}
 
 		//볼드모트 체력 두근거리는 하트
 		JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
@@ -120,25 +107,11 @@ public class F_Stage3Panel extends JPanel{
 		//실제 데미지 표시될 체력
 		vmhp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[0].setBounds(1100, 180, 23, 70);
-		vmhp[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[1].setBounds(1080, 180, 23, 70);
-		vmhp[2] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[2].setBounds(1060, 180, 23, 70);
-		vmhp[3] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[3].setBounds(1040, 180, 23, 70);
-		vmhp[4] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[4].setBounds(1020, 180, 23, 70);
-		vmhp[5] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[5].setBounds(1000, 180, 23, 70);
-		vmhp[6] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[6].setBounds(980, 180, 23, 70);
-		vmhp[7] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[7].setBounds(960, 180, 23, 70);
-		vmhp[8] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[8].setBounds(940, 180, 23, 70);
-		vmhp[9] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
-		vmhp[9].setBounds(920, 180, 23, 70);
-
+		for(int i = 1; i < 10; i++) {
+			vmhp[i] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
+			vmhp[i].setBounds(1100 - (i * 20), 180, 23, 70);
+		}
+		
 		//공격 버튼
 		atk = new JButton(new ImageIcon("images/stage3/atk.png"));
 		atk.setBounds(40, 530, 186, 81);
@@ -201,20 +174,15 @@ public class F_Stage3Panel extends JPanel{
 
 		/*round = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round01.png").getImage()));
 		round.setBounds(0, 0, 1280, 720);*/
+
+		for(int i = 0; i < 30; i++) {
+		rd[i] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round" + (i+1) +".png").getImage()));
+		rd[i].setBounds(0, 0, 1280, 720);
+		}
 		
-		rd[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round01.png").getImage()));
-		rd[0].setBounds(0, 0, 1280, 720);
-		rd[1] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round02.png").getImage()));
-		rd[1].setBounds(0, 0, 1280, 720);
-		rd[2] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round03.png").getImage()));
-		rd[2].setBounds(0, 0, 1280, 720);
-		rd[3] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round04.png").getImage()));
-		rd[3].setBounds(0, 0, 1280, 720);
-		rd[4] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round05.png").getImage()));
-		rd[4].setBounds(0, 0, 1280, 720);
-		rd[5] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round06.png").getImage()));
-		rd[5].setBounds(0, 0, 1280, 720);
 		
+		
+
 		//스킬 이펙트 위치와 크기 지정
 		//해리
 		skill.setBounds(440, 277, 700, 200);
@@ -223,7 +191,7 @@ public class F_Stage3Panel extends JPanel{
 		skct.setBounds(400, 277, 250, 200);
 		skillmiss.setBounds(440, 277, 550, 200);
 		sksmashmiss.setBounds(440, 277, 550, 200);
-		
+
 		//볼드모트
 		vmskill.setBounds(440, 277, 550, 200);
 		vmsksmash.setBounds(440, 277, 550, 200);
@@ -231,14 +199,17 @@ public class F_Stage3Panel extends JPanel{
 		vmskct.setBounds(800, 277, 250, 200);
 		vmskillsuc.setBounds(200, 277, 750, 200);
 		vmsksmashsuc.setBounds(200, 277, 850, 200);
-	
+
 		//항상 존재하는 라벨과 버튼 추가
 		this.add(hr);
 		this.add(bm);
 		this.add(success);
 		this.add(fail);
 		this.add(hpbar);
-		panel.add(hp[0]);
+		for(int i = 0; i < 10; i++) {
+			panel.add(hp[i]);
+		}
+		/*panel.add(hp[0]);
 		panel.add(hp[1]);
 		panel.add(hp[2]);
 		panel.add(hp[3]);
@@ -247,10 +218,13 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(hp[6]);
 		panel.add(hp[7]);
 		panel.add(hp[8]);
-		panel.add(hp[9]);
+		panel.add(hp[9]);*/
 
 		this.add(bmhp);
-		panel.add(vmhp[0]);
+		for(int i = 0; i < 10; i++) {
+			panel.add(vmhp[i]);
+		}
+		/*panel.add(vmhp[0]);
 		panel.add(vmhp[1]);
 		panel.add(vmhp[2]);
 		panel.add(vmhp[3]);
@@ -260,7 +234,7 @@ public class F_Stage3Panel extends JPanel{
 		panel.add(vmhp[7]);
 		panel.add(vmhp[8]);
 		panel.add(vmhp[9]);
-
+*/
 		panel.add(atk);
 		panel.add(df);
 		panel.add(smash);
@@ -272,7 +246,7 @@ public class F_Stage3Panel extends JPanel{
 		df.addActionListener(actionEvent);
 		smash.addActionListener(actionEvent);
 		counter.addActionListener(actionEvent);
-		
+
 		//각 버튼의 값을 1,2,3,4로 정하여 액션 이벤트에서 switch문으로 구분
 		atk.setActionCommand("1");
 		df.setActionCommand("2");
@@ -280,13 +254,13 @@ public class F_Stage3Panel extends JPanel{
 		counter.setActionCommand("4");
 
 		log.append("버튼을 선택해주세요\n");
-		
-		
-		
+
+
+
 		panel.add(rd[0]);
 		//마지막에 배경 라벨 추가해서 라벨의 setComponentZOrder 상관 X
 		this.add(label);
-		
+
 		atk.setEnabled(false);
 		df.setEnabled(false);
 		smash.setEnabled(false);
@@ -307,8 +281,8 @@ public class F_Stage3Panel extends JPanel{
 
 		};
 		ts.schedule(tsm, 1400);
-		
-		
+
+
 		//시연용 성공, 실패 버튼 마우스 이벤트
 		success.addMouseListener(new MouseAdapter() {
 			@Override
@@ -327,7 +301,7 @@ public class F_Stage3Panel extends JPanel{
 				case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
 				case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
 				}
-
+				ctn = 0;
 				F_ChangePanel cp = new F_ChangePanel(mf, panel);
 				F_SuccessPanel sp = new F_SuccessPanel(mf);
 				cp.replacePanel(sp);
@@ -338,6 +312,7 @@ public class F_Stage3Panel extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				new A_Music().intoBgmStop();
+				ctn = 0;
 				F_ChangePanel cp = new F_ChangePanel(mf, panel);
 				F_FailPanel fp = new F_FailPanel(mf);
 				cp.replacePanel(fp);
@@ -345,19 +320,19 @@ public class F_Stage3Panel extends JPanel{
 		});
 
 	}
-	
-	
+
+
 	//버튼 액션 이벤트, 버튼 이벤트는 큰틀에서 같은 패턴이므로 주석은 1번 atk버튼에만 작성
 	class ActionClass implements ActionListener{
 
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//버튼에서 선언한 각 버튼의 int값 받을 수 있는 int 생성
 			int action = Integer.parseInt(e.getActionCommand());
 			//볼드모트의 선택 만들어줄 랜덤값 생성
 			int vmchoice = (int)(Math.random()*4);
-			
+
 			if(e.getSource() == atk || e.getSource() == df || 
 					e.getSource() == smash || e.getSource() == counter) {
 				ctn++;
@@ -382,20 +357,20 @@ public class F_Stage3Panel extends JPanel{
 					//패널에 스킬 이펙트 생성
 					panel.add(skillmiss);
 					panel.add(vmskdf);
-					
+
 					//각 이펙트의 우선순위를 최우선으로
 					panel.setComponentZOrder(skillmiss, 0);
 					panel.setComponentZOrder(vmskdf, 0);
-					
+
 					//패널 갱신해서 이미지 출력
 					panel.revalidate();
 					panel.repaint();
-					
+
 					//로그창 메세지
 					log.append("공격이 무효화 되었습니다.\n");
 					//로그창 스크롤 자동 갱신
 					log.setCaretPosition(log.getDocument().getLength());
-					
+
 					Timer ts = new Timer();	//Timer 실행
 					TimerTask tsm = new TimerTask() {	//TimerTask 실행
 
@@ -406,29 +381,31 @@ public class F_Stage3Panel extends JPanel{
 							panel.remove(skillmiss);	
 							panel.remove(vmskdf);
 							
-									panel.add(rd[ctn]);
-									panel.setComponentZOrder(rd[ctn], 0);
-								
+							//라운드 라벨 생성
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
+
 							//이펙트 안전한 제거를 위한 패널 갱신
 							panel.revalidate();
 							panel.repaint();
 							//이펙트 종료 후 버튼 잠금 해제
-							
+
 						}
 
 					};
 					ts.schedule(tsm, 1400); 
-					
+
 					Timer rd1 = new Timer();	
 					TimerTask rdm1 = new TimerTask() {
 
 						@Override
 						public void run() {
-							
+							//라운드 라벨 제거
 							panel.remove(rd[ctn]);
-								
+
 							panel.revalidate();
 							panel.repaint();
+							//버튼 잠금 해제
 							atk.setEnabled(true);
 							df.setEnabled(true);
 							smash.setEnabled(true);
@@ -436,7 +413,7 @@ public class F_Stage3Panel extends JPanel{
 						}
 
 					};
-					rd1.schedule(rdm1, 2100); break;
+					rd1.schedule(rdm1, 2200); break;
 				}else if(vmchoice == 3) {
 					//스킬 음성 
 					new F_EffectMusic().stage3_atk();
@@ -452,7 +429,7 @@ public class F_Stage3Panel extends JPanel{
 					log.append("공격 성공!!\n볼드모트의 체력이 10 감소합니다.\n");
 					log.append("볼드모트의 체력 : " + voldmort.getHp()+"\n");
 					log.setCaretPosition(log.getDocument().getLength());
-					
+
 					Timer ts = new Timer();	
 					TimerTask tsm = new TimerTask() {	
 
@@ -460,31 +437,29 @@ public class F_Stage3Panel extends JPanel{
 						public void run() {
 							//스킬 이펙트 제거
 							panel.remove(skill);
-							
+
 							//남은 체력값 받아와서 객체로 만든 hp게이지 제거
 							for(int i = 9; i>=0; i--) {
 								if(i >= voldmort.getHplife()) {
 									panel.remove(vmhp[i]);
 								}
 							}
-							
+							//라운드 라벨 생성
 							panel.add(rd[ctn]);
 							panel.setComponentZOrder(rd[ctn], 0);
-							
-							
+
 							//패널 갱신
 							panel.revalidate();
 							panel.repaint();
 							//버튼 활성화
-							
-							
+
 							//볼드모트 체력 0일때 성공 패널 실행을 위한 if문
 							if(voldmort.getHp()<=0) {
 								log.append("!!볼드모트를 물리쳤습니다.\n");
 								//넘어갈때 종종 음악이 안꺼지고 이어지는 오류 해결을 위한 음악 종료
 								new A_Music().intoBgmStop();
 								new F_EffectMusic().intoBgmStop();
-								
+
 								//클리어시 남은 해리의 체력에 따른 점수 부여
 								switch(harry.getHplife()) {
 								case 1: new B_UserManager().updateScore3(User.playerId, 100); break;
@@ -498,11 +473,12 @@ public class F_Stage3Panel extends JPanel{
 								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
 								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
 								}
+								ctn = 0;
 								//성공 영상 재생을 위한 성공 패널로 체인지
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_SuccessPanel sp = new F_SuccessPanel(mf);
 								cp.replacePanel(sp);
-								
+
 							}
 						}
 
@@ -523,7 +499,7 @@ public class F_Stage3Panel extends JPanel{
 						}
 
 					};
-					rd1.schedule(rdm1, 2100); break;
+					rd1.schedule(rdm1, 2200); break;
 				}
 
 			case 2 : 
@@ -551,6 +527,22 @@ public class F_Stage3Panel extends JPanel{
 						public void run() {
 							panel.remove(skdf);	
 							panel.remove(vmskill);
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
+							panel.revalidate();
+							panel.repaint();
+						}
+
+					};
+					ts.schedule(tsm, 1400);
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
 							panel.revalidate();
 							panel.repaint();
 							atk.setEnabled(true);
@@ -560,17 +552,17 @@ public class F_Stage3Panel extends JPanel{
 						}
 
 					};
-					ts.schedule(tsm, 1400);	break;
+					rd1.schedule(rdm1, 2200); break;
 				}else if(vmchoice == 2){
 					new F_EffectMusic().stage3_df();
 					panel.add(skdf);
 					panel.setComponentZOrder(skdf, 0);
 					panel.revalidate();
 					panel.repaint();
-					
+
 					Timer ts1 = new Timer();	
 					TimerTask tsm1 = new TimerTask() {	
-						
+
 						@Override
 						public void run() {
 							new F_EffectMusic().stage3_vmsmash();
@@ -582,7 +574,7 @@ public class F_Stage3Panel extends JPanel{
 						}
 					};
 					ts1.schedule(tsm1, 1400);
-					
+
 					harry.setHp(harry.getHp() -20);
 					harry.setHplife(harry.getHplife() -2);
 					log.append("볼드모트의 스매쉬!!\n해리포터의 체력이 20 감소합니다.\n");
@@ -600,16 +592,15 @@ public class F_Stage3Panel extends JPanel{
 									panel.remove(hp[i]);
 								}
 							}
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
 							panel.revalidate();
 							panel.repaint();
-							atk.setEnabled(true);
-							df.setEnabled(true);
-							smash.setEnabled(true);
-							counter.setEnabled(true);
 							if(harry.getHp()<=0){
 								log.append("재도전하시겠습니까?");
 								new A_Music().intoBgmStop();
 								new F_EffectMusic().intoBgmStop();
+								ctn = 0;
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_FailPanel fp = new F_FailPanel(mf);
 								cp.replacePanel(fp);
@@ -619,7 +610,25 @@ public class F_Stage3Panel extends JPanel{
 						}
 
 					};
-					ts.schedule(tsm, 2800); break;
+					ts.schedule(tsm, 2800);
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+						}
+
+					};
+					rd1.schedule(rdm1, 3600); break;
 				}
 
 			case 3 : 
@@ -646,16 +655,32 @@ public class F_Stage3Panel extends JPanel{
 						public void run() {
 							panel.remove(sksmashmiss);	 
 							panel.remove(vmskdf);
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
+							panel.revalidate();
+							panel.repaint();
+
+						}
+					};
+					ts.schedule(tsm, 1400);
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
 							panel.revalidate();
 							panel.repaint();
 							atk.setEnabled(true);
 							df.setEnabled(true);
 							smash.setEnabled(true);
 							counter.setEnabled(true);
-
 						}
+
 					};
-					ts.schedule(tsm, 1400); break;
+					rd1.schedule(rdm1, 2200); break;
 				}else if(vmchoice == 1) {
 					new F_EffectMusic().stage3_smash();
 					panel.add(sksmash);	
@@ -674,7 +699,8 @@ public class F_Stage3Panel extends JPanel{
 						@Override
 						public void run() {
 							panel.remove(sksmash);	 
-
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
 							for(int i = 9; i>=0; i--) {
 								if(i >= voldmort.getHplife()) {
 									panel.remove(vmhp[i]);
@@ -682,10 +708,6 @@ public class F_Stage3Panel extends JPanel{
 							}
 							panel.revalidate();
 							panel.repaint();
-							atk.setEnabled(true);
-							df.setEnabled(true);
-							smash.setEnabled(true);
-							counter.setEnabled(true);
 							if(voldmort.getHp()<=0) {
 								log.append("!!볼드모트를 물리쳤습니다.\n");
 								new A_Music().intoBgmStop();
@@ -703,7 +725,7 @@ public class F_Stage3Panel extends JPanel{
 								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
 								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
 								}
-
+								ctn = 0;
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_SuccessPanel sp = new F_SuccessPanel(mf);
 								cp.replacePanel(sp);
@@ -711,7 +733,25 @@ public class F_Stage3Panel extends JPanel{
 						}
 
 					};
-					ts.schedule(tsm, 1400);	break;
+					ts.schedule(tsm, 1400);	
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+						}
+
+					};
+					rd1.schedule(rdm1, 2200); break;
 				}else if(vmchoice == 3) {
 					new F_EffectMusic().stage3_smash();
 					panel.add(sksmashmiss);
@@ -744,8 +784,8 @@ public class F_Stage3Panel extends JPanel{
 						public void run() {
 							panel.remove(sksmashmiss);
 							panel.remove(vmskct);	 
-							panel.revalidate();
-							panel.repaint();
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
 							for(int i = 9; i>=0; i--) {
 								if(i >= harry.getHplife()) {
 									panel.remove(hp[i]);
@@ -753,14 +793,11 @@ public class F_Stage3Panel extends JPanel{
 							}
 							panel.revalidate();
 							panel.repaint();
-							atk.setEnabled(true);
-							df.setEnabled(true);
-							smash.setEnabled(true);
-							counter.setEnabled(true);
 							if(harry.getHp()<=0){
 								log.append("재도전하시겠습니까?");
 								new A_Music().intoBgmStop();
 								new F_EffectMusic().intoBgmStop();
+								ctn = 0;
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_FailPanel fp = new F_FailPanel(mf);
 								cp.replacePanel(fp);
@@ -769,7 +806,25 @@ public class F_Stage3Panel extends JPanel{
 						}
 
 					};
-					ts.schedule(tsm, 1400); break;
+					ts.schedule(tsm, 1400);
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+						}
+
+					};
+					rd1.schedule(rdm1, 2200); break;
 				}
 
 			case 4 : 
@@ -798,7 +853,7 @@ public class F_Stage3Panel extends JPanel{
 						}
 					};
 					ts1.schedule(tsm1, 1400);
-					
+
 					harry.setHp(harry.getHp() -10);
 					harry.setHplife(harry.getHplife() -1);
 					log.append("볼드모트의 공격!!\n해리포터의 체력이 10 감소합니다.\n");
@@ -811,6 +866,8 @@ public class F_Stage3Panel extends JPanel{
 						@Override
 						public void run() {
 							panel.remove(vmskillsuc);
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
 							for(int i = 9; i>=0; i--) {
 								if(i >= harry.getHplife()) {
 									panel.remove(hp[i]);
@@ -818,14 +875,11 @@ public class F_Stage3Panel extends JPanel{
 							}
 							panel.revalidate();
 							panel.repaint();
-							atk.setEnabled(true);
-							df.setEnabled(true);
-							smash.setEnabled(true);
-							counter.setEnabled(true);
 							if(harry.getHp()<=0){
 								log.append("재도전하시겠습니까?");
 								new A_Music().intoBgmStop();
 								new F_EffectMusic().intoBgmStop();
+								ctn = 0;
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_FailPanel fp = new F_FailPanel(mf);
 								cp.replacePanel(fp);
@@ -833,7 +887,26 @@ public class F_Stage3Panel extends JPanel{
 							}
 						}
 					};
-					ts.schedule(tsm, 2800); break;
+					ts.schedule(tsm, 2800);
+					
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+						}
+
+					};
+					rd1.schedule(rdm1, 3600); break;
 				}else if(vmchoice == 1 || vmchoice ==3) {
 					new F_EffectMusic().stage3_ct();
 					new F_EffectMusic().stage3_vmdf();
@@ -853,6 +926,22 @@ public class F_Stage3Panel extends JPanel{
 						public void run() {
 							panel.remove(skct);	
 							panel.remove(vmskdf);
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
+							panel.revalidate();
+							panel.repaint();
+						}
+
+					};
+					ts.schedule(tsm, 1400);
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
 							panel.revalidate();
 							panel.repaint();
 							atk.setEnabled(true);
@@ -862,7 +951,7 @@ public class F_Stage3Panel extends JPanel{
 						}
 
 					};
-					ts.schedule(tsm, 1400);	break;
+					rd1.schedule(rdm1, 2200); break;
 				}else if(vmchoice == 2) {
 					new F_EffectMusic().stage3_vmsmash();
 					panel.add(vmsksmash);	
@@ -871,7 +960,7 @@ public class F_Stage3Panel extends JPanel{
 					panel.repaint();
 					Timer ts1 = new Timer();	
 					TimerTask tsm1 = new TimerTask() {
-						
+
 						@Override
 						public void run() {
 							new F_EffectMusic().stage3_ct();
@@ -895,6 +984,8 @@ public class F_Stage3Panel extends JPanel{
 						public void run() {
 							panel.remove(vmsksmash);	
 							panel.remove(skct);
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
 							panel.revalidate();
 							panel.repaint();
 							for(int i = 9; i>=0; i--) {
@@ -902,12 +993,6 @@ public class F_Stage3Panel extends JPanel{
 									panel.remove(vmhp[i]);
 								}
 							}
-							panel.revalidate();
-							panel.repaint();
-							atk.setEnabled(true);
-							df.setEnabled(true);
-							smash.setEnabled(true);
-							counter.setEnabled(true);
 							if(voldmort.getHp()<=0) {
 								log.append("!!볼드모트를 물리쳤습니다.\n");
 								new A_Music().intoBgmStop();
@@ -925,14 +1010,32 @@ public class F_Stage3Panel extends JPanel{
 								case 9: new B_UserManager().updateScore3(User.playerId, 900); break;
 								case 10: new B_UserManager().updateScore3(User.playerId, 1000); break;
 								}
-
+								ctn = 0;
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_SuccessPanel sp = new F_SuccessPanel(mf);
 								cp.replacePanel(sp);
 							}
 						}
 					};
-					ts.schedule(tsm, 1400); break;
+					ts.schedule(tsm, 1400);
+					Timer rd1 = new Timer();	
+					TimerTask rdm1 = new TimerTask() {
+
+						@Override
+						public void run() {
+
+							panel.remove(rd[ctn]);
+
+							panel.revalidate();
+							panel.repaint();
+							atk.setEnabled(true);
+							df.setEnabled(true);
+							smash.setEnabled(true);
+							counter.setEnabled(true);
+						}
+
+					};
+					rd1.schedule(rdm1, 2200); break;
 				}
 
 			}
