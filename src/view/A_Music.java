@@ -360,7 +360,7 @@ public class A_Music {
 			clip.open(stream);
 			FloatControl gainControl = 
 				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-9.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			clip.loop(1);
 			
