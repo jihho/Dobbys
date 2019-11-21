@@ -181,7 +181,7 @@ public class C_RandomAssign extends JPanel{
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
-				
+				R_sd.dispose();
 			}
 		});
 		G_btn.addActionListener(new ActionListener() {
@@ -192,7 +192,6 @@ public class C_RandomAssign extends JPanel{
 				ChangePanel cp = new ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
-	    		
 				G_sd.dispose();
 			}
 		});

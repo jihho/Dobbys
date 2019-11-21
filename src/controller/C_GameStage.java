@@ -137,6 +137,8 @@ public class C_GameStage extends JPanel{
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
+			new A_Music().introBgm();
+				
 			ChangePanel cp = new ChangePanel(mf, panel);
 			A_LoginPanel lp = new A_LoginPanel(mf); 
 			cp.replacePanel(lp);
