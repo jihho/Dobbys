@@ -405,12 +405,10 @@ public class F_Stage3Panel extends JPanel{
 							//스킬 이펙트 제거 
 							panel.remove(skillmiss);	
 							panel.remove(vmskdf);
-							for(int i = 0; i< rd.length;i++) {
-								if(i<ctn) {
-									panel.add(rd[i]);
-									panel.setComponentZOrder(rd[i], 0);
-								}
-							}
+							
+									panel.add(rd[ctn]);
+									panel.setComponentZOrder(rd[ctn], 0);
+								
 							//이펙트 안전한 제거를 위한 패널 갱신
 							panel.revalidate();
 							panel.repaint();
@@ -426,11 +424,9 @@ public class F_Stage3Panel extends JPanel{
 
 						@Override
 						public void run() {
-							for(int i = 0; i< rd.length;i++) {
-								if(i<ctn) {
-									panel.remove(rd[i]);
-								}
-							}
+							
+							panel.remove(rd[ctn]);
+								
 							panel.revalidate();
 							panel.repaint();
 							atk.setEnabled(true);
@@ -471,12 +467,10 @@ public class F_Stage3Panel extends JPanel{
 									panel.remove(vmhp[i]);
 								}
 							}
-							for(int i = 0; i< rd.length;i++) {
-								if(i<ctn) {
-									panel.add(rd[i]);
-									panel.setComponentZOrder(rd[i], 0);
-								}
-							}
+							
+							panel.add(rd[ctn]);
+							panel.setComponentZOrder(rd[ctn], 0);
+							
 							
 							//패널 갱신
 							panel.revalidate();
@@ -508,6 +502,7 @@ public class F_Stage3Panel extends JPanel{
 								F_ChangePanel cp = new F_ChangePanel(mf, panel);
 								F_SuccessPanel sp = new F_SuccessPanel(mf);
 								cp.replacePanel(sp);
+								
 							}
 						}
 
@@ -518,11 +513,7 @@ public class F_Stage3Panel extends JPanel{
 
 						@Override
 						public void run() {
-							for(int i = 0; i< rd.length;i++) {
-								if(i<ctn) {
-									panel.remove(rd[i]);
-								}
-							}
+							panel.remove(rd[ctn]);
 							panel.revalidate();
 							panel.repaint();
 							atk.setEnabled(true);
