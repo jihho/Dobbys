@@ -23,7 +23,7 @@ public class page4 extends JPanel {
 		button.setBounds(375, 160, 550, 450);
 		this.add(button);
 		
-		JLabel intro2 = new JLabel(new ImageIcon(new ImageIcon("images/stage4/hok_Video.gif")
+		JLabel intro2 = new JLabel(new ImageIcon(new ImageIcon("images/stage4/hokVideo.gif")
 				.getImage().getScaledInstance(550, 450, 0)));
 		intro2.setBounds(375, 160, 550, 450);
 		
