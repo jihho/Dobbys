@@ -30,11 +30,13 @@ public class Bonus_GamePanel extends JPanel {
 		
 		JLabel hok2 = new JLabel(new ImageIcon(new ImageIcon("images/bonus/hok1.png").
 				getImage().getScaledInstance(500, 400, 0)));
-		hok2.setBounds(410, 185, 500, 400);
+		hok2.setBounds(420, 185, 500, 400);
 		
 		
 		
 		hok1.addMouseListener(new MouseAdapter() {
+			
+			
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -43,11 +45,22 @@ public class Bonus_GamePanel extends JPanel {
 				hokHp--;
 				System.out.println("호크룩스 HP" + hokHp);
 				
+				
+				
 				if (ctn % 2 == 0) {
-					hok1.setBounds(398,185,500,400);
+					
+					if(ctn % 3 == 0) {
+						hok1.setBounds(410,180,500,400);
+					} else if(ctn % 5 == 0) {
+						hok1.setBounds(395,190,500,400);
+					} else if(ctn % 7 == 0) {
+						
+					} else {
+						hok1.setBounds(400, 175, 500, 400);
+					}
 
 				} else {
-					hok1.setBounds(402, 185, 500, 400);
+					hok1.setBounds(405, 175, 500, 400);
 				}
 			}
 			

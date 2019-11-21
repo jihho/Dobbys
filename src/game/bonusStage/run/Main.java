@@ -10,12 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Main extends JFrame {
-  private JButton buzz = new JButton(new ImageIcon("images/bonus/hok1.png"));
+  public static JButton buzz = new JButton(new ImageIcon("images/bonus/hok1.png"));
 
   public void prepareGUI() {
     buzz.addActionListener(new BuzzActionListener(this));
     setSize(300, 200);
-    getContentPane().add(buzz, BorderLayout.NORTH);
+    getContentPane().add(buzz);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
@@ -29,6 +29,7 @@ public class Main extends JFrame {
 
 class BuzzActionListener implements ActionListener {
   JFrame frame;
+  
   Point currLocation;
   int iDisplaceXBy = 5;
   int iDisplaceYBy = -5;

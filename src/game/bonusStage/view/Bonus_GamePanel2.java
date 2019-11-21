@@ -29,7 +29,7 @@ public class Bonus_GamePanel2 extends JPanel implements Runnable {
 		this.setLayout(null);
 		panel = this;
 		this.setBackground(Color.BLACK);
-		SwingUtilities.invokeLater(new Shake());
+		SwingUtilities.invokeLater(new Bonus_GamePanel2(mf));
 		
 		mf.requestFocus();
 		mf.setFocusable(true);

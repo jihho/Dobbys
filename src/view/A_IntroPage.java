@@ -45,9 +45,9 @@ public class A_IntroPage extends JPanel{
 		panel = this;
 		this.setBackground(Color.BLACK);
 		
-		JLabel introBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/intro1_1.gif")
-				.getImage().getScaledInstance(1300, 810, 0)));
-		introBackground.setBounds(0, 0, 1300, 810);
+		JLabel introBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/intro1.gif")
+				.getImage().getScaledInstance(1300, 800, 0)));
+		introBackground.setBounds(0, 0, 1300, 800);
 		
 //		JLabel introNext = new JLabel(new ImageIcon(new ImageIcon("images/main/intro3-5sec.gif")
 //				.getImage().getScaledInstance(1330, 785, 0)));
@@ -56,7 +56,7 @@ public class A_IntroPage extends JPanel{
 		
 		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
 				.getImage().getScaledInstance(650, 50, 0)));
-		press.setBounds(320, 615, 650, 50);
+		press.setBounds(320, 570, 650, 50);
 		
 		
 		this.addMouseListener(new MouseAdapter() {

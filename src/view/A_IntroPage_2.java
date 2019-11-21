@@ -16,9 +16,9 @@ public class A_IntroPage_2 extends JPanel {
 		
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 //		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		JLabel intro2 = new JLabel(new ImageIcon(new ImageIcon("images/main/intro1_2.gif")
-				.getImage().getScaledInstance(1300, 810, 0)));
-		intro2.setBounds(0, 0, 1300, 810);
+		JLabel intro2 = new JLabel(new ImageIcon(new ImageIcon("images/main/intro2.gif")
+				.getImage().getScaledInstance(1300, 800, 0)));
+		intro2.setBounds(0, 0, 1300, 800);
 		
 		this.mf = mf;
 		this.setLayout(null);

@@ -208,8 +208,9 @@ public class A_ChangePage extends JPanel {
 						//아이디와 비밀번호 일치시
 						if (selectedUser.getPw().equals(nowPw.getText())) {
 							//모든 정보가 일치 (비밀번호 변경)
-							if(newPw.getText().equals(checkPw.getText())
-									&& newPw.getText().length() > 0) {
+							if(newPw.getText().equals(checkPw.getText() )
+									&& newPw.getText().length() > 0 
+									&& !nowPw.getText().equals(newPw.getText())) {
 								//임시비밀번호 변경
 								um.updatePw(textId.getText(), checkPw.getText());
 								changeLabel.setText("비밀번호가 변경 되었습니다.");
@@ -220,8 +221,18 @@ public class A_ChangePage extends JPanel {
 								checkPw.setText("");
 								
 								
-							} else { 
-								//아이디, 비밀번호 일치하나 변경 비밀번호가 다름
+								//현재 비밀번호와 새 비밀번호가 동일할때
+							} else if (newPw.getText().equals(checkPw.getText() )
+									&& newPw.getText().length() > 0 
+									&& nowPw.getText().equals(newPw.getText())) {
+								changeLabel.setText("현재 비밀번호와 동일합니다. 다시 입력해주세요.");
+								changeLabel.setForeground(new Color(230, 0, 0));
+								newPw.setText("");
+								checkPw.setText("");
+							
+							
+							} else {
+								// 아이디, 비밀번호 일치하나 변경 비밀번호가 다름
 								changeLabel.setText("새 비밀번호가 일치하지 않습니다.");
 								changeLabel.setForeground(new Color(230, 0, 0));
 								newPw.setText("");

@@ -28,7 +28,7 @@ public class A_IntroChanger extends Thread{
 	public void run() {
 		
 			try {
-				this.sleep(1000);
+				this.sleep(900);
 				System.out.println("1");
 			} catch (InterruptedException e) {
 				e.printStackTrace();

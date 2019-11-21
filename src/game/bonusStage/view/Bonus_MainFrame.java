@@ -11,7 +11,7 @@ public class Bonus_MainFrame extends JFrame{
 		
 		
 		
-		this.add(new Bonus_GamePanel2(this));
+		this.add(new Bonus_GamePanel3(this));
 		//this.add(new GamePanel(this));
 		//new BgPanel(this);
 		//new A_Music().stage2_BgSound();
