@@ -1,4 +1,4 @@
-package game.bonusStage2.view;
+package game.stage6.view;
 
 import javax.swing.JFrame;
 

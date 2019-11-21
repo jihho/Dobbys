@@ -56,12 +56,21 @@ public class E_GamePanel extends JPanel {
 	private JPanel panel;
 	
 	private int ctn = 0;		//유저아이템 카운트
-	private int pCtn = 0; 		//항아리 카운트
 	private int[] userChoice;	//유저 선택값 담는 배열
 	private static int MAX_HP = 3;	//유저 최대 체력
 	private int hp = MAX_HP;		//유저 체력
 	private int hintCtn = 0;		//힌트 카운트
-
+	private boolean pCtn = true; 		//항아리 카운트
+	private boolean btn1 = true;
+	private boolean btn2 = true;
+	private boolean btn3 = true;
+	private boolean btn4 = true;
+	private boolean btn5 = true;
+	private boolean btn6 = true;
+	private boolean btn7 = true;
+	private boolean btn8 = true;
+	private boolean btn9 = true;
+	
 	
 	
 	//hp 라벨변수 
@@ -283,81 +292,106 @@ public class E_GamePanel extends JPanel {
 		
 		
 			
-		//아이템 마우스 이벤트
-		item1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				//item1.setBounds(910, 115, 100, 100);
-				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
-				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item1.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 1;
-				System.out.println(userChoice[ctn]);
-				ctn++;
-				
-				
-				//재료 9개 모두 선택되면 항아리 이펙트 나오기
-				if(ctn == 9) {
-
-					panel.add(potEffect);
-					panel.setComponentZOrder(potEffect, 0);
-					panel.revalidate();
-					panel.repaint();
-					System.out.println("항아리이펙트");
-
-					//재료9개되면 끓는 소리 출력
-					new E_EffectMusic().stage2_boiling();				
-				}
-
-
-				
-				
-			}
-		});
-	
-
-		item2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				//item2.setBounds(1000, 115, 100, 100);
-				
-				//아이템 클릭 효과음
-				new E_EffectMusic().stage2_click();
-				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item2.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 2;
-				System.out.println(userChoice[ctn]);
-
-				ctn++;			
-				
-				if(ctn == 9) {
-
-					//재료 9개 모두 선택되면 항아리 이펙트 나오기
-					panel.add(potEffect);
-					panel.setComponentZOrder(potEffect, 0);
-					panel.revalidate();
-					panel.repaint();
-					System.out.println("항아리이펙트");
+		
+			
+			//아이템 마우스 이벤트
+			item1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					//item1.setBounds(910, 115, 100, 100);
 					
-					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();					
+					if(btn1 == true) {
+						
+						//아이템 클릭시 효과음
+						new E_EffectMusic().stage2_click();
+						
+						//로그창에 선택한 아이템 출력
+						int x = insert[ctn].getX();
+						int y = insert[ctn].getY();
+						item1.setBounds(x, y, 100, 100);
+						
+						//퀘스트와 비교용 값 담기
+						userChoice[ctn] = 1;
+						System.out.println(userChoice[ctn]);
+						
+						btn1 = false;
+						ctn++;
+					}
+					
+					
+					//재료 9개 모두 선택되면 항아리 이펙트 나오기
+					if(ctn == 9 && pCtn == true) {
+						System.out.println("ctn1:"+ctn);
+						
+						panel.add(potEffect);
+						panel.setComponentZOrder(potEffect, 0);
+						panel.revalidate();
+						panel.repaint();
+						System.out.println("항아리이펙트");
+						
+						//재료9개되면 끓는 소리 출력
+						new E_EffectMusic().stage2_boiling();	
+						pCtn = false;
+						System.out.println(pCtn);
+						ctn++;
+						System.out.println("ctn11: " + ctn);
+					}
+					
+					
+					
+					
 				}
-
-			}
-		});
-
+			});
+		
+		
+		
+			item2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					//item2.setBounds(1000, 115, 100, 100);
+					
+					
+					if(btn2 == true) {
+						
+						//아이템 클릭 효과음
+						new E_EffectMusic().stage2_click();
+						
+						//로그창에 선택한 아이템 출력
+						int x = insert[ctn].getX();
+						int y = insert[ctn].getY();
+						item2.setBounds(x, y, 100, 100);
+						
+						//퀘스트와 비교용 값 담기
+						userChoice[ctn] = 2;
+						System.out.println(userChoice[ctn]);
+						
+						btn2 = false;
+						ctn++;		
+						System.out.println("ctn2: " + ctn);
+					}
+					
+					
+					if(ctn == 9 && pCtn == true) {
+						
+						//재료 9개 모두 선택되면 항아리 이펙트 나오기
+						panel.add(potEffect);
+						panel.setComponentZOrder(potEffect, 0);
+						panel.revalidate();
+						panel.repaint();
+						System.out.println("항아리이펙트");
+						
+						//재료9개되면 끓는소리출력
+						new E_EffectMusic().stage2_boiling();	
+						pCtn = false;
+						System.out.println("항아리카운트 :" + pCtn);
+						ctn++;
+						
+					}
+					
+				}
+				
+			});
+		
 
 
 		item3.addMouseListener(new MouseAdapter() {
@@ -365,21 +399,25 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item3.setBounds(1090, 115, 100, 100);
 				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
+				if(btn3 == true) {
+					
+					//아이템 클릭시 효과음
+					new E_EffectMusic().stage2_click();
+					
+					//로그창에 선택한 아이템 출력
+					int x = insert[ctn].getX();
+					int y = insert[ctn].getY();
+					item3.setBounds(x, y, 100, 100);
+					
+					//퀘스트와 비교용 값 담기
+					userChoice[ctn] = 3;
+					System.out.println(userChoice[ctn]);
+					
+					btn3 = false;
+					ctn++;	
+				}
 				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item3.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 3;
-				System.out.println(userChoice[ctn]);
-
-				ctn++;	
-				
-				if(ctn == 9) {
+				if(ctn == 9 && pCtn == true) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
@@ -389,7 +427,10 @@ public class E_GamePanel extends JPanel {
 					System.out.println("항아리이펙트");
 
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				
+					new E_EffectMusic().stage2_boiling();
+					pCtn = false;
+					ctn++;
+					
 				}
 
 			}
@@ -402,21 +443,25 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item4.setBounds(910, 215, 100, 100);
 				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
+				if(btn4 == true) {
+					
+					//아이템 클릭시 효과음
+					new E_EffectMusic().stage2_click();
+					
+					//로그창에 선택한 아이템 출력
+					int x = insert[ctn].getX();
+					int y = insert[ctn].getY();
+					item4.setBounds(x, y, 100, 100);
+					
+					//퀘스트와 비교용 값 담기
+					userChoice[ctn] = 4;
+					System.out.println(userChoice[ctn]);
+					
+					btn4 = false;
+					ctn++;
+				}
 				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item4.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 4;
-				System.out.println(userChoice[ctn]);
-
-				ctn++;
-				
-				if(ctn == 9) {
+				if(ctn == 9 && pCtn == true) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
@@ -426,7 +471,10 @@ public class E_GamePanel extends JPanel {
 					System.out.println("항아리이펙트");
 
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				
+					new E_EffectMusic().stage2_boiling();	
+					pCtn = false;
+					ctn++;
+					
 				}
 
 				
@@ -440,21 +488,25 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item5.setBounds(1000, 215, 100, 100);
 				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
+				if(btn5 == true) {
+					
+					//아이템 클릭시 효과음
+					new E_EffectMusic().stage2_click();
+					
+					//로그창에 선택한 아이템 출력
+					int x = insert[ctn].getX();
+					int y = insert[ctn].getY();
+					item5.setBounds(x, y, 100, 100);
+					
+					//퀘스트와 비교용 값 담기
+					userChoice[ctn] = 5;
+					System.out.println(userChoice[ctn]);
+					
+					btn5 = false;
+					ctn++;
+				}
 				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item5.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 5;
-				System.out.println(userChoice[ctn]);
-
-				ctn++;
-				
-				if(ctn == 9) {
+				if(ctn == 9 && pCtn == true) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
@@ -464,7 +516,10 @@ public class E_GamePanel extends JPanel {
 					System.out.println("항아리이펙트");
 
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				
+					new E_EffectMusic().stage2_boiling();	
+					pCtn = false;
+					ctn++;
+					
 				}
 
 				
@@ -478,21 +533,25 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item6.setBounds(1090, 215, 100, 100);
 				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
+				if(btn6 == true) {
+					
+					//아이템 클릭시 효과음
+					new E_EffectMusic().stage2_click();
+					
+					//로그창에 선택한 아이템 출력
+					int x = insert[ctn].getX();
+					int y = insert[ctn].getY();
+					item6.setBounds(x, y, 100, 100);
+					
+					//퀘스트와 비교용 값 담기
+					userChoice[ctn] = 6;
+					System.out.println(userChoice[ctn]);
+					
+					btn6 = false;
+					ctn++;
+				}
 				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item6.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 6;
-				System.out.println(userChoice[ctn]);
-
-				ctn++;
-				
-				if(ctn == 9) {
+				if(ctn == 9 && pCtn == true) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
@@ -502,7 +561,10 @@ public class E_GamePanel extends JPanel {
 					System.out.println("항아리이펙트");
 
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				
+					new E_EffectMusic().stage2_boiling();		
+					pCtn = false;
+					ctn++;
+					
 				}
 
 			}
@@ -515,21 +577,25 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item7.setBounds(910, 305, 100, 100);
 				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
-				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item7.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 7;
-				System.out.println(userChoice[ctn]);
+				if(btn7 == true) {
+					
+					//아이템 클릭시 효과음
+					new E_EffectMusic().stage2_click();
+					
+					//로그창에 선택한 아이템 출력
+					int x = insert[ctn].getX();
+					int y = insert[ctn].getY();
+					item7.setBounds(x, y, 100, 100);
+					
+					//퀘스트와 비교용 값 담기
+					userChoice[ctn] = 7;
+					System.out.println(userChoice[ctn]);
+					
+					btn7 = false;
+					ctn++;
+				}
 
-				ctn++;
-
-				if(ctn == 9) {
+				if(ctn == 9 && pCtn == true) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
@@ -539,7 +605,10 @@ public class E_GamePanel extends JPanel {
 					System.out.println("항아리이펙트");
 
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				
+					new E_EffectMusic().stage2_boiling();	
+					pCtn = false;
+					ctn++;
+					
 				}
 
 			}
@@ -552,21 +621,25 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item8.setBounds(1000, 305, 100, 100);
 				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
+				if(btn8 == true) {
+					
+					//아이템 클릭시 효과음
+					new E_EffectMusic().stage2_click();
+					
+					//로그창에 선택한 아이템 출력
+					int x = insert[ctn].getX();
+					int y = insert[ctn].getY();
+					item8.setBounds(x, y, 100, 100);
+					
+					//퀘스트와 비교용 값 담기
+					userChoice[ctn] = 8;
+					System.out.println(userChoice[ctn]);
+					
+					btn8 = false;
+					ctn++;
+				}
 				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item8.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 8;
-				System.out.println(userChoice[ctn]);
-
-				ctn++;
-				
-				if(ctn == 9) {
+				if(ctn == 9 && pCtn == true) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
@@ -576,7 +649,9 @@ public class E_GamePanel extends JPanel {
 					System.out.println("항아리이펙트");
 
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				
+					new E_EffectMusic().stage2_boiling();	
+					pCtn = false;
+					ctn++;
 				}
 
 				
@@ -590,21 +665,25 @@ public class E_GamePanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				//item9.setBounds(1090, 305, 100, 100);
 				
-				//아이템 클릭시 효과음
-				new E_EffectMusic().stage2_click();
+				if(btn9 == true) {
+					
+					//아이템 클릭시 효과음
+					new E_EffectMusic().stage2_click();
+					
+					//로그창에 선택한 아이템 출력
+					int x = insert[ctn].getX();
+					int y = insert[ctn].getY();
+					item9.setBounds(x, y, 100, 100);
+					
+					//퀘스트와 비교용 값 담기
+					userChoice[ctn] = 9;
+					System.out.println(userChoice[ctn]);
+					
+					btn9 = false;
+					ctn++;
+				}
 				
-				//로그창에 선택한 아이템 출력
-				int x = insert[ctn].getX();
-				int y = insert[ctn].getY();
-				item9.setBounds(x, y, 100, 100);
-				
-				//퀘스트와 비교용 값 담기
-				userChoice[ctn] = 9;
-				System.out.println(userChoice[ctn]);
-				
-				ctn++;
-				
-				if(ctn == 9) {
+				if(ctn == 9 && pCtn == true) {
 
 					//재료 9개 모두 선택되면 항아리 이펙트 나오기
 					panel.add(potEffect);
@@ -614,7 +693,10 @@ public class E_GamePanel extends JPanel {
 					System.out.println("항아리이펙트");	
 
 					//재료9개되면 끓는소리출력
-					new E_EffectMusic().stage2_boiling();				
+					new E_EffectMusic().stage2_boiling();
+					pCtn = false;
+					ctn++;
+					
 				}
 
 				
@@ -642,7 +724,7 @@ public class E_GamePanel extends JPanel {
 				public void mouseReleased(MouseEvent e) {
 					
 					//아이템 9개 다 선택 되어야 항아리 눌리게 설정
-					if(ctn == 9) {
+					if(ctn == 10) {
 						
 						//항아리 이펙트 제거
 						panel.remove(potEffect);
@@ -691,6 +773,17 @@ public class E_GamePanel extends JPanel {
 
 									//재료 위치 리셋
 									ctn = 0;
+									btn1 = true;
+									btn2 = true;
+									btn3 = true;
+									btn4 = true;
+									btn5 = true;
+									btn6 = true;
+									btn7 = true;
+									btn8 = true;
+									btn9 = true;
+									pCtn = true;
+									
 									item1.setBounds(75, 580, 100, 100);
 									item2.setBounds(200, 580, 100, 100);
 									item3.setBounds(325, 580, 100, 100);
@@ -833,6 +926,17 @@ public class E_GamePanel extends JPanel {
 
 									//재료 위치 리셋
 									ctn = 0;
+									btn1 = true;
+									btn2 = true;
+									btn3 = true;
+									btn4 = true;
+									btn5 = true;
+									btn6 = true;
+									btn7 = true;
+									btn8 = true;
+									btn9 = true;
+									pCtn = true;
+									
 									item1.setBounds(75, 580, 100, 100);
 									item2.setBounds(200, 580, 100, 100);
 									item3.setBounds(325, 580, 100, 100);
@@ -891,6 +995,17 @@ public class E_GamePanel extends JPanel {
 
 									//재료 위치 리셋
 									ctn = 0;
+									btn1 = true;
+									btn2 = true;
+									btn3 = true;
+									btn4 = true;
+									btn5 = true;
+									btn6 = true;
+									btn7 = true;
+									btn8 = true;
+									btn9 = true;
+									pCtn = true;
+									
 									item1.setBounds(75, 580, 100, 100);
 									item2.setBounds(200, 580, 100, 100);
 									item3.setBounds(325, 580, 100, 100);
