@@ -11,6 +11,7 @@ import javax.sound.sampled.DataLine;
 public class E_EffectMusic {
 	public static Clip clip;
 	
+	//끓는 소리 효과음
 	public static void stage2_boiling() {
 		File bgm;
 		AudioInputStream stream;
@@ -34,10 +35,13 @@ public class E_EffectMusic {
 		
 	}
 	
+	//효과음 종료
 	public static void intoBgmStop() {
 		clip.stop();
 		clip.close();
 	}
+	
+	//실패시 폭발 효과음
 	public static void stage2_fire() {
 		File bgm;
 		AudioInputStream stream;
@@ -61,6 +65,7 @@ public class E_EffectMusic {
 		
 	}
 	
+	//아이템, 힌트버튼 클릭 효과음
 	public static void stage2_click() {
 		File bgm;
 		AudioInputStream stream;
@@ -84,6 +89,7 @@ public class E_EffectMusic {
 		
 	}
 	
+	//성공패널 효과음
 	public static void stage2_suc() {
 		File bgm;
 		AudioInputStream stream;
@@ -106,6 +112,8 @@ public class E_EffectMusic {
 			}
 		
 	}
+	
+	//게임 방법 이미지 클릭 효과음
 	public static void stage2_clickStart() {
 		File bgm;
 		AudioInputStream stream;

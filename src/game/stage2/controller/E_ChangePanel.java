@@ -1,4 +1,4 @@
-package game.stage2.view;
+package game.stage2.controller;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +17,6 @@ public class E_ChangePanel {
 		mf.add(changePanel);
 		mf.revalidate();
 		mf.repaint();
-		
 		
 	}
 	

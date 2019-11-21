@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.stage2.controller.E_ChangePanel;
 import game.stage2.model.vo.E_EffectMusic;
 import view.A_Music;
 
@@ -28,6 +29,7 @@ public class E_StartPanel extends JPanel {
 		
 		panel = this;
 		
+		//배경 음악 재생
 		new A_Music().stage2_BgSound();
 		
 /*		//마우스커서
@@ -177,8 +179,10 @@ public class E_StartPanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				
+				//게임방법 이미지 클릭시 효과음
 				new E_EffectMusic().stage2_clickStart();
 				
+				//타이머 실행 하고, 퀘스트 패널로 패널 전환
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				E_QuestPanel qp = new E_QuestPanel(mf);
 				E_Timer timer = new E_Timer(mf, qp);
@@ -192,9 +196,7 @@ public class E_StartPanel extends JPanel {
 			}
 		});
 		
-		
-	
-		
+		//패널에 얹기
 		this.add(rule);
 		this.add(label);
 		this.add(bg1);
@@ -212,7 +214,6 @@ public class E_StartPanel extends JPanel {
 		this.add(hp1);
 		this.add(hp2);
 		this.add(hp3);
-		
 		
 		
 		this.setComponentZOrder(label, 11);

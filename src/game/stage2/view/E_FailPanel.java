@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import game.stage2.controller.E_ChangePanel;
 import game.stage2.model.vo.E_EffectMusic;
 import game.stage2.model.vo.E_Quest;
 import view.A_Music;
@@ -26,23 +27,24 @@ public class E_FailPanel extends JPanel {
 		panel = this;
 		this.setLayout(null);
 		
+		//실패 패널 효과음
 		new E_EffectMusic().stage2_fire();
 		
-		//실패이미지 출력
+		//실패이미지 출력,위치설정
 		JLabel fail = new JLabel(new ImageIcon(new ImageIcon("images/stage2/stage2_fail.gif").
 				getImage().getScaledInstance(1280, 720, 0)));
 		fail.setBounds(0, 0, 1280, 720);
 		
-		//실패팝업
+		//실패팝업 (다이얼로그)
 		Dialog popfail = new Dialog(mf, "실패팝업");
 		popfail.setLayout(null);
 		popfail.setSize(500, 250);
-		popfail.setLocationRelativeTo(mf);
+		popfail.setLocationRelativeTo(mf);	//프레임 가운데 나오도록 설정
 		
 		//팝업속 메세지
 		JLabel failmsg = new JLabel("GAME OVER :(");
 		failmsg.setBounds(140, 50, 300, 100);
-		failmsg.setFont(new Font("DungGenMo", 0, 30));
+		failmsg.setFont(new Font("DungGenMo", 0, 30));	//폰트설정
 		
 		//팝업버튼-재도전
 		JButton retry = new JButton("Retry!");
@@ -73,12 +75,16 @@ public class E_FailPanel extends JPanel {
 		retry.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				//재도전시 음악 종료(패널전환보다 먼저 음악이 종료 되어야 한다)
 				new A_Music().intoBgmStop_stage2();
+				
+				//재도전 버튼 클릭시 시작패널로 패널전환
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				E_StartPanel sp = new E_StartPanel(mf);
 				cp.replacePanel(sp);
 				popfail.dispose();
 				
+				//패널 전환시 랜덤값 다시 받도록 초기화 하기
 				E_Quest qq = new E_Quest();
 				qq.setRandom(new Random().nextInt(3) + 1);
 				
@@ -90,12 +96,16 @@ public class E_FailPanel extends JPanel {
 		tomain.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				//게임메인페이지로 넘어갈 시 음악 종료되기 ( 패널 전환보다 음악이 먼저 종료되어야 한다)
 				new A_Music().intoBgmStop_stage2();
+				
+				//메인으로 버튼 클릭시 게임 메인페이지로 패널 전환
 				E_ChangePanel cp = new E_ChangePanel(mf, panel);
 				C_GameStage gs = new C_GameStage(mf);
 				cp.replacePanel(gs);
 				popfail.dispose();
 				
+				//패널 전환시 랜덤값 다시 받고록 초기화 하기
 				E_Quest qq = new E_Quest();
 				qq.setRandom(new Random().nextInt(3) + 1);
 				
