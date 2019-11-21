@@ -65,7 +65,7 @@ public class D_Harry extends JPanel{
 	
 	public void moveLeft() {
 		if(state == HARRY_ST_ALIVE) {
-			if(x > 100) {
+			if(x > 20) {
 				x -= 20;
 				bb.x = x + 10;
 			}
@@ -74,7 +74,7 @@ public class D_Harry extends JPanel{
 	
 	public void moveRight() {
 		if(state == HARRY_ST_ALIVE) {
-			if(x < 1200) {
+			if(x < 1100) {
 				x += 20;
 				bb.x = x + 10;
 			}
