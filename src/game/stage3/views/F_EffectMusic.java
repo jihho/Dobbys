@@ -27,6 +27,9 @@ public class F_EffectMusic {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
+			FloatControl gainControl = 
+				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-2.0f); 
 			clip.start();
 			//clip.loop(1);
 			
@@ -50,6 +53,9 @@ public class F_EffectMusic {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
+			FloatControl gainControl = 
+				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-2.0f); 
 			clip.start();
 			//clip.loop(1);
 			
@@ -73,6 +79,9 @@ public class F_EffectMusic {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
+			FloatControl gainControl = 
+				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-2.0f); 
 			clip.start();
 			//clip.loop(1);
 			
@@ -96,6 +105,9 @@ public class F_EffectMusic {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(stream);
+			FloatControl gainControl = 
+				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-2.0f); 
 			clip.start();
 			//clip.loop(1);
 			
@@ -121,7 +133,7 @@ public class F_EffectMusic {
 			clip.open(stream);
 			FloatControl gainControl = 
 				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(4.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(6.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			//clip.loop(1);
 			
@@ -147,7 +159,7 @@ public class F_EffectMusic {
 			clip.open(stream);
 			FloatControl gainControl = 
 				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(4.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(6.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			//clip.loop(1);
 			
@@ -173,7 +185,7 @@ public class F_EffectMusic {
 			clip.open(stream);
 			FloatControl gainControl = 
 				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(4.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(6.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			//clip.loop(1);
 			
@@ -199,7 +211,7 @@ public class F_EffectMusic {
 			clip.open(stream);
 			FloatControl gainControl = 
 				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(4.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(6.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			//clip.loop(1);
 			
