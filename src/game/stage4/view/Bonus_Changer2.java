@@ -30,7 +30,7 @@ public class Bonus_Changer2 extends Thread{
 	public void run() {
 		
 			try {
-				this.sleep(5900);
+				this.sleep(7300);
 				System.out.println("1");
 			} catch (InterruptedException e) {
 				e.printStackTrace();

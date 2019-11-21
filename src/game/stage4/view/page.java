@@ -23,8 +23,8 @@ public class page extends JPanel {
 	public page(JFrame mf) {
 		
 //		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		JButton intro2 = new JButton("gg");
-		intro2.setBounds(600, 420, 100, 800);
+		JButton intro2 = new JButton();
+		intro2.setBounds(600, 420, 100, 100);
 		
 		this.mf = mf;
 		this.setLayout(null);

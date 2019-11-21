@@ -30,7 +30,7 @@ public class Bonus_GamePanel extends JPanel {
 		
 		
 		// @@ 지우기!!!!!!!!! (첫 인트로 사운드)
-		new Bonus_Effect().intoBgmStop();
+		
 		
 		
 		
@@ -51,29 +51,30 @@ public class Bonus_GamePanel extends JPanel {
 				System.out.println("클릭 횟수" + ctn);
 				hokHp--;
 				System.out.println("호크룩스 HP" + hokHp);
+				new Bonus_Effect().hokClick();
 				
 				if( ctn < 5) {
 					 hok1.setIcon(new ImageIcon("images/stage4/hok1.png"));
 				}
-				if( ctn == 5 ) {
+				if( ctn == 15 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok2.png"));
 					new Bonus_Effect().crack_L();
-				} else if( ctn == 10 ) {
+				} else if( ctn == 23 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok3.png"));
 					new Bonus_Effect().crack_M();
-				} else if( ctn == 15 ) {
+				} else if( ctn == 28 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok4.png"));
 					new Bonus_Effect().crack_S();
-				} else if( ctn == 20 ) {
+				} else if( ctn == 33 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok5.png"));
 					new Bonus_Effect().crack_S();
-				} else if( ctn == 25 ) {
+				} else if( ctn == 45 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok6.png"));
 					new Bonus_Effect().crack_M();
-				} else if( ctn == 30 ) {
+				} else if( ctn == 60 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok7.png"));
 					new Bonus_Effect().crack_L();
-				} else if (ctn > 35){
+				} else if (ctn > 70){
 					ChangePanel cp = new ChangePanel(mf, panel);
 					page3 qp = new page3 (mf);
 					Bonus_Changer2 timer = new Bonus_Changer2(mf, qp);

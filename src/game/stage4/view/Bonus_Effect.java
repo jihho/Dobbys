@@ -84,6 +84,30 @@ public class Bonus_Effect {
 			
 		}
 		
+		public static void hokClick() {
+			File bgm;
+			AudioInputStream stream;
+			AudioFormat format;
+			DataLine.Info info;
+			
+			bgm = new File("sounds/hokClick.wav");
+			
+			try {
+				stream = AudioSystem.getAudioInputStream(bgm);
+				format = stream.getFormat();
+				info = new DataLine.Info(Clip.class, format);
+				bonus_clip = (Clip)AudioSystem.getLine(info);
+				bonus_clip.open(stream);
+				bonus_clip.start();
+				
+				
+			} catch (Exception e) {
+				System.out.println("err : " + e);
+				}
+			
+		}
+		
+		
 		public static void hokStart() {
 			File bgm;
 			AudioInputStream stream;
@@ -96,9 +120,33 @@ public class Bonus_Effect {
 				stream = AudioSystem.getAudioInputStream(bgm);
 				format = stream.getFormat();
 				info = new DataLine.Info(Clip.class, format);
+				bonus_clip = (Clip)AudioSystem.getLine(info);
+				bonus_clip.open(stream);
+				bonus_clip.start();
+				
+				
+			} catch (Exception e) {
+				System.out.println("err : " + e);
+				}
+			
+		}
+		
+		public static void hokBgm() {
+			File bgm;
+			AudioInputStream stream;
+			AudioFormat format;
+			DataLine.Info info;
+			
+			bgm = new File("sounds/hok1.wav");
+			
+			try {
+				stream = AudioSystem.getAudioInputStream(bgm);
+				format = stream.getFormat();
+				info = new DataLine.Info(Clip.class, format);
 				bgm_clip = (Clip)AudioSystem.getLine(info);
 				bgm_clip.open(stream);
 				bgm_clip.start();
+				bgm_clip.loop(5);
 				
 				
 			} catch (Exception e) {
