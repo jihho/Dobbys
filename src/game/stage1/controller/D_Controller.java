@@ -42,7 +42,7 @@ public class D_Controller extends JPanel {
 	public final int CLEAR_TIME = 90;
 	
 	//필살기 게이지 차는 시간
-	public final int GAGE_SPEED = 10;
+	public final int GAGE_SPEED = 1;
 	
 	//게임 상태 판단 변수
 	public final int ST_TITLE = 0;
