@@ -26,9 +26,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import game.stage2.view.E_ChangePanel;
-import game.stage2.view.E_QuestPanel;
-import game.stage2.view.E_Timer;
 
 public class A_IntroPage extends JPanel{
 	private JFrame mf;
