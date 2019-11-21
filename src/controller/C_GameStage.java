@@ -53,8 +53,8 @@ public class C_GameStage extends JPanel{
 		
 		// JTextArea(대화 상자) 생성  
 		JTextArea ta = new JTextArea(test[4] + "님이 접속하셨습니다.");   	//JTextArea 생성
-		ta.setBounds(380, 640, test[4].length()*50 + 450, 60); 	    			//JTeatArea 크기 및 위치 지정
-	    ta.setEditable(false); 				   				 //실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
+		ta.setBounds(380, 640, test[4].length()*50 + 450, 60); 	    	//JTeatArea 크기 및 위치 지정
+	    ta.setEditable(false); 				   				 			//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 45)); 
 		ta.setBackground(new Color(0, 0, 0, 150));
 		ta.setForeground(Color.WHITE);			
@@ -201,9 +201,9 @@ public class C_GameStage extends JPanel{
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
 			
-//			ChangePanel cp = new ChangePanel(mf, panel);
-//			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
-//			cp.replacePanel(str3);
+			ChangePanel cp = new ChangePanel(mf, panel);
+			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
+			cp.replacePanel(str3);
 			}
 		});
 		
