@@ -4,8 +4,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.HashSet;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -177,6 +179,7 @@ public class D_Controller extends JPanel {
 		
 
 		//키리스너 추가
+		//mf.addKeyListener(new KeyHandler());
 		mf.addKeyListener(new KeyHandler());
 		
 		//키리스너가 작용되게 포커스 설정
@@ -404,76 +407,123 @@ public class D_Controller extends JPanel {
 		paint(g);
 	}
 
-	class KeyHandler extends KeyAdapter {
+	public class KeyHandler implements KeyListener {
 		
-		@Override
-		public void keyPressed(KeyEvent e) {
-			int code = e.getKeyCode();
-			//System.out.println("키리스터 생성");
-
-			if(gameState == ST_TITLE) {
-				if(code == KeyEvent.VK_SPACE) {
-					harry.startHarry();
-					effectCount = EFFECT_TIME;
-					clearCount = CLEAR_TIME;
-					altimateGage = 0;
-					gameState = ST_GAME;
-					aliveDeath = true;
-					backSound.stage1_backgroundSound();
-					score = 0;
-					
-				}
-			}else if(gameState == ST_GAME) {
-				//위아래로 해리 조정
-				
-				if (code == KeyEvent.VK_UP) {
-					harry.moveUp();
-				} else if (code == KeyEvent.VK_DOWN) {
-					harry.moveDown();
-				} else if( code == KeyEvent.VK_RIGHT) {
-					harry.moveRight();
-				} else if( code == KeyEvent.VK_LEFT) {
-					harry.moveLeft();
-				}
-				
-				if(code == KeyEvent.VK_R && altimateGage == 820) {
-					gameState = ST_ALTIMATE;
-					backSound.intoBgmStop();
-					backSound.harrySkillSound();
-					
-					switch(harry.getLife()) {
-					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
-					case 2: new B_UserManager().updateScore1(User.playerId, 400); break;
-					case 3: new B_UserManager().updateScore1(User.playerId, 600); break;
-					case 4: new B_UserManager().updateScore1(User.playerId, 800); break;
-					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
-					}
-					new B_UserManager().printAll();
-				}
-				
-				
-			}else if(gameState == ST_ENDING) {
-				//backSound.stage1FailSound();
-				if(code == KeyEvent.VK_ENTER) {
-					gameState = ST_TITLE;
-					backSound.intoBgmStop();
-					
-				}
-				if(code == KeyEvent.VK_ESCAPE) {
-					t.stop();
-					mf.setFocusable(false);
-					backSound.intoBgmStop();
-					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
-					C_GameStage gs = new C_GameStage(mf);			
-					cp.replacePanel(gs);
-				}				
-			}
-//			else if(gameState == ST_CLEAR && firstClear == true) {
-//				if(code == KeyEvent.VK_Z) {
+		HashSet<Integer> pressedKeys = new HashSet<Integer>();
+		Timer timer;
+		
+		public KeyHandler(){
+            timer = new Timer(25, new ActionListener(){ // 50ms마다 액션 이벤트 발생
+                @Override
+                public void actionPerformed(ActionEvent arg0) {  
+                    if(!pressedKeys.isEmpty()){
+                        Iterator<Integer> i = pressedKeys.iterator();
+                        int code = 0;
+                        while(i.hasNext()){
+                            code = i.next();
+                            if(gameState == ST_TITLE) {
+                				if(code == KeyEvent.VK_SPACE) {
+                					backSound.intoBgmStop();
+                					harry.startHarry();
+                					effectCount = EFFECT_TIME;
+                					clearCount = CLEAR_TIME;
+                					altimateGage = 0;
+                					gameState = ST_GAME;
+                					aliveDeath = true;
+                					backSound.stage1_backgroundSound();
+                					score = 0;
+                					
+                				}
+                			}else if(gameState == ST_GAME) {
+                				//위아래로 해리 조정
+                				
+                				if (code == KeyEvent.VK_UP) {
+                					harry.moveUp();
+                				} else if (code == KeyEvent.VK_DOWN) {
+                					harry.moveDown();
+                				} else if( code == KeyEvent.VK_RIGHT) {
+                					harry.moveRight();
+                				} else if( code == KeyEvent.VK_LEFT) {
+                					harry.moveLeft();
+                				}
+                				
+                				if(code == KeyEvent.VK_R && altimateGage == 820) {
+                					gameState = ST_ALTIMATE;
+                					backSound.intoBgmStop();
+                					backSound.harrySkillSound();
+                					
+                					switch(harry.getLife()) {
+                					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
+                					case 2: new B_UserManager().updateScore1(User.playerId, 400); break;
+                					case 3: new B_UserManager().updateScore1(User.playerId, 600); break;
+                					case 4: new B_UserManager().updateScore1(User.playerId, 800); break;
+                					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
+                					}
+                					new B_UserManager().printAll();
+                				}
+                				
+                				
+                			}else if(gameState == ST_ENDING) {
+                				//backSound.stage1FailSound();
+                				if(code == KeyEvent.VK_ENTER) {
+                					gameState = ST_TITLE;
+                					backSound.intoBgmStop();
+                					
+                				}
+                				if(code == KeyEvent.VK_ESCAPE) {
+                					t.stop();
+                					mf.setFocusable(false);
+                					backSound.intoBgmStop();
+                					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
+                					C_GameStage gs = new C_GameStage(mf);			
+                					cp.replacePanel(gs);
+                				}				
+                			}
+                            repaint();
+                        }
+                    }else {
+                        timer.stop();
+                    }
+                }
+            });
+        }
+		
+//		@Override
+//		public void keyPressed(KeyEvent e) {
+//			int code = e.getKeyCode();
+//			//System.out.println("키리스터 생성");
+//
+//			if(gameState == ST_TITLE) {
+//				if(code == KeyEvent.VK_SPACE) {
 //					backSound.intoBgmStop();
-//					t.stop();
-//					mf.setFocusable(false);
-//					//남은 hp 별로 점수 출력밑 넘겨줘야함
+//					harry.startHarry();
+//					effectCount = EFFECT_TIME;
+//					clearCount = CLEAR_TIME;
+//					altimateGage = 0;
+//					gameState = ST_GAME;
+//					aliveDeath = true;
+//					backSound.stage1_backgroundSound();
+//					score = 0;
+//					
+//				}
+//			}else if(gameState == ST_GAME) {
+//				//위아래로 해리 조정
+//				
+//				if (code == KeyEvent.VK_UP) {
+//					harry.moveUp();
+//				} else if (code == KeyEvent.VK_DOWN) {
+//					harry.moveDown();
+//				} else if( code == KeyEvent.VK_RIGHT) {
+//					harry.moveRight();
+//				} else if( code == KeyEvent.VK_LEFT) {
+//					harry.moveLeft();
+//				}
+//				
+//				if(code == KeyEvent.VK_R && altimateGage == 820) {
+//					gameState = ST_ALTIMATE;
+//					backSound.intoBgmStop();
+//					backSound.harrySkillSound();
+//					
 //					switch(harry.getLife()) {
 //					case 1: new B_UserManager().updateScore1(User.playerId, 200); break;
 //					case 2: new B_UserManager().updateScore1(User.playerId, 400); break;
@@ -482,17 +532,43 @@ public class D_Controller extends JPanel {
 //					case 5: new B_UserManager().updateScore1(User.playerId, 1000); break;
 //					}
 //					new B_UserManager().printAll();
-//					firstClear = false;
-//					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
-//					D_Clear dc = new D_Clear(mf);						
-//					cp.replacePanel(dc);
 //				}
+//				
+//				
+//			}else if(gameState == ST_ENDING) {
+//				//backSound.stage1FailSound();
+//				if(code == KeyEvent.VK_ENTER) {
+//					gameState = ST_TITLE;
+//					backSound.intoBgmStop();
+//					
+//				}
+//				if(code == KeyEvent.VK_ESCAPE) {
+//					t.stop();
+//					mf.setFocusable(false);
+//					backSound.intoBgmStop();
+//					D_ChangePanel cp = new D_ChangePanel(mf, panel);					
+//					C_GameStage gs = new C_GameStage(mf);			
+//					cp.replacePanel(gs);
+//				}				
 //			}
-			
-			
+//			repaint();
+//		}
 
-			repaint();
-		}
+		 @Override
+	        public void keyPressed(KeyEvent keyEvent){
+	            //발생한 키코드를 HsshSet에 저장한다
+	            int keyCode = keyEvent.getKeyCode();
+	            pressedKeys.add(keyCode);
+	            if(!timer.isRunning()) timer.start();
+	        }
+	        @Override
+	        public void keyReleased(KeyEvent keyEvent){
+	            //HashSet에서 키코드를 제거한다
+	            int keyCode = keyEvent.getKeyCode();
+	            pressedKeys.remove(keyCode);
+	        }
+	        @Override
+	        public void keyTyped(KeyEvent keyEvent){}
 	}
 
 }
