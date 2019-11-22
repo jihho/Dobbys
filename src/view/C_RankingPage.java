@@ -56,10 +56,40 @@ public class C_RankingPage extends JPanel{
 		JLabel total_name = new JLabel("Total");
 		
 		JLabel gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
-		JLabel huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
-		JLabel ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
-		JLabel slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b1_gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
+		JLabel b2_gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
+		JLabel b3_gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
+		JLabel b4_gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
+		JLabel b5_gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
+		JLabel b6_gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
+		JLabel b7_gryffindor = new JLabel(new ImageIcon("images/main/zm_gryffindor.png"));
 		
+		JLabel huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel b1_huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel b2_huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel b3_huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel b4_huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel b5_huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel b6_huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		JLabel b7_huffepuff = new JLabel(new ImageIcon("images/main/zm_huffepuff.png"));
+		
+		JLabel ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel b1_ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel b2_ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel b3_ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel b4_ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel b5_ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel b6_ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		JLabel b7_ravaenclaw = new JLabel(new ImageIcon("images/main/zm_ravaenclaw.png"));
+		
+		JLabel slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b1_slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b2_slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b3_slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b4_slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b5_slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b6_slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
+		JLabel b7_slytherin = new JLabel(new ImageIcon("images/main/zm_slytherin.png"));
 		
 		// 버튼 생성 
 		JButton return_btn = new JButton("RETURN");
@@ -76,10 +106,6 @@ public class C_RankingPage extends JPanel{
 		//test[5] 배정된 기숙사
 		
 		// 랭킹점수 출력하는 JTextArea 생성
-		
-		
-
-
  		JTextArea score1 = new JTextArea(test[0]);
 		JTextArea score2 = new JTextArea(test[1]);
 		JTextArea score3 = new JTextArea(test[2]);
@@ -88,12 +114,30 @@ public class C_RankingPage extends JPanel{
 		JTextArea dormitory = new JTextArea(test[5]);
 		
 		switch(test[5]) {
-		case "griyffindor" : System.out.println("그리핀도르"); break; 
-		case "ravaenclaw" : System.out.println("래번클로"); break;
-		case "huffepuff" : System.out.println("후플푸프"); break;
-		case "slytherin" : System.out.println("슬리데린"); break;
+		case "griyffindor" : 
+			System.out.println("그리핀도르"); 
+			this.add(gryffindor);
+			gryffindor.setBounds(670, 82, 1000, 500);
+			break; 
+		case "ravaenclaw" : 
+			System.out.println("래번클로");
+			this.add(ravaenclaw);
+			ravaenclaw.setBounds(670, 82, 1000, 500);
+			break;
+		case "huffepuff" : 
+			System.out.println("후플푸프"); 
+			this.add(huffepuff);
+			huffepuff.setBounds(670, 82, 1000, 500);
+			break;
+		case "slytherin" : 
+			System.out.println("슬리데린"); 
+			this.add(slytherin);
+			slytherin.setBounds(670, 82, 1000, 500);
+			break;
 		default : System.out.println("왜 안나와");
 		}
+		
+		
 		score1.setBounds(240, 310, 500, 300);
 		score2.setBounds(420, 310, 500, 300);
 		score3.setBounds(610, 310, 500, 300);
@@ -135,23 +179,13 @@ public class C_RankingPage extends JPanel{
 		
 
 		
-//		for(int i = 0; i < test2.length; i++) {
-//			for(int j = 0; j < test2[i].length; j++) {
-//				test2[i][j] = "";
-//			}
-//		}
-
-
-		
-	
-		
 		JTextArea b1_rank = new JTextArea("1위");
 		JTextArea b1_score1 = new JTextArea(test2[0][0]);
 		JTextArea b1_score2 = new JTextArea(test2[0][1]);
 		JTextArea b1_score3 = new JTextArea(test2[0][2]);
 		JTextArea b1_total = new JTextArea(test2[0][3]);
 		JTextArea b1_name = new JTextArea(test2[0][4]);
-		//JTextArea b1_dormitory = new JTextArea(test2[0][5]);
+		
 		JTextArea b2_rank = new JTextArea("2위");
 		JTextArea b2_score1 = new JTextArea(test2[1][0]);
 		JTextArea b2_score2 = new JTextArea(test2[1][1]);
@@ -194,6 +228,32 @@ public class C_RankingPage extends JPanel{
 		JTextArea b7_total = new JTextArea(test2[6][3]);
 		JTextArea b7_name = new JTextArea(test2[6][4]);
 		//JTextArea b6_dormitory = new JTextArea(test2[0][5]);
+	
+		
+
+		
+		for(int i = 0; i < test2.length; i++) {
+
+			switch(test2[i][5]) {
+			case "griyffindor" : 
+				this.add(b1_gryffindor);
+				gryffindor.setBounds(670, 82, 1000, 500);
+				break; 
+			case "ravaenclaw" : 
+				this.add(ravaenclaw);
+				ravaenclaw.setBounds(670, 82, 1000, 500);
+				break;
+			case "huffepuff" : 
+				this.add(huffepuff);
+				huffepuff.setBounds(670, 82, 1000, 500);
+				break;
+			case "slytherin" : 
+				this.add(slytherin);
+				slytherin.setBounds(670, 82, 1000, 500);
+				break;
+			}
+		}
+		
 		
 		
 		
@@ -413,10 +473,10 @@ public class C_RankingPage extends JPanel{
 		stage3_name.setBounds(580, 245, 170, 50);
 		total_name.setBounds(761, 245, 200, 50);
 		
-		gryffindor.setBounds(670, 82, 1000, 500);
-		huffepuff.setBounds(670, 132, 1000, 500);
-		ravaenclaw.setBounds(670, 167, 1000, 500);
-		slytherin.setBounds(670, 212, 1000, 500);
+//		gryffindor.setBounds(670, 82, 1000, 500);
+//		huffepuff.setBounds(670, 132, 1000, 500);
+//		ravaenclaw.setBounds(670, 167, 1000, 500);
+//		slytherin.setBounds(670, 212, 1000, 500);
 
 		// 폰트 및 글씨 크기
 		score_title.setForeground(Color.WHITE);			   			 

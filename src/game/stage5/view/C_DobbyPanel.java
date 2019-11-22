@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,9 +50,6 @@ public class C_DobbyPanel extends JPanel{
 
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/stage5/background2.png").getImage()));
 		background.setBounds(0, 0, 1300, 770);
-//		JLabel black = new JLabel(new ImageIcon(new ImageIcon("images/stage5/black.png").getImage().getScaledInstance(1200, 600, 0)));
-//		black.setBounds(50, 50, 1200, 600);
-
 		
 		book1 = new JLabel(new ImageIcon(new ImageIcon("images/stage5/book1.png").getImage()));
 		book1.setBounds(1000, 200, 200, 150);
@@ -109,20 +107,21 @@ public class C_DobbyPanel extends JPanel{
 		book1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
-				if(sw == true) {
 					book1.setIcon(new ImageIcon("images/stage5/book2.png"));
 					System.out.println(sw);
-					
+					A_Music.dobbyfree();
 					free.setVisible(true);
 					
-					sw = false;
-		
-				} else if(sw == false) {
-					book1.setIcon(new ImageIcon("images/stage5/book1.png"));
-					System.out.println(sw);
-					sw = true;
-				}
+					free.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							A_Music.intoBgmStopJ();
+							free.setVisible(false);
+							book1.setIcon(new ImageIcon("images/stage5/book1.png"));
+						}
+						
+					});
+					
 
 			}
 		});
@@ -130,9 +129,17 @@ public class C_DobbyPanel extends JPanel{
 		coffee.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-					
 				espresso.setVisible(true);
+				A_Music.espresso();
 				
+				espresso.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						A_Music.intoBgmStopJ();
+						espresso.setVisible(false);
+					}
+					
+				});
 			}
 		});
 			
