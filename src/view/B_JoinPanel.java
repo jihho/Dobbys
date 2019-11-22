@@ -35,6 +35,7 @@ public class B_JoinPanel extends JPanel{
 	private boolean isemailcheck = false;
 	private String certPassword = "";
 	private User user = new User();
+	private String beforePassword = "";
 	
 	public B_JoinPanel(JFrame mf){
 		this.mf = mf;
@@ -51,13 +52,13 @@ public class B_JoinPanel extends JPanel{
 		label.setBounds(0, 0, 1300, 770);
 		
 		//라벨 변수
-		JLabel namelb = new JLabel("이름");
+		JLabel namelb = new JLabel("닉네임");
 		JLabel idlb = new JLabel("아이디");
 		JLabel pwlb = new JLabel("비밀번호");
 		JLabel pwchecklb = new JLabel("비밀번호 확인");
 		JLabel emaillb = new JLabel("이메일");
 		JLabel certilb = new JLabel("인증번호");
-		JLabel test1 = new JLabel("비밀번호가 틀립니다.");
+		JLabel test1 = new JLabel("");
 		JLabel joinlb = new JLabel("회원가입");
 		
 		//textfield 변수
@@ -195,18 +196,23 @@ public class B_JoinPanel extends JPanel{
 								if(namefield.getText().length() > 5) {
 									JOptionPane.showMessageDialog(null, "이름을 5글자 내로 입력해 주세요.");
 								}else {
-									
-									user.setId(idfield.getText());
-									user.setPw(strPw);
-									user.setName(namefield.getText());
-									user.seteMail(emailfield.getText());
-									
-									B_UserManager um = new B_UserManager();
-									um.insertUser(user);
-									
-									ChangePanel cp = new ChangePanel(mf, panel);
-									A_LoginPanel lp = new A_LoginPanel(mf);
-									cp.replacePanel(lp);
+									if(beforePassword.equals(strPw) &&strPw.equals(strPwCheck) && certifield.getText().equals("1234")) {
+										user.setId(idfield.getText());
+										user.setPw(strPw);
+										user.setName(namefield.getText());
+										user.seteMail(emailfield.getText());
+										
+										B_UserManager um = new B_UserManager();
+										um.insertUser(user);
+										
+										ChangePanel cp = new ChangePanel(mf, panel);
+										A_LoginPanel lp = new A_LoginPanel(mf);
+										cp.replacePanel(lp);
+										
+									}else {
+										JOptionPane.showMessageDialog(null, "확인이 완료되지 않았습니다.");
+										
+									}
 								}
 								
 							}
@@ -312,6 +318,8 @@ public class B_JoinPanel extends JPanel{
 				if(str.equals(str2)) {
 					test1.setText("비밀번호가 맞습니다!");
 					test1.setForeground(Color.blue);
+					beforePassword = str;
+					System.out.println(beforePassword);
 					isPwcheck = true;
 				}else {
 					test1.setText("비밀번호가 틀립니다.");
