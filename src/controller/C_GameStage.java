@@ -25,6 +25,7 @@ import game.stage4.view.hokVideo;
 import game.stage4.view.page;
 import game.stage5.view.C_DobbyPanel;
 import game.stage6.view.Bonus2_Background;
+import game.stage6.view.Bonus2_StartPanel;
 import model.vo.User;
 
 import view.A_ChangePage;
@@ -335,7 +336,7 @@ public class C_GameStage extends JPanel{
 			new A_Music().intoBgmStopJ2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
-			Bonus2_Background str6 = new Bonus2_Background(mf); 
+			Bonus2_StartPanel str6 = new Bonus2_StartPanel(mf); 
 			cp.replacePanel(str6);
 			}
 		});
