@@ -2,6 +2,8 @@ package game.stage5.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -25,6 +27,7 @@ import javax.swing.JTextField;
 
 import controller.C_GameStage;
 import model.vo.User;
+import view.A_LoginPanel;
 import view.A_Music;
 import view.C_RankingPage;
 import view.ChangePanel;
@@ -36,7 +39,7 @@ public class C_DobbyPanel extends JPanel{
 	private JLabel book2;
 	private int x = 10;
 	private int y = 300;
-	private boolean sw = true;
+	private int sw;
 
 	public C_DobbyPanel(JFrame mf) {
 		this.mf = mf;
@@ -80,6 +83,7 @@ public class C_DobbyPanel extends JPanel{
 		return_btn.setBorderPainted(false);		
 		return_btn.setFocusPainted(false);
 		
+		
 		mf.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -90,25 +94,70 @@ public class C_DobbyPanel extends JPanel{
 					dobby.setBounds(x, y += 10, 350, 500);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-					dobby.setIcon(new ImageIcon("images/stage5/dobby-00.png"));
-					dobby.setBounds(x -= 10, y, 350, 500);
+					sw++;
+					if(sw == 1) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-1.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+					} 
+					if(sw == 2) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+					} 
+					if(sw == 3) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-3.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+					} 
+					if(sw == 4) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+						sw = 0;
+					} 
 				}
 				if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-					dobby.setIcon(new ImageIcon("images/stage5/dobby-0.png"));
-					dobby.setBounds(x += 10, y, 350, 500);
+					sw++;
+					if(sw == 1) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-1.png"));
+						dobby.setBounds(x += 10, y, 350, 500);
+					} 
+					if(sw == 2) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
+						dobby.setBounds(x += 10, y, 350, 500);
+					} 
+					if(sw == 3) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-3.png"));
+						dobby.setBounds(x += 10, y, 350, 500);
+					} 
+					if(sw == 4) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
+						dobby.setBounds(x += 10, y, 350, 500);
+						sw = 0;
+					} 
+					
 				}
-
+				if(e.getKeyCode() == KeyEvent.VK_D) {
+					dobby.setIcon(new ImageIcon("images/stage5/dobby-3.png"));
+					dobby.setBounds(x, y, 550, 500);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_F) {
+					dobby.setIcon(new ImageIcon("images/stage5/dobby-33.png"));
+					dobby.setBounds(x, y, 550, 500);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_Z) {
+					book1.setIcon(new ImageIcon("images/stage5/book2.png"));
+					A_Music.dobbyfree();
+					free.setVisible(true);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_X) {
+					A_Music.espresso();
+					espresso.setVisible(true);
+				}
 			}
-
 		});
-		
-		
 		
 		book1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 					book1.setIcon(new ImageIcon("images/stage5/book2.png"));
-					System.out.println(sw);
 					A_Music.dobbyfree();
 					free.setVisible(true);
 					
@@ -119,10 +168,7 @@ public class C_DobbyPanel extends JPanel{
 							free.setVisible(false);
 							book1.setIcon(new ImageIcon("images/stage5/book1.png"));
 						}
-						
 					});
-					
-
 			}
 		});
 	
@@ -142,7 +188,7 @@ public class C_DobbyPanel extends JPanel{
 				});
 			}
 		});
-			
+		
 		return_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -162,6 +208,12 @@ public class C_DobbyPanel extends JPanel{
 		this.add(book1);
 		this.add(coffee);
 		this.add(background);
+		
+		
+		// 마우스 - 하영씨
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"dobby mouse"));
 	}
 
 }
