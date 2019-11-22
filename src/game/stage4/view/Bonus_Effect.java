@@ -10,6 +10,7 @@ import javax.sound.sampled.DataLine;
 
 public class Bonus_Effect {
 	public static Clip bonus_clip;
+	public static Clip last_clip;
 	public static Clip bgm_clip;
 	
 	//깨지는 소리 (작음)
@@ -99,6 +100,29 @@ public class Bonus_Effect {
 				bonus_clip = (Clip)AudioSystem.getLine(info);
 				bonus_clip.open(stream);
 				bonus_clip.start();
+				
+				
+			} catch (Exception e) {
+				System.out.println("err : " + e);
+				}
+			
+		}
+		
+		public static void hokLastEffect() {
+			File bgm;
+			AudioInputStream stream;
+			AudioFormat format;
+			DataLine.Info info;
+			
+			bgm = new File("sounds/hokLast.wav");
+			
+			try {
+				stream = AudioSystem.getAudioInputStream(bgm);
+				format = stream.getFormat();
+				info = new DataLine.Info(Clip.class, format);
+				last_clip = (Clip)AudioSystem.getLine(info);
+				last_clip.open(stream);
+				last_clip.start();
 				
 				
 			} catch (Exception e) {

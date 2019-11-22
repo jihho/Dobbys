@@ -36,7 +36,8 @@ public class Bonus_Changer2 extends Thread{
 				e.printStackTrace();
 			}
 			
-			// 타이머가 끝나면 다음 패널로 넘어감
+			//마지막 화면
+			new Bonus_Effect().intoBgmStop();
 			ChangePanel cp = new ChangePanel(mf, panel);
 			page4 gp = new page4(mf);
 			cp.replacePanel(gp);

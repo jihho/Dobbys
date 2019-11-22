@@ -36,7 +36,6 @@ public class Bonus_Changer extends Thread{
 				e.printStackTrace();
 			}
 			
-			// 타이머가 끝나면 다음 패널로 넘어감
 			ChangePanel cp = new ChangePanel(mf, panel);
 			Bonus_GamePanel gp = new Bonus_GamePanel(mf);
 			cp.replacePanel(gp);

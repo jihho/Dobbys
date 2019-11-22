@@ -212,22 +212,22 @@ public class A_LoginPanel extends JPanel {
 		
 		
 		
-		//회원정보 수정 버튼
-		JButton changePw = new JButton(new ImageIcon("images/main/changePw1.png"));
-		changePw.setBounds(690,635, 150, 35);
-		changePw.setFont(new Font("DungGeunMo", Font.BOLD, 40));
-		changePw.setBorderPainted(false);
-		
-		ImageIcon changePw2 = new ImageIcon("images/main/changePw2.png");
-		changePw.setRolloverIcon(changePw2);
-		changePw.setBorderPainted(false);
-		changePw.setPreferredSize(new Dimension(220, 35));
-		
-		changePw.setContentAreaFilled(false);		//내용영역 채우기 없음
-		changePw.setBorderPainted(false);		//외곽선 제거
-		changePw.setOpaque(false);	//투명하게
-		
-		panel.add(changePw);
+//		//회원정보 수정 버튼
+//		JButton changePw = new JButton(new ImageIcon("images/main/changePw1.png"));
+//		changePw.setBounds(690,635, 150, 35);
+//		changePw.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+//		changePw.setBorderPainted(false);
+//		
+//		ImageIcon changePw2 = new ImageIcon("images/main/changePw2.png");
+//		changePw.setRolloverIcon(changePw2);
+//		changePw.setBorderPainted(false);
+//		changePw.setPreferredSize(new Dimension(220, 35));
+//		
+//		changePw.setContentAreaFilled(false);		//내용영역 채우기 없음
+//		changePw.setBorderPainted(false);		//외곽선 제거
+//		changePw.setOpaque(false);	//투명하게
+//		
+//		panel.add(changePw);
 		
 		
 		
@@ -275,19 +275,19 @@ public class A_LoginPanel extends JPanel {
 			}
 		});
 		
-		changePw.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				System.out.println("회원정보 수정 클릭");
-				new A_Music().btnEffect();
-				
-				ChangePanel cp = new ChangePanel(mf, panel);
-				//t1.setDaemon(true);
-				A_ChangePage fp = new A_ChangePage(mf);
-				
-				cp.replacePanel(fp);
-			}
-		});
+//		changePw.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseReleased(MouseEvent e) {
+//				System.out.println("회원정보 수정 클릭");
+//				new A_Music().btnEffect();
+//				
+//				ChangePanel cp = new ChangePanel(mf, panel);
+//				//t1.setDaemon(true);
+//				A_ChangePage fp = new A_ChangePage(mf);
+//				
+//				cp.replacePanel(fp);
+//			}
+//		});
 		
 		
 		//아이디 창에서 tab키 입력시 비밀번호 창으로 커서이동
