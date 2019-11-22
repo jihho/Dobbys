@@ -50,7 +50,7 @@ public class B_UserManager {
 		System.out.println(list);
 		
 	}
-	
+
 	public boolean checkUserId(String Id) {
 
 		ArrayList<User> list = ud.readUserList();
@@ -67,6 +67,25 @@ public class B_UserManager {
 
 		return false;
 	}
+
+	//아이디 찾기용 (이름)
+	public boolean checkUserName(String Id) {
+
+		ArrayList<User> list = ud.readUserList();
+
+		User selectedUser = null;
+
+		if (list != null) {
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getName().equals(Id)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 
 	public void selectUserPw(String Id) {
 
@@ -90,24 +109,22 @@ public class B_UserManager {
 
 
 
-	//아이디 찾기용 (이름)
-	public boolean checkUserName(String Id) {
-
+	
+	//이메일 찾기용 (정보 수정 페이지 사용)
+	public String selectEmail(String Id) {
 		ArrayList<User> list = ud.readUserList();
-
+		
 		User selectedUser = null;
-
-		if (list != null) {
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getName().equals(Id)) {
-					return true;
+		if(list != null) {
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getId().equals(Id)) {
+					selectedUser = list.get(i);
 				}
 			}
 		}
-
-		return false;
+		return selectedUser.geteMail();
 	}
-
+	
 	//네임 찾기용 (메인페이지 사용) 
 	public String selectName(String Id) {
 		ArrayList<User> list = ud.readUserList();
@@ -141,6 +158,35 @@ public class B_UserManager {
 		}
 		System.out.println("count 값 :" + selectedUser.getLoginCount());
 		return selectedUser.getLoginCount();
+	}
+
+	//사용 예시)
+	//UserManager um = new UserManager();
+	//String[] result = um.selectUserScore(User.playerId);
+	//result[0] -> 현재 유저의 score1값
+	//result[1] -> 현재 유저의 score2값
+	//현재 유저의 score1, score2, score3, total, 이름, 기숙사값 반환 (랭킹에서 사용)
+	public String[] selectUserScore(String Id) {
+		String[] userScore = new String[6];
+		
+		ArrayList<User> list = ud.readUserList();
+		User selectedUser = null;
+		if(list != null) {
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getId().equals(Id)) {
+					selectedUser = list.get(i);
+					break;
+				}
+			}
+		}
+		userScore[0] = Integer.toString(selectedUser.getScore1());
+		userScore[1] = Integer.toString(selectedUser.getScore2());
+		userScore[2] = Integer.toString(selectedUser.getScore3());
+		userScore[3] = Integer.toString(selectedUser.getTotal());
+		userScore[4] = selectedUser.getName();
+		userScore[5] = selectedUser.getDormitory();
+		
+		return userScore;
 	}
 
 	//LoginCount 변경(반배정 페이지에서 활용, 카운트 1 증가)
@@ -185,34 +231,6 @@ public class B_UserManager {
 		}
 	}
 
-	//사용 예시)
-	//UserManager um = new UserManager();
-	//String[] result = um.selectUserScore(User.playerId);
-	//result[0] -> 현재 유저의 score1값
-	//result[1] -> 현재 유저의 score2값
-	//현재 유저의 score1, score2, score3, total, 이름, 기숙사값 반환 (랭킹에서 사용)
-	public String[] selectUserScore(String Id) {
-		String[] userScore = new String[6];
-
-		ArrayList<User> list = ud.readUserList();
-		User selectedUser = null;
-		if(list != null) {
-			for(int i = 0; i < list.size(); i++) {
-				if(list.get(i).getId().equals(Id)) {
-					selectedUser = list.get(i);
-					break;
-				}
-			}
-		}
-		userScore[0] = Integer.toString(selectedUser.getScore1());
-		userScore[1] = Integer.toString(selectedUser.getScore2());
-		userScore[2] = Integer.toString(selectedUser.getScore3());
-		userScore[3] = Integer.toString(selectedUser.getTotal());
-		userScore[4] = selectedUser.getName();
-		userScore[5] = selectedUser.getDormitory();
-		
-		return userScore;
-	}
 
 	//	Score1, Score2, Score3 변경 사용 예시)
 	//	UserManager um = new UserManager();
