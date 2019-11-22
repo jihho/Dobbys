@@ -12,7 +12,6 @@ import javax.sound.sampled.FloatControl;
 public class F_EffectMusic {
 	public static Clip clip;
 	
-	
 	public static void stage3_atk() {
 		File bgm;
 		AudioInputStream stream;
