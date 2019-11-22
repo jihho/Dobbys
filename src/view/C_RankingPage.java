@@ -114,7 +114,7 @@ public class C_RankingPage extends JPanel{
 		JTextArea dormitory = new JTextArea(test[5]);
 		
 		switch(test[5]) {
-		case "griyffindor" : 
+		case "gryffindor" : 
 			System.out.println("그리핀도르"); 
 			this.add(gryffindor);
 			gryffindor.setBounds(670, 82, 1000, 500);
@@ -235,7 +235,7 @@ public class C_RankingPage extends JPanel{
 		for(int i = 0; i < test2.length; i++) {
 
 			switch(test2[i][5]) {
-			case "griyffindor" : 
+			case "gryffindor" : 
 				this.add(b1_gryffindor);
 				gryffindor.setBounds(670, 82, 1000, 500);
 				break; 
