@@ -35,7 +35,7 @@ public class B_IntroVideoPanel extends JPanel{
 		start.setBounds(1100, 600, 110, 70);
 		start.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
+				new ImageIcon("images/main/mouse1.png").getImage(),
 				new Point(0,0),"DobbyCursor"));
 		new A_Music().trainSound();
 	

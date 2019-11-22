@@ -33,7 +33,7 @@ public class B_CheckPanel extends JPanel{
 		panel = this;
 
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
+				new ImageIcon("images/main/mouse1.png").getImage(),
 				new Point(0,0),"DobbyCursor"));
 		
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif").getImage().getScaledInstance(1300, 770, 0)));
