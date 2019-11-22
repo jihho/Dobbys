@@ -24,6 +24,7 @@ import game.stage4.view.Bonus_Changer;
 import game.stage4.view.hokVideo;
 import game.stage4.view.page;
 import game.stage5.view.C_DobbyPanel;
+import game.stage6.view.Bonus2_Background;
 import model.vo.User;
 
 import view.A_ChangePage;
@@ -74,6 +75,7 @@ public class C_GameStage extends JPanel{
 		JButton stage3_btn = new JButton(new ImageIcon("images/main/stage3_icon2.png"));
 		JButton stage4_btn = new JButton(new ImageIcon("images/main/remove.png"));
 		JButton stage5_btn = new JButton(new ImageIcon("images/main/remove.png"));
+		JButton stage6_btn = new JButton(new ImageIcon("images/main/remove.png"));
 		JButton ranking_btn = new JButton(new ImageIcon("images/main/ranking_icon2.png"));
 
 		JButton	myinfo_btn = new JButton("내 정보");
@@ -125,6 +127,7 @@ public class C_GameStage extends JPanel{
 		
 		ImageIcon key = new ImageIcon("images/main/key.gif");
 		ImageIcon jinho = new ImageIcon("images/main/jinho.png");
+		ImageIcon jinho2 = new ImageIcon("images/main/jinho2.png");
 		
 		// 열쇠 이미지 효과
 		stage1_btn.setRolloverIcon(key);
@@ -132,12 +135,14 @@ public class C_GameStage extends JPanel{
 		stage3_btn.setRolloverIcon(key);
 		stage4_btn.setRolloverIcon(jinho);
 		stage5_btn.setRolloverIcon(jinho);
+		stage6_btn.setRolloverIcon(jinho2);
 		ranking_btn.setRolloverIcon(key);
 		stage1_btn.setBorderPainted(false);
 		stage2_btn.setBorderPainted(false);
 		stage3_btn.setBorderPainted(false);
 		stage4_btn.setBorderPainted(false);
 		stage5_btn.setBorderPainted(false);
+		stage6_btn.setBorderPainted(false);
 		ranking_btn.setBorderPainted(false);
 		
 		// 위치와 크기 설정 
@@ -146,6 +151,7 @@ public class C_GameStage extends JPanel{
 		stage3_btn.setBounds(130, 160, 72, 70);
 		stage4_btn.setBounds(470, 165, 150, 100);
 		stage5_btn.setBounds(900, 350, 150, 100);
+		stage6_btn.setBounds(185, 340, 150, 100);
 		ranking_btn.setBounds(110, 480, 72, 70);
 		myinfo_btn.setBounds(10, 660, 140, 50);
 		modify_btn.setBounds(160, 660, 150, 50);
@@ -193,6 +199,9 @@ public class C_GameStage extends JPanel{
 		stage5_btn.setContentAreaFilled(false);	
 		stage5_btn.setBorderPainted(false);		
 		stage5_btn.setOpaque(false);
+		stage6_btn.setContentAreaFilled(false);	
+		stage6_btn.setBorderPainted(false);		
+		stage6_btn.setOpaque(false);
 		ranking_btn.setContentAreaFilled(false);	
 		ranking_btn.setOpaque(false);
 		
@@ -300,7 +309,6 @@ public class C_GameStage extends JPanel{
 			t1.setDaemon(true);
 			t1.start();
 			cp.replacePanel(qp);
-
 			}
 		});
 		
@@ -315,10 +323,20 @@ public class C_GameStage extends JPanel{
 			ChangePanel cp = new ChangePanel(mf, panel);
 			C_DobbyPanel str5 = new C_DobbyPanel(mf); 
 			cp.replacePanel(str5);
+			}
+		});
+		
+		// stage6_btn 버튼 이벤트
+		stage6_btn.addMouseListener(new MouseAdapter() {
 			
-//			ChangePanel cp = new ChangePanel(mf, panel);
-//			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
-//			cp.replacePanel(str3);
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			new A_Music().door();
+			new A_Music().intoBgmStopJ2();
+			
+			ChangePanel cp = new ChangePanel(mf, panel);
+			Bonus2_Background str6 = new Bonus2_Background(mf); 
+			cp.replacePanel(str6);
 			}
 		});
 		
@@ -350,6 +368,7 @@ public class C_GameStage extends JPanel{
 		this.add(stage3_btn);
 		this.add(stage4_btn);
 		this.add(stage5_btn);
+		this.add(stage6_btn);
 		this.add(ranking_btn);
 		
 		this.add(stage1_name);
@@ -365,33 +384,6 @@ public class C_GameStage extends JPanel{
 				new ImageIcon("images/main/mouse.png").getImage(),
 				new Point(0,0),"images/main/mouse.png"));
 
-	}
-	
-	public void page(JFrame mf) {
-		JButton intro2 = new JButton();
-		intro2.setBounds(600, 420, 100, 100);
-		
-		this.mf = mf;
-		this.setLayout(null);
-		panel = this;
-		
-		intro2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				
-				ChangePanel cp = new ChangePanel(mf, panel);
-				hokVideo qp = new hokVideo (mf);
-				Bonus_Changer timer = new Bonus_Changer(mf, qp);
-				Thread t1 = timer;
-				t1.setDaemon(true);
-				t1.start();
-				cp.replacePanel(qp);
-			}
-		});
-		
-		
-		this.setBounds(0,0,1300,770);
-		this.add(intro2);
 	}
 }
 
