@@ -94,7 +94,7 @@ public class C_GameStage extends JPanel{
 		JLabel gryffindor_la = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
 	
 		JDialog my = new JDialog(mf, "내 정보");
-		JTextArea mm = new JTextArea("닉네임 : " + test[4] + "\n\n아이디 : " + User.playerId + "\n\n이메일 : " +"\n\n기숙사 : " + test[5] + "\n");
+		JTextArea mm = new JTextArea("닉네임 : " + test[4] + "\n\n아이디 : " + User.playerId + "\n\n이메일 : "+ um.selectEmail(User.playerId) +"\n\n기숙사 : " + test[5] + "\n");
 		my.setBounds(540, 500, 500, 600);
 		my.setLocationRelativeTo(mf);
 		my.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -381,9 +381,8 @@ public class C_GameStage extends JPanel{
 		
 		// 마우스 효과 - 하영씨
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
-				new Point(0,0),"images/main/mouse.png"));
-
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"dobby mouse"));
 	}
 }
 

@@ -225,8 +225,8 @@ public class C_RandomAssign extends JPanel{
 		
 		// 마우스 효과 - 하영
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
-				new Point(0,0),"images/main/mouse.png"));
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"dobby mouse"));
 	}
 
 }
