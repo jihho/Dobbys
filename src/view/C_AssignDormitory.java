@@ -44,7 +44,7 @@ public class C_AssignDormitory extends JPanel{
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/sortpage.png").getImage().getScaledInstance(1300, 770, 0)));
 		JLabel hat = new JLabel(new ImageIcon("images/main/hat300.gif"));
 		JLabel harry = new JLabel(new ImageIcon("images/main/sortharry.png"));
-		JLabel borad = new JLabel(new ImageIcon("images/main/hat.gif"));
+		JLabel borad = new JLabel(new ImageIcon("images/main/hat2.gif"));
 
 		// 버튼 생성
 		JButton choice_btn = new JButton("반 배정 받기");

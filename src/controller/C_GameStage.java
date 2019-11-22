@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,8 +21,13 @@ import game.stage1.controller.D_Controller;
 import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
 import game.stage3.views.F_Stage3rule;
+import game.stage4.view.Bonus_Changer;
+import game.stage4.view.hokVideo;
+import game.stage4.view.page;
 import game.stage5.view.C_DobbyPanel;
 import model.vo.User;
+import view.A_ChangePage;
+import view.A_FindPage;
 import view.A_IntroPage;
 import view.A_LoginPanel;
 import view.A_Music;
@@ -53,7 +59,7 @@ public class C_GameStage extends JPanel{
 		
 		// JTextArea(대화 상자) 생성  
 		JTextArea ta = new JTextArea(test[4] + "님이 접속하셨습니다.");   	//JTextArea 생성
-		ta.setBounds(380, 640, test[4].length()*50 + 450, 60); 	    	//JTeatArea 크기 및 위치 지정
+		ta.setBounds(380, 650, test[4].length()*50 + 450, 60); 	    	//JTeatArea 크기 및 위치 지정
 	    ta.setEditable(false); 				   				 			//실행시 JtextArea edit 금지 (글을 쓸 수 없음) true면 가능
 		ta.setFont(new Font("DungGeunMo", Font.PLAIN, 45)); 
 		ta.setBackground(new Color(0, 0, 0, 150));
@@ -70,72 +76,159 @@ public class C_GameStage extends JPanel{
 		JButton stage4_btn = new JButton(new ImageIcon("images/main/remove.png"));
 		JButton stage5_btn = new JButton(new ImageIcon("images/main/remove.png"));
 		JButton ranking_btn = new JButton(new ImageIcon("images/main/ranking_icon2.png"));
+
+		JButton	myinfo_btn = new JButton("내 정보");
+		JButton modify_btn = new JButton("정보수정");
+		JButton logout_btn = new JButton("로그아웃");
 		
-		JButton stage1_name = new JButton("Stage1");
-		JButton stage2_name = new JButton("Stage2");
-		JButton stage3_name = new JButton("Stage3");
-		JButton ranking_name = new JButton("Ranking");
+
+		JLabel stage1_name = new JLabel("Stage1");
+		JLabel stage2_name = new JLabel("Stage2");
+		JLabel stage3_name = new JLabel("Stage3");
+		JLabel ranking_name = new JLabel("Ranking");
+		
+		JLabel slytherin_la = new JLabel(new ImageIcon("images/main/z_slytherin(200x250).png"));
+		JLabel ravaenclaw_la = new JLabel(new ImageIcon("images/main/z_ravaenclaw(200x250).png"));
+		JLabel huffepuff_la = new JLabel(new ImageIcon("images/main/z_huffepuff(200x250).png"));
+		JLabel gryffindor_la = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
+	
+		JDialog my = new JDialog(mf, "내 정보");
+		JTextArea mm = new JTextArea("닉네임 : " + test[4] + "\n\n아이디 : " + User.playerId + "\n\n이메일 : " +"\n\n기숙사 : " + test[5] + "\n");
+		my.setBounds(540, 500, 500, 600);
+		my.setLocationRelativeTo(mf);
+		my.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		mm.setForeground(Color.BLACK);	
+		mm.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+		
+		modify_btn.setForeground(Color.WHITE);			   			    
+		modify_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
+		
+		switch(test[5]) {
+		case "slyterin" : 
+			my.add(slytherin_la, "Center"); 
+			modify_btn.setBackground(new Color(9, 71, 34)); 
+			break;
+		case "ravaenclaw" : 
+			my.add(ravaenclaw_la, "Center"); 
+			modify_btn.setBackground(new Color(26, 40, 125)); 
+			break;
+		case "huffepuff" : my.add(huffepuff_la, "Center"); 
+			modify_btn.setForeground(Color.BLACK);	
+			modify_btn.setBackground(new Color(252, 220, 3)); 
+			break;
+		case "gryffindor" : 
+			my.add(gryffindor_la, "Center"); 
+			modify_btn.setBackground(new Color(167, 15, 14)); 
+			break;
+		}
+		my.add(mm, "North");
+		my.add(modify_btn, "South");
 		
 		ImageIcon key = new ImageIcon("images/main/key.gif");
+		ImageIcon jinho = new ImageIcon("images/main/jinho.png");
 		
 		// 열쇠 이미지 효과
 		stage1_btn.setRolloverIcon(key);
 		stage2_btn.setRolloverIcon(key);
 		stage3_btn.setRolloverIcon(key);
-		//stage4_btn.setRolloverIcon(key);
-		//stage5_btn.setRolloverIcon(key);
+		stage4_btn.setRolloverIcon(jinho);
+		stage5_btn.setRolloverIcon(jinho);
 		ranking_btn.setRolloverIcon(key);
 		stage1_btn.setBorderPainted(false);
 		stage2_btn.setBorderPainted(false);
 		stage3_btn.setBorderPainted(false);
-		//stage4_btn.setBorderPainted(false);
-		//stage5_btn.setBorderPainted(false);
+		stage4_btn.setBorderPainted(false);
+		stage5_btn.setBorderPainted(false);
 		ranking_btn.setBorderPainted(false);
 		
-		// 버튼 위치와 크기 설정 
+		// 위치와 크기 설정 
 		stage1_btn.setBounds(1140, 510, 72, 70);
 		stage2_btn.setBounds(860, 160, 72, 70);
 		stage3_btn.setBounds(130, 160, 72, 70);
-		stage4_btn.setBounds(470, 150, 72, 70);
-		stage5_btn.setBounds(900, 340, 72, 70);
+		stage4_btn.setBounds(470, 165, 150, 100);
+		stage5_btn.setBounds(900, 350, 150, 100);
 		ranking_btn.setBounds(110, 480, 72, 70);
+		myinfo_btn.setBounds(10, 660, 140, 50);
+		modify_btn.setBounds(160, 660, 150, 50);
+		logout_btn.setBounds(1115, 660, 150, 50);
 		
-		stage1_name.setBounds(1105, 465, 150, 50);
-		stage2_name.setBounds(825, 115, 150, 50);
-		stage3_name.setBounds(95, 115, 150, 50);
-		ranking_name.setBounds(75, 435, 150, 50);
+		stage1_name.setBounds(1135, 465, 150, 50);
+		stage2_name.setBounds(855, 115, 150, 50);
+		stage3_name.setBounds(125, 115, 150, 50);
+		ranking_name.setBounds(100, 435, 150, 50);
 		
+		// 글자 설정
 		stage1_name.setBackground(Color.GRAY);
 		stage1_name.setForeground(Color.WHITE);			   			 
 		stage1_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30)); 
-		
 		stage2_name.setBackground(Color.GRAY);
 		stage2_name.setForeground(Color.WHITE);			   			 
 		stage2_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		
 		stage3_name.setBackground(Color.GRAY);
 		stage3_name.setForeground(Color.WHITE);			   			 
 		stage3_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		
 		ranking_name.setBackground(Color.GRAY);
 		ranking_name.setForeground(Color.WHITE);			   			 
 		ranking_name.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
+
+		myinfo_btn.setBackground(Color.GRAY);
+		myinfo_btn.setForeground(Color.WHITE);			   			    
+		myinfo_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25)); 
+
+		logout_btn.setBackground(Color.GRAY);
+		logout_btn.setForeground(Color.WHITE);			   			    
+		logout_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
+
+		// 버튼 설정
+		stage1_btn.setContentAreaFilled(false);		// JButtondml 내용영역 채우기 안함
+		stage1_btn.setOpaque(false);
+		//stage1_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
+		//stage1_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
+		stage2_btn.setContentAreaFilled(false);	
+		stage2_btn.setOpaque(false);
+		stage3_btn.setContentAreaFilled(false);	
+		stage3_btn.setOpaque(false);
+		stage4_btn.setContentAreaFilled(false);	
+		stage4_btn.setBorderPainted(false);		
+		stage4_btn.setOpaque(false);
+		stage5_btn.setContentAreaFilled(false);	
+		stage5_btn.setBorderPainted(false);		
+		stage5_btn.setOpaque(false);
+		ranking_btn.setContentAreaFilled(false);	
+		ranking_btn.setOpaque(false);
 		
-		// 되돌아가기 버튼 생성
-		JButton return_btn = new JButton("로그아웃");
-		return_btn.setBounds(1115, 660, 150, 50);
-		return_btn.setBackground(Color.GRAY);
-		return_btn.setForeground(Color.WHITE);			   			     // 버튼 글자 색깔 변경
+		myinfo_btn.setFocusPainted(false);
+		myinfo_btn.setBorderPainted(false);		
+		myinfo_btn.setFocusPainted(false);		
+		modify_btn.setFocusPainted(false);
+		modify_btn.setBorderPainted(false);		
+		modify_btn.setFocusPainted(false);		
+		logout_btn.setFocusPainted(false);
+		logout_btn.setBorderPainted(false);		
+		logout_btn.setFocusPainted(false);		
 		
-		return_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25));      // 버튼 글자 폰트, 효과, 크기 변경
-		return_btn.setFocusPainted(false);
 		
-		return_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
-		//S_btn.setContentAreaFilled(false);	// JButton 내용영역 채우기 안함
-		return_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
+		myinfo_btn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				my.setVisible(true);
+				
+				modify_btn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						new A_Music().intoBgmStopJ2();
+						my.setVisible(false);
+						ChangePanel cp = new ChangePanel(mf, panel);
+						A_ChangePage ap = new A_ChangePage(mf);
+						cp.replacePanel(ap);
+					}
+				});
+				
+			}
+		});
 		
 		// return_Btn 버튼 이벤트
-		return_btn.addMouseListener(new MouseAdapter() {
+		logout_btn.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -202,8 +295,13 @@ public class C_GameStage extends JPanel{
 			new A_Music().intoBgmStopJ2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
-			F_Stage3Panel str3 = new F_Stage3Panel(mf); 
-			cp.replacePanel(str3);
+			hokVideo qp = new hokVideo (mf);
+			Bonus_Changer timer = new Bonus_Changer(mf, qp);
+			Thread t1 = timer;
+			t1.setDaemon(true);
+			t1.start();
+			cp.replacePanel(qp);
+
 			}
 		});
 		
@@ -240,62 +338,13 @@ public class C_GameStage extends JPanel{
 		});
 		
 		
-		// 버튼 투명화
-		stage1_btn.setContentAreaFilled(false);		// JButtondml 내용영역 채우기 안함
-		//stage1_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
-		//stage1_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
-		stage1_btn.setOpaque(false);
-		
-		stage2_btn.setContentAreaFilled(false);	
-		//stage2_btn.setBorderPainted(false);		
-		//stage2_btn.setFocusPainted(false);		
-		stage2_btn.setOpaque(false);
-		
-		stage3_btn.setContentAreaFilled(false);	
-		//stage3_btn.setBorderPainted(false);		
-		//stage3_btn.setFocusPainted(false);		
-		stage3_btn.setOpaque(false);
-		
-		stage4_btn.setContentAreaFilled(false);	
-		stage4_btn.setBorderPainted(false);		
-		//stage4_btn.setFocusPainted(false);		
-		stage4_btn.setOpaque(false);
-		
-		stage5_btn.setContentAreaFilled(false);	
-		stage5_btn.setBorderPainted(false);		
-		//stage5_btn.setFocusPainted(false);		
-		stage5_btn.setOpaque(false);
-		
-		ranking_btn.setContentAreaFilled(false);	
-		//ranking_btn.setBorderPainted(false);		
-		//ranking_btn.setFocusPainted(false);		
-		ranking_btn.setOpaque(false);
 
 		
-		stage1_name.setContentAreaFilled(false);	
-		stage1_name.setBorderPainted(false);		
-		stage1_name.setFocusPainted(false);		
-		stage1_name.setOpaque(false);
 		
-		stage2_name.setContentAreaFilled(false);	
-		stage2_name.setBorderPainted(false);		
-		stage2_name.setFocusPainted(false);		
-		stage2_name.setOpaque(false);
-		
-		stage3_name.setContentAreaFilled(false);	
-		stage3_name.setBorderPainted(false);		
-		stage3_name.setFocusPainted(false);		
-		stage3_name.setOpaque(false);
-		
-		ranking_name.setContentAreaFilled(false);	
-		ranking_name.setBorderPainted(false);		
-		ranking_name.setFocusPainted(false);		
-		ranking_name.setOpaque(false);
-		
-		
-		
-		// 패널에다 버튼 추가
-		this.add(return_btn);
+		// 패널에 추가
+		this.add(myinfo_btn);
+//		this.add(modify_btn);
+		this.add(logout_btn);
 
 		this.add(stage1_btn);
 		this.add(stage2_btn);
@@ -309,20 +358,42 @@ public class C_GameStage extends JPanel{
 		this.add(stage3_name);
 		this.add(ranking_name);
 
+		this.add(background);
+
 		
 		// 마우스 효과 - 하영씨
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
 				new Point(0,0),"images/main/mouse.png"));
-		
-		
-		// 패널에다 배경 라벨 추가
-		this.add(background);
 
 	}
 	
-	
+	public void page(JFrame mf) {
+		JButton intro2 = new JButton();
+		intro2.setBounds(600, 420, 100, 100);
 		
+		this.mf = mf;
+		this.setLayout(null);
+		panel = this;
+		
+		intro2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+				ChangePanel cp = new ChangePanel(mf, panel);
+				hokVideo qp = new hokVideo (mf);
+				Bonus_Changer timer = new Bonus_Changer(mf, qp);
+				Thread t1 = timer;
+				t1.setDaemon(true);
+				t1.start();
+				cp.replacePanel(qp);
+			}
+		});
+		
+		
+		this.setBounds(0,0,1300,770);
+		this.add(intro2);
+	}
 }
 
 
