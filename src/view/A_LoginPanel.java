@@ -39,11 +39,18 @@ public class A_LoginPanel extends JPanel {
 	private JTextField text;
 	private JPasswordField passwordText;
 	private B_UserDao ud = new B_UserDao();
+	
+	//마우스 번호 변수
+	public static int mouseNum;
+	
 	int bgmOnOff = 0;
+	
+	
 	
 	User user = new User();
 	public A_LoginPanel(JFrame mf) {
-		
+		//마우스 번호
+		mouseNum = 1;
 		
 		this.mf = mf;
 		this.setLayout(null);
@@ -120,7 +127,7 @@ public class A_LoginPanel extends JPanel {
 		
 		//마우스커서
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
+				new ImageIcon("images/main/mouse" + mouseNum + ".png").getImage(),
 				new Point(0,0),"DobbyCursor"));
 		
 		//아이디

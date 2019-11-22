@@ -1,11 +1,15 @@
 package game.stage4.view;
 
 import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import view.A_LoginPanel;
 
 public class hokVideo extends JPanel {
 	private JFrame mf;
@@ -14,7 +18,9 @@ public class hokVideo extends JPanel {
 	
 	public hokVideo(JFrame mf) {
 		
-		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 //		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		JLabel intro2 = new JLabel(new ImageIcon(new ImageIcon("images/stage4/hokVideo.gif")
 				.getImage().getScaledInstance(1300, 770, 0)));
