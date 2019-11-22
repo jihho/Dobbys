@@ -51,12 +51,14 @@ public class Bonus_GamePanel extends JPanel {
 				System.out.println("클릭 횟수" + ctn);
 				hokHp--;
 				System.out.println("호크룩스 HP" + hokHp);
+				
+				if(ctn < 69) {
 				new Bonus_Effect().hokClick();
+				}
 				
 				if( ctn < 5) {
 					 hok1.setIcon(new ImageIcon("images/stage4/hok1.png"));
-				}
-				if( ctn == 15 ) {
+				} else if( ctn == 15 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok2.png"));
 					new Bonus_Effect().crack_L();
 				} else if( ctn == 23 ) {
@@ -75,8 +77,9 @@ public class Bonus_GamePanel extends JPanel {
 					hok1.setIcon(new ImageIcon("images/stage4/hok7.png"));
 					new Bonus_Effect().crack_L();
 				} else if (ctn > 70){
+					new Bonus_Effect().hokLastEffect();
 					ChangePanel cp = new ChangePanel(mf, panel);
-					page3 qp = new page3 (mf);
+					hokLast qp = new hokLast (mf);
 					Bonus_Changer2 timer = new Bonus_Changer2(mf, qp);
 					Thread t1 = timer;
 					t1.setDaemon(true);

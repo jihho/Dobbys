@@ -31,14 +31,14 @@ public class B_IntroVideoPanel extends JPanel{
 //		JButton skip_btn = new JButton(new ImageIcon("images/main/skipButton.PNG"));
 //		skip_btn.setBounds(1000, 550, 200, 200);
 //		skip_btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		JLabel start = new JLabel(new ImageIcon(new ImageIcon("images/main/skipButton.PNG").getImage().getScaledInstance(250, 250, 0)));
+		JLabel start = new JLabel(new ImageIcon(new ImageIcon("images/main/nextButton.PNG").getImage().getScaledInstance(250, 250, 0)));
 		start.setBounds(1100, 600, 110, 70);
 		start.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse.png").getImage(),
 				new Point(0,0),"DobbyCursor"));
 		new A_Music().trainSound();
-
+	
 		start.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {

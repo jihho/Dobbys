@@ -2,12 +2,18 @@ package game.stage4.view;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controller.C_GameStage;
+import view.A_ChangePage;
+import view.ChangePanel;
 
 public class page4 extends JPanel {
 	private JFrame mf;
@@ -22,6 +28,18 @@ public class page4 extends JPanel {
 		JButton button = new JButton("return");
 		button.setBounds(375, 160, 550, 450);
 		this.add(button);
+		
+		button.addMouseListener(new MouseAdapter (){
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				ChangePanel cp = new ChangePanel(mf, panel);
+				//t1.setDaemon(true);
+				C_GameStage fp = new C_GameStage(mf);
+				
+				cp.replacePanel(fp);
+			}
+		});
+		
 		
 		JLabel intro2 = new JLabel(new ImageIcon(new ImageIcon("images/stage4/hokVideo.gif")
 				.getImage().getScaledInstance(550, 450, 0)));
