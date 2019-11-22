@@ -2,8 +2,10 @@ package game.stage4.view;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import view.A_LoginPanel;
 import view.ChangePanel;
 
 public class Bonus_GamePanel extends JPanel {
@@ -28,18 +31,17 @@ public class Bonus_GamePanel extends JPanel {
 		panel = this;
 		
 		
-		
-		// @@ 지우기!!!!!!!!! (첫 인트로 사운드)
-		
-		
-		
-		
-		
 		this.setBackground(Color.BLACK);
 		JButton hok1 = new JButton(new ImageIcon(new ImageIcon("images/stage4/hok" + imgNum + ".png").
 				getImage().getScaledInstance(500, 400, 0)));
 		hok1.setBounds(400, 185, 500, 400);
+		hok1.setBorderPainted(false);		//외곽선 제거
+		
 		this.add(hok1);
+		
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouseHok.png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		
 		
 		
@@ -58,25 +60,29 @@ public class Bonus_GamePanel extends JPanel {
 				
 				if( ctn < 5) {
 					 hok1.setIcon(new ImageIcon("images/stage4/hok1.png"));
-				} else if( ctn == 15 ) {
+				} else if( ctn == 8 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok2.png"));
 					new Bonus_Effect().crack_L();
-				} else if( ctn == 23 ) {
+				} else if( ctn == 13 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok3.png"));
 					new Bonus_Effect().crack_M();
-				} else if( ctn == 28 ) {
+				} else if( ctn == 16 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok4.png"));
 					new Bonus_Effect().crack_S();
-				} else if( ctn == 33 ) {
+				} else if( ctn == 20 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok5.png"));
 					new Bonus_Effect().crack_S();
-				} else if( ctn == 45 ) {
+				} else if( ctn == 26 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok6.png"));
 					new Bonus_Effect().crack_M();
-				} else if( ctn == 60 ) {
+				} else if( ctn == 34 ) {
 					hok1.setIcon(new ImageIcon("images/stage4/hok7.png"));
 					new Bonus_Effect().crack_L();
-				} else if (ctn > 70){
+				} else if (ctn > 40){
+					
+					int rndMouse = new Random().nextInt(5) + 2;
+					
+					A_LoginPanel.mouseNum = rndMouse;
 					new Bonus_Effect().hokLastEffect();
 					ChangePanel cp = new ChangePanel(mf, panel);
 					hokLast qp = new hokLast (mf);

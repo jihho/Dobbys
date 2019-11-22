@@ -51,8 +51,8 @@ public class A_ChangePage extends JPanel {
 		
 		//커서
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
-				new Point(0,0),"images/main/mouse.png"));
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"dobby mouse"));
 		
 		
 		//아이디찾기 (이름, 이메일) 
