@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
@@ -16,17 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import game.stage1.controller.D_Controller;
+import game.stage1.view.D_Explain;
 import game.stage2.view.E_StartPanel;
 import game.stage3.views.F_Stage3Panel;
 import game.stage3.views.F_Stage3rule;
 import game.stage5.view.C_DobbyPanel;
 import model.vo.User;
-import view.A_IntroPage;
 import view.A_LoginPanel;
 import view.A_Music;
-
-import view.C_RandomAssign;
 import view.C_RankingPage;
 import view.ChangePanel;
 
@@ -159,8 +155,8 @@ public class C_GameStage extends JPanel{
 			new A_Music().intoBgmStopJ2();
 			
 			ChangePanel cp = new ChangePanel(mf, panel);			
-			D_Controller dc = new D_Controller(mf); 			
-			cp.replacePanel(dc);
+			D_Explain de = new D_Explain(mf); 			
+			cp.replacePanel(de);
 			
 			}
 		});
