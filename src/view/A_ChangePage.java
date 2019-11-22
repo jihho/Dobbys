@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.B_UserManager;
+import controller.C_GameStage;
 import model.dao.B_UserDao;
 import model.vo.User;
 
@@ -40,7 +41,7 @@ public class A_ChangePage extends JPanel {
 	
 	public A_ChangePage(JFrame mf) {
 		
-		JLabel changeBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
+		JLabel changeBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png")
 				.getImage().getScaledInstance(1300, 770, 0)));
 		changeBackground.setBounds(0, 0, 1300, 770);
 		
@@ -160,11 +161,10 @@ public class A_ChangePage extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("돌아가기");
-				new A_Music().btnEffect();
 				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
-				A_LoginPanel fp = new A_LoginPanel(mf);
+				C_GameStage fp = new C_GameStage(mf);
 				
 				cp.replacePanel(fp);
 			}
