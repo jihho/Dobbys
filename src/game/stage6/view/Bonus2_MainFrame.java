@@ -7,7 +7,7 @@ public class Bonus2_MainFrame extends JFrame {
 		this.setSize(1300, 770);
 		this.setLocationRelativeTo(null);
 		
-		this.add(new Bonus2_Background(this));
+		this.add(new Bonus2_StartPanel(this));
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

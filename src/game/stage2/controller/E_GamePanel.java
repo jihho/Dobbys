@@ -205,6 +205,7 @@ public class E_GamePanel extends JPanel {
 		hint3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		hint4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		hint5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		home.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		
 		//item 위치 설정 (사이 간격 125)
@@ -1081,8 +1082,10 @@ public class E_GamePanel extends JPanel {
 		home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				//끓는소리 효과음 제거
-				new E_EffectMusic().intoBgmStop_boiling();
+				//재료 9개 선택 후 끓는소리 효과음 나는데 홈으로 갈 경우 효과음 제거
+				if(ctn == 10) {
+					new E_EffectMusic().intoBgmStop_boiling();
+				}
 				//음악종료(패널 전환 전 음악을 먼저 종료해야함)
 				new A_Music().intoBgmStop_stage2();
 				
