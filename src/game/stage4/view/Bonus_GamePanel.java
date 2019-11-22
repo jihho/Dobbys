@@ -80,7 +80,7 @@ public class Bonus_GamePanel extends JPanel {
 					new Bonus_Effect().crack_L();
 				} else if (ctn > 40){
 					
-					int rndMouse = new Random().nextInt(5) + 2;
+					int rndMouse = new Random().nextInt(6) + 2;
 					
 					A_LoginPanel.mouseNum = rndMouse;
 					new Bonus_Effect().hokLastEffect();
