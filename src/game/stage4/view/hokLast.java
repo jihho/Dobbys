@@ -8,12 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class page3 extends JPanel {
+public class hokLast extends JPanel {
 	private JFrame mf;
 	private JPanel panel;
 	private JLabel label;
 	
-	public page3(JFrame mf) {
+	public hokLast(JFrame mf) {
 		
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		

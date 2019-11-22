@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 
 import controller.B_SendMail;
 import controller.B_UserManager;
+import controller.C_GameStage;
 import model.dao.B_UserDao;
 import model.vo.User;
 
@@ -55,7 +56,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 //	버튼명.setCursor(new Cursor(Cursor.HAND_CURSOR));  //손가락 모양 커서
 	
 	public A_FindPage(JFrame mf) {
-		JLabel findBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
+		JLabel findBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png")
 				.getImage().getScaledInstance(1300, 770, 0)));
 		findBackground.setBounds(0, 0, 1300, 770);
 		
@@ -209,7 +210,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
-				A_LoginPanel fp = new A_LoginPanel(mf);
+				C_GameStage fp = new C_GameStage(mf);
 				
 				cp.replacePanel(fp);
 			}
