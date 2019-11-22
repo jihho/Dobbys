@@ -134,12 +134,8 @@ public class C_DobbyPanel extends JPanel{
 					} 
 					
 				}
-				if(e.getKeyCode() == KeyEvent.VK_D) {
-					dobby.setIcon(new ImageIcon("images/stage5/dobby-3.png"));
-					dobby.setBounds(x, y, 550, 500);
-				}
 				if(e.getKeyCode() == KeyEvent.VK_F) {
-					dobby.setIcon(new ImageIcon("images/stage5/dobby-33.png"));
+					dobby.setIcon(new ImageIcon("images/stage5/dobby-3.png"));
 					dobby.setBounds(x, y, 550, 500);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_Z) {
