@@ -46,7 +46,7 @@ public class B_JoinPanel extends JPanel{
 		//user.playerId = "jiho";
 		//배경
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
+				new ImageIcon("images/main/mouse1.png").getImage(),
 				new Point(0,0),"DobbyCursor"));
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif").getImage().getScaledInstance(1300, 770, 0)));
 		label.setBounds(0, 0, 1300, 770);

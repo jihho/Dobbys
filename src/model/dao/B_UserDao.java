@@ -31,7 +31,7 @@ public class B_UserDao {
 		}finally {
 			if(ois != null) {
 				try {
-					ois.close();
+					ois.close(); //파일 닫기
 				}catch(IOException e) {
 					e.printStackTrace();
 				}
