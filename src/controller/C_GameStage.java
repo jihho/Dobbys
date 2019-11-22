@@ -106,7 +106,7 @@ public class C_GameStage extends JPanel{
 		modify_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		
 		switch(test[5]) {
-		case "slyterin" : 
+		case "slytherin" : 
 			my.add(slytherin_la, "Center"); 
 			modify_btn.setBackground(new Color(9, 71, 34)); 
 			break;
@@ -242,7 +242,8 @@ public class C_GameStage extends JPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().introBgm();
-				
+			my.setVisible(false);
+			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			A_LoginPanel lp = new A_LoginPanel(mf); 
 			cp.replacePanel(lp);
@@ -259,6 +260,7 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
+			my.setVisible(false);
 			
 			ChangePanel cp = new ChangePanel(mf, panel);			
 			D_Explain de = new D_Explain(mf); 			
@@ -274,6 +276,7 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
     		new A_Music().intoBgmStopJ2();
+			my.setVisible(false);
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			E_StartPanel st2 = new E_StartPanel(mf); 
@@ -288,6 +291,7 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
+			my.setVisible(false);
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			F_Stage3rule str3 = new F_Stage3rule(mf); 
@@ -302,6 +306,7 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
+			my.setVisible(false);
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			hokVideo qp = new hokVideo (mf);
@@ -320,6 +325,7 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
+			my.setVisible(false);
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			C_DobbyPanel str5 = new C_DobbyPanel(mf); 
@@ -334,6 +340,7 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
+			my.setVisible(false);
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			Bonus2_StartPanel str6 = new Bonus2_StartPanel(mf); 
@@ -348,6 +355,7 @@ public class C_GameStage extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 			new A_Music().door();
 			new A_Music().intoBgmStopJ2();
+			my.setVisible(false);
 			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			C_RankingPage rp = new C_RankingPage(mf); 
