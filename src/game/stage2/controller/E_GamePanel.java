@@ -730,7 +730,7 @@ public class E_GamePanel extends JPanel {
 						panel.remove(potEffect);
 						panel.repaint();
 						//끓는소리 효과음 제거
-						new E_EffectMusic().intoBgmStop();
+						new E_EffectMusic().intoBgmStop_boiling();
 
 						if(hp == MAX_HP) {
 							
@@ -813,6 +813,8 @@ public class E_GamePanel extends JPanel {
 											
 											//힌트버튼 클릭 효과음
 											new E_EffectMusic().stage2_click();
+											//끓는소리 효과음 제거
+											//new E_EffectMusic().intoBgmStop_boiling();
 											
 											//힌트 버튼 클릭 횟수에 따른 이미지 교체
 											hintCtn++;
@@ -843,7 +845,7 @@ public class E_GamePanel extends JPanel {
 														panel.repaint();
 													}
 												};
-												timer2.schedule(task2, 1000);
+												timer2.schedule(task2, 2000);
 												repaint();
 											}
 											//힌트버튼 3번째 클릭 했을 때 이미지 변경
@@ -954,6 +956,10 @@ public class E_GamePanel extends JPanel {
 											
 											//힌트 버튼 효과음
 											new E_EffectMusic().stage2_click();
+											//끓는소리 효과음 제거
+											//new E_EffectMusic().intoBgmStop_boiling();
+											
+											
 											panel.add(hint5);
 											panel.setComponentZOrder(hint5, 0);
 											panel.repaint();
@@ -1075,6 +1081,8 @@ public class E_GamePanel extends JPanel {
 		home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				//끓는소리 효과음 제거
+				new E_EffectMusic().intoBgmStop_boiling();
 				//음악종료(패널 전환 전 음악을 먼저 종료해야함)
 				new A_Music().intoBgmStop_stage2();
 				
