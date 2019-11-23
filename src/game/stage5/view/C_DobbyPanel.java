@@ -87,9 +87,11 @@ public class C_DobbyPanel extends JPanel{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_UP) {
+					dobby.setIcon(new ImageIcon("images/stage5/dobby-0.png"));
 					dobby.setBounds(x, y -= 10, 350, 500);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+					dobby.setIcon(new ImageIcon("images/stage5/dobby-0.png"));
 					dobby.setBounds(x, y += 10, 350, 500);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_LEFT) {
