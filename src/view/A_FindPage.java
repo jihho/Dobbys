@@ -49,11 +49,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 	private B_UserDao ud = new B_UserDao();
 	B_UserManager um = new B_UserManager();
 	
-	//할일 리스트
-	//찾기 버튼 눌렀을때 label이 동시에 바뀌는 오류 수정하기
-	//User 정보 가져와서 비교하고 이메일 전송하기.
-//	버튼명.setCursor(new Cursor(Cursor.HAND_CURSOR));  //손가락 모양 커서
-	
 	public A_FindPage(JFrame mf) {
 		JLabel findBackground = new JLabel(new ImageIcon(new ImageIcon("images/main/loginpage2.gif")
 				.getImage().getScaledInstance(1300, 770, 0)));
@@ -344,16 +339,6 @@ public class A_FindPage extends JPanel implements ActionListener{
 				
 			}
 		}
-		
-	
-		//찾기 버튼 클릭 후 textfield 초기화
-//		name.setText("");
-//		emailId.setText("");
-//		id.setText("");
-//		emailPw.setText("");
-		
-	
-	
 	
 	//임시 비밀번호 생성
 	public String subPassword() {

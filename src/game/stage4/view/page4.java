@@ -2,6 +2,8 @@ package game.stage4.view;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,6 +15,7 @@ import javax.swing.JPanel;
 
 import controller.C_GameStage;
 import view.A_ChangePage;
+import view.A_LoginPanel;
 import view.ChangePanel;
 
 public class page4 extends JPanel {
@@ -22,7 +25,9 @@ public class page4 extends JPanel {
 	
 	public page4(JFrame mf) {
 		
-		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		
 //		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		JButton button = new JButton("return");

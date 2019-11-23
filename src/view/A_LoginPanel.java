@@ -45,8 +45,6 @@ public class A_LoginPanel extends JPanel {
 	
 	int bgmOnOff = 0;
 	
-	
-	
 	User user = new User();
 	public A_LoginPanel(JFrame mf) {
 		//마우스 번호
@@ -218,26 +216,6 @@ public class A_LoginPanel extends JPanel {
 		panel.add(findId1);
 		
 		
-		
-//		//회원정보 수정 버튼
-//		JButton changePw = new JButton(new ImageIcon("images/main/changePw1.png"));
-//		changePw.setBounds(690,635, 150, 35);
-//		changePw.setFont(new Font("DungGeunMo", Font.BOLD, 40));
-//		changePw.setBorderPainted(false);
-//		
-//		ImageIcon changePw2 = new ImageIcon("images/main/changePw2.png");
-//		changePw.setRolloverIcon(changePw2);
-//		changePw.setBorderPainted(false);
-//		changePw.setPreferredSize(new Dimension(220, 35));
-//		
-//		changePw.setContentAreaFilled(false);		//내용영역 채우기 없음
-//		changePw.setBorderPainted(false);		//외곽선 제거
-//		changePw.setOpaque(false);	//투명하게
-//		
-//		panel.add(changePw);
-		
-		
-		
 		//회원가입 버튼
 		JButton joinBtn1 = new JButton(new ImageIcon("images/main/joinBtn1.png"));
 		joinBtn1.setBounds(460,580, 380, 40);
@@ -257,16 +235,6 @@ public class A_LoginPanel extends JPanel {
 		panel.add(joinBtn1);
 		
 		
-		//버튼 손가락 커
-//		loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//		findId1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//		changePw.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//		joinBtn1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		
-		
-		
-		
-			
 		
 		joinBtn1.addMouseListener(new MouseAdapter() {
 			@Override
