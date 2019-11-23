@@ -157,15 +157,7 @@ public class C_DobbyPanel extends JPanel{
 					dobby.setIcon(new ImageIcon("images/stage5/dobby3-1.png"));
 					dobby.setBounds(x, y, 600, 500);
 				}
-				if(e.getKeyCode() == KeyEvent.VK_Z) {
-					book1.setIcon(new ImageIcon("images/stage5/book2.png"));
-					A_Music.dobbyfree();
-					free.setVisible(true);
-				}
-				if(e.getKeyCode() == KeyEvent.VK_X) {
-					A_Music.espresso();
-					espresso.setVisible(true);
-				}
+
 			}
 		});
 		
