@@ -21,16 +21,17 @@ public class hokVideo extends JPanel {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
 				new Point(0,0),"DobbyCursor"));
-//		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		JLabel intro2 = new JLabel(new ImageIcon(new ImageIcon("images/stage4/hokVideo.gif")
-				.getImage().getScaledInstance(1300, 770, 0)));
+				.getImage().getScaledInstance(1300, 750, 0)));
 		intro2.setBounds(0, 0, 1300, 770);
+		
 		
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 		
-		this.setBounds(0,0,1300,770);
+		this.setBounds(0,0,1300,750);
 		this.add(intro2);
 		new Bonus_Effect().hokStart();
 		new Bonus_Effect().hokBgm();
