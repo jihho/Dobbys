@@ -46,11 +46,6 @@ public class A_IntroPage extends JPanel{
 				.getImage().getScaledInstance(1300, 800, 0)));
 		introBackground.setBounds(0, 0, 1300, 800);
 		
-//		JLabel introNext = new JLabel(new ImageIcon(new ImageIcon("images/main/intro3-5sec.gif")
-//				.getImage().getScaledInstance(1330, 785, 0)));
-//		introBackground.setBounds(0, 0, 1300, 770);
-		
-		
 		JLabel press = new JLabel(new ImageIcon(new ImageIcon("images/main/clickBtn.gif")
 				.getImage().getScaledInstance(650, 50, 0)));
 		press.setBounds(320, 570, 650, 50);
@@ -59,12 +54,6 @@ public class A_IntroPage extends JPanel{
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
-//				ChangePanel cp = new ChangePanel(mf, panel);
-//				//t1.setDaemon(true);
-//				A_LoginPanel gp = new A_LoginPanel(mf);
-//				
-//				cp.replacePanel(gp);
 				
 				//버튼눌렀을경우 IntroPage1 (타이머 재생)
 				new A_Music().intoBgmStop();	//음악정지(천둥소리)
@@ -91,7 +80,6 @@ public class A_IntroPage extends JPanel{
 		
 		mf.requestFocus();
 		mf.setFocusable(true);
-//		this.setComponentZOrder(label, 1);
 
 	}
 }
