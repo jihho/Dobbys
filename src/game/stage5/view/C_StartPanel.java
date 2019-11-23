@@ -25,7 +25,7 @@ public class C_StartPanel extends JPanel{
 		
 		new A_Music().bgm5();
 		
-		JButton start = new JButton(new ImageIcon("images/stage5/bg.png"));
+		JButton start = new JButton(new ImageIcon("images/stage5/bg2.png"));
 		start.setBounds(-1, 0, 1300, 770);
 		
 		start.setCursor(new Cursor(Cursor.HAND_CURSOR));
