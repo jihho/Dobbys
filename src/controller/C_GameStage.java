@@ -226,7 +226,7 @@ public class C_GameStage extends JPanel{
 				modify_btn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
-						new A_Music().intoBgmStopJ2();
+						//new A_Music().intoBgmStopJ2();
 						my.setVisible(false);
 						ChangePanel cp = new ChangePanel(mf, panel);
 						A_ChangePage ap = new A_ChangePage(mf);

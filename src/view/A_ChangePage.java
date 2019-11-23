@@ -162,6 +162,7 @@ public class A_ChangePage extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("돌아가기");
 				
+				new A_Music().intoBgmStopJ2();
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
 				C_GameStage fp = new C_GameStage(mf);
