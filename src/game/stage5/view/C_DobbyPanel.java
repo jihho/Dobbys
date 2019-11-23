@@ -45,7 +45,6 @@ public class C_DobbyPanel extends JPanel{
 		this.mf = mf;
 		panel = this;
 		this.setLayout(null);
-		this.setBackground(Color.blue);
 
 
 		this.setBounds(0, 0, 1300, 770);
@@ -134,9 +133,29 @@ public class C_DobbyPanel extends JPanel{
 					} 
 					
 				}
+				if(e.getKeyCode() == KeyEvent.VK_D) {
+					sw++;
+					if(sw == 1) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby4-1.png"));
+						dobby.setBounds(x, y, 350, 500);
+					} 
+					if(sw == 2) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby4-2.png"));
+						dobby.setBounds(x, y, 350, 500);
+					} 
+					if(sw == 3) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby4-3.png"));
+						dobby.setBounds(x, y, 350, 500);
+					} 
+					if(sw == 4) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby4-2.png"));
+						dobby.setBounds(x, y, 350, 500);
+						sw = 0;
+					} 
+				}
 				if(e.getKeyCode() == KeyEvent.VK_F) {
-					dobby.setIcon(new ImageIcon("images/stage5/dobby-3.png"));
-					dobby.setBounds(x, y, 550, 500);
+					dobby.setIcon(new ImageIcon("images/stage5/dobby3-1.png"));
+					dobby.setBounds(x, y, 600, 500);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_Z) {
 					book1.setIcon(new ImageIcon("images/stage5/book2.png"));
@@ -160,7 +179,7 @@ public class C_DobbyPanel extends JPanel{
 					free.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseReleased(MouseEvent e) {
-							A_Music.intoBgmStopJ();
+							A_Music.intoBgmStopJ3();
 							free.setVisible(false);
 							book1.setIcon(new ImageIcon("images/stage5/book1.png"));
 						}
@@ -177,7 +196,7 @@ public class C_DobbyPanel extends JPanel{
 				espresso.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
-						A_Music.intoBgmStopJ();
+						A_Music.intoBgmStopJ3();
 						espresso.setVisible(false);
 					}
 					
@@ -189,7 +208,8 @@ public class C_DobbyPanel extends JPanel{
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-			new A_Music().intoBgmStopJ();
+			new A_Music().intoBgmStopJ2();
+			
 			ChangePanel cp = new ChangePanel(mf, panel);
 			C_GameStage gs = new C_GameStage(mf); 
 		

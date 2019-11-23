@@ -112,6 +112,10 @@ public class A_Music {
 		j_clip.stop();
 	}
 	
+	public static void intoBgmStopJ3() {
+		effect.stop();
+	}
+	
 	public static void harrySkillSound() {
 		File bgm;
 		AudioInputStream stream;
@@ -561,9 +565,9 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
-			j_clip = (Clip)AudioSystem.getLine(info);
-			j_clip.open(stream);
-			j_clip.start();
+			effect = (Clip)AudioSystem.getLine(info);
+			effect.open(stream);
+			effect.start();
 			//clip.loop(1);
 			
 		} catch (Exception e) {
@@ -584,10 +588,32 @@ public class A_Music {
 			stream = AudioSystem.getAudioInputStream(bgm);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
+			effect = (Clip)AudioSystem.getLine(info);
+			effect.open(stream);
+			effect.start();
+			//clip.loop(1);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+		
+	}
+	
+	public static void bgm5() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/bgm5.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
 			j_clip = (Clip)AudioSystem.getLine(info);
 			j_clip.open(stream);
 			j_clip.start();
-			//clip.loop(1);
 			
 		} catch (Exception e) {
 			System.out.println("err : " + e);
