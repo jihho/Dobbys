@@ -37,7 +37,6 @@ public class Bonus_Changer2 extends Thread{
 			}
 			
 			//마지막 화면
-			new Bonus_Effect().intoBgmStop();
 			ChangePanel cp = new ChangePanel(mf, panel);
 			hokEndingPage gp = new hokEndingPage(mf);
 			cp.replacePanel(gp);

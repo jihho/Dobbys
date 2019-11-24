@@ -126,7 +126,7 @@ public class A_ChangePage extends JPanel {
 		
 		//비밀번호 변경 버튼
 		changeBtn1 = new JButton(new ImageIcon("images/main/changeBtn1.png"));
-		changeBtn1.setBounds(400, 660, 500, 60);
+		changeBtn1.setBounds(400, 645, 500, 60);
 		changeBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
 		changeBtn1.setBorderPainted(false);
 		
@@ -143,13 +143,13 @@ public class A_ChangePage extends JPanel {
 		
 		//돌아가기 버튼
 		JButton backBtn1 = new JButton(new ImageIcon("images/main/backBtn1.png"));
-		backBtn1.setBounds(1140, 660, 140, 70);
+		backBtn1.setBounds(1140, 660, 120, 60);
 		backBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
 		backBtn1.setBorderPainted(false);
 		
 		ImageIcon backBtn2 = new ImageIcon("images/main/backBtn2.png");
 		backBtn1.setRolloverIcon(backBtn2);
-		backBtn1.setPreferredSize(new Dimension(140, 70));
+		backBtn1.setPreferredSize(new Dimension(120, 60));
 		
 		backBtn1.setContentAreaFilled(false);		//내용영역 채우기 없음
 		backBtn1.setBorderPainted(false);		//외곽선 제거

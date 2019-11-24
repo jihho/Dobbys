@@ -200,7 +200,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("돌아가기");
-				new A_Music().btnEffect();
+				new A_Music().btnEffect2();
 				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
@@ -212,7 +212,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		
 		
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("images/main/mouse.png").getImage(),
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
 				new Point(0,0),"images/main/mouse.png"));
 		
 		

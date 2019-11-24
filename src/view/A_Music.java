@@ -507,6 +507,50 @@ public class A_Music {
 			}
 	}
 	
+	public static void btnEffect2() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/btnEffect3.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			effect = (Clip)AudioSystem.getLine(info);
+			effect.open(stream);
+			effect.start();
+			effect.loop(0);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+	}
+	
+	public static void btnTyping() {
+		File bgm;
+		AudioInputStream stream;
+		AudioFormat format;
+		DataLine.Info info;
+		
+		bgm = new File("sounds/btnTyping.wav");
+		
+		try {
+			stream = AudioSystem.getAudioInputStream(bgm);
+			format = stream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			effect = (Clip)AudioSystem.getLine(info);
+			effect.open(stream);
+			effect.start();
+			effect.loop(0);
+			
+		} catch (Exception e) {
+			System.out.println("err : " + e);
+			}
+	}
+	
 	public static void onepiece() {
 		File bgm;
 		AudioInputStream stream;

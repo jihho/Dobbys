@@ -184,7 +184,7 @@ public class Bonus_Effect {
 			AudioFormat format;
 			DataLine.Info info;
 			
-			bgm = new File("sounds/hokEnding.wav");
+			bgm = new File("sounds/hokEnding2.wav");
 			
 			try {
 				stream = AudioSystem.getAudioInputStream(bgm);
@@ -213,9 +213,9 @@ public class Bonus_Effect {
 				stream = AudioSystem.getAudioInputStream(bgm);
 				format = stream.getFormat();
 				info = new DataLine.Info(Clip.class, format);
-				bgm_clip = (Clip)AudioSystem.getLine(info);
-				bgm_clip.open(stream);
-				bgm_clip.start();
+				bonus_clip = (Clip)AudioSystem.getLine(info);
+				bonus_clip.open(stream);
+				bonus_clip.start();
 				
 				
 			} catch (Exception e) {
@@ -229,4 +229,9 @@ public class Bonus_Effect {
 		bgm_clip.stop();
 		bgm_clip.close();
 	}
+	
+		public static void intoBonusStop() {
+			bonus_clip.stop();
+			bonus_clip.close();
+		}
 }
