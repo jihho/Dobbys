@@ -35,8 +35,6 @@ import view.ChangePanel;
 public class C_DobbyPanel extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
-	private JLabel book1;
-	private JLabel book2;
 	private int x = 10;
 	private int y = 300;
 	private int sw;
@@ -46,35 +44,33 @@ public class C_DobbyPanel extends JPanel{
 		panel = this;
 		this.setLayout(null);
 
-
 		this.setBounds(0, 0, 1300, 770);
 		System.out.println("보너스 패널생성");
 
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/stage5/background2.png").getImage()));
-		background.setBounds(0, 0, 1300, 770);
-		
-		book1 = new JLabel(new ImageIcon(new ImageIcon("images/stage5/book1.png").getImage()));
-		book1.setBounds(1000, 200, 200, 150);
+		JLabel book1 = new JLabel(new ImageIcon(new ImageIcon("images/stage5/book1.png").getImage()));
 		JLabel coffee = new JLabel(new ImageIcon(new ImageIcon("images/stage5/coffee3.png").getImage()));
-		coffee.setBounds(300, 160, 100, 150);
-		
 		JLabel dobby = new JLabel(new ImageIcon(new ImageIcon("images/stage5/dobby-0.png").getImage()));
-		dobby.setBounds(x, y, 350, 500);
 		
 		JDialog free = new JDialog(mf, "Dobby is free");
+		JDialog espresso = new JDialog(mf, "Espresso Patronum");
+		
+		JButton return_btn = new JButton("RETURN");
+
+		background.setBounds(0, 0, 1300, 770);
+		book1.setBounds(1000, 200, 200, 150);
+		coffee.setBounds(300, 160, 100, 150);
+		dobby.setBounds(x, y, 350, 500);
 		free.setBounds(540, 500, 500, 400);
+		espresso.setBounds(540, 500, 345, 445);
+		return_btn.setBounds(1115, 660, 150, 50);
+
 		free.setLocationRelativeTo(mf);
 		free.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		free.add(new JLabel((new ImageIcon("images/stage5/gift.png"))));
-		
-		JDialog espresso = new JDialog(mf, "Espresso Patronum");
-		espresso.setBounds(540, 500, 345, 445);
 		espresso.setLocationRelativeTo(mf);
 		espresso.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		espresso.add(new JLabel((new ImageIcon("images/stage5/espresso.png"))));
-		
-		JButton return_btn = new JButton("RETURN");
-		return_btn.setBounds(1115, 660, 150, 50);
 		return_btn.setBackground(Color.GRAY);
 		return_btn.setForeground(Color.WHITE);	
 		return_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 30));     
