@@ -84,8 +84,8 @@ public class C_RankingPage extends JPanel{
 		// 현재 유저의 기숙사 종류에 따른 라벨 이미지 출력
 		switch(test[5]) {
 		case "gryffindor" : 
-			System.out.println("그리핀도르"); 
-			this.add(gryffindor);
+			System.out.println("그리핀도르"); 	
+			this.add(gryffindor); 
 			gryffindor.setBounds(670, 82, 1000, 500);
 			break; 
 		case "ravaenclaw" : 
