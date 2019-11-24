@@ -47,13 +47,40 @@ public class C_GameStage extends JPanel{
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
+		
 		this.setBounds(0, 0, 1300, 770);
 		System.out.println("게임 스테이지 패널 생성");
 		
 		new A_Music().TalesWeaver();
 
 		JLabel background = new JLabel(new ImageIcon(new ImageIcon("images/main/mainpage.png").getImage().getScaledInstance(1300, 770, 0)));
-		background.setBounds(0, 0, 1300, 770);
+
+		// 버튼 생성 - 아이콘 크기 (72 * 70)
+		JButton stage1_btn = new JButton(new ImageIcon("images/main/stage1_icon2.png"));
+		JButton stage2_btn = new JButton(new ImageIcon("images/main/stage2_icon2.png"));
+		JButton stage3_btn = new JButton(new ImageIcon("images/main/stage3_icon2.png"));
+		JButton stage4_btn = new JButton(new ImageIcon("images/main/remove.png"));
+		JButton stage5_btn = new JButton(new ImageIcon("images/main/remove.png"));
+		JButton stage6_btn = new JButton(new ImageIcon("images/main/remove.png"));
+		JButton ranking_btn = new JButton(new ImageIcon("images/main/ranking_icon2.png"));
+		
+		JButton	myinfo_btn = new JButton("내 정보");
+		JButton modify_btn = new JButton("정보수정");
+		JButton logout_btn = new JButton("로그아웃");
+		
+		JLabel stage1_name = new JLabel("Stage1");
+		JLabel stage2_name = new JLabel("Stage2");
+		JLabel stage3_name = new JLabel("Stage3");
+		JLabel ranking_name = new JLabel("Ranking");
+		
+		JLabel slytherin_la = new JLabel(new ImageIcon("images/main/z_slytherin(200x250).png"));
+		JLabel ravaenclaw_la = new JLabel(new ImageIcon("images/main/z_ravaenclaw(200x250).png"));
+		JLabel huffepuff_la = new JLabel(new ImageIcon("images/main/z_huffepuff(200x250).png"));
+		JLabel gryffindor_la = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
+		
+		ImageIcon key = new ImageIcon("images/main/key.gif");
+		ImageIcon jinho = new ImageIcon("images/main/jinho.png");
+		ImageIcon jinho2 = new ImageIcon("images/main/jinho2.png");
 		
 		B_UserManager um = new B_UserManager();
 		String[] test = um.selectUserScore(User.playerId);
@@ -67,45 +94,21 @@ public class C_GameStage extends JPanel{
 		ta.setBackground(new Color(0, 0, 0, 150));
 		ta.setForeground(Color.WHITE);			
 		ta.setMargin(new Insets(5, 10, 5, 10));
-		
 		background.add(ta);
 		
-		
-		// 버튼 생성 - 아이콘 크기 (72 * 70)
-		JButton stage1_btn = new JButton(new ImageIcon("images/main/stage1_icon2.png"));
-		JButton stage2_btn = new JButton(new ImageIcon("images/main/stage2_icon2.png"));
-		JButton stage3_btn = new JButton(new ImageIcon("images/main/stage3_icon2.png"));
-		JButton stage4_btn = new JButton(new ImageIcon("images/main/remove.png"));
-		JButton stage5_btn = new JButton(new ImageIcon("images/main/remove.png"));
-		JButton stage6_btn = new JButton(new ImageIcon("images/main/remove.png"));
-		JButton ranking_btn = new JButton(new ImageIcon("images/main/ranking_icon2.png"));
-
-		JButton	myinfo_btn = new JButton("내 정보");
-		JButton modify_btn = new JButton("정보수정");
-		JButton logout_btn = new JButton("로그아웃");
-		
-
-		JLabel stage1_name = new JLabel("Stage1");
-		JLabel stage2_name = new JLabel("Stage2");
-		JLabel stage3_name = new JLabel("Stage3");
-		JLabel ranking_name = new JLabel("Ranking");
-		
-		JLabel slytherin_la = new JLabel(new ImageIcon("images/main/z_slytherin(200x250).png"));
-		JLabel ravaenclaw_la = new JLabel(new ImageIcon("images/main/z_ravaenclaw(200x250).png"));
-		JLabel huffepuff_la = new JLabel(new ImageIcon("images/main/z_huffepuff(200x250).png"));
-		JLabel gryffindor_la = new JLabel(new ImageIcon("images/main/z_gryffindor(200x250).png"));
-	
+		// 내 정보창 다이얼로그
 		JDialog my = new JDialog(mf, "내 정보");
-		JTextArea mm = new JTextArea("닉네임 : " + test[4] + "\n\n아이디 : " + User.playerId + "\n\n이메일 : "+ um.selectEmail(User.playerId) +"\n\n기숙사 : " + test[5] + "\n");
+		JTextArea mm = new JTextArea("닉네임 : " + test[4] + "\n\n아이디 : " + User.playerId 
+				+ "\n\n이메일 : "+ um.selectEmail(User.playerId) +"\n\n기숙사 : " + test[5] + "\n");
 		my.setBounds(540, 500, 500, 600);
 		my.setLocationRelativeTo(mf);
 		my.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mm.setForeground(Color.BLACK);	
 		mm.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
-		
 		modify_btn.setForeground(Color.WHITE);			   			    
 		modify_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		
+		// 소속 기숙사에 따른 이미지 라벨 출력
 		switch(test[5]) {
 		case "slytherin" : 
 			my.add(slytherin_la, "Center"); 
@@ -126,11 +129,7 @@ public class C_GameStage extends JPanel{
 		}
 		my.add(mm, "North");
 		my.add(modify_btn, "South");
-		
-		ImageIcon key = new ImageIcon("images/main/key.gif");
-		ImageIcon jinho = new ImageIcon("images/main/jinho.png");
-		ImageIcon jinho2 = new ImageIcon("images/main/jinho2.png");
-		
+
 		// 열쇠 이미지 효과
 		stage1_btn.setRolloverIcon(key);
 		stage2_btn.setRolloverIcon(key);
@@ -148,6 +147,8 @@ public class C_GameStage extends JPanel{
 		ranking_btn.setBorderPainted(false);
 		
 		// 위치와 크기 설정 
+		background.setBounds(0, 0, 1300, 770);
+		
 		stage1_btn.setBounds(1140, 510, 72, 70);
 		stage2_btn.setBounds(860, 160, 72, 70);
 		stage3_btn.setBounds(130, 160, 72, 70);
@@ -187,10 +188,8 @@ public class C_GameStage extends JPanel{
 		logout_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 
 		// 버튼 설정
-		stage1_btn.setContentAreaFilled(false);		// JButtondml 내용영역 채우기 안함
+		stage1_btn.setContentAreaFilled(false);		
 		stage1_btn.setOpaque(false);
-		//stage1_btn.setBorderPainted(false);		// JButton의 Border(외곽선)을 없애준다.
-		//stage1_btn.setFocusPainted(false);		// JButton이 선택(focus)되었을 때 생기는 테두리 사용안함
 		stage2_btn.setContentAreaFilled(false);	
 		stage2_btn.setOpaque(false);
 		stage3_btn.setContentAreaFilled(false);	
@@ -217,7 +216,7 @@ public class C_GameStage extends JPanel{
 		logout_btn.setBorderPainted(false);		
 		logout_btn.setFocusPainted(false);		
 		
-		
+		// 내정보 버튼 이벤트
 		myinfo_btn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -364,13 +363,8 @@ public class C_GameStage extends JPanel{
 			}
 		});
 		
-		
-
-		
-		
 		// 패널에 추가
 		this.add(myinfo_btn);
-//		this.add(modify_btn);
 		this.add(logout_btn);
 
 		this.add(stage1_btn);
