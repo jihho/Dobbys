@@ -26,9 +26,9 @@ public class hokEndingPage extends JPanel {
 	
 	public hokEndingPage(JFrame mf) {
 		
-//		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-//				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
-//				new Point(0,0),"DobbyCursor"));
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		
 		new Bonus_Effect().hokGet();
 		
@@ -53,10 +53,15 @@ public class hokEndingPage extends JPanel {
 		reGame.setFocusPainted(false);
 		this.add(reGame);
 		
+		return_btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		reGame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		
 		return_btn.addMouseListener(new MouseAdapter (){
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				new Bonus_Effect().intoBgmStop();
+				new Bonus_Effect().intoBonusStop();
 				
 				ChangePanel cp = new ChangePanel(mf, panel);
 				//t1.setDaemon(true);
@@ -72,6 +77,7 @@ public class hokEndingPage extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				new Bonus_Effect().intoBgmStop();
+				new Bonus_Effect().intoBonusStop();
 				new Bonus_Effect().hokBgm();
 				
 				ChangePanel cp = new ChangePanel(mf, panel);

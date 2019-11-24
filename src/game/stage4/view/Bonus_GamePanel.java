@@ -22,7 +22,6 @@ public class Bonus_GamePanel extends JPanel {
 	private JPanel panel;
 	private int ctn = 0;	//클릭횟수
 	private int imgNum = 1;
-	private int hokHp = 20;
 	Point currLocation;
 	
 	public Bonus_GamePanel(JFrame mf) {
@@ -50,9 +49,6 @@ public class Bonus_GamePanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				ctn++;
-				System.out.println("클릭 횟수" + ctn);
-				hokHp--;
-				System.out.println("호크룩스 HP" + hokHp);
 				
 				if(ctn < 69) {
 				new Bonus_Effect().hokClick();
