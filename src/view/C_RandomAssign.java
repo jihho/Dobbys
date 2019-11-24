@@ -62,7 +62,7 @@ public class C_RandomAssign extends JPanel{
 		JDialog R_sd = new JDialog(mf, "Ravaenclaw");
 		JDialog G_sd = new JDialog(mf, "Gryffindor");
 
-		// User 매니저 생성자 생성
+		// User매니저 생성자 생성
 		B_UserManager um = new B_UserManager();
 		
 		// 위치 및 크기 지정
@@ -132,14 +132,14 @@ public class C_RandomAssign extends JPanel{
 		//G_btn.setContentAreaFilled(false);	
 
 		
-		// 이벤트 설정
+		// 랜덤 버튼 이벤트 설정
  		random_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				um.updateLoginCount(User.playerId);
 
-				int ra_random = new Random().nextInt(4) + 1;
-				switch(ra_random) {
+				int random = new Random().nextInt(4) + 1;
+				switch(random) {
 				case 1 : um.updateDormitory(User.playerId, "slytherin"); S_sd.setVisible(true); new A_Music().slytherin(); break;
 				case 2 : um.updateDormitory(User.playerId, "huffepuff"); H_sd.setVisible(true); new A_Music().huffepuff(); break;
 				case 3 : um.updateDormitory(User.playerId, "ravaenclaw"); R_sd.setVisible(true); new A_Music().ravaenclaw(); break;
