@@ -176,6 +176,51 @@ public class Bonus_Effect {
 			} catch (Exception e) {
 				System.out.println("err : " + e);
 				}
+		}
+		
+		public static void hokEnding() {
+			File bgm;
+			AudioInputStream stream;
+			AudioFormat format;
+			DataLine.Info info;
+			
+			bgm = new File("sounds/hokEnding.wav");
+			
+			try {
+				stream = AudioSystem.getAudioInputStream(bgm);
+				format = stream.getFormat();
+				info = new DataLine.Info(Clip.class, format);
+				bgm_clip = (Clip)AudioSystem.getLine(info);
+				bgm_clip.open(stream);
+				bgm_clip.start();
+				
+				
+			} catch (Exception e) {
+				System.out.println("err : " + e);
+				}
+			
+		}
+		
+		public static void hokGet() {
+			File bgm;
+			AudioInputStream stream;
+			AudioFormat format;
+			DataLine.Info info;
+			
+			bgm = new File("sounds/hokGet.wav");
+			
+			try {
+				stream = AudioSystem.getAudioInputStream(bgm);
+				format = stream.getFormat();
+				info = new DataLine.Info(Clip.class, format);
+				bgm_clip = (Clip)AudioSystem.getLine(info);
+				bgm_clip.open(stream);
+				bgm_clip.start();
+				
+				
+			} catch (Exception e) {
+				System.out.println("err : " + e);
+				}
 			
 		}
 	
