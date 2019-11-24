@@ -62,7 +62,7 @@ public class A_HidePage extends JPanel {
 		
 		
 		
-		JLabel hidePage = new JLabel(new ImageIcon(new ImageIcon("images/stage4/hokFinal3.gif")
+		JLabel hidePage = new JLabel(new ImageIcon(new ImageIcon("images/stage4/hokFinal2.gif")
 				.getImage().getScaledInstance(1300, 550, 0)));
 		System.out.println("모두 수고 하셨습니다.\nDobbys 화이팅!");
 		hidePage.setBounds(0, 80, 1300, 550);
