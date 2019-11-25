@@ -18,7 +18,6 @@ import javax.swing.JTextArea;
 
 import game.stage1.view.D_Explain;
 import game.stage2.view.E_StartPanel;
-import game.stage3.views.F_Stage3Panel;
 import game.stage3.views.F_Stage3rule;
 import game.stage4.view.Bonus_Changer;
 import game.stage4.view.hokVideo;
