@@ -59,7 +59,7 @@ public class F_SuccessPanel extends JPanel{
 		succ.add(ranking);
 		
 		this.add(suc);
-		
+		/*
 		Timer ts = new Timer();	//Timer 실행
 		TimerTask tsm = new TimerTask() {
 
@@ -70,14 +70,15 @@ public class F_SuccessPanel extends JPanel{
 			
 		};
 		ts.schedule(tsm, 50000);	
+		*/
 		
 		
-		/*suc.addMouseListener(new MouseAdapter() {
+		suc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				succ.setVisible(true);
 			}
-		});*/
+		});
 		
 		ranking.addMouseListener(new MouseAdapter() {
 			@Override
@@ -87,6 +88,7 @@ public class F_SuccessPanel extends JPanel{
 				C_RankingPage rp = new C_RankingPage(mf);
 				cp.replacePanel(rp);
 				succ.dispose();
+				
 			}
 		});
 		
