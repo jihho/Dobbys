@@ -58,7 +58,7 @@ public class A_ChangePage extends JPanel {
 		label = new JLabel("비밀번호 변경");
 		label.setBounds(480, 80, 500, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 50));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 50));
 		panel.add(label);
 
 		// 아이디
@@ -71,7 +71,7 @@ public class A_ChangePage extends JPanel {
 		label = new JLabel("아이디");
 		label.setBounds(400, 180, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		panel.add(label);
 
 		// 현재 비밀번호
@@ -84,7 +84,7 @@ public class A_ChangePage extends JPanel {
 		label = new JLabel("현재 비밀번호");
 		label.setBounds(400, 280, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		panel.add(label);
 
 		// 변경할 비밀번호
@@ -97,7 +97,7 @@ public class A_ChangePage extends JPanel {
 		label = new JLabel("새 비밀번호");
 		label.setBounds(400, 380, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		panel.add(label);
 
 		// 변경할 비밀번호 확인
@@ -110,13 +110,13 @@ public class A_ChangePage extends JPanel {
 		label = new JLabel("새 비밀번호 확인");
 		label.setBounds(400, 480, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		panel.add(label);
 		
 		changeLabel = new JLabel("");
 		changeLabel.setBounds(400, 570, 700, 50);
 		changeLabel.setForeground(new Color(255, 255, 255));
-		changeLabel.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		changeLabel.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		panel.add(changeLabel);
 		
 		
@@ -126,7 +126,7 @@ public class A_ChangePage extends JPanel {
 		//비밀번호 변경 버튼
 		changeBtn1 = new JButton(new ImageIcon("images/main/changeBtn1.png"));
 		changeBtn1.setBounds(400, 645, 500, 60);
-		changeBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		changeBtn1.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		changeBtn1.setBorderPainted(false);
 		
 		ImageIcon changeBtn2 = new ImageIcon("images/main/changeBtn2.png");
@@ -143,7 +143,7 @@ public class A_ChangePage extends JPanel {
 		//돌아가기 버튼
 		JButton backBtn1 = new JButton(new ImageIcon("images/main/backBtn1.png"));
 		backBtn1.setBounds(1140, 660, 120, 60);
-		backBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		backBtn1.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		backBtn1.setBorderPainted(false);
 		
 		ImageIcon backBtn2 = new ImageIcon("images/main/backBtn2.png");

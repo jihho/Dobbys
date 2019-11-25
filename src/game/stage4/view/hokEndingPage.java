@@ -35,6 +35,7 @@ public class hokEndingPage extends JPanel {
 //		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		JButton return_btn = new JButton("RETURN");
 		return_btn.setBounds(1130, 680, 150, 50);
+		return_btn.setBackground(Color.GRAY);
 		return_btn.setForeground(Color.WHITE);	
 		return_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 30));     
 		return_btn.setFocusPainted(false);
@@ -44,6 +45,7 @@ public class hokEndingPage extends JPanel {
 		
 		JButton reGame = new JButton("RETRY");
 		reGame.setBounds(20, 680, 150, 50);
+		reGame.setBackground(Color.GRAY);
 		reGame.setForeground(Color.WHITE);	
 		reGame.setFont(new Font("DungGeunMo", Font.PLAIN, 30));     
 		reGame.setFocusPainted(false);

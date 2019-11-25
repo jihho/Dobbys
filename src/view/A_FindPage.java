@@ -64,7 +64,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label = new JLabel("아이디 찾기");
 		label.setBounds(300, 120, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 50));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 50));
 		panel.add(label);
 		
 		name = new JTextField();
@@ -76,7 +76,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label = new JLabel("닉네임 : ");
 		label.setBounds(170, 190, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(label);
 		
 		emailId = new JTextField();
@@ -88,7 +88,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label = new JLabel("이메일 : ");
 		label.setBounds(170, 260, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(label);
 		
 		
@@ -96,7 +96,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		//아이디 찾기 버튼
 		findIdBtn1 = new JButton(new ImageIcon("images/main/findId1-1.png"));
 		findIdBtn1.setBounds(820, 260, 250, 60);
-		findIdBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		findIdBtn1.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		findIdBtn1.setBorderPainted(false);
 		
 		ImageIcon findIdBtn2 = new ImageIcon("images/main/findId2-1.png");
@@ -117,7 +117,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		findIdLabel = new JLabel("");
 		findIdLabel.setBounds(300,330,800, 30);
 		findIdLabel.setForeground(new Color(255, 255, 255));
-		findIdLabel.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		findIdLabel.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(findIdLabel);
 		
 		
@@ -125,7 +125,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label = new JLabel("비밀번호 찾기");
 		label.setBounds(300, 400, 500, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 50));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 50));
 		panel.add(label);
 		
 		id = new JTextField();
@@ -137,7 +137,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label = new JLabel("아이디 : ");
 		label.setBounds(170, 470, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(label);
 		
 		emailPw = new JTextField();
@@ -149,7 +149,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		label = new JLabel("이메일 : ");
 		label.setBounds(170, 540, 300, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(label);
 		
 		
@@ -157,7 +157,7 @@ public class A_FindPage extends JPanel implements ActionListener{
 		//임시비밀번호 발급 버튼
 		findPwBtn1 = new JButton(new ImageIcon("images/main/findPw1.png"));
 		findPwBtn1.setBounds(820, 540, 250, 60);
-		findPwBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		findPwBtn1.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		findPwBtn1.setBorderPainted(false);
 		
 		ImageIcon findPwBtn2 = new ImageIcon("images/main/findPw2.png");
@@ -175,14 +175,14 @@ public class A_FindPage extends JPanel implements ActionListener{
 		findPwLabel = new JLabel("");
 		findPwLabel.setBounds(300,610,800, 30);
 		findPwLabel.setForeground(new Color(255, 255, 255));
-		findPwLabel.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		findPwLabel.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(findPwLabel);
 		
 		
 		
 		JButton backBtn1 = new JButton(new ImageIcon("images/main/backBtn1.png"));
 		backBtn1.setBounds(1140, 660, 140, 70);
-		backBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		backBtn1.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		backBtn1.setBorderPainted(false);
 		
 		ImageIcon backBtn2 = new ImageIcon("images/main/backBtn2.png");
