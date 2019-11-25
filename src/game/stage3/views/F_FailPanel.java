@@ -40,7 +40,7 @@ public class F_FailPanel extends JPanel{
 		Dialog popfail = new Dialog(mf, "패배");
 		popfail.setLayout(null);
 		popfail.setSize(500, 250);
-		popfail.setLocationRelativeTo(null);
+		popfail.setLocationRelativeTo(mf);
 		
 		JLabel failmsg = new JLabel("볼드모트에게 패배하셨습니다...");
 		failmsg.setBounds(140, 50, 300, 100);
