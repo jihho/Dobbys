@@ -36,7 +36,6 @@ public class A_ChangePage extends JPanel {
 	private JLabel changeLabel;
 	private JButton changeBtn1;
 	
-	
 	private B_UserDao ud = new B_UserDao();
 	
 	public A_ChangePage(JFrame mf) {
@@ -212,7 +211,7 @@ public class A_ChangePage extends JPanel {
 							if(newPw.getText().equals(checkPw.getText() )
 									&& newPw.getText().length() > 0 
 									&& !nowPw.getText().equals(newPw.getText())) {
-								//임시비밀번호 변경
+								//비밀번호 변경
 								um.updatePw(textId.getText(), checkPw.getText());
 								changeLabel.setText("비밀번호가 변경 되었습니다.");
 								changeLabel.setForeground(new Color(0, 200, 0));

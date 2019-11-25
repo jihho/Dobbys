@@ -280,6 +280,7 @@ public class A_LoginPanel extends JPanel {
 					A_Music stopMusic = new A_Music();
 
 					B_UserManager um = new B_UserManager();
+					
 					// 로그인창 아이디창 공백일시
 					if (text.getText().equals("")) {
 						loginInfo.setText("아이디를 입력해 주세요.");
@@ -303,7 +304,7 @@ public class A_LoginPanel extends JPanel {
 								}
 							}
 
-							// 아이디 존재 상태에서 비밀번호 비교
+							// 아이디 존재 / 비밀번호 비교
 							if (selectedUser.getPw().equals(passwordText.getText())) {
 								System.out.println("로그인 성공!");
 								User.playerId = selectedUser.getId();
