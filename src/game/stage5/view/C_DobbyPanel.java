@@ -90,26 +90,6 @@ public class C_DobbyPanel extends JPanel{
 					dobby.setIcon(new ImageIcon("images/stage5/dobby-0.png"));
 					dobby.setBounds(x, y += 10, 350, 500);
 				}
-				if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-					sw++;
-					if(sw == 1) {
-						dobby.setIcon(new ImageIcon("images/stage5/dobby2-1.png"));
-						dobby.setBounds(x -= 10, y, 350, 500);
-					} 
-					if(sw == 2) {
-						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
-						dobby.setBounds(x -= 10, y, 350, 500);
-					} 
-					if(sw == 3) {
-						dobby.setIcon(new ImageIcon("images/stage5/dobby2-3.png"));
-						dobby.setBounds(x -= 10, y, 350, 500);
-					} 
-					if(sw == 4) {
-						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
-						dobby.setBounds(x -= 10, y, 350, 500);
-						sw = 0;
-					} 
-				}
 				if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 					sw++;
 					if(sw == 1) {
@@ -129,7 +109,26 @@ public class C_DobbyPanel extends JPanel{
 						dobby.setBounds(x += 10, y, 350, 500);
 						sw = 0;
 					} 
-					
+				}
+				if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+					sw++;
+					if(sw == 1) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-1.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+					} 
+					if(sw == 2) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+					} 
+					if(sw == 3) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-3.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+					} 
+					if(sw == 4) {
+						dobby.setIcon(new ImageIcon("images/stage5/dobby2-2.png"));
+						dobby.setBounds(x -= 10, y, 350, 500);
+						sw = 0;
+					} 
 				}
 				if(e.getKeyCode() == KeyEvent.VK_D) {
 					sw++;

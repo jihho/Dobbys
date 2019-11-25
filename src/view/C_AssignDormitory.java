@@ -62,27 +62,25 @@ public class C_AssignDormitory extends JPanel{
 		
 	    // 반 배정 받기 버튼 설정
 	    choice_btn.setBounds(777, 590, 250, 100);  
-	    choice_btn.setBackground(Color.GRAY);        	   		  // 버튼 색깔 변경
-	    choice_btn.setForeground(Color.WHITE);			   	      // 버튼 글자 색깔 변경
-	    choice_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 35));    // 버튼 글자 폰트, 효과, 크기 변경
-	    choice_btn.setFocusPainted(false);				  		  // ?? 뭔가 글자 주변 테두리를 없앴다.
+	    choice_btn.setBackground(Color.GRAY);        	   		  		// 버튼 색깔 변경
+	    choice_btn.setForeground(Color.WHITE);			   	      		// 버튼 글자 색깔 변경
+	    choice_btn.setFont(new Font("DungGeunMo", Font.PLAIN, 35));     // 버튼 글자 폰트, 효과, 크기 변경
+	    choice_btn.setFocusPainted(false);				  		 		// 버튼에 강조되는 효과 제거
 
-	    // 패널에다 에 버튼 및 라벨(background) 붙이기
+	    // 패널에 버튼 및 라벨(background) 붙이기
 	    this.add(choice_btn);
 	    this.add(background);
-	    
 	    
 	    // choice_btn 버튼 이벤트
 	    choice_btn.addMouseListener(new MouseAdapter() {
 	    	
 	    	@Override
 	    	public void mouseReleased(MouseEvent e) {
+	    		new A_Music().intoBgmStopJ();
+
 	    		ChangePanel cp = new ChangePanel(mf, panel);
 	    		C_RandomAssign ra = new C_RandomAssign(mf);
-	    		
 	    		cp.replacePanel(ra);
-	    		new A_Music().intoBgmStopJ();
-	    		
 	    	}
 	    });
 	    

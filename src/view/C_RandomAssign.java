@@ -140,10 +140,26 @@ public class C_RandomAssign extends JPanel{
 
 				int random = new Random().nextInt(4) + 1;
 				switch(random) {
-				case 1 : um.updateDormitory(User.playerId, "slytherin"); S_sd.setVisible(true); new A_Music().slytherin(); break;
-				case 2 : um.updateDormitory(User.playerId, "huffepuff"); H_sd.setVisible(true); new A_Music().huffepuff(); break;
-				case 3 : um.updateDormitory(User.playerId, "ravaenclaw"); R_sd.setVisible(true); new A_Music().ravaenclaw(); break;
-				case 4 : um.updateDormitory(User.playerId, "gryffindor"); G_sd.setVisible(true); new A_Music().gryffindor(); break;	
+				case 1 : 
+					um.updateDormitory(User.playerId, "slytherin"); 
+					S_sd.setVisible(true); 
+					new A_Music().slytherin(); 
+					break;
+				case 2 : 
+					um.updateDormitory(User.playerId, "huffepuff"); 
+					H_sd.setVisible(true); 
+					new A_Music().huffepuff(); 
+					break;
+				case 3 : 
+					um.updateDormitory(User.playerId, "ravaenclaw"); 
+					R_sd.setVisible(true); 
+					new A_Music().ravaenclaw();	
+					break;
+				case 4 : 
+					um.updateDormitory(User.playerId, "gryffindor"); 
+					G_sd.setVisible(true); 
+					new A_Music().gryffindor(); 
+					break;	
 				}
 
 			}

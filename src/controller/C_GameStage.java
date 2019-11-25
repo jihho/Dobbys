@@ -98,8 +98,10 @@ public class C_GameStage extends JPanel{
 		
 		// 내 정보창 다이얼로그
 		JDialog my = new JDialog(mf, "내 정보");
-		JTextArea mm = new JTextArea("닉네임 : " + test[4] + "\n\n아이디 : " + User.playerId 
-				+ "\n\n이메일 : "+ um.selectEmail(User.playerId) +"\n\n기숙사 : " + test[5] + "\n");
+		JTextArea mm = new JTextArea("닉네임 : " + test[4] 
+				+ "\n\n아이디 : " + User.playerId 
+				+ "\n\n이메일 : "+ um.selectEmail(User.playerId) 
+				+"\n\n기숙사 : " + test[5] + "\n");
 		my.setBounds(540, 500, 500, 600);
 		my.setLocationRelativeTo(mf);
 		my.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
