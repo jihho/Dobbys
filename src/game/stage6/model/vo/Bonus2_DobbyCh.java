@@ -40,8 +40,6 @@ public class Bonus2_DobbyCh extends JPanel {
 			
 		}
 	}
-	public void down() {
-		
-	}
+
 	
 }
