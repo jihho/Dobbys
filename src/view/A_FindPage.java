@@ -38,13 +38,15 @@ public class A_FindPage extends JPanel implements ActionListener{
 	private JTextField emailId;
 	private JTextField id;
 	private JTextField emailPw;
+	private String temporaryPw = "";
+	
+	
 	private JButton findIdBtn1;
 	private JButton findPwBtn1;
 	private JLabel findPwLabel;
 	private JLabel findIdLabel;
 	private JButton findpw;
 	private JButton backPage;
-	private String temporaryPw = "";
 	
 	private B_UserDao ud = new B_UserDao();
 	B_UserManager um = new B_UserManager();
@@ -296,32 +298,36 @@ public class A_FindPage extends JPanel implements ActionListener{
 
 				//임시비밀번호 전송
 				if (selectedUser.geteMail().equals(emailPw.getText())) {
-//					findPwLabel.setText(selectedUser.geteMail() +"로 임시 비밀번호를 전송 했습니다.");
-//					findPwLabel.setForeground(new Color(0, 200, 0));
-//					
-//					//이메일전송
-//					B_SendMail sm = new B_SendMail();
-//					temporaryPw = sm.temporaryPw();
-//					System.out.println(temporaryPw);
-//					try {
-//						sm.sendTemporaryPw(temporaryPw, emailPw.getText());
-//					} catch (MessagingException e1) {
-//						e1.printStackTrace();
-//					}
-//					
-//					//임시비밀번호 변경
-//					um.updatePw(id.getText(), temporaryPw);
-//					name.setText("");
-//					emailId.setText("");
-//					id.setText("");
-//					emailPw.setText("");
-					
-					
-					findPwLabel.setText("임시 비밀번호는 dobbyisfree 입니다.");
+					findPwLabel.setText(
+							selectedUser.geteMail() +"로 임시 비밀번호를 전송 했습니다.");
 					findPwLabel.setForeground(new Color(0, 200, 0));
-					um.updatePw(id.getText(), "dobbyisfree");
+					
+					
+					
+					//@@@@@@@@@ 이메일 사용 @@@@@@@
+					//이메일전송
+					B_SendMail sm = new B_SendMail();
+					temporaryPw = sm.temporaryPw();
+					System.out.println(temporaryPw);
+					try {
+						sm.sendTemporaryPw(temporaryPw, emailPw.getText());
+					} catch (MessagingException e1) {
+						e1.printStackTrace();
+					}
+					
+					//임시비밀번호 변경
+					um.updatePw(id.getText(), temporaryPw);
 					id.setText("");
 					emailPw.setText("");
+					//@@@@@@@@@@@@@@@@@@@@@@@@@@@@ (사용안할경우 주석처리하기)
+					
+					
+					//이메일 없이 임시번호 발급
+//					findPwLabel.setText("임시 비밀번호는 dobbyisfree 입니다.");
+//					findPwLabel.setForeground(new Color(0, 200, 0));
+//					um.updatePw(id.getText(), "dobbyisfree");
+//					id.setText("");
+//					emailPw.setText("");
 					
 					
 				} else {
