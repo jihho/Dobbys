@@ -19,7 +19,7 @@ public class B_UserManager {
 			//조회 내역이 없는 경우 새로운 리스트 생성
 			list = new ArrayList<User>();
 			System.out.println(list);
-			//유저 번호를 1로 변경
+			
 		}
 		//리스트에 user객체 추가
 		list.add(u);

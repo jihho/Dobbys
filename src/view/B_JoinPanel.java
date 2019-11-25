@@ -167,6 +167,7 @@ public class B_JoinPanel extends JPanel{
 		joinbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				
 				new A_Music().btnEffect();
 				char[] ch = pwfield.getPassword();
 				String strPw = "";
@@ -179,7 +180,6 @@ public class B_JoinPanel extends JPanel{
 				for(int i = 0; i < ch2.length; i++) {
 					strPwCheck += ch2[i];
 				}
-				
 				if(namefield.getText().equals("")||idfield.getText().equals("")||strPw.equals("")
 						||strPwCheck.equals("")||emailfield.getText().equals("")||certifield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "모든 입력 창을 입력해주세요.");
@@ -196,7 +196,7 @@ public class B_JoinPanel extends JPanel{
 								if(namefield.getText().length() > 5) {
 									JOptionPane.showMessageDialog(null, "이름을 5글자 내로 입력해 주세요.");
 								}else {
-									if(beforePassword.equals(strPw) &&strPw.equals(strPwCheck) && certifield.getText().equals("1234")) {
+									if(beforePassword.equals(strPw) &&strPw.equals(strPwCheck) && certifield.getText().equals(certPassword)) {
 										user.setId(idfield.getText());
 										user.setPw(strPw);
 										user.setName(namefield.getText());
@@ -264,16 +264,16 @@ public class B_JoinPanel extends JPanel{
 				if(emailfield.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "이메일을 입력해 주십시오.");
 				}else {
-//					B_SendMail sm = new B_SendMail();
-//					certPassword = sm.generateCertPassword();
-//					System.out.println(certPassword);
-//					
-//					try {
-//						sm.sendMail(certPassword, emailfield.getText());
-//					} catch (MessagingException e1) {
-//						e1.printStackTrace();
-//					}
-					certPassword = "1234";
+					B_SendMail sm = new B_SendMail();
+					certPassword = sm.generateCertPassword();
+					System.out.println(certPassword);
+					
+					try {
+						sm.sendMail(certPassword, emailfield.getText());
+					} catch (MessagingException e1) {
+						e1.printStackTrace();
+					}
+					//certPassword = "1234";
 					JOptionPane.showMessageDialog(null, emailfield.getText()+"로 인증번호를 전송하였습니다.");
 				}
 			}
