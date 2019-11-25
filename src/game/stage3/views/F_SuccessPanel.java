@@ -72,6 +72,7 @@ public class F_SuccessPanel extends JPanel{
 		ts.schedule(tsm, 50000);	
 		*/
 		
+		
 		suc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -87,6 +88,7 @@ public class F_SuccessPanel extends JPanel{
 				C_RankingPage rp = new C_RankingPage(mf);
 				cp.replacePanel(rp);
 				succ.dispose();
+				
 			}
 		});
 		
