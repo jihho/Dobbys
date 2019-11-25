@@ -5,6 +5,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,10 @@ public class Bonus2_Background extends JPanel {
 	private JPanel panel;
 	private int x = 300;
 	private int y = 530;
+	private int sockX;
+	private int sockY;
+	private int ctn = 0; //탈출카운트
+	
 
 	private JLabel dobby;
 
@@ -36,7 +41,6 @@ public class Bonus2_Background extends JPanel {
 		
 		this.requestFocus();
 		this.setFocusable(true);
-		
 		
 
 		
@@ -59,24 +63,226 @@ public class Bonus2_Background extends JPanel {
 		home.setOpaque(false);
 		
 		
-		home.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e){
-				new Bonus2_Music().intoBgmStop();
-				
-				E_ChangePanel cp = new E_ChangePanel(mf, panel);
-				Bonus2_EndPanel ep = new Bonus2_EndPanel(mf);
-				cp.replacePanel(ep);
-				
-			}
-		});
+		
 		
 		map.setBounds(0, 0, 1280, 720);
 		dobby.setBounds(x, y, 58, 72);
 		
+		//양말 아이콘 
+		JLabel sockIcon1 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss0.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sockIcon1.setBounds(900, 640, 42, 42);
+		this.add(sockIcon1);
+		
+		
+		JLabel sockIcon2 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss0.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sockIcon2.setBounds(970, 640, 42, 42);
+		this.add(sockIcon2);
+		
+		JLabel sockIcon3 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss0.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sockIcon3.setBounds(1040, 640, 42, 42);
+		this.add(sockIcon3);
+		
+		JLabel sockIcon4 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss0.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sockIcon4.setBounds(1110, 640, 42, 42);
+		this.add(sockIcon4);
+		
+		JLabel sockIcon5 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss0.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sockIcon5.setBounds(1180, 640, 42, 42);
+		this.add(sockIcon5);
+		
+		
+		//양말 뿌리기
+		sockX = new Random().nextInt(1000) + 10;
+		sockY = new Random().nextInt(600) + 10;
+		
+		System.out.println(sockX);
+		System.out.println(sockY);
+		
+		JLabel sock1 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss1.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sock1.setBounds(sockX, sockY, 42, 42);
+		this.add(sock1);
+
+		sockX = new Random().nextInt(1000) + 10;
+		sockY = new Random().nextInt(600) + 10;
+		
+		System.out.println(sockX);
+		System.out.println(sockY);
+		
+		JLabel sock2 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss2.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sock2.setBounds(sockX, sockY, 42, 42);
+		this.add(sock2);
+		
+		sockX = new Random().nextInt(1000) + 10;
+		sockY = new Random().nextInt(600) + 10;
+		
+		System.out.println(sockX);
+		System.out.println(sockY);
+		
+		JLabel sock3 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss3.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sock3.setBounds(sockX, sockY, 42, 42);
+		this.add(sock3);
+		
+		
+		sockX = new Random().nextInt(1000) + 10;
+		sockY = new Random().nextInt(600) + 10;
+		
+		System.out.println(sockX);
+		System.out.println(sockY);
+		
+		JLabel sock4 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss4.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sock4.setBounds(sockX, sockY, 42, 42);
+		this.add(sock4);
+		
+		sockX = new Random().nextInt(1000) + 10;
+		sockY = new Random().nextInt(600) + 10;
+		
+		System.out.println(sockX);
+		System.out.println(sockY);
+		
+		JLabel sock5 = new JLabel(new ImageIcon(new ImageIcon("images/stage6/ss5.png").
+				getImage().getScaledInstance(42, 42, 0)));
+		sock5.setBounds(sockX, sockY, 42, 42);
+		this.add(sock5);
+		
+		sock1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		sock2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		sock3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		sock4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		sock5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		//마우스이벤트
+		
+		sock1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				panel.remove(sockIcon1);
+				panel.repaint();
+				
+				panel.add(sock1);
+				sock1.setBounds(900, 640, 42, 42);
+				panel.setComponentZOrder(sock1, 0);
+				panel.repaint();
+				
+				ctn++;
+				System.out.println("ctn: " + ctn);
+
+			}
+		});
+		
+		sock2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				panel.remove(sockIcon2);
+				panel.repaint();
+				
+				panel.add(sock2);
+				sock2.setBounds(970, 640, 42, 42);
+				panel.setComponentZOrder(sock2, 0);
+				panel.repaint();
+				
+				ctn++;
+				System.out.println("ctn: " + ctn);
+
+			}
+		});
+		
+		sock3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				panel.remove(sockIcon3);
+				panel.repaint();
+				
+				panel.add(sock3);
+				sock3.setBounds(1040, 640, 42, 42);
+				panel.setComponentZOrder(sock3, 0);
+				panel.repaint();
+				
+				ctn++;
+				System.out.println("ctn: " + ctn);
+
+			}
+		});
+		
+		sock4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				panel.remove(sockIcon4);
+				panel.repaint();
+				
+				panel.add(sock4);
+				sock4.setBounds(1110, 640, 42, 42);
+				panel.setComponentZOrder(sock4, 0);
+				panel.repaint();
+				
+				ctn++;
+				System.out.println("ctn: " + ctn);
+
+			}
+		});
+		
+		sock5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				panel.remove(sockIcon5);
+				panel.repaint();
+				
+				panel.add(sock5);
+				sock5.setBounds(1180, 640, 42, 42);
+				panel.setComponentZOrder(sock5, 0);
+				panel.repaint();
+				
+				ctn++;
+				System.out.println("ctn: " + ctn);
+			}
+		});
+		
+		//양말5개 다 주으면 홈버튼 활성화
+		
+			home.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e){
+					if(ctn == 5) {
+						
+					
+					
+					new Bonus2_Music().intoBgmStop();
+					
+					E_ChangePanel cp = new E_ChangePanel(mf, panel);
+					Bonus2_EndPanel ep = new Bonus2_EndPanel(mf);
+					cp.replacePanel(ep);
+					
+				}
+			}
+			});
+		
+		
+		
+		//패널 얹기
+//		this.add(sockIcon1);
+//		this.add(sockIcon2);
+//		this.add(sockIcon3);
+//		this.add(sockIcon4);
+//		this.add(sockIcon5);
+//		this.add(sock1);
+//		this.add(sock2);
+//		this.add(sock3);
+//		this.add(sock4);
+//		this.add(sock5);
+				
 		this.add(dobby);
 		this.add(home);
 		this.add(map);
+		
+		//this.setComponentZOrder(map, 6);
 		
 		
 		addKeyListener(new KeyHandler());

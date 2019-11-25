@@ -55,13 +55,13 @@ public class E_GamePanel extends JPanel {
 	private JFrame mf;
 	private JPanel panel;
 	
-	private int ctn = 0;		//유저아이템 카운트
-	private int[] userChoice;	//유저 선택값 담는 배열
+	private int ctn = 0;			//유저아이템 카운트
+	private int[] userChoice;		//유저 선택값 담는 배열
 	private static int MAX_HP = 3;	//유저 최대 체력
 	private int hp = MAX_HP;		//유저 체력
 	private int hintCtn = 0;		//힌트 카운트
-	private boolean pCtn = true; 		//항아리 카운트
-	private boolean btn1 = true;
+	private boolean pCtn = true; 	//항아리 카운트
+	private boolean btn1 = true;	//버튼 한번만 클릭 할 수 있게 설정하는 변수(아이템별로 있음)
 	private boolean btn2 = true;
 	private boolean btn3 = true;
 	private boolean btn4 = true;
@@ -70,8 +70,6 @@ public class E_GamePanel extends JPanel {
 	private boolean btn7 = true;
 	private boolean btn8 = true;
 	private boolean btn9 = true;
-	
-	
 	
 	//hp 라벨변수 
 	private JLabel hp1;
@@ -828,7 +826,7 @@ public class E_GamePanel extends JPanel {
 												panel.repaint();
 												System.out.println("스승님");
 											}
-											//힌트버튼 2번 눌렀을때 로그창에 퀘스트 문제 1초 보여주기
+											//힌트버튼 2번 눌렀을때 로그창에 퀘스트 문제  보여주기
 											if(hintCtn == 2) {
 												System.out.println("힌트카운트2:" + hintCtn);
 												panel.add(questImage);
