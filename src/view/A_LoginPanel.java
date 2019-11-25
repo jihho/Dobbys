@@ -133,7 +133,7 @@ public class A_LoginPanel extends JPanel {
 		label = new JLabel("User ID");
 		label.setBounds(330, 450, 150, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(label);
 		
 		text = new JTextField();
@@ -151,7 +151,7 @@ public class A_LoginPanel extends JPanel {
 		label = new JLabel("Password");
 		label.setBounds(310, 515, 150, 50);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 30));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 30));
 		panel.add(label);
 		
 		passwordText = new JPasswordField();
@@ -165,7 +165,7 @@ public class A_LoginPanel extends JPanel {
 		loginInfo = new JLabel("");
 		loginInfo.setBounds(460, 400, 500, 50);
 		loginInfo.setForeground(new Color(255,255,255));
-		loginInfo.setFont(new Font("DungGeunMo", Font.BOLD, 25));
+		loginInfo.setFont(new Font("DungGeunMo", Font.PLAIN, 25));
 		panel.add(loginInfo);
 		
 		
@@ -174,13 +174,13 @@ public class A_LoginPanel extends JPanel {
 		label = new JLabel("Dobbys v1.6.22");
 		label.setBounds(1080, 700, 230, 30);
 		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("DungGeunMo", Font.BOLD, 23));
+		label.setFont(new Font("DungGeunMo", Font.PLAIN, 23));
 		panel.add(label);
 		
 		//로그인 버튼
 		JButton loginBtn = new JButton(new ImageIcon("images/main/login1.png"));
 		loginBtn.setBounds(462, 580 , 376, 60);
-		loginBtn.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		loginBtn.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		loginBtn.setBorderPainted(false);
 		
 		ImageIcon loginBtnImg2 = new ImageIcon("images/main/login2.gif");
@@ -203,7 +203,7 @@ public class A_LoginPanel extends JPanel {
 		//아이디 비밀번호 찾기 버튼
 		JButton findId1 = new JButton(new ImageIcon("images/main/findId1.png"));
 		findId1.setBounds(620,655, 220, 35);
-		findId1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		findId1.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		findId1.setBorderPainted(false);
 		
 		ImageIcon findId2 = new ImageIcon("images/main/findId2.png");
@@ -221,7 +221,7 @@ public class A_LoginPanel extends JPanel {
 		//회원가입 버튼
 		JButton joinBtn1 = new JButton(new ImageIcon("images/main/join1.png"));
 		joinBtn1.setBounds(460,655, 150, 35);
-		joinBtn1.setFont(new Font("DungGeunMo", Font.BOLD, 40));
+		joinBtn1.setFont(new Font("DungGeunMo", Font.PLAIN, 40));
 		joinBtn1.setBorderPainted(false);
 		
 		ImageIcon joinBtn2 = new ImageIcon("images/main/join2.png");
