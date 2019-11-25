@@ -40,7 +40,7 @@ public class D_Esc extends JPanel {
 		Dialog succ = new Dialog(mf, "Stage1 실패");
 		succ.setLayout(null);
 		succ.setSize(500, 250);
-		succ.setLocationRelativeTo(null);
+		succ.setLocationRelativeTo(mf);
 		
 		JLabel succmsg = new JLabel("YOU DIED");
 		succmsg.setBounds(140, 50, 300, 100);

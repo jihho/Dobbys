@@ -32,11 +32,11 @@ public class D_Harry extends JPanel{
 	public Rectangle getBBox() { return bb; }
 	
 	public void startHarry() {
-		state = HARRY_ST_ALIVE;
-		x = 30;
+		state = HARRY_ST_ALIVE;	//해리 상태를 살아있는 상태로 변경
+		x = 30;					//시작 x,y 좌표 설정
 		y = 350;
-		bb = new Rectangle(x + 10, y + 10, 80, 80);
-		life = HARRY_MAX_HP;
+		bb = new Rectangle(x + 10, y + 10, 80, 80);	//히트박스 설정
+		life = HARRY_MAX_HP;	//해리 hp 설정
 		count = 30;
 	}
 	
@@ -47,8 +47,7 @@ public class D_Harry extends JPanel{
 				bb.y = y + 10;
 			}
 		}
-	}
-	
+	}	
 	public void moveDown() {
 		if(state == HARRY_ST_ALIVE) {
 			if(y < 610 ) {
@@ -57,12 +56,6 @@ public class D_Harry extends JPanel{
 			}
 		}
 	}
-	
-	public void blast() {
-		state = HARRY_ST_BLAST;
-		count = 30;
-	}
-	
 	public void moveLeft() {
 		if(state == HARRY_ST_ALIVE) {
 			if(x > 20) {
@@ -70,8 +63,7 @@ public class D_Harry extends JPanel{
 				bb.x = x + 10;
 			}
 		}
-	}
-	
+	}	
 	public void moveRight() {
 		if(state == HARRY_ST_ALIVE) {
 			if(x < 1100) {
@@ -82,5 +74,8 @@ public class D_Harry extends JPanel{
 	}
 	
 	
-	
+	public void blast() {
+		state = HARRY_ST_BLAST;
+		count = 30;
+	}
 }

@@ -210,11 +210,13 @@ public class D_Controller extends JPanel {
 
 	class TimerHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
 			
+		
 			// 디멘터 생성 및 이동
 			if (gameState != ST_SCORE) {
+				
 				for (D_Dementor d : dementor) {
+					// 디멘터가 Death 상태일때 디멘터 생성 
 					if (d.getState() == D_Dementor.DEMENTOR_ST_DEATH ) {
 						if(aliveDeath) {
 							d.birth();
@@ -233,29 +235,31 @@ public class D_Controller extends JPanel {
 					if (d.getState() == D_Dementor.DEMENTOR_ST_ALIVE && gameState == ST_GAME) {
 						if (harry.getState() == D_Harry.HARRY_ST_ALIVE) {
 
+							//해리랑 충돌 여부 판단
 							if (harry.getBBox().intersects(d.getBBox())) {
+								//충돌한 디멘터 소멸
 								d.setState(D_Dementor.DEMENTOR_ST_DEATH);
-								harry.setLife(harry.getLife() - 1);
+								harry.setLife(harry.getLife() - 1);								
+								//해리 체력 0 되었을 시 게임 초기화
 								if (harry.getLife() == 0) {
 									harry.blast();
 									backSound.intoBgmStop();
 									backSound.stage1FailSound();
 									aliveDeath = false;
 									for (D_Dementor de : dementor) {
-										de.setState(D_Dementor.DEMENTOR_ST_DEATH);
-										
+										de.setState(D_Dementor.DEMENTOR_ST_DEATH);										
 									}
 									altimateGage = 0;
 									effectCount = EFFECT_TIME;
 									clearCount = CLEAR_TIME;
 									gameState = ST_ENDING;
 									firstEnding = true;
-
 								}
 							}
-
 						}
 					}
+					
+					
 				}				
 			}else {
 				for (D_Dementor d : dementor) {
@@ -422,32 +426,31 @@ public class D_Controller extends JPanel {
 		HashSet<Integer> pressedKeys = new HashSet<Integer>();
 		Timer timer;
 		Iterator<Integer> i;
+	
 		
 		public KeyHandler() {
 			timer = new Timer(25, new ActionListener(){ // 50ms마다 액션 이벤트 발생
                 @Override
-                public void actionPerformed(ActionEvent arg0) {  
-                	
-                    if(!pressedKeys.isEmpty()){
-                    	
+                public void actionPerformed(ActionEvent arg0) {                  	
+                    if(!pressedKeys.isEmpty()){                    	
                         i = pressedKeys.iterator();
-                        int code = 0;
-                        
+                        int code = 0;                        
                         while(i.hasNext()){
                             code = i.next();
-                            System.out.println(code);
-                            
+                            System.out.println(code);                            
+                            //게임 상태가 TITLE일때
                             if(gameState == ST_TITLE) {
+                            	//스페이스 바를 누르면 게임 시작
                 				if(code == KeyEvent.VK_SPACE) {
                 					System.out.println("게임 시작");
-                					harry.startHarry();
-                					effectCount = EFFECT_TIME;
+                					harry.startHarry();			//해리 생성
+                					effectCount = EFFECT_TIME;	//기타 변수 초기화
                 					clearCount = CLEAR_TIME;
                 					altimateGage = 0;
                 					gameState = ST_GAME;
                 					aliveDeath = true;
-                					backSound.stage1_backgroundSound();
-                					score = 0;
+                					score = 0;					
+                					backSound.stage1_backgroundSound();	//음악 실행
                 					
                 				}
                 			}

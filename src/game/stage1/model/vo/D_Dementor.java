@@ -30,12 +30,12 @@ public class D_Dementor extends JPanel{
 
 	
 	public void birth() {
-		x = 1500;
-		y = new Random().nextInt(500) + 100;
-		dx = new Random().nextInt(15) + 10;
-		state = DEMENTOR_ST_ALIVE;
-		bb.x = x + 10;
-		bb.y = y + 10;
+		x = 1500;			//오른쪽 화면 밖에서 생성
+		y = new Random().nextInt(500) + 100;	//위아래 생성위치 랜덤
+		dx = new Random().nextInt(15) + 10;		//속도 랜덤
+		state = DEMENTOR_ST_ALIVE;				//살아있는 상태로 변경
+		bb.x = x + 10;							//히트박스 x좌표
+		bb.y = y + 10;							//히트박스 y좌표
 	}
 	
 	public void move() {
@@ -43,7 +43,6 @@ public class D_Dementor extends JPanel{
 			x -= dx;			
 			bb.x = x;
 			bb.y = y;
-			
 			if( x < -50 ) {
 				state = DEMENTOR_ST_DEATH;
 			}
