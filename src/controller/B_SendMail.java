@@ -32,7 +32,7 @@ public class B_SendMail {
 		//보내시는분
 		String smtpServer = "smtp.naver.com";
 		final String sendId = "l_jiho1007";
-		final String sendPass = "dl191117!";
+		final String sendPass = "dl191119!";
 		String sendEmailAddress = "l_jiho1007@naver.com";
 		int smtpPort = 465;
 		
