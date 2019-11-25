@@ -1,5 +1,7 @@
 package game.stage3.views;
 
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
@@ -11,76 +13,85 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.stage3.controller.F_Stage3Panel;
+import view.A_LoginPanel;
 import view.A_Music;
 
 public class F_Stage3rule extends JPanel{
 	private JFrame mf;
 	private JPanel panel;
 
-	JButton atk;
-	JButton df;
-	JButton smash;
-	JButton counter;
 	private JLabel[] hp = new JLabel[10];
 	private JLabel[] vmhp = new JLabel[10];
+	
 	public F_Stage3rule(JFrame mf) {
 		this.mf = mf;
 		this.setLayout(null);
 		panel = this;
 
 		this.setBounds(0, 0, 1280, 720);
-
+		//ë§ˆìš°ìŠ¤ ì»¤ì„œ ë³€ê²½
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"DobbyCursor"));
+		//ë°°ê²½í™”ë©´ ë¼ë²¨
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
-
+		
+		//ê·œì¹™ ì„¤ëª… ë¼ë²¨
 		JLabel rule = new JLabel(new ImageIcon(new ImageIcon("images/stage3/rule_bg.png").getImage()));
 		rule.setBounds(0, 0, 1280, 720);
-		//ÇØ¸®Æ÷ÅÍ Ä³¸¯ÅÍ ¶óº§
+		
+		//í•´ë¦¬í¬í„° ìºë¦­í„° ë¼ë²¨
 		JLabel hr = new JLabel(new ImageIcon(new ImageIcon("images/stage3/harrymove.gif").getImage().getScaledInstance(225, 225, 0)));
 		hr.setBounds(191, 277, 225, 225);
 
-		//º¼µå¸ğÆ® Ä³¸¯ÅÍ ¶óº§
+		//ë³¼ë“œëª¨íŠ¸ ìºë¦­í„° ë¼ë²¨
 		JLabel bm = new JLabel(new ImageIcon(new ImageIcon("images/stage3/voldmote.gif").getImage().getScaledInstance(225, 225, 0)));
 		bm.setBounds(921, 277, 225, 225);
 		
+		//í•´ë¦¬í¬í„° ì†Œí™˜ ì´í™íŠ¸
 		JLabel hrsummon = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hrsummon.gif").getImage().getScaledInstance(225, 225, 0)));
 		hrsummon.setBounds(191, 277, 225, 225);
 
-		//º¼µå¸ğÆ® Ä³¸¯ÅÍ ¶óº§
+		//ë³¼ë“œëª¨íŠ¸ ì†Œí™˜ ì´í™íŠ¸
 		JLabel vmsummon = new JLabel(new ImageIcon(new ImageIcon("images/stage3/vmsummon.gif").getImage().getScaledInstance(225, 225, 0)));
 		vmsummon.setBounds(921, 277, 225, 225);
 
-		//ÇØ¸®Æ÷ÅÍ Ã¼·Â µÎ±Ù°Å¸®´Â ÇÏÆ®
+		//í•´ë¦¬í¬í„° ì²´ë ¥ gif
 		JLabel hpbar = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		hpbar.setBounds(190, 200, 34, 35);
 
-		//½ÇÁ¦ µ¥¹ÌÁö Ç¥½ÃµÉ Ã¼·Â
+		//í•´ë¦¬í¬í„° ì²´ë ¥ ê²Œì´ì§€
 		hp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp0.png").getImage().getScaledInstance(23, 70, 0)));
 		hp[0].setBounds(230, 180, 23, 70);
-
+		
 		for(int i = 1; i<10; i++) {
 			hp[i] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 			hp[i].setBounds(230 + (i * 20), 180, 23, 70);
 		}
 
-		//º¼µå¸ğÆ® Ã¼·Â µÎ±Ù°Å¸®´Â ÇÏÆ®
+		//ë³¼ë“œëª¨íŠ¸ ì²´ë ¥ gif
 		JLabel bmhp = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hp.gif").getImage().getScaledInstance(34, 35, 0)));
 		bmhp.setBounds(1120, 200, 34, 35);
 
-		//½ÇÁ¦ µ¥¹ÌÁö Ç¥½ÃµÉ Ã¼·Â
+		//ë³¼ë“œëª¨íŠ¸ ì²´ë ¥ ê²Œì´ì§€
 		vmhp[0] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpbm0.png").getImage().getScaledInstance(23, 70, 0)));
 		vmhp[0].setBounds(1100, 180, 23, 70);
+		
 		for(int i = 1; i < 10; i++) {
 			vmhp[i] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/hpp.png").getImage().getScaledInstance(23, 70, 0)));
 			vmhp[i].setBounds(1100 - (i * 20), 180, 23, 70);
 		}
+		//ë°°ê²½ê³¼ ê·œì¹™ ì˜¬ë¦¼
 		panel.add(rule);
 		panel.add(label);
 		
-
+		//ê·œì¹™ ë¼ë²¨ í´ë¦­ì‹œ ë°œìƒ ì´ë²¤íŠ¸
 		rule.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				
 				Timer ts = new Timer();	
 				TimerTask tsm = new TimerTask() {
 
