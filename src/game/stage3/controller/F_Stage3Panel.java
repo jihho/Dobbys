@@ -1,9 +1,9 @@
-package game.stage3.views;
+package game.stage3.controller;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -24,7 +24,12 @@ import controller.C_GameStage;
 import game.stage3.model.vo.F_General;
 import game.stage3.model.vo.F_Harry;
 import game.stage3.model.vo.F_Voldmort;
+import game.stage3.views.F_ChangePanel;
+import game.stage3.views.F_EffectMusic;
+import game.stage3.views.F_FailPanel;
+import game.stage3.views.F_SuccessPanel;
 import model.vo.User;
+import view.A_LoginPanel;
 import view.A_Music;
 
 public class F_Stage3Panel extends JPanel{
@@ -40,7 +45,6 @@ public class F_Stage3Panel extends JPanel{
 	private JLabel skct;
 	private JLabel atkdraw;
 	private JLabel smdraw;
-	private JLabel smdraw1;
 	
 	//볼드모트 스킬 이펙트 용 라벨
 	private JLabel vmskill;	
@@ -52,6 +56,7 @@ public class F_Stage3Panel extends JPanel{
 	private JLabel vmatkdraw;
 	private JLabel vmsmdraw;
 	private JLabel vmatkdraw1;
+	
 	//로그 사용할 텍스트에어리어 + 스크롤
 	private JTextArea log;
 	private JScrollPane sc;
@@ -85,6 +90,10 @@ public class F_Stage3Panel extends JPanel{
 		//배경음악 실행
 		new A_Music().stage3_backgroundSound();
 
+		
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		//스테이지 배경 라벨로 올림
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage03.png").getImage()));
 		label.setBounds(0, 0, 1280, 720);
@@ -179,7 +188,6 @@ public class F_Stage3Panel extends JPanel{
 		sksmashmiss  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash1.gif").getImage().getScaledInstance(550, 200, 0)));
 		atkdraw  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk2.gif").getImage().getScaledInstance(450, 200, 0)));
 		smdraw  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash1.gif").getImage().getScaledInstance(450, 200, 0)));
-		smdraw1  = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash1.gif").getImage().getScaledInstance(450, 200, 0)));
 		
 		//볼드모트 스킬 이펙트 라벨
 		vmskill = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk1.gif").getImage().getScaledInstance(550, 200, 0)));
@@ -191,9 +199,9 @@ public class F_Stage3Panel extends JPanel{
 		vmatkdraw = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk1.gif").getImage().getScaledInstance(450, 200, 0)));
 		vmsmdraw = new JLabel(new ImageIcon(new ImageIcon("images/stage3/smash2.gif").getImage().getScaledInstance(450, 200, 0)));
 		vmatkdraw1 = new JLabel(new ImageIcon(new ImageIcon("images/stage3/atk1.gif").getImage().getScaledInstance(450, 200, 0)));
-		/*round = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round01.png").getImage()));
-		round.setBounds(0, 0, 1280, 720);*/
-
+		
+		
+		//라운드 라벨 
 		for(int i = 0; i < 70; i++) {
 		rd[i] = new JLabel(new ImageIcon(new ImageIcon("images/stage3/round" + (i+1) +".png").getImage()));
 		rd[i].setBounds(0, 0, 1280, 720);
@@ -212,7 +220,6 @@ public class F_Stage3Panel extends JPanel{
 		sksmashmiss.setBounds(440, 277, 550, 200);
 		atkdraw.setBounds(370, 277, 450, 200);
 		smdraw.setBounds(370, 277, 450, 200);
-		smdraw1.setBounds(370, 277, 450, 200);
 		
 		//볼드모트
 		vmskill.setBounds(440, 277, 550, 200);
@@ -224,6 +231,7 @@ public class F_Stage3Panel extends JPanel{
 		vmatkdraw.setBounds(500, 277, 450, 200);
 		vmsmdraw.setBounds(600, 277, 450, 200);
 		vmatkdraw1.setBounds(600, 277, 450, 200);
+		
 		//항상 존재하는 라벨과 버튼 추가
 		this.add(hr);
 		this.add(bm);
@@ -339,17 +347,19 @@ public class F_Stage3Panel extends JPanel{
 	}
 
 
-	//버튼 액션 이벤트, 버튼 이벤트는 큰틀에서 같은 패턴이므로 주석은 1번 atk버튼에만 작성
 	class ActionClass implements ActionListener{
 
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
 			//버튼에서 선언한 각 버튼의 int값 받을 수 있는 int 생성
 			int action = Integer.parseInt(e.getActionCommand());
+			
 			//볼드모트의 선택 만들어줄 랜덤값 생성
 			int vmchoice = (int)(Math.random()*4);
-
+			
+			//라운드를 위한 카운트 생성
 			if(e.getSource() == atk || e.getSource() == df || 
 					e.getSource() == smash || e.getSource() == counter) {
 				ctn++;
@@ -887,22 +897,26 @@ public class F_Stage3Panel extends JPanel{
 					};
 					rd1.schedule(rdm1, 2200); break;
 				}
-
+				
+			//스매쉬 버튼 선택
 			case 3 : 
+				//중복 이미지 실행 및 패널 체인지 꼬이는거 막기 위한 버튼 잠금
 				atk.setEnabled(false);
 				df.setEnabled(false);
 				smash.setEnabled(false);
 				counter.setEnabled(false);
-
+				
+				//볼드모트의 선택에 따라 각각 실행
 				if(vmchoice == 0) { //해리 : 스매쉬 볼드모트 : 공격 
 					new F_EffectMusic().stage3_smash();
 					new F_EffectMusic().stage3_vmatk();
 					
-					panel.add(smdraw1);
+					//스킬 이펙트 추가
+					panel.add(smdraw);
 					panel.add(vmatkdraw1);
 
 					//각 이펙트의 우선순위를 최우선으로
-					panel.setComponentZOrder(smdraw1, 0);
+					panel.setComponentZOrder(smdraw, 0);
 					panel.setComponentZOrder(vmatkdraw1, 0);
 
 					//패널 갱신해서 이미지 출력
@@ -922,7 +936,7 @@ public class F_Stage3Panel extends JPanel{
 						@Override
 						public void run() {
 							//스킬 이펙트 제거 
-							panel.remove(smdraw1);	
+							panel.remove(smdraw);	
 							panel.remove(vmatkdraw1);
 							
 							//라운드 라벨 생성

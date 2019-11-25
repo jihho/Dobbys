@@ -2,6 +2,8 @@ package game.stage3.views;
 
 import java.awt.Dialog;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
@@ -14,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.C_GameStage;
+import game.stage3.controller.F_Stage3Panel;
+import view.A_LoginPanel;
 import view.A_Music;
 
 public class F_FailPanel extends JPanel{
@@ -24,6 +28,10 @@ public class F_FailPanel extends JPanel{
 		this.mf = mf;
 		panel = this;
 		this.setLayout(null);
+		
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		
 		JLabel fail = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage3_fail.gif").getImage().getScaledInstance(1280, 720, 0)));
 		fail.setBounds(0, 0, 1280, 720);

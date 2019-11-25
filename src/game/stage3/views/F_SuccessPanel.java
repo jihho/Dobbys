@@ -2,6 +2,8 @@ package game.stage3.views;
 
 import java.awt.Dialog;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 
 import controller.B_UserManager;
 import controller.C_GameStage;
+import view.A_LoginPanel;
 import view.A_Music;
 import view.C_RankingPage;
 
@@ -29,6 +32,10 @@ public class F_SuccessPanel extends JPanel{
 		this.mf = mf;
 		panel = this;
 		this.setLayout(null);
+		
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("images/main/mouse" + A_LoginPanel.mouseNum + ".png").getImage(),
+				new Point(0,0),"DobbyCursor"));
 		
 		JLabel suc = new JLabel(new ImageIcon(new ImageIcon("images/stage3/stage3_sucs.gif").getImage().getScaledInstance(1280, 720, 0)));
 		suc.setBounds(0, 0 , 1280, 720);
