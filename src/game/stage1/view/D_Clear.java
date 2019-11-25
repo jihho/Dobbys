@@ -40,7 +40,7 @@ public class D_Clear extends JPanel{
 		Dialog succ = new Dialog(mf, "성공");
 		succ.setLayout(null);
 		succ.setSize(500, 250);
-		succ.setLocationRelativeTo(null);
+		succ.setLocationRelativeTo(mf);
 		
 		JLabel succmsg = new JLabel("디멘터를 물리쳤습니다!!");
 		succmsg.setBounds(140, 50, 300, 100);
