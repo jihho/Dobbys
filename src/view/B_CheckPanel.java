@@ -79,12 +79,12 @@ public class B_CheckPanel extends JPanel{
 		textArea1.setEditable(false);
 		textArea2.setEditable(false);
 		
-		textArea1.setFont(new Font("DungGeunMo", Font.BOLD, 15));
+		textArea1.setFont(new Font("DungGeunMo", 0, 15));
 		JScrollPane scroll1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll1.setBackground(Color.lightGray);
 		
-		textArea2.setFont(new Font("DungGeunMo", Font.BOLD, 15));
+		textArea2.setFont(new Font("DungGeunMo", 0, 15));
 		JScrollPane scroll2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -94,12 +94,12 @@ public class B_CheckPanel extends JPanel{
 		box2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		JButton btn = new JButton("동의 완료");
-		btn.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		btn.setFont(new Font("DungGeunMo", 0, 16));
 		btn.setBackground(Color.lightGray);
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		JButton cancelbutton = new JButton("취소");
-		cancelbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		cancelbutton.setFont(new Font("DungGeunMo", 0, 16));
 		cancelbutton.setBackground(Color.lightGray);
 		cancelbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		

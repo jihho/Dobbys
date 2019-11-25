@@ -109,46 +109,46 @@ public class B_JoinPanel extends JPanel{
 		pwcheckbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		//폰트, 색상 설정
-		namelb.setFont(new Font("DungGeunMo", Font.BOLD, 20));
+		namelb.setFont(new Font("DungGeunMo", 0, 20));
 		namelb.setForeground(Color.white);
 	
 		
-		idlb.setFont(new Font("DungGeunMo", Font.BOLD, 20));
+		idlb.setFont(new Font("DungGeunMo", 0, 20));
 		idlb.setForeground(Color.white);
 	
 		
-		pwlb.setFont(new Font("DungGeunMo", Font.BOLD, 20));
+		pwlb.setFont(new Font("DungGeunMo", 0, 20));
 		pwlb.setForeground(Color.white);
 	
 		
-		pwchecklb.setFont(new Font("DungGeunMo", Font.BOLD, 20));
+		pwchecklb.setFont(new Font("DungGeunMo", 0, 20));
 		pwchecklb.setForeground(Color.white);
 	
 		
-		emaillb.setFont(new Font("DungGeunMo", Font.BOLD, 20));
+		emaillb.setFont(new Font("DungGeunMo", 0, 20));
 		emaillb.setForeground(Color.white);
 	
 		
-		certilb.setFont(new Font("DungGeunMo", Font.BOLD, 20));
+		certilb.setFont(new Font("DungGeunMo", 0, 20));
 		certilb.setForeground(Color.white);
 		
-		test1.setFont(new Font("DungGeunMo",Font.BOLD, 18));
+		test1.setFont(new Font("DungGeunMo",0, 18));
 		test1.setForeground(Color.red);
 		
-		joinlb.setFont(new Font("DungGeunMo",Font.BOLD, 40));
+		joinlb.setFont(new Font("DungGeunMo",0, 40));
 		joinlb.setForeground(Color.white);
 		
-		idbutton.setFont(new Font("DungGeunMo",Font.BOLD,16));
+		idbutton.setFont(new Font("DungGeunMo",0,16));
 		idbutton.setBackground(Color.lightGray);
-		joinbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		joinbutton.setFont(new Font("DungGeunMo", 0, 16));
 		joinbutton.setBackground(Color.lightGray);
-		jeonsongbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		jeonsongbutton.setFont(new Font("DungGeunMo", 0, 16));
 		jeonsongbutton.setBackground(Color.lightGray);
-		checkbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		checkbutton.setFont(new Font("DungGeunMo", 0, 16));
 		checkbutton.setBackground(Color.lightGray);
-		cancelbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		cancelbutton.setFont(new Font("DungGeunMo", 0, 16));
 		cancelbutton.setBackground(Color.lightGray);
-		pwcheckbutton.setFont(new Font("DungGeunMo", Font.BOLD, 16));
+		pwcheckbutton.setFont(new Font("DungGeunMo", 0, 16));
 		pwcheckbutton.setBackground(Color.lightGray);
 		
 		//취소 이벤트 -> 이용약관페이지으로 이동

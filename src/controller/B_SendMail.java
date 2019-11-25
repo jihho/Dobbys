@@ -20,7 +20,7 @@ public class B_SendMail {
 		StringBuffer certpassword = new StringBuffer();
 		
 		for(int i = 0; i < 8; i++) {			
-			int random = (int)(Math.random()*70);
+			int random = (int)(Math.random()*69);
 			certpassword.append(certChar[random]);
 		}
 //		System.out.println(certpassword);
@@ -98,7 +98,7 @@ public class B_SendMail {
 		//보내시는분
 		String smtpServer = "smtp.naver.com";
 		final String sendId = "l_jiho1007";
-		final String sendPass = "dl191117!";
+		final String sendPass = "dl191119!";
 		String sendEmailAddress = "l_jiho1007@naver.com";
 		int smtpPort = 465;
 		
